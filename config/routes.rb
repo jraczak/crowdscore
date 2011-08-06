@@ -1,4 +1,6 @@
 Crowdscore::Application.routes.draw do
+  get "test_me/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

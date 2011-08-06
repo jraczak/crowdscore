@@ -4,6 +4,8 @@ gem 'rails', '3.1.0.rc5'
 
 gem "pg"
 gem "inherited_resources"
+gem "slim"
+gem "slim-rails"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -41,6 +41,7 @@ module Crowdscore
     config.assets.enabled = true
 
     config.generators do |g|
+      g.template_engine :slim
       g.test_framework :rspec, :fixture => true
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
