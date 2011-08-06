@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Bizfinder::Application.load_tasks
+Crowdscore::Application.load_tasks

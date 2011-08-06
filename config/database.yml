@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: bizfinder_dev
+  database: crowdscore_dev
   pool: 5
   timeout: 5000
 
@@ -14,6 +14,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: postgresql
-  database: bizfinder_test
+  database: crowdscore_test
   pool: 5
   timeout: 5000
