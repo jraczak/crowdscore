@@ -21,6 +21,7 @@ group :development, :test do
   gem "ruby-debug19", :platforms => :mri_19
   gem 'heroku'
   gem "pickle"
+  gem "rails3-generators"
 end
 
 group :test do
