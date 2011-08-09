@@ -65,3 +65,13 @@ Feature: User registration
     Then a user should exist with email: "sam@example.com"
     And the user should be confirmed
     And I should see "Your account was successfully confirmed. You are now signed in."
+
+  Scenario: A user can enter their last name
+    When I go to the new user registration page
+    And I fill in "Email" with "sam@example.com"
+    And I fill in "First name" with "Sam"
+    And I fill in "Last name" with "Smith"
+    And I fill in "Password" with "mynewpassword"
+    And I fill in "Password confirmation" with "mynewpassword"
+    And I press "Sign up"
+    Then a user should exist with email: "sam@example.com", last_name: "Smith"
