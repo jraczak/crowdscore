@@ -30,10 +30,10 @@ end
 group :test do
   gem "cucumber-rails"
   gem "factory_girl_rails"
-  gem "capybara"
+  gem "capybara", "~> 1.0.0"
   gem "database_cleaner"
   gem "timecop"
   gem "shoulda"
   gem "launchy"
-  gem "capybara-webkit"
+  gem "capybara-webkit", "~> 1.0.0.beta4"
 end
