@@ -74,4 +74,14 @@ Feature: User registration
     And I fill in "Password" with "mynewpassword"
     And I fill in "Password confirmation" with "mynewpassword"
     And I press "Sign up"
-    Then a user should exist with email: "sam@example.com", last_name: "Smith"
+ 
+  Scenario: A user can enter their birthday
+    When I go to the new user registration page
+    And I fill in "Email" with "sam@example.com"
+    And I fill in "First name" with "Sam"
+    And I select "July" from "Birth month"
+    And I select "5" from "Birth day"
+    And I fill in "Password" with "mynewpassword"
+    And I fill in "Password confirmation" with "mynewpassword"
+    And I press "Sign up"
+    Then a user should exist with email: "sam@example.com", birth_month: "July", birth_day: "5"
