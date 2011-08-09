@@ -34,7 +34,7 @@ group :test do
   gem "capybara", "~> 1.0.0"
   gem "database_cleaner"
   gem "timecop"
-  gem "shoulda"
+  gem "shoulda", "~> 3.0.0.beta2"
   gem "launchy"
   gem "capybara-webkit", "~> 1.0.0.beta4"
   gem "email_spec"
