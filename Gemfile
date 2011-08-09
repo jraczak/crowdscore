@@ -37,4 +37,5 @@ group :test do
   gem "shoulda"
   gem "launchy"
   gem "capybara-webkit", "~> 1.0.0.beta4"
+  gem "email_spec"
 end

@@ -37,3 +37,18 @@ Feature: User registration
     Then I should see "Password doesn't match confirmation"
     And a user should not exist
 
+  Scenario: A user confirms their password
+    When I go to the new user registration page
+    And I fill in "Email" with "sam@example.com"
+    And I fill in "Password" with "mynewpassword"
+    And I fill in "Password confirmation" with "mynewpassword"
+    And I press "Sign up"
+    Then "sam@example.com" should receive an email
+
+    When I open the email
+    Then I should see "Confirmation instructions" in the email subject
+
+    When I follow "confirm" in the email
+    Then a user should exist with email: "sam@example.com"
+    And the user should be confirmed
+    And I should see "Your account was successfully confirmed. You are now signed in."
