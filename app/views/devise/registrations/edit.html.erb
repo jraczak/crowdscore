@@ -12,6 +12,18 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+  <p><%= f.label :first_name %><br />
+  <%= f.text_field :first_name %></p>
+
+  <p><%= f.label :last_name %><br />
+  <%= f.text_field :last_name %></p>
+
+  <p><%= f.label :birth_month %><br />
+  <%= f.select :birth_month, ::Date::MONTHNAMES, include_blank: true %></p>
+
+  <p><%= f.label :birth_day %><br />
+  <%= f.select :birth_day, 1..31, include_blank: true %></p>
+
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></p>
 
