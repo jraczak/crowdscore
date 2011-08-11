@@ -1,7 +1,7 @@
 Feature: Edit account info
 
   Scenario: User updates his email address
-    Given I am signed in
+    Given I am signed in as email: "bob@example.com"
     When I go to the home page
     And I follow "Edit Info"
     And I fill in "Email" with "newemail@example.com"
@@ -31,3 +31,20 @@ Feature: Edit account info
     And I press "Update"
     Then I should see "You updated your account successfully."
     And the user should exist with birth_month: "April", birth_day: "21"
+
+  Scenario: User updates his password
+    Given I am signed in as email: "bob@example.com", password: "password"
+    When I go to the home page
+    And I follow "Edit Info"
+    And I fill in "Password" with "mynewpass"
+    And I fill in "Password confirmation" with "mynewpass"
+    And I fill in "Current password" with "password"
+    And I press "Update"
+    Then I should see "You updated your account successfully."
+
+    When I sign out
+    And I follow "Sign in"
+    And I fill in "Email" with "bob@example.com"
+    And I fill in "Password" with "mynewpass"
+    And I press "Sign in"
+    Then I should see "Sign out"

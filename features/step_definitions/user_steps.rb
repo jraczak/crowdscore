@@ -14,9 +14,21 @@ Then /^I should see the following users:$/ do |expected_users_table|
 end
 
 Given /^I am signed in$/ do
-  Given('a user exists with email: "bob@example.com", password: "password"')
+  Given('I am signed in as email: "bob@example.com"')
+end
+
+Given /^I am signed in as #{capture_fields}$/ do |fields|
+  fields_hash = parse_fields(fields)
+  password = fields_hash['password'].present? ? fields_hash['password'] : 'password'
+
+  Given(%Q{a user exists with email: "#{fields_hash['email']}", password: "#{password}"})
   When('I go to the new user session page')
-  And('I fill in "Email" with "bob@example.com"')
-  And('I fill in "Password" with "password"')
+  And(%Q{I fill in "Email" with "#{fields_hash['email']}"})
+  And(%Q{I fill in "Password" with "#{password}"})
   And('I press "Sign in"')
+end
+
+When /^I sign out$/ do
+  When('I go to the home page')
+  And('I follow "Sign out"')
 end
