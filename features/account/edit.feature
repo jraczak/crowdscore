@@ -7,7 +7,7 @@ Feature: Edit account info
     And I fill in "Email" with "newemail@example.com"
     And I fill in "Current password" with "password"
     And I press "Update"
-    Then I should see "You updated your account successfully. If you changed your email address, you'll need to confirm your new email address by clicking the link in email we've just sent."
+    Then I should see "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize your new email address."
     And a user should exist with email: "bob@example.com", unconfirmed_email: "newemail@example.com"
     And "newemail@example.com" should receive an email
 
@@ -26,7 +26,7 @@ Feature: Edit account info
     And I fill in "Last name" with "Name"
     And I fill in "Current password" with "password"
     And I press "Update"
-    Then I should see "You updated your account successfully. If you changed your email address, you'll need to confirm your new email address by clicking the link in email we've just sent."
+    Then I should see "You updated your account successfully."
     And a user should exist with first_name: "New", last_name: "Name"
 
   Scenario: User updates his birthday
@@ -37,7 +37,7 @@ Feature: Edit account info
     And I select "21" from "Birth day"
     And I fill in "Current password" with "password"
     And I press "Update"
-    Then I should see "You updated your account successfully. If you changed your email address, you'll need to confirm your new email address by clicking the link in email we've just sent."
+    Then I should see "You updated your account successfully."
     And the user should exist with birth_month: "April", birth_day: "21"
 
   Scenario: User updates his password
@@ -48,7 +48,7 @@ Feature: Edit account info
     And I fill in "Password confirmation" with "mynewpass"
     And I fill in "Current password" with "password"
     And I press "Update"
-    Then I should see "You updated your account successfully. If you changed your email address, you'll need to confirm your new email address by clicking the link in email we've just sent."
+    Then I should see "You updated your account successfully."
 
     When I sign out
     And I follow "Sign in"

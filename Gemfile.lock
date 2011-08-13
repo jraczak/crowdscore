@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/heimidal/devise.git
-  revision: 5358fa9e096d457f333bbdebe34e57989912f7ba
+  revision: 90245d4fc815f0499f5890f4252906f1b96da740
   branch: updates
   specs:
     devise (1.4.2)
