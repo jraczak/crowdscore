@@ -12,7 +12,9 @@ Feature: Edit account info
     And "newemail@example.com" should receive an email
 
     When I open the email
-    And I follow "confirm" in the email
+    Then I should see "Welcome newemail@example.com!" in the email body
+
+    Then I follow "confirm" in the email
     Then a user should exist with email: "newemail@example.com"
     And a user should not exist with email: "sam@example.com"
 
