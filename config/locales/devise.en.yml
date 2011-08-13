@@ -35,7 +35,7 @@ en:
     registrations:
       signed_up: 'Welcome! You have signed up successfully.'
       inactive_signed_up: 'You have signed up successfully. Please check your email to activate your account, then we can log you in.'
-      updated: 'You updated your account successfully.'
+      updated: "You updated your account successfully. If you changed your email address, you'll need to confirm your new email address by clicking the link in email we've just sent."
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
