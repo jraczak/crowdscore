@@ -7,7 +7,7 @@ gem "pg"
 gem "inherited_resources"
 gem "slim"
 gem "slim-rails"
-gem "devise", :git => "git@github.com:heimidal/devise.git", :branch => "updates"
+gem "devise", :git => "https://heimidal@github.com/heimidal/devise.git", :branch => "updates"
 
 # Gems used only for assets and not required
 # in production environments by default.
