@@ -1,0 +1,28 @@
+h1 Create a new business
+
+= form_for resource do |f|
+  - resource.errors.full_messages.each do |message|
+    p = message
+
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :address1, 'Address 1'
+  = f.text_field :address1
+
+  = f.label :address2, 'Address 2'
+  = f.text_field :address2
+
+  = f.label :city
+  = f.text_field :city
+
+  = f.label :state
+  = f.text_field :state
+
+  = f.label :zip, 'Zip code'
+  = f.text_field :zip
+
+  = f.label :phone, 'Phone number'
+  = f.text_field :phone
+
+  = f.submit "Create"

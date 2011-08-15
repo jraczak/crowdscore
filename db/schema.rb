@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110815072312) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
