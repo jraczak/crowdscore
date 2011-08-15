@@ -1,0 +1,11 @@
+h1 Businesses
+
+table
+  tr
+    th Name
+    th City
+  - collection.each do |business|
+    tr
+      td = link_to(business.name, business)
+      td = business.city
+
