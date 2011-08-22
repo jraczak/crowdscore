@@ -12,6 +12,10 @@ describe User do
   it { should allow_mass_assignment_of(:birth_month) }
   it { should allow_mass_assignment_of(:birth_day) }
 
+  it { should_not allow_mass_assignment_of(:admin) }
+
+  it { should_not be_admin }
+
   ::Date::MONTHNAMES.each do |month|
     it { should allow_value(month).for(:birth_month) }
   end

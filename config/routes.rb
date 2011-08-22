@@ -1,7 +1,10 @@
 Crowdscore::Application.routes.draw do
+  devise_for :users
   resources :businesses
 
-  devise_for :users
+  namespace :admin do
+    root to: 'dashboards#show'
+  end
 
   root to: 'home#index'
 end

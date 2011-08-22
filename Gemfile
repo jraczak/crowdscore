@@ -8,6 +8,7 @@ gem "inherited_resources"
 gem "slim"
 gem "slim-rails"
 gem "devise", :git => "git://github.com/heimidal/devise.git", :branch => "updates"
+gem "cancan"
 gem "thin"
 
 # Gems used only for assets and not required
