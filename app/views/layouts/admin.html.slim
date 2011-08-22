@@ -1,0 +1,26 @@
+doctype 5
+
+html
+  head
+    title CrowdScore
+
+    = javascript_include_tag "admin"
+    = stylesheet_link_tag "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.0.0.min.css"
+    = stylesheet_link_tag "admin"
+    = csrf_meta_tags
+
+  body
+    .topbar
+      .fill
+        .container
+          h3 = link_to "Administrative Area", admin_root_path
+          ul
+            li = link_to "Dashboard", admin_root_path
+
+    #masthead
+      .container
+        .row
+          .span16
+            = admin_alert_messages
+
+        == yield
