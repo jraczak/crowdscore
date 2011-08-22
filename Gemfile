@@ -20,6 +20,8 @@ end
 
 gem 'jquery-rails'
 
+gem "rails-erd", :group => :development
+
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem "rspec-rails", "~> 2.6.0"
