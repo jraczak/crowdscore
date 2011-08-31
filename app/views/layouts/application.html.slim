@@ -5,7 +5,7 @@ html
     title CrowdScore
 
     = javascript_include_tag "application"
-    = stylesheet_link_tag "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.0.0.min.css"
+    = stylesheet_link_tag "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.1.min.css"
     = stylesheet_link_tag "application"
     = csrf_meta_tags
 
@@ -38,3 +38,8 @@ html
 
         == yield
 
+    #footer
+      .container
+        .row
+          .span16
+            p Copyright &copy; 2011 CrowdScore. All rights reserved.
