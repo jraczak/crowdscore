@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 module ApplicationHelper
+  def errors_for(resource)
+    return "" if resource.errors.empty?
+
+    messages = resource.errors.full_messages.join(", ")
+    alert_message(:error, messages).html_safe
+  end
+
   def alert_messages
     type_mappings = { :notice => "info", :alert => "error" }
 
