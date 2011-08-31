@@ -1,0 +1,22 @@
+h1 Sign in
+
+= form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "form-stacked"} do |f|
+  fieldset
+    .clearfix
+      = f.label :email
+      .input
+        = f.text_field :email, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :password
+      .input
+        = f.password_field :password, class: "xlarge", size: "30"
+
+    .clearfix
+      .input
+        ul.inputs-list
+          li
+            = check_box_with_label f, :remember_me, "Remember me"
+
+  .actions
+    button.btn.primary(type="submit") Sign in

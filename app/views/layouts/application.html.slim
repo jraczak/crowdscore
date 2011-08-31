@@ -1,0 +1,40 @@
+doctype 5
+
+html
+  head
+    title CrowdScore
+
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.0.0.min.css"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+
+  body
+    .topbar
+      .fill
+        .container
+          h3 = link_to "CrowdScore", root_path
+          ul
+            li = link_to "Businesses", businesses_path
+          ul.nav.secondary-nav
+            - if user_signed_in?
+              li.menu
+                = link_to "Account", "#", class: "menu"
+                ul.menu-dropdown
+                    li = link_to "Sign out", destroy_user_session_path, method: "delete"
+                    li = link_to "Edit Info", edit_user_registration_path
+                    - if current_user.admin?
+                      li.divider
+                      li = link_to "Administrative Area", admin_root_path
+            - else
+              li = link_to "Sign in", new_user_session_path
+              li = link_to "Sign up", new_user_registration_path
+
+    #masthead
+      .container
+        .row
+          .span16
+            = alert_messages
+
+        == yield
+
