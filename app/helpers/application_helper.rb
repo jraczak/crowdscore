@@ -2,13 +2,16 @@
 
 module ApplicationHelper
   def alert_messages
-    type_mappings = { "notice" => "info", "alert" => "error" }
-    %w(notice alert).inject("".html_safe) do |str, type|
-      if flash[type.intern].present?
-        str << "<div class=\"alert-message #{type_mappings[type]}\"><p>#{flash[type.intern]}</p></div>".html_safe
-      end
+    type_mappings = { :notice => "info", :alert => "error" }
+
+    [:notice, :alert].inject("") do |str, type|
+      str << alert_message(type_mappings[type], flash[type]) if flash[type].present?
       str
-    end
+    end.html_safe
+  end
+
+  def alert_message(type, message)
+    "<div class=\"alert-message #{type}\"><p>#{message}</p></div>".html_safe
   end
 
   # FIXME: This is entirely a hack around Slim's poor capture handling

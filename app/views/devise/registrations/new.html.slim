@@ -1,0 +1,45 @@
+- if devise_error_messages!.present?
+  = devise_error_messages!
+
+h1 Sign up
+
+= form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+
+  fieldset
+    .clearfix
+      = f.label :email
+      .input
+        = f.text_field :email, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :password
+      .input
+        = f.password_field :password, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :password_confirmation
+      .input
+        = f.password_field :password_confirmation, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :first_name
+      .input
+        = f.text_field :first_name, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :last_name
+      .input
+        = f.text_field :last_name, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :birth_month
+      .input
+        = f.select :birth_month, ::Date::MONTHNAMES, include_blank: true
+
+    .clearfix
+      = f.label :birth_day
+      .input
+        = f.select :birth_day, 1..31, include_blank: true
+
+  .actions
+    button.btn.primary(type="submit") Sign up
