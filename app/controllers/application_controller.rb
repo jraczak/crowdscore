@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  # Use as before_filter to require http basic auth on non-local environments.
+  #
+  # Returns true or false depending on the environment and whether the user
+  # enters the credentials specified.
   def authenticate_on_production
     return if Rails.env.development? || Rails.env.test?
     authenticate_or_request_with_http_basic do |username, password|
@@ -16,6 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Use as a before_filter to set up CanCan authorization for admin-only areas.
   def authorize_admin!
     authorize! :manage, :all
   end
