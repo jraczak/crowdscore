@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
+  # and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -16,13 +17,35 @@ class User < ActiveRecord::Base
 
   private
 
+  # Check if any facet of a user's birthday is provided.
+  #
+  # Returns true if birth month or birthday is provided, false otherwise.
   def birthday_provided?
     birth_month? || birth_day?
   end
 
+  # Add an error to this user if the birthday provided is completely impossible
+  # (even during a leap year).
+  #
+  # Examples
+  #
+  #   check_date_for_realness # when birth_month is "Novembruary"
+  #   errors.full_messages.first # => "Birthday should be a real day of the 
+  #   year."
+  #
+  #   check_date_for_realness # when birth_month is "July" and birth day is 37
+  #   errors.full_messages.first # => "Birthday should be a real day of the 
+  #   year."
+  #
+  #   check_date_for_realness # when date is real
+  #   errors.count # => 0
+  #
+  # Intended as a validation
   def check_date_for_realness
-    # test against a leap year so we allow for Feb 29
-    Date.new(2008, ::Date::MONTHNAMES.index(birth_month), birth_day) if birth_month? && birth_day?
+    if birth_month? && birth_day?
+      # test against a leap year so we allow for Feb 29
+      Date.new(2008, ::Date::MONTHNAMES.index(birth_month), birth_day)
+    end
   rescue
     errors.add(:birthday, "should be a real day of the year.")
   end
