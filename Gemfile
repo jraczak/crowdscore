@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem "rails-erd", :group => :development
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
   gem "rspec-rails", "~> 2.6.0"
   gem 'heroku'
   gem "pickle"
@@ -33,7 +33,7 @@ end
 group :test do
   gem "cucumber-rails"
   gem "factory_girl_rails"
-  gem "capybara", "~> 1.0.0"
+  gem "capybara", "~> 1.1.0"
   gem "database_cleaner"
   gem "timecop"
   gem "shoulda", "~> 3.0.0.beta2"
