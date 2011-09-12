@@ -1,0 +1,12 @@
+h1 Venues
+
+table
+  tr
+    th Name
+    th City
+  - collection.each do |venue|
+    tr
+      td = link_to(venue.name, venue)
+      td = venue.city
+
+= link_to "Add a venue", new_venue_path

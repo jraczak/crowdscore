@@ -9,7 +9,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :create, Business
+      can :create, Venue
     end
 
     # Define abilities for the passed in user here. For example:

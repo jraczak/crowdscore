@@ -1,3 +1,3 @@
-class Business < ActiveRecord::Base
+class Venue < ActiveRecord::Base
   validates :name, :address1, :city, :state, :zip, :presence => true
 end

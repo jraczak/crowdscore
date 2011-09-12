@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822052546) do
-
-  create_table "businesses", :force => true do |t|
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110912071328) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -51,5 +40,17 @@ ActiveRecord::Schema.define(:version => 20110822052546) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

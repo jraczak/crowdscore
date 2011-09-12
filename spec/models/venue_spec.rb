@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Business do
+describe Venue do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:address1) }
   it { should validate_presence_of(:city) }

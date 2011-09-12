@@ -11,8 +11,8 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    when /^the business page for (.*)$/
-      business_path(model!($1))
+    when /^the venue page for (.*)$/
+      venue_path(model!($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

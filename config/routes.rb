@@ -1,6 +1,6 @@
 Crowdscore::Application.routes.draw do
   devise_for :users
-  resources :businesses
+  resources :venues
 
   namespace :admin do
     root to: 'dashboards#show'
