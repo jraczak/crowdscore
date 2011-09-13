@@ -54,6 +54,37 @@ Feature: Creating a new venue
     And I should be on the venue page for the venue
     And I should see "Venue was successfully created."
 
+  Scenario: A user can add a web address to a venue
+    Given I am signed in
+    When I go to the venues page
+    And I follow "Add a venue"
+    And I fill in "Name" with "My Biz"
+    And I fill in "Address 1" with "123 Main St"
+    And I fill in "City" with "Denver"
+    And I fill in "State" with "CO"
+    And I fill in "Zip code" with "80202"
+    And I fill in "URL" with "http://www.aol.com"
+    And I select "Restaurant" from "Category"
+    And I press "Create"
+    Then a venue should exist with name: "My Biz"
+    And I should be on the venue page for the venue
+    And I should see "Venue was successfully created."
+
+  Scenario: A user must use the right format for a web address when added to a venue
+    Given I am signed in
+    When I go to the venues page
+    And I follow "Add a venue"
+    And I fill in "Name" with "My Biz"
+    And I fill in "Address 1" with "123 Main St"
+    And I fill in "City" with "Denver"
+    And I fill in "State" with "CO"
+    And I fill in "Zip code" with "80202"
+    And I fill in "URL" with "www.aol.com"
+    And I select "Restaurant" from "Category"
+    And I press "Create"
+    Then a venue should not exist with name: "My Biz"
+    And I should see "URL must contain 'http://'"
+
   Scenario: A user must add a name to a venue
     Given I am signed in
     When I go to the venues page

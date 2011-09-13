@@ -41,6 +41,11 @@ h1 Create a new venue
         = f.text_field :phone, class: "xlarge", size: "30"
 
     .clearfix
+      = f.label :url, "URL"
+      .input
+        = f.text_field :url, class: "xlarge", size: "30"
+
+    .clearfix
       = f.label :venue_category_id, "Category"
       .input
         = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true

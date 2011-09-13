@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913064513) do
+ActiveRecord::Schema.define(:version => 20110913075413) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20110913064513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "venue_category_id"
+    t.string   "url"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"
