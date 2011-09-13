@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+default_venues = ["Restaurant", "Bar & Nightlife", "Personal Service", "Hotel & Resort"]
+
+default_venues.each do |name|
+  VenueCategory.find_or_create_by_name(name)
+end
