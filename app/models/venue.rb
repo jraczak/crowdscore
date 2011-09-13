@@ -1,3 +1,5 @@
 class Venue < ActiveRecord::Base
-  validates :name, :address1, :city, :state, :zip, :presence => true
+  belongs_to :venue_category
+
+  validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
 end

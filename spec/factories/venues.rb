@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :venue do
-      name "MyString"
-      address1 "MyString"
-      address2 "MyString"
-      city "MyString"
-      state "MyString"
-      zip "MyString"
+      name "Brian's Great Bar"
+      address1 "123 Test St"
+      city "Denver"
+      state "CO"
+      zip "80202"
+      venue_category
     end
 end
