@@ -3,6 +3,7 @@ Crowdscore::Application.routes.draw do
   resources :venues
 
   namespace :admin do
+    resources :users
     root to: 'dashboards#show'
   end
 

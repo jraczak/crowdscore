@@ -11,10 +11,24 @@ describe User do
   it { should allow_mass_assignment_of(:remember_me) }
   it { should allow_mass_assignment_of(:birth_month) }
   it { should allow_mass_assignment_of(:birth_day) }
-
   it { should_not allow_mass_assignment_of(:admin) }
 
+  it { should allow_mass_assignment_of(:email).as(:admin) }
+  it { should allow_mass_assignment_of(:first_name).as(:admin) }
+  it { should allow_mass_assignment_of(:last_name).as(:admin) }
+  it { should allow_mass_assignment_of(:password).as(:admin) }
+  it { should allow_mass_assignment_of(:password_confirmation).as(:admin) }
+  it { should allow_mass_assignment_of(:remember_me).as(:admin) }
+  it { should allow_mass_assignment_of(:birth_month).as(:admin) }
+  it { should allow_mass_assignment_of(:birth_day).as(:admin) }
+  it { should allow_mass_assignment_of(:admin).as(:admin) }
+
   it { should_not be_admin }
+
+  context "with first and last name" do
+    subject { Factory.build(:user, first_name: "Bobby", last_name: "Barker") }
+    its(:full_name) { should == 'Bobby Barker' }
+  end
 
   ::Date::MONTHNAMES.each do |month|
     it { should allow_value(month).for(:birth_month) }

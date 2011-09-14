@@ -6,14 +6,30 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :first_name, :last_name, :birth_month, :birth_day,
-                  :password, :password_confirmation, :remember_me
+  default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
+                               :birth_day, :password, :password_confirmation,
+                               :remember_me]
+
+  attr_accessible *default_accessible_fields
+  attr_accessible *(default_accessible_fields + [:admin]), :as => :admin
 
   validates :first_name, presence: true
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }
   validate :check_date_for_realness
+
+  # Public: Get the user's full name.
+  #
+  # Examples:
+  #
+  #   User.new(first_name: 'Alex', last_name: 'Matthews').full_name
+  #   # => 'Alex Matthews'
+  #
+  # Returns a String containing the full name
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   private
 

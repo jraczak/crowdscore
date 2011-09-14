@@ -1,0 +1,10 @@
+= errors_for resource
+
+h1 Create a new user
+
+= form_for [:admin, resource] do |f|
+  = render partial: "form", locals: { f: f }
+
+  .actions
+    button.btn.primary(type="submit") Create user
+

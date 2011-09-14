@@ -5,7 +5,7 @@ module HacketyHackHackHelper
   # FIXME: This is entirely a hack around Slim's poor capture handling
   def check_box_with_label(form_builder, method, label)
     form_builder.label(method) do
-      form_builder.check_box(method) + content_tag(:span, label)
+      form_builder.check_box(method) + " ".html_safe + content_tag(:span, label)
     end
   end
 end

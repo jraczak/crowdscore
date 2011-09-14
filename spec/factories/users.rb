@@ -8,6 +8,10 @@ FactoryGirl.define do
     factory :unconfirmed_user do
       confirmed_at nil
     end
+
+    factory :admin_user do
+      admin true
+    end
   end
 
 end

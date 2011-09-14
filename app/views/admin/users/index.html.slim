@@ -1,0 +1,12 @@
+= render partial: 'admin/subnav'
+
+h1 Users
+
+table
+  tr
+    th First name
+  - collection.each do |user|
+    tr
+      td = link_to user.full_name, [:admin, user]
+
+= link_to "Add a user", new_admin_user_path

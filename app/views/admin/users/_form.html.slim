@@ -1,0 +1,31 @@
+fieldset
+  .clearfix
+    = f.label :email
+    .input
+      = f.text_field :email, class: "xlarge", size: "30"
+
+  .clearfix
+    = f.label :password
+    .input
+      = f.password_field :password, class: "xlarge", size: "30"
+
+  .clearfix
+    = f.label :password_confirmation
+    .input
+      = f.password_field :password_confirmation, class: "xlarge", size: "30"
+
+  .clearfix
+    = f.label :first_name
+    .input
+      = f.text_field :first_name, class: "xlarge", size: "30"
+
+  .clearfix
+    = f.label :last_name
+    .input
+      = f.text_field :last_name, class: "xlarge", size: "30"
+
+  .clearfix
+    .input
+      ul.inputs-list
+        li = check_box_with_label(f, :admin, 'Admin')
+

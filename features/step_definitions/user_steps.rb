@@ -25,10 +25,15 @@ Given /^I am signed in as #{capture_fields}$/ do |fields|
   fields_hash = parse_fields(fields)
   password = fields_hash['password'].present? ? fields_hash['password'] : 'password'
 
-  user_info = "email: \"#{fields_hash['email']}\", password: \"#{password}\""
-  user_info += ", admin: #{fields_hash['admin']}" if fields_hash['admin'].present?
+  if fields_hash['admin']
+    user_type = "admin user"
+  else
+    user_type = "user"
+  end
 
-  Given(%Q{a user exists with #{user_info}})
+  user_info = "email: \"#{fields_hash['email']}\", password: \"#{password}\""
+
+  Given(%Q{a #{user_type} exists with #{user_info}})
   When('I go to the new user session page')
   And(%Q{I fill in "Email" with "#{fields_hash['email']}"})
   And(%Q{I fill in "Password" with "#{password}"})

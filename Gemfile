@@ -23,7 +23,8 @@ gem 'jquery-rails'
 gem "rails-erd", :group => :development
 
 group :development, :test do
-  # gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem "pry"
   gem "rspec-rails", "~> 2.6.0"
   gem 'heroku'
   gem "pickle"
