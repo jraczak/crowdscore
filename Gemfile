@@ -29,11 +29,14 @@ group :development, :test do
   gem 'heroku'
   gem "pickle"
   gem "rails3-generators"
+  gem "spork", "~> 0.9.0.rc"
+  gem "ZenTest"
+  gem "foreman"
 end
 
 group :test do
   gem "cucumber-rails"
-  gem "factory_girl_rails"
+  gem "factory_girl"
   gem "capybara", "~> 1.1.0"
   gem "database_cleaner"
   gem "timecop"

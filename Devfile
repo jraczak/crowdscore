@@ -1,0 +1,2 @@
+rspec-drb: bundle exec spork
+cuke-drb: bundle exec spork cucumber
