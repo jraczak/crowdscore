@@ -5,15 +5,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
-                               :remember_me]
+                               :remember_me, :username]
+  admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields
-  attr_accessible *(default_accessible_fields + [:admin]), :as => :admin
+  attr_accessible *(default_accessible_fields + admin_only_fields), :as => :admin
 
   validates :first_name, presence: true
+  validates :username, presence: true, uniqueness: true
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }
