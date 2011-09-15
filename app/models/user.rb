@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
-                               :remember_me, :username]
+                               :remember_me, :username, :zip_code]
   admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields
@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
+  validates :zip_code, presence: true, numericality: true, length: { is: 5 }
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }

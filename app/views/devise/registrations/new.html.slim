@@ -37,6 +37,11 @@ h1 Sign up
         = f.text_field :last_name, class: "xlarge", size: "30"
 
     .clearfix
+      = f.label :zip_code
+      .input
+        = f.text_field :zip_code, class: "xlarge", size: "30"
+
+    .clearfix
       = f.label :birth_month
       .input
         = f.select :birth_month, ::Date::MONTHNAMES, include_blank: true

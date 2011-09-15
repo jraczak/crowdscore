@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:username) { |n| "factory#{n}" }
     first_name "Factory"
     password "password"
+    zip_code "80202"
     confirmed_at { 1.hour.ago }
 
     factory :unconfirmed_user do

@@ -3,6 +3,12 @@ require 'spec_helper'
 describe User do
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:username) }
+  it { should validate_presence_of(:zip_code) }
+  it { should validate_numericality_of(:zip_code) }
+  it { should allow_value("80202").for(:zip_code) }
+  it { should allow_value("802.2").for(:zip_code) }
+  it { should_not allow_value("180202").for(:zip_code) }
+  it { should_not allow_value("8020").for(:zip_code) }
 
   context "with a saved user" do
     subject { Factory(:user) }
@@ -15,6 +21,7 @@ describe User do
   it { should allow_mass_assignment_of(:username) }
   it { should allow_mass_assignment_of(:first_name) }
   it { should allow_mass_assignment_of(:last_name) }
+  it { should allow_mass_assignment_of(:zip_code) }
   it { should allow_mass_assignment_of(:password) }
   it { should allow_mass_assignment_of(:password_confirmation) }
   it { should allow_mass_assignment_of(:remember_me) }
@@ -26,6 +33,7 @@ describe User do
   it { should allow_mass_assignment_of(:username) }
   it { should allow_mass_assignment_of(:first_name).as(:admin) }
   it { should allow_mass_assignment_of(:last_name).as(:admin) }
+  it { should allow_mass_assignment_of(:zip_code).as(:admin) }
   it { should allow_mass_assignment_of(:password).as(:admin) }
   it { should allow_mass_assignment_of(:password_confirmation).as(:admin) }
   it { should allow_mass_assignment_of(:remember_me).as(:admin) }
