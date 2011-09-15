@@ -66,6 +66,13 @@ describe User do
   it { should allow_value("").for(:birth_day) }
   it { should_not allow_value("32").for(:birth_day) }
 
+  describe "username" do
+    subject { Factory.create(:user, username: "jimbob") }
+    before { subject.username = "jim"; subject.valid? }
+
+    its("errors.full_messages.to_sentence") { should == "Username cannot be changed" }
+  end
+
   describe "date checking" do
     context "when month is set" do
       subject { Factory.build(:user, :birth_month => "July") }

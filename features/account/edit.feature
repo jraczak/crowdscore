@@ -40,6 +40,16 @@ Feature: Edit account info
     Then I should see "You updated your account successfully."
     And the user should exist with birth_month: "April", birth_day: "21"
 
+  Scenario: User updates his zip code
+    Given I am signed in
+    When I go to the home page
+    And I follow "Edit Info"
+    And I fill in "Zip code" with "90048"
+    And I fill in "Current password" with "password"
+    And I press "Update"
+    Then I should see "You updated your account successfully."
+    And a user should exist with zip_code: "90048"
+
   Scenario: User updates his password
     Given I am signed in as email: "bob@example.com", password: "password"
     When I go to the home page

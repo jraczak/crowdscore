@@ -9,12 +9,13 @@ fieldset
     .input
       = f.text_field :username, class: "xlarge#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?
       - if f.object.persisted?
-        span.help-block Usernames can only be changed by developers.
+        span.help-block Username cannot be changed.
 
   .clearfix
     = f.label :password
     .input
       = f.password_field :password, class: "xlarge", size: "30"
+      span.help-block Leave this blank if you don't want your password to change
 
   .clearfix
     = f.label :password_confirmation
@@ -37,7 +38,13 @@ fieldset
       = f.text_field :zip_code, class: "xlarge", size: "30"
 
   .clearfix
+    = f.label :birth_month
     .input
-      ul.inputs-list
-        li = check_box_with_label(f, :admin, 'Admin')
+      = f.select :birth_month, ::Date::MONTHNAMES, include_blank: true
+
+  .clearfix
+    = f.label :birth_day
+    .input
+      = f.select :birth_day, 1..31, include_blank: true
+
 

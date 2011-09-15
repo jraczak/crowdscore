@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }
   validate :check_date_for_realness
+  validate :prevent_username_change, on: :update
 
   # Public: Get the user's full name.
   #
@@ -66,5 +67,16 @@ class User < ActiveRecord::Base
     end
   rescue
     errors.add(:birthday, "should be a real day of the year.")
+  end
+
+  # Add an error if the username is changed after the user is already
+  # persisted. (You can bypass this on the command-line by using
+  # save(validate: false)
+  #
+  # Intended as validation
+  def prevent_username_change
+    if persisted? && username_changed?
+      errors.add(:username, "cannot be changed")
+    end
   end
 end
