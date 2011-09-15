@@ -1,12 +1,19 @@
 = render partial: 'admin/subnav'
 
-h1 Users
+h1 Existing users
 
-table
+table#user_list.zebra-striped
   tr
-    th First name
+    th Username
+    th Email
+    th Full name
+    th Admin
   - collection.each do |user|
     tr
-      td = link_to user.full_name, [:admin, user]
+      td = link_to user.username, [:admin, user]
+      td = mail_to user.email
+      td = user.full_name
+      td = user.admin? ? "Yes" : "No"
 
-= link_to "Add a user", new_admin_user_path
+.well
+  = link_to "Add a user", new_admin_user_path, class: "btn primary"

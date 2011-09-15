@@ -1,7 +1,7 @@
 Feature: Manage users
 
   Background:
-    Given a user: "bobby" exists with first_name: "Bobby", last_name: "Barker", email: "bobby@example.com"
+    Given a user: "bobby" exists with username: "bobbyb", first_name: "Bobby", last_name: "Barker", email: "bobby@example.com"
     And I am signed in as an admin
 
   Scenario: View a listing of users
@@ -43,14 +43,14 @@ Feature: Manage users
 
   Scenario: View a user
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     Then I should be on the admin user page for user: "bobby"
     And I should see "Bobby Barker"
     And I should see "bobby@example.com"
 
   Scenario: Edit a user
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     And I follow "Edit" within the toolbox
     And I fill in "First name" with "Mike"
     And I press "Save"
@@ -60,7 +60,7 @@ Feature: Manage users
 
   Scenario: Change a user's password
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     And I follow "Edit" within the toolbox
     And I fill in "Password" with "awesomepass"
     And I fill in "Password confirmation" with "awesomepass"
@@ -75,7 +75,7 @@ Feature: Manage users
 
   Scenario: Make a user an admin
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     And I follow "Edit" within the toolbox
     And I check "Admin"
     And I press "Save"
@@ -85,7 +85,7 @@ Feature: Manage users
   @javascript
   Scenario: Delete a user
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     And  I follow "Delete"
     And I confirm the dialog
     Then I should be on the admin users page
@@ -94,7 +94,7 @@ Feature: Manage users
   @javascript
   Scenario: Cancelling deleting a user
     When I go to the admin users page
-    And I follow "Bobby Barker"
+    And I follow "bobbyb"
     And  I follow "Delete"
     And I cancel the dialog
     Then I should be on the admin user page for user: "bobby"

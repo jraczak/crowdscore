@@ -15,7 +15,10 @@ html
         .container
           h3 = link_to "CrowdScore", root_path
           ul
-            li = link_to "Venues", venues_path
+            - if params[:controller] =~ /^admin/
+              li = link_to "← Return to site", root_path
+            - else
+              li = link_to "Venues", venues_path
           ul.nav.secondary-nav
             - if user_signed_in?
               li.menu
