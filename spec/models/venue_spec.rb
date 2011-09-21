@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Venue do
   it { should belong_to(:venue_category) }
+  it { should belong_to(:venue_subcategory) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:address1) }

@@ -2,6 +2,10 @@ Crowdscore::Application.routes.draw do
   devise_for :users
   resources :venues
 
+  resources :venue_categories, :only => [] do
+    resources :venue_subcategories, :only => :index
+  end
+
   namespace :admin do
     resources :users
     root to: 'dashboards#show'

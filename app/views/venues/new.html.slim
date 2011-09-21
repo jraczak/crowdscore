@@ -50,5 +50,10 @@ h1 Create a new venue
       .input
         = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
 
+    .clearfix
+      = f.label :venue_subcategory_id, "Subcategory"
+      .input
+        = f.collection_select :venue_subcategory_id, @venue_subcategories, :id, :name, include_blank: true
+
   .actions
     button.btn.primary(type="submit") Create

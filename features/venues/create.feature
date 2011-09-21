@@ -22,6 +22,24 @@ Feature: Creating a new venue
     And I should be on the venue page for the venue
     And I should see "Venue was successfully created."
 
+  @javascript
+  Scenario: A user can add a subcategory to a venue
+    Given a venue subcategory exists with name: "Indian", venue_category: the venue category
+    And I am signed in
+    When I go to the venues page
+    And I follow "Add a venue"
+    And I fill in "Name" with "My Biz"
+    And I fill in "Address 1" with "123 Main St"
+    And I fill in "City" with "Denver"
+    And I fill in "State" with "CO"
+    And I fill in "Zip code" with "80202"
+    And I select "Restaurant" from "Category"
+    And I select "Indian" from "Subcategory"
+    And I press "Create"
+    Then a venue should exist with name: "My Biz"
+    And I should be on the venue page for the venue
+    And I should see "Venue was successfully created."
+
   Scenario: A user can add a phone number to a venue
     Given I am signed in
     When I go to the venues page
@@ -162,3 +180,13 @@ Feature: Creating a new venue
     And I press "Create"
     Then a venue should not exist with name: "My Biz"
     And I should see "Venue category can't be blank"
+
+  Scenario: A user sees the right subcategories when an error has occurred on the form
+    Given a venue subcategory exists with name: "Indian", venue_category: the venue category
+    And I am signed in
+    When I go to the venues page
+    And I follow "Add a venue"
+    And I select "Restaurant" from "Category"
+    And I press "Create"
+    Then a venue should not exist
+    And "Indian" should be an option for "Subcategory"

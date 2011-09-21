@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915052606) do
+ActiveRecord::Schema.define(:version => 20110921070100) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20110915052606) do
     t.datetime "updated_at"
   end
 
+  create_table "venue_subcategories", :force => true do |t|
+    t.integer  "venue_category_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_subcategories", ["venue_category_id"], :name => "index_venue_subcategories_on_venue_category_id"
+
   create_table "venues", :force => true do |t|
     t.string   "name"
     t.string   "address1"
@@ -61,8 +70,10 @@ ActiveRecord::Schema.define(:version => 20110915052606) do
     t.datetime "updated_at"
     t.integer  "venue_category_id"
     t.string   "url"
+    t.integer  "venue_subcategory_id"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"
+  add_index "venues", ["venue_subcategory_id"], :name => "index_venues_on_venue_subcategory_id"
 
 end
