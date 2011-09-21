@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :venue_subcategory do
-      venue_category nil
+      venue_category
       name "MyString"
     end
 end
