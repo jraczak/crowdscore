@@ -2,8 +2,6 @@ require 'rubygems'
 require 'spork'
 
 Spork.prefork do
-
-  # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
 
   # These two lines fix an issue with Spork and Devise preloading the user model
