@@ -36,7 +36,7 @@ Feature: Creating a new venue
     And I select "Restaurant" from "Category"
     And I select "Indian" from "Subcategory"
     And I press "Create"
-    Then a venue should exist with name: "My Biz"
+    Then a venue should exist with name: "My Biz", venue_subcategory: the venue subcategory
     And I should be on the venue page for the venue
     And I should see "Venue was successfully created."
 
