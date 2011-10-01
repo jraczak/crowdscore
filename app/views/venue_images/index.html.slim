@@ -1,0 +1,17 @@
+h1 Listing venue_images
+
+table
+  tr
+    th
+    th
+    th
+
+  - @venue_images.each do |venue_image|
+    tr
+      td= link_to 'Show', venue_image
+      td= link_to 'Edit', edit_venue_image_path(venue_image)
+      td= link_to 'Destroy', venue_image, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Venue image', new_venue_image_path

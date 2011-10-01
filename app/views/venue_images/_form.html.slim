@@ -1,0 +1,14 @@
+= form_for resource do |f|
+  fieldset
+    .clearfix
+      = f.label :caption
+      .input
+        = f.text_field :caption, class: "xlarge", size: "30"
+
+    .clearfix
+      = f.label :image_file
+      .input
+        = f.file_field :image_file, class: "xlarge", size: "30"
+
+  .actions
+    = f.submit 'Upload'

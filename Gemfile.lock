@@ -54,6 +54,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     coderay (0.9.8)
@@ -83,13 +85,25 @@ GEM
       rspec (~> 2.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    excon (0.7.4)
     execjs (1.2.4)
       multi_json (~> 1.0)
     factory_girl (2.1.0)
     ffi (1.0.9)
+    fog (1.0.0)
+      builder
+      excon (~> 0.7.3)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0.3)
+      net-scp (~> 1.0.4)
+      net-ssh (~> 2.1.4)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
     foreman (0.22.0)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
+    formatador (0.2.1)
     gherkin (2.4.18)
       json (>= 1.4.6)
     has_scope (0.5.1)
@@ -121,6 +135,9 @@ GEM
       ruby_parser (>= 2.0.5)
     mime-types (1.16)
     multi_json (1.0.3)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.1.4)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     pg (0.11.0)
@@ -168,6 +185,7 @@ GEM
     responders (0.6.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.1)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -190,6 +208,7 @@ GEM
       linecache19 (>= 0.5.11)
       ruby-debug-base19 (>= 0.11.19)
     ruby-graphviz (0.9.21)
+    ruby-hmac (0.4.0)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     ruby_parser (2.3.0)
@@ -251,12 +270,14 @@ DEPENDENCIES
   ZenTest
   cancan
   capybara (~> 1.1.0)
+  carrierwave
   coffee-rails (~> 3.1.0)
   cucumber-rails
   database_cleaner
   devise!
   email_spec
   factory_girl
+  fog
   foreman
   heroku
   inherited_resources
@@ -268,6 +289,7 @@ DEPENDENCIES
   rails (= 3.1.0)
   rails-erd
   rails3-generators
+  rmagick
   rspec-rails (~> 2.6.0)
   ruby-debug19
   sass-rails (~> 3.1.0)

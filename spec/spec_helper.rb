@@ -14,6 +14,7 @@ Spork.prefork do
 
   # Fix an issue related to shoulda matchers and Spork
   require 'shoulda/matchers/integrations/rspec'
+  require 'carrierwave/test/matchers'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
@@ -23,6 +24,10 @@ Spork.prefork do
     config.use_transactional_fixtures = true
   end
 
+  # Mock out Fog by pretending a bucket exists
+  Fog.mock!
+  connection = Fog::Storage.new(:provider => 'AWS')
+  connection.directories.create(:key => 'crowdscore-test')
 end
 
 Spork.each_run do

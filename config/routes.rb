@@ -1,6 +1,8 @@
 Crowdscore::Application.routes.draw do
   devise_for :users
-  resources :venues
+  resources :venues do
+    resources :images, :controller => :venue_images, :as => :images, :only => [:new, :create]
+  end
 
   resources :venue_categories, :only => [] do
     resources :venue_subcategories, :only => :index
