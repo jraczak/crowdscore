@@ -4,41 +4,47 @@
 
 class Crowdscore
   constructor: ->
+    @category_field = $('#new_venue #venue_venue_category_id')
     @subcategory_field = $('#new_venue #venue_venue_subcategory_id')
-    $('#new_venue #venue_venue_category_id').change @updateSubcategorySelect
-    $('#new_venue #venue_venue_category_id').trigger("change")
+    @category_throbber = @category_field.next("img")
 
-  disableSelect: (field) ->
-    field.attr('disabled', 'disabled').addClass('disabled')
+    @category_field.change @updateSubcategorySelect
+    @category_field.trigger("change")
 
-  enableSelect: (field) ->
-    field.removeAttr('disabled').removeClass('disabled')
+  disableSelect: ->
+    @subcategory_field.attr('disabled', 'disabled').addClass('disabled')
 
-  hideFieldIfNoOptions: (field) ->
+  enableSelect: ->
+    @subcategory_field.removeAttr('disabled').removeClass('disabled')
+
+  hideFieldIfNoOptions: ->
     # There is an empty option we're auto-inserting before this method is fired
-    if field.find("option").length > 1
-      field.parents(".clearfix").show()
+    if @subcategory_field.find("option").length > 1
+      @subcategory_field.parents(".clearfix").show()
     else
-      field.parents(".clearfix").hide()
+      @subcategory_field.parents(".clearfix").hide()
 
   updateSubcategorySelect: (e) =>
     element = $(e.target)
-    subcatField = $('#new_venue #venue_venue_subcategory_id')
-    @disableSelect(subcatField)
-    markup = '<option value="${id}">${name}</option>'
-    venueCategoryId = element.attr('value')
-    subcatField.html('<option value></option')
 
-    if venueCategoryId != ""
-      $.get("/venue_categories/#{venueCategoryId}/venue_subcategories.json")
+    @disableSelect()
+    @subcategory_field.html('<option value></option')
+
+    markup = '<option value="${id}">${name}</option>'
+    cat_id = element.val()
+
+    if cat_id != ""
+      @category_throbber.show()
+      $.get("/venue_categories/#{cat_id}/venue_subcategories.json")
       .success (data) =>
-        $.tmpl(markup, data).appendTo(subcatField)
-        @enableSelect(subcatField)
-        @hideFieldIfNoOptions(subcatField)
-      .error (data) =>
-        @hideFieldIfNoOptions(subcatField)
+        $.tmpl(markup, data).appendTo(@subcategory_field)
+        @enableSelect()
+        @hideFieldIfNoOptions()
+      .error(@hideFieldIfNoOptions)
+      .complete(=> @category_throbber.hide())
+
     else
-      @hideFieldIfNoOptions(subcatField)
+      @hideFieldIfNoOptions()
 
 $ ->
   $.Crowdscore = new Crowdscore

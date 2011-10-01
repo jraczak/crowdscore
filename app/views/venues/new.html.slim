@@ -49,6 +49,8 @@ h1 Create a new venue
       = f.label :venue_category_id, "Category"
       .input
         = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
+        |  
+        = image_tag 'loader.gif', style: "display: none"
 
     .clearfix
       = f.label :venue_subcategory_id, "Subcategory"
