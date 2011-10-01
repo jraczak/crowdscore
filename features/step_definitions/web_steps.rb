@@ -209,3 +209,11 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^I should see the ([\w ]+)$/ do |selector|
+  page.should have_css(selector_for("the #{selector}"))
+end
+
+Then /^I should not see the ([\w ]+)$/ do |selector|
+  page.should have_no_css(selector_for("the #{selector}"))
+end

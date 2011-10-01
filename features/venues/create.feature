@@ -40,6 +40,21 @@ Feature: Creating a new venue
     And I should be on the venue page for the venue
     And I should see "Venue was successfully created."
 
+  @javascript
+  Scenario: A user does not see the subcategory dropdown for categories that don't have subcategories
+    Given a venue subcategory exists with name: "Indian", venue_category: the venue category
+    And a venue category exists with name: "Hotel"
+    And I am signed in
+    When I go to the venues page
+    And I follow "Add a venue"
+    Then I should not see the venue subcategory dropdown
+
+    When I select "Restaurant" from "Category"
+    Then I should see the venue subcategory dropdown
+
+    When I select "Hotel" from "Category"
+    Then I should not see the venue subcategory dropdown
+
   Scenario: A user can add a phone number to a venue
     Given I am signed in
     When I go to the venues page
