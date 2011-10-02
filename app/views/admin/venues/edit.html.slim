@@ -1,0 +1,12 @@
+= render partial: 'admin/subnav'
+
+= errors_for resource
+
+h1 Edit venue
+
+= form_for [:admin, resource] do |f|
+  == render partial: "venues/form", locals: { f: f, subcategories: @venue_subcategories }
+
+  .actions
+    button.btn.primary(type="submit") Update
+

@@ -17,6 +17,12 @@ module NavigationHelpers
     when /^the admin user page for (.*)$/
       admin_user_path(model!($1))
 
+    when /^the admin venue page for (.*)$/
+      admin_venue_path(model!($1))
+
+    when /^the edit admin venue page for (.*)$/
+      edit_admin_venue_path(model!($1))
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

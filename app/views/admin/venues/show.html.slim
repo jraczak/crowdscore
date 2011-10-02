@@ -1,0 +1,12 @@
+.row
+  .span16
+    = render partial: 'admin/subnav'
+
+    h1 = resource.name
+
+    dl
+      dt Category
+      dd = resource.full_category_name
+
+    .well
+      = link_to "Edit", edit_admin_venue_path(resource), class: 'btn'

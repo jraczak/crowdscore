@@ -11,7 +11,7 @@ table#venue_list.zebra-striped
     th Category
   - collection.each do |venue|
     tr
-      td = link_to venue.name, venue
+      td = link_to venue.name, [:admin, venue]
       td = "#{venue.city}, #{venue.state}"
       td = "#{venue.venue_category.name}"
 
