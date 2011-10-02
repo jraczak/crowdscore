@@ -22,10 +22,14 @@ class VenueImport
   end
 
   def save
-    cleanup_before_save
+    if file.present?
+      cleanup_before_save
 
-    @to_process = CSV.parse(file.tempfile, row_sep: "\n", headers: true)
-    process_files!
+      @to_process = CSV.parse(file.tempfile, row_sep: "\n", headers: true)
+      process_files!
+    else
+      errors.add :csv_file, "can't be blank"
+    end
   rescue ArgumentError, CSV::MalformedCSVError => e
     errors.add :csv_file, "is not valid"
   end

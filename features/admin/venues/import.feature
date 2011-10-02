@@ -20,7 +20,6 @@ Feature: Import venues from other sources
     And I press "Import"
     Then I should see "2 venue(s) were successfully imported. 1 venue(s) could not be imported."
 
-
   Scenario: An admin is told the file couldn't be parsed
     Given I am signed in as an admin
     When I go to the admin root page
@@ -30,3 +29,10 @@ Feature: Import venues from other sources
     And I press "Import"
     Then I should see "Csv file is not valid"
 
+  Scenario: An admin gets an error if they don't upload a file
+    Given I am signed in as an admin
+    When I go to the admin root page
+    And I follow "Venues"
+    And I follow "Import CSV file"
+    And I press "Import"
+    Then I should see "Csv file can't be blank"
