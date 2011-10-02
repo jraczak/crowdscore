@@ -22,33 +22,10 @@ class VenueImport
   end
 
   def save
-    errors.clear
-    @saved_venues = []
-    @unsaved_venues = []
-    CSV.parse(file.tempfile, row_sep: "\n", headers: true) do |row|
-      url = row['URL']
-      url = "http://#{url}" if url !~ /^http/
-      category = VenueCategory.find_by_name(row['Category'])
+    cleanup_before_save
 
-      venue = Venue.create({
-        name: row['Name'],
-        address1: row['Address 1'],
-        address2: row['Address 2'],
-        city: row['City'],
-        state: row['State'],
-        zip: row['Zip'],
-        phone: row['Phone'],
-        url: url,
-        venue_category: category,
-        venue_subcategory: VenueSubcategory.find_by_name_and_venue_category_id(row['Subcategory'], category.try(:id))
-      })
-
-      if venue.new_record?
-        @unsaved_venues << venue
-      else
-        @saved_venues << venue
-      end
-    end
+    @to_process = CSV.parse(file.tempfile, row_sep: "\n", headers: true)
+    process_files!
   rescue ArgumentError, CSV::MalformedCSVError => e
     errors.add :csv_file, "is not valid"
   end
@@ -59,4 +36,53 @@ class VenueImport
     message
   end
 
+  private
+
+  def cleanup_before_save
+    errors.clear
+    @saved_venues = []
+    @unsaved_venues = []
+  end
+
+  def process_files!
+    @to_process.each do |row|
+      venue = create_venue_from_csv(row)
+
+      if venue.new_record?
+        @unsaved_venues << venue
+      else
+        @saved_venues << venue
+      end
+    end
+  end
+
+  def create_venue_from_csv(row)
+    category = find_category(row['Category'])
+    subcategory = find_subcategory(category, row['Subcategory'])
+
+    venue = Venue.create({
+      name: row['Name'],
+      address1: row['Address 1'],
+      address2: row['Address 2'],
+      city: row['City'],
+      state: row['State'],
+      zip: row['Zip'],
+      phone: row['Phone'],
+      url: sanitize_url(row['URL']),
+      venue_category: category,
+      venue_subcategory: subcategory
+    })
+  end
+
+  def find_category(name)
+    VenueCategory.find_by_name(name)
+  end
+
+  def find_subcategory(category, name)
+    VenueSubcategory.find_by_name_and_venue_category_id(name, category.try(:id))
+  end
+
+  def sanitize_url(url)
+    url =~ /^http/ ? url : "http://#{url}"
+  end
 end
