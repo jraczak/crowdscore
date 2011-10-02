@@ -1,0 +1,19 @@
+= render partial: 'admin/subnav'
+
+h1 Existing venues
+
+table#user_list.zebra-striped
+  tr
+    th Name
+    th Location
+    th Category
+  - collection.each do |venue|
+    tr
+      td = link_to venue.name, venue
+      td = "#{venue.city}, #{venue.state}"
+      td = "#{venue.venue_category.name}"
+
+.well
+  = link_to "Add a venue", new_venue_path, class: "btn primary"
+  |  
+  = link_to "Import CSV file", new_admin_venues_import_path, class: "btn"

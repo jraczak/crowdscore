@@ -10,6 +10,10 @@ Crowdscore::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :venues
+    namespace :venues do
+      resource :import, :controller => :venue_imports, :as => :import, :only => [:new, :create]
+    end
     root to: 'dashboards#show'
   end
 

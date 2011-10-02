@@ -1,0 +1,16 @@
+= render partial: 'admin/subnav'
+
+= errors_for resource
+
+h1 Import venues
+
+= form_for resource, :url => admin_venues_import_path do |f|
+  fieldset
+    .clearfix
+      = f.label :file, 'CSV file'
+      .input
+        = f.file_field :file, class: "xlarge", size: "30"
+
+  .actions
+    button.btn.primary(type="submit") Import venues
+
