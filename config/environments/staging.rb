@@ -14,6 +14,15 @@ Crowdscore::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
+  # Defaults to Rails.root.join("public/assets")
+  # config.assets.manifest = YOUR_PATH
+
   # Specifies the header that your server uses for sending files
   # (comment out if your front-end server doesn't support this)
   config.action_dispatch.x_sendfile_header = nil # not supported by Heroku
