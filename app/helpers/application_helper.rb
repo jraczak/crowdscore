@@ -67,4 +67,8 @@ module ApplicationHelper
   def flash_message(type, message)
     "<div class=\"alert-message #{type}\"><p>#{message}</p></div>".html_safe
   end
+
+  def paginate(collection)
+    will_paginate collection, renderer: WillPaginate::ActionView::TwitterBootstrapLinkRenderer
+  end
 end

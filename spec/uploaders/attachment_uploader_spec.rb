@@ -17,7 +17,7 @@ describe AttachmentUploader do
 
   context 'the thumb version' do
     it "scales down the image to exactly 210x150" do
-      # pending "Testing this does not seem to work when mocking Fog."
+      pending "Testing this does not seem to work when mocking Fog."
       subject.thumb.should have_dimensions(210, 150)
     end
   end

@@ -5,6 +5,10 @@ class VenuesController < InheritedResources::Base
 
   private
 
+  def collection
+    @venues ||= end_of_association_chain.page(params[:page])
+  end
+
   def setup_venue_subcategories
     @venue_subcategories = build_resource.venue_category.venue_subcategories
   rescue

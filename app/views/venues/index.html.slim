@@ -1,6 +1,8 @@
 h1 Venues
 
-table
+= paginate collection
+
+table#venue_list.zebra-striped
   tr
     th Name
     th City
@@ -9,4 +11,7 @@ table
       td = link_to(venue.name, venue)
       td = venue.city
 
-= link_to "Add a venue", new_venue_path
+= paginate collection
+
+.well
+  = link_to "Add a venue", new_venue_path, class: 'btn primary'

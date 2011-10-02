@@ -47,13 +47,13 @@ Feature: Creating a new venue
     And I am signed in
     When I go to the venues page
     And I follow "Add a venue"
-    Then I should not see the venue subcategory dropdown
+    Then the venue subcategory dropdown should not be visible
 
     When I select "Restaurant" from "Category"
-    Then I should see the venue subcategory dropdown
+    Then the venue subcategory dropdown should be visible
 
     When I select "Hotel" from "Category"
-    Then I should not see the venue subcategory dropdown
+    Then the venue subcategory dropdown should not be visible
 
   Scenario: A user can add a phone number to a venue
     Given I am signed in

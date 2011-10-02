@@ -6,4 +6,5 @@
       - resource.venue_images.each do |image|
         li = link_to image_tag(image.image_file.thumb.url, :class => 'thumbnail'), '#'
 
-    = link_to "Add a new image", new_venue_image_path(resource)
+    .well
+      = link_to "Add a new image", new_venue_image_path(resource), class: 'btn primary'

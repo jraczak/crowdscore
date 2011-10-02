@@ -1,4 +1,6 @@
 class Venue < ActiveRecord::Base
+  default_scope order(:name)
+
   belongs_to :venue_category
   belongs_to :venue_subcategory
 

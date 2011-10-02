@@ -6,8 +6,6 @@ describe VenueImport do
   subject { VenueImport.new(file: file) }
   let(:file) { double(:close => true) }
 
-  after { file.close }
-
   it { should_not be_persisted }
 
   context "after a save" do
@@ -31,7 +29,7 @@ describe VenueImport do
   end
 
   context "with an invalid CSV file" do
-    let(:file) { Rack::Test::UploadedFile.new(File.open(Rails.root.join('spec', 'test_files', 'venues_with_encoding_issue.csv'))) }
+    let(:file) { ActionDispatch::Http::UploadedFile.new(:tempfile => File.new(Rails.root.join('spec', 'test_files', 'venues_with_encoding_issue.csv'))) }
     before { subject.save }
 
     it { should_not be_valid }
@@ -39,7 +37,7 @@ describe VenueImport do
   end
 
   context "with a valid CSV file containing a single venue" do
-    let(:file) { Rack::Test::UploadedFile.new(File.open(Rails.root.join('spec', 'test_files', 'valid_venue.csv'))) }
+    let(:file) { ActionDispatch::Http::UploadedFile.new(:tempfile => File.new(Rails.root.join('spec', 'test_files', 'valid_venue.csv'))) }
 
     it { should be_valid }
     its(:file) { should == file }
