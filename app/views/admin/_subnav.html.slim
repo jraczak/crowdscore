@@ -1,4 +1,6 @@
-ul.tabs
-  = admin_subnav_item "Dashboard", admin_root_path, 'admin/dashboards'
-  = admin_subnav_item "Venues", admin_venues_path, 'admin/venues'
-  = admin_subnav_item "Users", admin_users_path, 'admin/users'
+.row
+  .span16
+    ul.tabs
+      = admin_subnav_item "Dashboard", admin_root_path, 'admin/dashboards'
+      = admin_subnav_item "Venues", admin_venues_path, /^\/admin\/venues/
+      = admin_subnav_item "Users", admin_users_path, 'admin/users'
