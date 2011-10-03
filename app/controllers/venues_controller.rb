@@ -6,6 +6,10 @@ class VenuesController < InheritedResources::Base
   private
 
   def collection
-    @venues ||= end_of_association_chain.page(params[:page])
+    @venues ||= Venue.active.page(params[:page])
+  end
+
+  def resource
+    @venue ||= Venue.active.find(params[:id])
   end
 end
