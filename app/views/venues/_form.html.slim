@@ -1,52 +1,51 @@
-fieldset
-  .clearfix
-    = f.label :name
-    .input
-      = f.text_field :name, class: "xlarge", size: "30"
+.clearfix
+  = f.label :name
+  .input
+    = f.text_field :name, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :address1, "Address 1"
-    .input
-      = f.text_field :address1, class: "xlarge", size: "30"
+.clearfix
+  = f.label :address1, "Address 1"
+  .input
+    = f.text_field :address1, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :address2, "Address 2"
-    .input
-      = f.text_field :address2, class: "xlarge", size: "30"
+.clearfix
+  = f.label :address2, "Address 2"
+  .input
+    = f.text_field :address2, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :city
-    .input
-      = f.text_field :city, class: "xlarge", size: "30"
+.clearfix
+  = f.label :city
+  .input
+    = f.text_field :city, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :state
-    .input
-      = f.text_field :state, class: "xlarge", size: "30"
+.clearfix
+  = f.label :state
+  .input
+    = f.text_field :state, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :zip, "Zip code"
-    .input
-      = f.text_field :zip, class: "xlarge", size: "30"
+.clearfix
+  = f.label :zip, "Zip code"
+  .input
+    = f.text_field :zip, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :phone, "Phone number"
-    .input
-      = f.text_field :phone, class: "xlarge", size: "30"
+.clearfix
+  = f.label :phone, "Phone number"
+  .input
+    = f.text_field :phone, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :url, "URL"
-    .input
-      = f.text_field :url, class: "xlarge", size: "30"
+.clearfix
+  = f.label :url, "URL"
+  .input
+    = f.text_field :url, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :venue_category_id, "Category"
-    .input
-      = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
-      |  
-      = image_tag 'loader.gif', style: "display: none"
+.clearfix
+  = f.label :venue_category_id, "Category"
+  .input
+    = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
+    |  
+    = image_tag 'loader.gif', style: "display: none"
 
-  .clearfix
-    = f.label :venue_subcategory_id, "Subcategory"
-    .input
-      = f.collection_select :venue_subcategory_id, subcategories, :id, :name, include_blank: true
+.clearfix
+  = f.label :venue_subcategory_id, "Subcategory"
+  .input
+    = f.collection_select :venue_subcategory_id, subcategories, :id, :name, include_blank: true

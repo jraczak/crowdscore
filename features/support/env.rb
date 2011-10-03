@@ -6,6 +6,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= "test"
   require "rails/application"
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+  Dir["#{Rails.root}/app/models/*.rb"].each { |f| load f }
 
   require 'cucumber/rails'
 

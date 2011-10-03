@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926000422) do
+ActiveRecord::Schema.define(:version => 20111003011808) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20110926000422) do
     t.integer  "venue_category_id"
     t.string   "url"
     t.integer  "venue_subcategory_id"
+    t.boolean  "active",               :default => true
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"

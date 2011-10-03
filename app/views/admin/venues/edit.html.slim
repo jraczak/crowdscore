@@ -5,8 +5,14 @@
 h1 Edit venue
 
 = form_for [:admin, resource] do |f|
-  == render partial: "venues/form", locals: { f: f, subcategories: @venue_subcategories }
+  fieldset
+    == render partial: "venues/form", locals: { f: f, subcategories: @venue_subcategories }
 
-  .actions
-    button.btn.primary(type="submit") Update
+    .clearfix
+      .input
+        ul.inputs-list
+          li = check_box_with_label(f, :active, "Active")
+
+    .actions
+      button.btn.primary(type="submit") Update
 

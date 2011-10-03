@@ -3,6 +3,7 @@
 h1 Create a new venue
 
 = form_for resource do |f|
-  == render partial: "form", locals: { f: f, subcategories: @venue_subcategories }
-  .actions
-    button.btn.primary(type="submit") Create
+  fieldset
+    == render partial: "form", locals: { f: f, subcategories: @venue_subcategories }
+    .actions
+      button.btn.primary(type="submit") Create

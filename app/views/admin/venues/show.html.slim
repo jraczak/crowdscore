@@ -8,5 +8,8 @@
       dt Category
       dd = resource.full_category_name
 
+      dt Status
+      dd = resource.active? ? "Active" : "Inactive"
+
     .well
       = link_to "Edit", edit_admin_venue_path(resource), class: 'btn'
