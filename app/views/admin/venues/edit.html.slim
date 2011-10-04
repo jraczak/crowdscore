@@ -6,12 +6,7 @@ h1 Edit venue
 
 = form_for [:admin, resource] do |f|
   fieldset
-    == render partial: "venues/form", locals: { f: f, subcategories: @venue_subcategories }
-
-    .clearfix
-      .input
-        ul.inputs-list
-          li = check_box_with_label(f, :active, "Active")
+    == render partial: "form", locals: { f: f, subcategories: @venue_subcategories }
 
     .actions
       button.btn.primary(type="submit") Update

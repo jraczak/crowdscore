@@ -1,0 +1,6 @@
+== render partial: "venues/form", locals: { f: f, subcategories: subcategories }
+
+.clearfix
+  .input
+    ul.inputs-list
+      li = check_box_with_label(f, :active, "Active")
