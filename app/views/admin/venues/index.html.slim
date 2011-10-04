@@ -18,6 +18,6 @@ table#venue_list.zebra-striped
 = paginate collection
 
 .well
-  = link_to "Add a venue", new_venue_path, class: "btn primary"
+  = link_to "Add a venue", new_admin_venue_path, class: "btn primary"
   |  
   = link_to "Import CSV file", new_admin_venues_import_path, class: "btn"
