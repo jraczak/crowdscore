@@ -9,3 +9,7 @@ end
 Then(/^there should be (\d+) venues? displayed$/) do |num|
   page.should have_css('#venue_list tr td:first-child', count: num.to_i)
 end
+
+Then(/^the venue (\w+) should be "(.*)"$/) do |field, value|
+  page.should have_xpath("//dt[.='#{field.capitalize}']/following-sibling::*[1][self::dd[.='#{value}']]")
+end

@@ -8,6 +8,21 @@
       dt Category
       dd = resource.full_category_name
 
+      dt Address
+      dd
+        = resource.address1
+        br/
+        - if resource.address2?
+          = resource.address2
+          br/
+        = "#{resource.city}, #{resource.state} #{resource.zip}"
+
+      dt Phone
+      dd = number_to_phone resource.phone
+
+      dt Website
+      dd = link_to resource.url, resource.url, target: :blank
+
       dt Status
       dd = resource.active? ? "Active" : "Inactive"
 

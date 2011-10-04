@@ -17,6 +17,9 @@ module HtmlSelectorsHelpers
     when "the venue subcategory dropdown"
       "#venue_venue_subcategory_id"
 
+    when "the venue name"
+      "h1"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
