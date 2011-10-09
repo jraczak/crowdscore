@@ -18,3 +18,11 @@ end
 Then /^(.*) should not be visible$/ do |field|
   page.should have_no_css(selector_for(field), visible: true)
 end
+
+When /^I leave the "([^"]*)" field blank$/ do |field_name|
+  fill_in field_name, with: ""
+end
+
+When /^I select nothing from the "([^"]*)" dropdown$/ do |field_name|
+  select "", from: field_name
+end

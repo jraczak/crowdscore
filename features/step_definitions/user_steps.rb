@@ -41,6 +41,10 @@ Given /^I am signed in as #{capture_fields}$/ do |fields|
 end
 
 When /^I sign out$/ do
-  When('I go to the home page')
-  And('I follow "Sign out"')
+  sign_out
+end
+
+def sign_out
+  visit "/"
+  click_link "Sign out"
 end
