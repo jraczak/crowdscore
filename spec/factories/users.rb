@@ -14,6 +14,11 @@ FactoryGirl.define do
     factory :admin_user do
       admin true
     end
+
+    factory :locked_user, parent: :user do
+      locked_at { 2.hours.ago }
+      lock_reason { "Because I don't like this person" }
+    end
   end
 
 end

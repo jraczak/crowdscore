@@ -1,4 +1,8 @@
 Crowdscore::Application.routes.draw do
+  get "user_locks/new"
+
+  get "user_locks/create"
+
   devise_for :users
   resources :venues do
     resources :images, :controller => :venue_images, :as => :images, :only => [:new, :create]
@@ -9,7 +13,9 @@ Crowdscore::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
+    resources :users do
+      resource :lock, :controller => :user_locks, :as => :lock, :only => [:new, :create]
+    end
     resources :venues
     namespace :venues do
       resource :import, :controller => :venue_imports, :as => :import, :only => [:new, :create]

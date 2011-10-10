@@ -1,3 +1,10 @@
+When(/^I sign in as "(.+)" and "(.+)"$/) do |email, password|
+  visit new_user_session_path
+  fill_in "Email", with: email
+  fill_in "Password", with: password
+  click_button "Sign in"
+end
+
 When(/^I change my email address to "(.+)"$/) do |email|
   fill_in "Email", with: email
   click_button "Update"
@@ -64,6 +71,25 @@ Then /^I should be able to sign in with "([^"]*)" and "([^"]*)"$/ do |email, pas
   page.should have_content("Sign out")
 end
 
+Then "the user is locked" do
+  model!('the user').lock_with_reason!("test")
+end
+
+Then "the user should be locked" do
+  User.last.access_locked?.should be_true
+end
+
+Then "the user should not be locked" do
+  User.last.access_locked?.should_not be
+end
+
+Then "I should not be signed in" do
+  page.should have_content("Sign in")
+end
+
+Then /^"(.+)" should link to email "(.+)"$/ do |text, email|
+  page.should have_css("a[href='mailto:#{email}']", content: text)
+end
 
 When("I confirm my new email address") do
   visit_in_email("confirm")

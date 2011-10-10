@@ -1,0 +1,18 @@
+= render partial: 'admin/subnav'
+
+= errors_for resource
+
+h1 = "Lock #{resource.username}"
+
+p = "You are about to lock #{resource.username}."
+
+= form_for [:admin, resource], url: admin_user_lock_path(resource), method: :post do |f|
+  fieldset
+    .clearfix
+      = f.label :lock_reason, "Reason"
+      .input
+        = f.text_field :lock_reason, class: "xlarge", size: "30"
+        span.help-block This information may be presented to the user if they try to log in. Keep it clean!
+
+    .actions
+      button.btn.primary(type="submit") Lock user

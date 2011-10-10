@@ -1,8 +1,8 @@
 Feature: Manage users
 
   Background:
-    Given a user: "bobby" exists with username: "bobbyb", first_name: "Bobby", last_name: "Barker", email: "bobby@example.com"
-    And I am signed in as an admin
+    Given I am signed in as an admin
+    And a user: "bobby" exists with username: "bobbyb", first_name: "Bobby", last_name: "Barker", email: "bobby@example.com"
 
   Scenario: View a listing of users
     When I go to the admin root page
@@ -81,6 +81,26 @@ Feature: Manage users
     And I press "Save"
     Then I should be on the admin user page for user: "bobby"
     And a user should exist with email: "bobby@example.com", admin: true
+
+  Scenario: Lock a user
+    When I go to the admin users page
+    And I follow "bobbyb"
+    And I follow "Lock"
+    Then I should see "You are about to lock bobbyb."
+
+    When I fill in "Reason" with "They were a big meanie"
+    And I press "Lock user"
+    Then I should be on the admin user page for user: "bobby"
+    And the user should be locked
+    And I should see "Locked: They were a big meanie"
+
+  Scenario: Locking a user requires a message
+    When I go to the admin users page
+    And I follow "bobbyb"
+    And I follow "Lock"
+    And I press "Lock user"
+    Then I should see "Lock reason can't be blank"
+    And the user should not be locked
 
   @javascript
   Scenario: Delete a user

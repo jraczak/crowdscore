@@ -22,3 +22,10 @@ Feature: Sign in
 
   Scenario: A user cannot sign in if their account doesn't exist
 
+  Scenario: A user cannot sign in if their account is locked
+    Given a user exists with email: "sam@example.com", password: "password"
+    And the user is locked
+    When I sign in as "sam@example.com" and "password"
+    Then I should not be signed in
+    And I should see "Your account has been locked. If you believe this to be in error, please contact an administrator."
+    And "contact an administrator" should link to email "help@crowdscoreapp.com"

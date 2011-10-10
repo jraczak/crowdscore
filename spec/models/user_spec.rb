@@ -27,6 +27,7 @@ describe User do
   it { should allow_mass_assignment_of(:remember_me) }
   it { should allow_mass_assignment_of(:birth_month) }
   it { should allow_mass_assignment_of(:birth_day) }
+  it { should_not allow_mass_assignment_of(:locked_at) }
   it { should_not allow_mass_assignment_of(:admin) }
 
   it { should allow_mass_assignment_of(:email).as(:admin) }
@@ -104,6 +105,23 @@ describe User do
     context "when day is set" do
       subject { Factory.build(:user, :birth_day => 30) }
       it { should_not allow_value("").for(:birth_month) }
+    end
+  end
+
+  describe "a user can be locked with a reason" do
+    before { subject.lock_with_reason!(message) }
+
+    context "when message is not empty" do
+      let(:message) { "um...." }
+      its(:access_locked?) { should be_true }
+      its(:lock_reason) { should == message }
+    end
+
+    context "when the message is empty" do
+      let(:message) { "" }
+      its(:access_locked?) { should be_false }
+      it { should_not be_valid }
+      its("errors.full_messages") { should include("Lock reason can't be blank") }
     end
   end
 end

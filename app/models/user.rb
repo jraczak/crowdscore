@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   # and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
@@ -32,6 +32,18 @@ class User < ActiveRecord::Base
   # Returns a String containing the full name
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  # Public: lock a user's account and provide a reason why.
+  #
+  # Returns boolean whether the user's access was locked or not.
+  def lock_with_reason!(message)
+    if message.present?
+      self.lock_reason = message
+      lock_access!
+    else
+      errors[:lock_reason] << "can't be blank"
+    end
   end
 
   private

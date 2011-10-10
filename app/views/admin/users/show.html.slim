@@ -6,7 +6,13 @@ dl
   dt Email
   dd = resource.email
 
+dl
+  dt Status
+  dd = resource.access_locked? ? "Locked: #{resource.lock_reason}" : "Active"
+
 .well
   = link_to "Edit", edit_admin_user_path(resource), class: 'btn'
+  |  
+  = link_to "Lock", new_admin_user_lock_path(resource), class: 'btn'
   |  
   = link_to "Delete", admin_user_path(resource), method: 'delete', class: 'btn danger', confirm: "Are you sure you want to delete this user? This action cannot be undone."
