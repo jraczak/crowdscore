@@ -46,6 +46,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def unlock_access!
+    self.lock_reason = nil
+    super
+  end
+
   private
 
   # Check if any facet of a user's birthday is provided.

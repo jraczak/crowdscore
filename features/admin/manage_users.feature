@@ -92,6 +92,7 @@ Feature: Manage users
     And I press "Lock user"
     Then I should be on the admin user page for user: "bobby"
     And the user should be locked
+    And "bobby@example.com" should receive no emails
     And I should see "Locked: They were a big meanie"
 
   Scenario: Locking a user requires a message
@@ -101,6 +102,16 @@ Feature: Manage users
     And I press "Lock user"
     Then I should see "Lock reason can't be blank"
     And the user should not be locked
+
+  @javascript
+  Scenario: Unlocking a user
+    Given a locked user exists with username: "locky"
+    When I go to the admin user page for the locked user
+    And I follow "Unlock"
+    And I confirm the alert that says "You are about to unlock user: 'locky'. Are you sure you want to continue?"
+    Then I should be on the admin user page for the locked user
+    And I should see "This user has been unlocked."
+    And I should see "Lock" within the toolbox
 
   @javascript
   Scenario: Delete a user

@@ -1,3 +1,8 @@
+When /^I confirm the alert that says "(.+)"$/ do |message|
+  page.driver.browser.switch_to.alert.text.should == message
+  page.driver.browser.switch_to.alert.accept
+end
+
 When /^I confirm the dialog$/ do
     page.driver.browser.switch_to.alert.accept
 end

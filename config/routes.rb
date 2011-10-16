@@ -14,7 +14,7 @@ Crowdscore::Application.routes.draw do
 
   namespace :admin do
     resources :users do
-      resource :lock, :controller => :user_locks, :as => :lock, :only => [:new, :create]
+      resource :lock, :controller => :user_locks, :as => :lock, :only => [:new, :create, :destroy]
     end
     resources :venues
     namespace :venues do

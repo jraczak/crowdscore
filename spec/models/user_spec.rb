@@ -124,4 +124,14 @@ describe User do
       its("errors.full_messages") { should include("Lock reason can't be blank") }
     end
   end
+
+  context "unlocking a locked user" do
+    subject { Factory.create(:locked_user) }
+
+    before { subject.unlock_access! }
+
+    its(:lock_reason) { should be_blank }
+    its(:locked_at) { should be_blank }
+    its(:access_locked?) { should_not be }
+  end
 end
