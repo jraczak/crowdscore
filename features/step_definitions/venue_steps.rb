@@ -4,7 +4,7 @@ When /^I fill out the add a venue form for "(.+)"$/ do |name|
   fill_in "Name", with: name
   fill_in "Address 1", with: "123 Main St"
   fill_in "City", with: "Denver"
-  fill_in "State", with: "CO"
+  select "Colorado", from: "State"
   fill_in "Zip code", with: "80202"
   select "Restaurant", from: "Category"
 end

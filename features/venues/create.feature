@@ -94,7 +94,7 @@ Feature: Creating a new venue
   Scenario: A user must add a state to a venue
     Given I am signed in
     When I fill out the add a venue form for "My Biz"
-    And I leave the "State" field blank
+    And I select nothing from the "State" dropdown
     And I press "Create"
     Then a venue should not exist with name: "My Biz"
     And I should see "State can't be blank"

@@ -15,7 +15,8 @@ fieldset
     = f.label :password
     .input
       = f.password_field :password, class: "xlarge", size: "30"
-      span.help-block Leave this blank if you don't want your password to change
+      - if f.object.persisted?
+        span.help-block Leave this blank if you don't want your password to change
 
   .clearfix
     = f.label :password_confirmation

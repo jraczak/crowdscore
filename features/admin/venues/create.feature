@@ -19,7 +19,7 @@ Feature: Creating a new venue as an admin
     And I fill in "Name" with "My Biz"
     And I fill in "Address 1" with "123 Main St"
     And I fill in "City" with "Denver"
-    And I fill in "State" with "CO"
+    And I select "Colorado" from "State"
     And I fill in "Zip code" with "80202"
     And I select "Restaurant" from "Category"
     And I uncheck "Active"

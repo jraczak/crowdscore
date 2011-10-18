@@ -13,6 +13,7 @@ gem "carrierwave"
 gem "rmagick"
 gem "fog"
 gem "will_paginate", "~> 3.0.0"
+gem "state_select", git: "https://github.com/buger/state_select.git"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -21,7 +21,7 @@
 .clearfix
   = f.label :state
   .input
-    = f.text_field :state, class: "xlarge", size: "30"
+    = f.state_select :state, 'US', include_blank: true
 
 .clearfix
   = f.label :zip, "Zip code"
