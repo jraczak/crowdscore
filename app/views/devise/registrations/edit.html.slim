@@ -8,7 +8,7 @@ h1 Manage Account
   .clearfix
     = f.label :current_password
     .input
-      = f.text_field :current_password, class: "xlarge", size: "30"
+      = f.password_field :current_password, class: "xlarge", size: "30"
       span.help-block Enter your current password to confirm your changes
 
   .actions
