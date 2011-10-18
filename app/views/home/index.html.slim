@@ -1,2 +1,13 @@
-h1 Home
-p Welcome to CrowdScore
+h1 I want to&hellip;
+
+.row.home
+  .span6.submit
+    div
+      h2 Submit my score
+      p Where did you go? Search for the venue you want to score below.
+      = form_tag search_venues_path, method: :get do |f|
+        = text_field_tag :q
+        = submit_tag "Find it!", class: "btn primary"
+
+  /.span6.offset1 test
+

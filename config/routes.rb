@@ -1,10 +1,15 @@
 Crowdscore::Application.routes.draw do
+  # TODO: Remove these.. they probably aren't needed
   get "user_locks/new"
 
   get "user_locks/create"
 
   devise_for :users
   resources :venues do
+    collection do
+      get :search
+    end
+
     resources :images, :controller => :venue_images, :as => :images, :only => [:new, :create]
   end
 

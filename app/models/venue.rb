@@ -1,6 +1,7 @@
 class Venue < ActiveRecord::Base
   default_scope order(:name)
   scope :active, where(active: true)
+  scope :matching, ->(q) { venues = Venue.arel_table; where(venues[:name].matches("%#{q}%")) }
 
   belongs_to :venue_category
   belongs_to :venue_subcategory
