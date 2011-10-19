@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "Brian's Great Bar"
     address1 "123 Test St"
     city "Denver"
-    state "CO"
+    state "Colorado"
     zip "80202"
     venue_category
   end
