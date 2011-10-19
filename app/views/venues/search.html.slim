@@ -4,11 +4,15 @@ h1 You searched for "#{params[:q]}"
   table#venue_list.zebra-striped
     tr
       th Name
-      th City
+      th Category
+      th Address
+      th Crowdscore
     - collection.each do |venue|
       tr
         td = link_to(venue.name, venue)
-        td = venue.city
+        td = venue.full_category_name
+        td = inline_address(venue)
+        td ##
 - else
   p Yikes! We couldn't find a Venue that matched your search.
   p You can either #{link_to "ADD THE VENUE", new_venue_path} (it's what all the cool kids are doing) or #{link_to "SEARCH AGAIN", root_path}.
