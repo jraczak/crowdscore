@@ -3,26 +3,7 @@
 h1 Add your score to #{parent.name}
 
 = form_for resource, url: venue_score_path(parent) do |f|
-  fieldset
-    .clearfix
-      = f.label :score1, parent.venue_category.prompt1
-      .input
-        = f.select :score1, (0..10).to_a, include_blank: true
+  == render partial: 'form', locals: { f: f }
 
-    .clearfix
-      = f.label :score2, parent.venue_category.prompt2
-      .input
-        = f.select :score2, (0..10).to_a, include_blank: true
-
-    .clearfix
-      = f.label :score3, parent.venue_category.prompt3
-      .input
-        = f.select :score3, (0..10).to_a, include_blank: true
-
-    .clearfix
-      = f.label :score4, parent.venue_category.prompt4
-      .input
-        = f.select :score4, (0..10).to_a, include_blank: true
-
-    .actions
-      button.btn.primary(type="submit") Add my score
+  .actions
+    button.btn.primary(type="submit") Add my score

@@ -24,7 +24,7 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
     - if current_user && current_user.has_scored_venue?(resource)
       p.detail.note Your score has already been submitted.
     - else
-      p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), class: 'btn primary large'
+      p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn primary large', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
     p.detail
       strong Phone: 
@@ -56,6 +56,17 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
           strong #{tip.user.username}
           |  said: "#{tip.text}"
 
+#submit-score-modal.modal style="display: none;"
+  .modal-header
+    a.close href="#" x
+    h3 What did you think of #{ resource.name }?
+
+  = form_for resource.venue_scores.build, url: venue_score_path(resource) do |f|
+    == render partial: 'venue_scores/form', locals: { f: f, parent: resource }
+
+    .modal-footer
+      = f.submit "Submit", class: 'btn primary'
+
 
 javascript:
   $(function() {
@@ -81,4 +92,6 @@ javascript:
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({address: "#{resource.address1}, #{resource.city}, #{resource.state} #{resource.zip}"}, setMarker);
+
+    $("#submit-score-model").modal();
   });
