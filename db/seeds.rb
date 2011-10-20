@@ -26,10 +26,10 @@ new_count = VenueSubcategory.count
 puts "#{ new_count - old_count } subcategories were added"
 
 prompt_mappings = {
-  "Restaurant" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
-  "Bar & Nightlife" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
+  "Restaurant" => ["Food", "Service", "Atmosphere", "Value"],
+  "Bar & Nightlife" => ["Music", "Atmosphere", "Bar Speed", "Crowd"],
   "Personal Service" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
-  "Hotel & Resort" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"]
+  "Hotel & Resort" => ["Service", "Location", "Comfort", "Cleanliness"]
 }
 
 prompt_mappings.each do |name, prompts|
