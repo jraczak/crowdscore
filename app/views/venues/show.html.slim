@@ -11,8 +11,10 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
       h5 Crowdscore
       - if resource.computed_score?
         h2.big = resource.score
+        p.total_scores Scored by #{pluralize(resource.venue_scores.count, "person")}
       - else
         h2 = resource.score
+
       #breakdown
         p #{resource.venue_category.prompt1}: #{resource.score_breakdown1}
         p #{resource.venue_category.prompt2}: #{resource.score_breakdown2}
