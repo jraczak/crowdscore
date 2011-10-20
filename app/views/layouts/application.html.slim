@@ -2,7 +2,7 @@ doctype 5
 
 html
   head
-    title CrowdScore
+    title Crowdscore
 
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
@@ -12,7 +12,7 @@ html
     .topbar
       .fill
         .container
-          h3 = link_to "CrowdScore", root_path
+          h3 = link_to "Crowdscore", root_path
           ul
             - if params[:controller] =~ /^admin/
               li = link_to "← Return to site", root_path
@@ -44,4 +44,4 @@ html
       .container
         .row
           .span16
-            p Copyright &copy; 2011 CrowdScore. All rights reserved.
+            p Copyright &copy; 2011 Crowdscore. All rights reserved.
