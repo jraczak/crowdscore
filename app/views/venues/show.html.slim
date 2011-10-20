@@ -36,7 +36,7 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
   .span10.offset1
     .images
       - if resource.venue_images.any?
-        = link_to image_tag(resource.venue_images.first.image_file.url, :class => 'thumbnail', width: 580), '#'
+        = link_to image_tag(resource.venue_images.first.image_file.url, height: 328), '#'
       - else
         .placeholder-image
           p No images yet.
