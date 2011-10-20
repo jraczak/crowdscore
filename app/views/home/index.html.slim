@@ -9,5 +9,12 @@ h1 I want to&hellip;
         = text_field_tag :q
         = submit_tag "Find it!", class: "btn primary"
 
+  .span6.offset1.sign-up
+    div
+      h2 Join Crowdscore!
+      = link_to "Let's Get Started", new_user_registration_path, class: 'btn primary large'
+      p Already a member? #{link_to "Sign in here", new_user_session_path}.
+
+
   /.span6.offset1 test
 

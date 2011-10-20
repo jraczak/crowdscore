@@ -11,13 +11,23 @@
     background-color: #ddd;
   }
 
-  .submit > div {
+  .submit > div, .sign-up > div {
     padding: 15px;
 
     input[type=text] {
       margin-right: 5px;
       color: black;
       border-color: #666;
+    }
+  }
+
+  .sign-up {
+    h2 {
+      margin-bottom: 14px;
+    }
+
+    p {
+      margin-top: 13px;
     }
   }
 }
