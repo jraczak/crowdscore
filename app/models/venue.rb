@@ -1,5 +1,7 @@
 class Venue < ActiveRecord::Base
   default_scope order(:name)
+  acts_as_audited protected: false
+
   scope :active, where(active: true)
   scope :matching, ->(q) { venues = Venue.arel_table; where(venues[:name].matches("%#{q}%")) }
 

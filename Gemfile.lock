@@ -46,6 +46,8 @@ GEM
       activesupport (= 3.1.1)
     activesupport (3.1.1)
       multi_json (~> 1.0)
+    acts_as_audited (2.0.0)
+      rails (>= 3.0.3)
     addressable (2.2.6)
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
@@ -276,6 +278,7 @@ PLATFORMS
 
 DEPENDENCIES
   ZenTest
+  acts_as_audited (= 2.0.0)
   cancan
   capybara (~> 1.1.0)
   carrierwave
