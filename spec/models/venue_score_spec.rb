@@ -1,0 +1,40 @@
+require 'spec_helper'
+
+describe VenueScore do
+  subject { Factory.build(:venue_score) }
+
+  it { should be_valid }
+
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:venue) }
+
+  pending "should not allow a user to score the same venue twice"
+
+  [:score1, :score2, :score3, :score4].each do |attr|
+    it { should validate_numericality_of(attr) }
+    it { should allow_value(10).for(attr) }
+    it { should allow_value("10").for(attr) }
+    it { should allow_value(0).for(attr) }
+    it { should_not allow_value(11).for(attr) }
+    it { should_not allow_value(-1).for(attr) }
+    it { should_not allow_value(4.5).for(attr) }
+  end
+
+  its(:computed_score) { should_not be }
+
+  context "on save" do
+    subject { Factory.build(:venue_score, score1: 10, score2: 8, score3: 9, score4: 6) }
+    before { subject.save! }
+
+    its(:computed_score) { should == 83 }
+  end
+
+  it "fires off a recompute of the venue's total score" do
+    venue = double(Venue)
+    venue.should_receive(:recompute_score!)
+
+    subject.stub(:venue) { venue }
+
+    subject.save!
+  end
+end

@@ -14,8 +14,29 @@ default_venue_categories = {
 }
 
 default_venue_categories.each do |name, subs|
+  puts "Updating #{name} subcategories..."
   cat = VenueCategory.find_or_create_by_name(name)
   subs.each do |sub|
     cat.venue_subcategories.find_or_create_by_name(sub)
   end
 end
+
+prompt_mappings = {
+  "Restaurant" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
+  "Bar & Nightlife" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
+  "Personal Service" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"],
+  "Hotel & Resort" => ["Temp 1", "Temp 2", "Temp 3", "Temp 4"]
+}
+
+prompt_mappings.each do |name, prompts|
+  cat = VenueCategory.find_by_name(name)
+
+  puts "Updating #{name} prompts..."
+  prompts.each_with_index do |prompt, i|
+    field = "prompt#{i + 1}".to_sym
+    cat.send("#{field}=".to_sym, prompt) if cat.send(field) != prompt
+    cat.save!
+  end
+end
+
+puts "Done!"

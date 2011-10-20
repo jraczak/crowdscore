@@ -28,6 +28,7 @@ describe Venue do
   it { should allow_mass_assignment_of(:venue_category) }
   it { should allow_mass_assignment_of(:venue_subcategory) }
   it { should_not allow_mass_assignment_of(:active) }
+  it { should_not allow_mass_assignment_of(:computed_score) }
 
   it { should allow_mass_assignment_of(:name).as(:admin) }
   it { should allow_mass_assignment_of(:address1).as(:admin) }
@@ -42,6 +43,7 @@ describe Venue do
   it { should allow_mass_assignment_of(:venue_category).as(:admin) }
   it { should allow_mass_assignment_of(:venue_subcategory).as(:admin) }
   it { should allow_mass_assignment_of(:active).as(:admin) }
+  it { should_not allow_mass_assignment_of(:computed_score).as(:admin) }
 
   describe "#full_category_name" do
     let!(:category) { Factory.create(:venue_category, name: "Restaurant") }
@@ -65,6 +67,22 @@ describe Venue do
 
       Venue.active.should include(active)
       Venue.active.should_not include(inactive)
+    end
+  end
+
+  describe "#recompute_score!" do
+    subject { Factory.create(:venue) }
+
+    it "computes its score from its venue scores" do
+      score1 = double(VenueScore, computed_score: 82)
+      score2 = double(VenueScore, computed_score: 95)
+
+      subject.stub(:venue_scores).and_return([score1, score2])
+
+      subject.recompute_score!
+
+      subject.computed_score.should == 89
+      subject.should be_persisted
     end
   end
 end

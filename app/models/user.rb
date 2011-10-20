@@ -51,6 +51,11 @@ class User < ActiveRecord::Base
     super
   end
 
+  # TODO: TEST THIS!
+  def has_scored_venue?(venue)
+    VenueScore.exists?(user_id: id, venue_id: venue)
+  end
+
   private
 
   # Check if any facet of a user's birthday is provided.

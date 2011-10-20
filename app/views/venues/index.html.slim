@@ -6,10 +6,12 @@ table#venue_list.zebra-striped
   tr
     th Name
     th City
+    th Crowdscore
   - collection.each do |venue|
     tr
       td = link_to(venue.name, venue)
       td = venue.city
+      td = venue.score
 
 = paginate collection
 

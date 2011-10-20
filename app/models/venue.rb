@@ -6,7 +6,8 @@ class Venue < ActiveRecord::Base
   belongs_to :venue_category
   belongs_to :venue_subcategory
 
-  has_many :venue_images, :class_name => 'VenueImage'
+  has_many :venue_scores
+  has_many :venue_images
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id, :venue_category, :venue_subcategory]
@@ -22,5 +23,15 @@ class Venue < ActiveRecord::Base
     full_name = venue_category.name
     full_name += " - #{venue_subcategory.name}" if venue_subcategory.present?
     full_name
+  end
+
+  def score
+    computed_score? ? computed_score : "No score yet"
+  end
+
+  def recompute_score!
+    scores = venue_scores.map { |s| s.computed_score.to_f }
+    self.computed_score = (scores.inject(&:+) / scores.length).ceil
+    save!
   end
 end

@@ -1,7 +1,7 @@
 class VenuesController < InheritedResources::Base
   include VenueControllerAdditions
   actions :index, :show, :new, :create
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
 
   def search
     @venues = Venue.matching(params[:q])

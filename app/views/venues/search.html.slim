@@ -12,7 +12,7 @@ h1 You searched for "#{params[:q]}"
         td = link_to(venue.name, venue)
         td = venue.full_category_name
         td = inline_address(venue)
-        td ##
+        td = venue.score
 - else
   p Yikes! We couldn't find a Venue that matched your search.
   p You can either #{link_to "ADD THE VENUE", new_venue_path} (it's what all the cool kids are doing) or #{link_to "SEARCH AGAIN", root_path}.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010044931) do
+ActiveRecord::Schema.define(:version => 20111020030946) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20111010044931) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "prompt1"
+    t.string   "prompt2"
+    t.string   "prompt3"
+    t.string   "prompt4"
   end
 
   create_table "venue_images", :force => true do |t|
@@ -62,6 +66,21 @@ ActiveRecord::Schema.define(:version => 20111010044931) do
   end
 
   add_index "venue_images", ["venue_id"], :name => "index_venue_images_on_venue_id"
+
+  create_table "venue_scores", :force => true do |t|
+    t.integer  "venue_id"
+    t.integer  "user_id"
+    t.integer  "computed_score"
+    t.integer  "score1"
+    t.integer  "score2"
+    t.integer  "score3"
+    t.integer  "score4"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_scores", ["user_id"], :name => "index_venue_scores_on_user_id"
+  add_index "venue_scores", ["venue_id"], :name => "index_venue_scores_on_venue_id"
 
   create_table "venue_subcategories", :force => true do |t|
     t.integer  "venue_category_id"
@@ -86,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20111010044931) do
     t.string   "url"
     t.integer  "venue_subcategory_id"
     t.boolean  "active",               :default => true
+    t.integer  "computed_score"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"
