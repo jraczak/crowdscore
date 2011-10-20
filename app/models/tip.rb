@@ -4,5 +4,4 @@ class Tip < ActiveRecord::Base
 
   validates :venue, :user, presence: true
   validates :text, presence: true, length: { maximum: 100 }
-  validates :user_id, uniqueness: { scope: :venue_id }
 end

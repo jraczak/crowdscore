@@ -1,42 +1,58 @@
 script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor=false'
 
 .row
-  .span12
+  .span12#venue-detail
     h1 = resource.name
+    h4 = resource.full_category_name
 
-    ul.media-grid
-      - resource.venue_images.each do |image|
-        li = link_to image_tag(image.image_file.thumb.url, :class => 'thumbnail'), '#'
 .row
   .span5 style="margin-bottom: 30px;"
-    h2 = resource.score
-    dl.breakdown
-      dt = resource.venue_category.prompt1
-      dd = resource.score_breakdown1
-      dt = resource.venue_category.prompt2
-      dd = resource.score_breakdown2
-      dt = resource.venue_category.prompt3
-      dd = resource.score_breakdown3
-      dt = resource.venue_category.prompt4
-      dd = resource.score_breakdown4
+    #score-box
+      h5 Crowdscore
+      - if resource.computed_score?
+        h2.big = resource.score
+      - else
+        h2 = resource.score
+      #breakdown
+        p #{resource.venue_category.prompt1}: #{resource.score_breakdown1}
+        p #{resource.venue_category.prompt2}: #{resource.score_breakdown2}
+        p #{resource.venue_category.prompt3}: #{resource.score_breakdown3}
+        p #{resource.venue_category.prompt4}: #{resource.score_breakdown4}
 
     - if current_user && current_user.has_scored_venue?(resource)
-      p Your score has already been submitted.
+      p.detail.note Your score has already been submitted.
     - else
-      p = link_to "Submit My Score", new_venue_score_path(resource)
+      p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), class: 'btn primary large'
+
+    p.detail
+      strong Phone: 
+      = number_to_phone resource.phone
+      br/
+      = link_to resource.url, resource.url
 
     #map_canvas style="width: 100%; height: 300px; margin-bottom: 1em;"
     address = inline_address(resource)
-    strong Phone: 
-    = number_to_phone resource.phone
-    br/
-    = link_to resource.url, resource.url
 
-  .span10
-    h3 Tips
+  .span10.offset1
+    .images
+      - if resource.venue_images.any?
+        = link_to image_tag(resource.venue_images.first.image_file.url, :class => 'thumbnail', width: 580), '#'
+      - else
+        .placeholder-image
+          p No images yet.
+
+    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'btn primary large'
+
+    br/
+
+    h3.header
+      | Tips 
+      = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
     #tips
       - resource.tips.each do |tip|
-        p #{tip.user.full_name} said: #{tip.text}
+        p
+          strong #{tip.user.username}
+          |  said: "#{tip.text}"
 
 
 javascript:
@@ -64,8 +80,3 @@ javascript:
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({address: "#{resource.address1}, #{resource.city}, #{resource.state} #{resource.zip}"}, setMarker);
   });
-
-.well
-  = link_to "Add a new image", new_venue_image_path(resource), class: 'btn'
-  |  
-  = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
