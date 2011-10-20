@@ -8,7 +8,11 @@ describe VenueScore do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:venue) }
 
-  pending "should not allow a user to score the same venue twice"
+  it "validates that a venue score cannot be submitted by the same user twice" do
+    subject.save!
+    v = Factory.build(:venue_score, user: subject.user, venue: subject.venue)
+    v.should_not be_valid
+  end
 
   [:score1, :score2, :score3, :score4].each do |attr|
     it { should validate_numericality_of(attr) }
