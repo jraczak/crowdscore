@@ -1,51 +1,61 @@
-fieldset
-  .clearfix
-    = f.label :email
-    .input
-      = f.text_field :email, class: "xlarge", size: "30"
+.row
+  .span8
+    h2 This is what we need.
 
-  .clearfix
-    = f.label :username
-    .input
-      = f.text_field :username, class: "xlarge#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?
-      - if f.object.persisted?
-        span.help-block Username cannot be changed.
+    fieldset
+      .clearfix
+        = f.label :first_name
+        .input
+          = f.text_field :first_name, size: "30"
 
-  .clearfix
-    = f.label :password
-    .input
-      = f.password_field :password, class: "xlarge", size: "30"
-      - if f.object.persisted?
-        span.help-block Leave this blank if you don't want your password to change
+      .clearfix
+        = f.label :email
+        .input
+          = f.text_field :email, class: "xlarge", size: "30"
 
-  .clearfix
-    = f.label :password_confirmation
-    .input
-      = f.password_field :password_confirmation, class: "xlarge", size: "30"
+      .clearfix
+        = f.label :username
+        .input
+          = f.text_field :username, class: "xlarge#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?
+          - if f.object.persisted?
+            span.help-block Username cannot be changed.
 
-  .clearfix
-    = f.label :first_name
-    .input
-      = f.text_field :first_name, class: "xlarge", size: "30"
+      .clearfix
+        = f.label :password
+        .input
+          = f.password_field :password, size: "30"
+          - if f.object.persisted?
+            span.help-block Leave this blank if you don't want your password to change
+          - else
+            span.help-block Hint: this should be at least 6 characters long.
 
-  .clearfix
-    = f.label :last_name
-    .input
-      = f.text_field :last_name, class: "xlarge", size: "30"
+      .clearfix
+        = f.label :password_confirmation, 'Confirm your password'
+        .input
+          = f.password_field :password_confirmation, size: "30"
 
-  .clearfix
-    = f.label :zip_code
-    .input
-      = f.text_field :zip_code, class: "xlarge", size: "30"
+      .clearfix
+        = f.label :zip_code, "And lastly, what's your zip code?"
+        .input
+          = f.text_field :zip_code, size: "10", class: "mini"
 
-  .clearfix
-    = f.label :birth_month
-    .input
-      = f.select :birth_month, ::Date::MONTHNAMES, include_blank: true
+  .span6
+    h2 And these are optional.
 
-  .clearfix
-    = f.label :birth_day
-    .input
-      = f.select :birth_day, 1..31, include_blank: true
+    fieldset
+      .clearfix
+        = f.label :last_name
+        .input
+          = f.text_field :last_name, class: "xlarge", size: "30"
 
+      .clearfix
+        = f.label :gender
+        .input
+          = f.select :gender, ['Male', 'Female'], include_blank: true
+
+      .clearfix
+        = f.label :birth_month, "When is your birthday?"
+        .input
+          = f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'side-by-side'
+          = f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side'
 

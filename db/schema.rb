@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020050752) do
+ActiveRecord::Schema.define(:version => 20111020055511) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20111020050752) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "lock_reason"
+    t.string   "gender"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
