@@ -13,6 +13,7 @@ Crowdscore::Application.routes.draw do
     resources :images, :controller => :venue_images, :as => :images, :only => [:new, :create]
 
     resource :score, controller: :venue_scores, as: :score, only: [:new, :create]
+    resources :tips, only: [:new, :create]
   end
 
   resources :venue_categories, :only => [] do

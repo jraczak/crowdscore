@@ -32,6 +32,12 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
     br/
     = link_to resource.url, resource.url
 
+  .span10
+    h3 Tips
+    #tips
+      - resource.tips.each do |tip|
+        p #{tip.user.full_name} said: #{tip.text}
+
 
 javascript:
   $(function() {
@@ -60,4 +66,6 @@ javascript:
   });
 
 .well
-  = link_to "Add a new image", new_venue_image_path(resource), class: 'btn primary'
+  = link_to "Add a new image", new_venue_image_path(resource), class: 'btn'
+  |  
+  = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'

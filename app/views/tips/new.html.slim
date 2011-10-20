@@ -1,0 +1,14 @@
+= errors_for resource
+
+h1 Add a tip to #{parent.name}
+
+= form_for resource, url: venue_tips_path(parent) do |f|
+  fieldset
+    .clearfix
+      = f.label :text, 'Tip'
+      .input
+        = f.text_field :text, class: 'xlarge', size: "40", maxlength: 100
+        span.help-block Limit: 100 characters
+
+    .actions
+      button.btn.primary(type="submit") Add my tip

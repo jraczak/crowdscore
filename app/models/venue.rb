@@ -9,6 +9,7 @@ class Venue < ActiveRecord::Base
   belongs_to :venue_subcategory
 
   has_many :venue_scores
+  has_many :tips
   has_many :venue_images
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
