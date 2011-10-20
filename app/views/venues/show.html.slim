@@ -10,8 +10,18 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
 .row
   .span5 style="margin-bottom: 30px;"
     h2 = resource.score
+    dl.breakdown
+      dt = resource.venue_category.prompt1
+      dd = resource.score_breakdown1
+      dt = resource.venue_category.prompt2
+      dd = resource.score_breakdown2
+      dt = resource.venue_category.prompt3
+      dd = resource.score_breakdown3
+      dt = resource.venue_category.prompt4
+      dd = resource.score_breakdown4
+
     - if current_user && current_user.has_scored_venue?(resource)
-      p Your score has been submitted.
+      p Your score has already been submitted.
     - else
       p = link_to "Submit My Score", new_venue_score_path(resource)
 

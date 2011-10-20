@@ -29,6 +29,26 @@ class Venue < ActiveRecord::Base
     computed_score? ? computed_score : "No score yet"
   end
 
+  def score_breakdown1
+    scores = venue_scores.map { |s| s.score1.to_f }
+    (scores.inject(&:+) / scores.length).ceil
+  end
+
+  def score_breakdown2
+    scores = venue_scores.map { |s| s.score2.to_f }
+    (scores.inject(&:+) / scores.length).ceil
+  end
+
+  def score_breakdown3
+    scores = venue_scores.map { |s| s.score3.to_f }
+    (scores.inject(&:+) / scores.length).ceil
+  end
+
+  def score_breakdown4
+    scores = venue_scores.map { |s| s.score4.to_f }
+    (scores.inject(&:+) / scores.length).ceil
+  end
+
   def recompute_score!
     scores = venue_scores.map { |s| s.computed_score.to_f }
     self.computed_score = (scores.inject(&:+) / scores.length).ceil
