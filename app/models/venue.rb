@@ -33,28 +33,28 @@ class Venue < ActiveRecord::Base
 
   def score_breakdown1
     scores = venue_scores.map { |s| s.score1.to_f }
-    (scores.inject(&:+) / scores.length).ceil
+    ((scores.inject(&:+) / scores.length) * 10).ceil
   rescue
     "N/A"
   end
 
   def score_breakdown2
     scores = venue_scores.map { |s| s.score2.to_f }
-    (scores.inject(&:+) / scores.length).ceil
+    ((scores.inject(&:+) / scores.length) * 10).ceil
   rescue
     "N/A"
   end
 
   def score_breakdown3
     scores = venue_scores.map { |s| s.score3.to_f }
-    (scores.inject(&:+) / scores.length).ceil
+    ((scores.inject(&:+) / scores.length) * 10).ceil
   rescue
     "N/A"
   end
 
   def score_breakdown4
     scores = venue_scores.map { |s| s.score4.to_f }
-    (scores.inject(&:+) / scores.length).ceil
+    ((scores.inject(&:+) / scores.length) * 10).ceil
   rescue
     "N/A"
   end
