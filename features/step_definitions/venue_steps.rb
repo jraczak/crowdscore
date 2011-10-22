@@ -10,11 +10,11 @@ When /^I fill out the add a venue form for "(.+)"$/ do |name|
 end
 
 Then(/I should see a venue image/) do
-  page.should have_css('.media-grid img.thumbnail')
+  page.should have_css('.images img')
 end
 
 Then(/I should not see a venue image/) do
-  page.should have_no_css('.media-grid img.thumbnail')
+  page.should have_no_css('.images img')
 end
 
 Then(/^there should be (\d+) venues? displayed$/) do |num|

@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :venue_image do
     venue
+    user
     caption "My dinner!"
     image_file { File.open(Rails.root.join('spec', 'test_files', 'venue_image.jpg')) }
   end

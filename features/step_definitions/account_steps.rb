@@ -11,7 +11,7 @@ When(/^I change my email address to "(.+)"$/) do |email|
 end
 
 When(/^I change my zip code to "(.+)"$/) do |zip|
-  fill_in "Zip code", with: zip
+  fill_in "And lastly, what's your zip code?", with: zip
   click_button "Update"
 end
 
@@ -24,14 +24,14 @@ end
 
 When(/^I change my birthday to "(.+)"$/) do |date|
   month, day = date.split(" ", 2)
-  select month, from: "Birth month"
-  select day, from: "Birth day"
+  select month, from: "user_birth_month"
+  select day, from: "user_birth_day"
   click_button "Update"
 end
 
 When(/^I change my password to "(.+)"$/) do |password|
   fill_in "Password", with: password
-  fill_in "Password confirmation", with: password
+  fill_in "Confirm your password", with: password
   click_button "Update"
 end
 
