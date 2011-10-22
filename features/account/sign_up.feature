@@ -1,94 +1,66 @@
 Feature: User registration
 
-  Scenario: A user can sign up
+  Scenario: A user can get to the sign up page from the home page
     When I go to the home page
     And I follow "Let's Get Started"
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "First name" with "Sam"
-    And I fill in "Username" with "sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    Then I should be on the new user registration page
+
+  Scenario: A user can get to the sign up page from the nav bar
+    When I go to the home page
+    And I follow "Sign up" within the nav bar
+    Then I should be on the new user registration page
+
+  Scenario: A user can sign up by filling in the required fields
+    When I fill out the sign up form as "sam@example.com"
     And I press "Sign me up!"
     Then I should see "You have signed up successfully. Please check your email to activate your account, then we can log you in."
-    And a user should exist with email: "sam@example.com", first_name: "Sam"
+    And a user should exist with email: "sam@example.com"
     And the user should not be confirmed
 
   Scenario: A user must enter an email address
-    When I go to the new user registration page
-    And I fill in "Username" with "sam"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "First name" with "Sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
+    And I leave the "Email" field blank
     And I press "Sign me up!"
     Then I should see "Email can't be blank"
     And a user should not exist
 
   Scenario: A user must enter a unique email address
     Given a user exists with email: "sam@example.com"
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Username" with "sam"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "First name" with "Sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
     And I press "Sign me up!"
     Then I should see "Email has already been taken"
-    And a user should not exist with username: "sam"
 
   Scenario: A user must enter a zip code
-    When I go to the new user registration page
-    And I fill in "Username" with "sam"
-    And I fill in "First name" with "Sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
+    And I leave the "And lastly, what's your zip code?" field blank
     And I press "Sign me up!"
-    Then I should see "Email can't be blank"
+    Then I should see "Zip code can't be blank"
     And a user should not exist
 
   Scenario: A user must enter a first name
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Username" with "sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
+    And I leave the "First name" field blank
     And I press "Sign me up!"
     Then I should see "First name can't be blank"
     And a user should not exist
 
   Scenario: A user must enter a username
-    When I go to the new user registration page
-    And I fill in "First name" with "Sam"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
+    And I leave the "Username" field blank
     And I press "Sign me up!"
     Then I should see "Username can't be blank"
     And a user should not exist
 
   Scenario: A user must choose a unique username
     Given a user exists with username: "sammydavis"
-    When I go to the new user registration page
-    And I fill in "First name" with "Sam"
-    And I fill in "And lastly, what's your zip code?" with "80202"
+    When I fill out the sign up form as "sam@example.com"
     And I fill in "Username" with "sammydavis"
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
     And I press "Sign me up!"
     Then I should see "Username has already been taken"
     And a user should not exist with email: "sam@example.com"
 
   Scenario: A user must enter a valid password
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Username" with "sam"
-    And I fill in "First name" with "Sam"
+    When I fill out the sign up form as "sam@example.com"
     And I fill in "Password" with "test1"
     And I fill in "Confirm your password" with "test1"
     And I press "Sign me up!"
@@ -96,25 +68,14 @@ Feature: User registration
     And a user should not exist
 
   Scenario: A user must confirm their password
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Username" with "sam"
-    And I fill in "First name" with "Sam"
-    And I fill in "Password" with "test12"
-    And I fill in "Password" with "test13"
+    When I fill out the sign up form as "sam@example.com"
+    And I leave the "Confirm your password" field blank
     And I press "Sign me up!"
     Then I should see "Password doesn't match confirmation"
     And a user should not exist
 
   Scenario: A user confirms their password
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Username" with "sam"
-    And I fill in "First name" with "Sam"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
+    When I fill out the sign up form as "sam@example.com"
     And I press "Sign me up!"
     Then "sam@example.com" should receive an email
 
@@ -127,25 +88,14 @@ Feature: User registration
     And I should see "Your account was successfully confirmed. You are now signed in."
 
   Scenario: A user can enter their last name
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "Username" with "sam"
-    And I fill in "First name" with "Sam"
+    When I fill out the sign up form as "sam@example.com"
     And I fill in "Last name" with "Smith"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
     And I press "Sign me up!"
+    Then a user should exist with last_name: "Smith"
  
   Scenario: A user can enter their birthday
-    When I go to the new user registration page
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Username" with "sam"
-    And I fill in "And lastly, what's your zip code?" with "80202"
-    And I fill in "First name" with "Sam"
+    When I fill out the sign up form as "sam@example.com"
     And I select "July" from "user_birth_month"
     And I select "5" from "user_birth_day"
-    And I fill in "Password" with "mynewpassword"
-    And I fill in "Confirm your password" with "mynewpassword"
     And I press "Sign me up!"
     Then a user should exist with email: "sam@example.com", birth_month: "July", birth_day: "5"

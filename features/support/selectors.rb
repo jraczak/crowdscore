@@ -14,6 +14,9 @@ module HtmlSelectorsHelpers
     when "the toolbox"
       ".well"
 
+    when "the nav bar"
+      ".topbar .nav"
+
     when "the venue subcategory dropdown"
       "#venue_venue_subcategory_id"
 

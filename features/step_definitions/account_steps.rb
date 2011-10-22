@@ -1,3 +1,13 @@
+When(/^I fill out the sign up form as "(.+)"$/) do |email|
+  visit new_user_registration_path
+  fill_in "Email", with: email
+  fill_in "First name", with: "Cucumber"
+  fill_in "Username", with: "cuc-user"
+  fill_in "Password", with: "password"
+  fill_in "Confirm your password", with: "password"
+  fill_in "And lastly, what's your zip code?", with: "90038"
+end
+
 When(/^I sign in as "(.+)" and "(.+)"$/) do |email, password|
   visit new_user_session_path
   fill_in "Email", with: email
