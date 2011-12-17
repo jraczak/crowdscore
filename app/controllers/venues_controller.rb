@@ -4,7 +4,7 @@ class VenuesController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :search]
 
   def search
-    @venues = Venue.matching(params[:q])
+    @venues = VenueSearch.search(params[:q], params[:page])
   end
 
   private
