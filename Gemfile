@@ -27,7 +27,10 @@ end
 
 gem 'jquery-rails'
 
-gem "rails-erd", :group => :development
+group :development do
+  gem "rails-erd"
+  gem "kumade"
+end
 
 group :development, :test do
   # gem 'ruby-debug19', :require => 'ruby-debug'
