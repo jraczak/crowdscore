@@ -51,10 +51,13 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
       | Tips 
       = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
     #tips
-      - resource.tips.each do |tip|
-        p
-          strong #{tip.user.username}
-          |  said: "#{tip.text}"
+      = render resource.tips.by_recent
+    p.sort
+      | Sort by: 
+      = link_to 'Recent', sort_venue_tips_path(resource, sort: 'recent'), class: 'selected', id: 'sort-tips-recent'
+      |  | 
+      = link_to 'Popularity', sort_venue_tips_path(resource, sort: 'popularity'), id: 'sort-tips-popularity'
+
 
 #submit-score-modal.modal style="display: none;"
   .modal-header

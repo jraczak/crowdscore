@@ -16,7 +16,5 @@ h1 Manage Account
 
 h2 Cancel my account
 
-p
-  Unhappy? 
-  = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
-  .
+p If you'd like to cancel your account permanently, click below. There will be no way to recover your information.
+p = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete

@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   attr_accessible *default_accessible_fields
   attr_accessible *(default_accessible_fields + admin_only_fields), :as => :admin
 
+  has_many :tip_likes, dependent: :destroy
+  has_many :liked_tips, through: :tip_likes, source: :tip
+
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
   validates :zip_code, presence: true, numericality: true, length: { is: 5 }
