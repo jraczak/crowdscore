@@ -115,6 +115,7 @@ GEM
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
     formatador (0.2.1)
+    geocoder (1.1.0)
     gherkin (2.5.2)
       json (>= 1.4.6)
     has_scope (0.5.1)
@@ -299,6 +300,7 @@ DEPENDENCIES
   factory_girl
   fog
   foreman
+  geocoder
   heroku
   inherited_resources
   jquery-rails
