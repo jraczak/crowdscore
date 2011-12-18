@@ -11,6 +11,12 @@ class Crowdscore
     @category_field.change @updateSubcategorySelect
     @category_field.trigger("change")
 
+    @setDistances()
+    if $.geolocation.support()
+      $('.current_location').removeClass('hidden')
+        .find('a').click =>
+          @setLocationInForm($('form#search'))
+
   disableSelect: ->
     @subcategory_field.attr('disabled', 'disabled').addClass('disabled')
 
@@ -45,6 +51,38 @@ class Crowdscore
 
     else
       @hideFieldIfNoOptions()
+
+  setLocationInForm: (form) ->
+    $.geolocation.find (location) ->
+      form.find('[name=latitude]').val(location.latitude)
+      form.find('[name=longitude]').val(location.longitude)
+      form.find('#zip').attr('placeholder', 'Using current location')
+      form.find('.current_location').hide()
+
+  setDistances: ->
+    if $.geolocation.support()
+      $('#venue_list .distance').removeClass('hidden')
+      $('#venue_list td.distance').each (index, element) =>
+        $.geolocation.find (location) =>
+          e = $(element)
+          distance = @calculateDistanceInMiles(parseFloat(e.data('lat')), parseFloat(e.data('long')), location.latitude, location.longitude)
+          # e.html("#{Math.round(distance * 10) / 10} miles")
+          e.html("#{distance.toFixed(1)} miles")
+
+  # Taken from http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points
+  calculateDistanceInMiles: (lat1, lon1, lat2, lon2) ->
+    R = 6371
+    dLat = (lat2-lat1).toRad()
+    dLon = (lon2-lon1).toRad() 
+    a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    R * c * 0.6214
+
+if typeof(Number.prototype.toRad) == "undefined"
+  Number.prototype.toRad = ->
+    this * Math.PI / 180
 
 $ ->
   $.Crowdscore = new Crowdscore

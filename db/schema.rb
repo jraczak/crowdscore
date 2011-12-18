@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020063137) do
+ActiveRecord::Schema.define(:version => 20111218043152) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -140,6 +140,8 @@ ActiveRecord::Schema.define(:version => 20111020063137) do
     t.integer  "venue_subcategory_id"
     t.boolean  "active",               :default => true
     t.integer  "computed_score"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"

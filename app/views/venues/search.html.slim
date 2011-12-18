@@ -7,12 +7,14 @@ h1 You searched for "#{params[:q]}"
       th Category
       th Address
       th Crowdscore
+      th.hidden.distance Distance
     - collection.results.each do |venue|
       tr
         td = link_to(venue.name, venue)
         td = venue.full_category_name
         td = inline_address(venue)
         td = venue.score
+        td.hidden.distance data-lat="#{venue.latitude}" data-long="#{venue.longitude}"
 
   = paginate collection.hits
 

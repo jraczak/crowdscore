@@ -6,5 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.tmpl.min.js
+//= require jquery.tmpl.min
+//= require jquery.geolocation
 //= require_tree .

@@ -71,8 +71,7 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
 javascript:
   $(function() {
 
-    var setMarker = function(r) {
-      var position = r[0].geometry.location;
+    var setMarker = function(position) {
       var myOptions = {
         zoom: 15,
         center: position,
@@ -90,8 +89,8 @@ javascript:
       marker.setPosition(position);
     };
 
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({address: "#{resource.address1}, #{resource.city}, #{resource.state} #{resource.zip}"}, setMarker);
+    var location = new google.maps.LatLng(#{resource.latitude}, #{resource.longitude});
+    setMarker(location);
 
     $("#submit-score-model").modal();
   });

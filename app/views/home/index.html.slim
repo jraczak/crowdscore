@@ -5,9 +5,14 @@ h1 I want to&hellip;
     div
       h2 Submit my score
       p Where did you go? Search for the venue you want to score below.
-      = form_tag search_venues_path, method: :get do |f|
-        = text_field_tag :q
-        = submit_tag "Find it!", class: "btn primary"
+      = form_tag search_venues_path, method: :get, id: 'search' do |f|
+        p = text_field_tag :q, '', placeholder: "Search"
+        p = text_field_tag :zip, '', placeholder: "Zip code"
+        = hidden_field_tag :latitude, ''
+        = hidden_field_tag :longitude, ''
+        p.current_location.hidden
+          a Use my current location
+        p = submit_tag "Find it!", class: "btn primary"
 
   .span6.offset1.sign-up
     div

@@ -12,7 +12,10 @@ class Venue < ActiveRecord::Base
   has_many :venue_images
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
-                               :url, :venue_category_id, :venue_subcategory_id, :venue_category, :venue_subcategory]
+                               :url, :venue_category_id, :venue_subcategory_id,
+                               :venue_category, :venue_subcategory, :latitude,
+                               :longitude]
+
   admin_only_fields = [:active]
 
   attr_accessible *default_accessible_fields
@@ -21,11 +24,16 @@ class Venue < ActiveRecord::Base
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
 
+  geocoded_by :full_address
+  after_validation :geocode, if: :address_parts_changed?
+
   searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
     text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
+
+    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
 
   def full_category_name
@@ -70,5 +78,25 @@ class Venue < ActiveRecord::Base
     scores = venue_scores.map { |s| s.computed_score.to_f }
     self.computed_score = (scores.inject(&:+) / scores.length).ceil
     save!
+  end
+
+  def full_address
+    [address1, address2, city, state, zip].compact.join(", ")
+  end
+
+  def self.update_missing_geocodes
+    where('longitude IS NULL OR latitude IS NULL').each do |venue|
+      venue.update_geocode
+    end
+  end
+
+  def update_geocode
+    geocode && save!
+  end
+
+  private
+
+  def address_parts_changed?
+    address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
   end
 end
