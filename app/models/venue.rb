@@ -21,8 +21,9 @@ class Venue < ActiveRecord::Base
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
 
-  searchable do
+  searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
+    text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
   end
