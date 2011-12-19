@@ -15,6 +15,15 @@ Spork.prefork do
   # Fix an issue related to shoulda matchers and Spork
   require 'shoulda/matchers/integrations/rspec'
   require 'carrierwave/test/matchers'
+  require 'sunspot/rails/spec_helper'
+
+  require 'ephemeral_response'
+
+  EphemeralResponse.configure do |config|
+    config.expiration = 1.month
+    config.white_list = 'localhost', '127.0.0.1'
+    config.debug_output = $stderr
+  end
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
@@ -22,6 +31,14 @@ Spork.prefork do
     config.mock_with :rspec
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.use_transactional_fixtures = true
+
+    config.before(:suite) do
+      EphemeralResponse.activate
+    end
+
+    config.after(:suite) do
+      EphemeralResponse.deactivate
+    end
   end
 
   # Mock out Fog by pretending a bucket exists

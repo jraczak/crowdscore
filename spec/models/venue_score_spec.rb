@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe VenueScore do
+  disconnect_sunspot
+
   subject { Factory.build(:venue_score) }
 
   it { should be_valid }

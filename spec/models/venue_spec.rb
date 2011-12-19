@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Venue do
+  disconnect_sunspot
+
   it { should belong_to(:venue_category) }
   it { should belong_to(:venue_subcategory) }
 

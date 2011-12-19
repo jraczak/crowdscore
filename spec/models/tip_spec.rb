@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Tip do
+  disconnect_sunspot
+
   subject { Factory.build(:tip) }
 
   it { should validate_presence_of(:venue) }

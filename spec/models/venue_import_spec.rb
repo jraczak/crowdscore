@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe VenueImport do
+  disconnect_sunspot
+
   subject { VenueImport.new(file: file) }
   let(:file) { double(:close => true) }
 
