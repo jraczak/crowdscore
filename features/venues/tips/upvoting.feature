@@ -1,0 +1,26 @@
+Feature: Upvoting tips
+
+  Background:
+    Given a venue exists
+
+  Scenario: An anonymous user cannot upvote
+    Given a tip was created yesterday for the venue with text: "First tip"
+    When I go to the venue page for the venue
+    Then I should not see "upvote"
+
+  Scenario: A signed in user can upvote someone else's tip
+    Given a tip was created yesterday for the venue with text: "First tip"
+    And I am signed in
+    When I go to the venue page for the venue
+    Then I should see "upvote"
+
+    When I follow "upvote"
+    Then I should have upvoted the tip
+    And I should be on the venue page for the venue
+    And I should not see "upvote"
+
+  Scenario: A signed in user cannot upvote their own tip
+    Given I am signed in
+    And I created a tip for the venue with text: "My tip"
+    When I go to the venue page for the venue
+    Then I should not see "upvote"

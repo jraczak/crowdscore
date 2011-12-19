@@ -2,7 +2,7 @@ class TipsController < InheritedResources::Base
   belongs_to :venue
   actions :new, :create
   custom_actions resource: :upvote, collection: :sort
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:sort]
 
   def create
     build_resource.user = current_user
