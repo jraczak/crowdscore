@@ -22,7 +22,7 @@ Given /^"([^"]*)" has been upvoted$/ do |text|
   TipLike.create!(tip: tip, user: user)
 end
 
-Then /^I should have upvoted the tip$/ do
+Then /^my upvote for the tip should have been recorded$/ do
   model!("the tip").liked_by.should include(model!("the user"))
 end
 

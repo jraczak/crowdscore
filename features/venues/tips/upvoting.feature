@@ -15,7 +15,7 @@ Feature: Upvoting tips
     Then I should see "upvote"
 
     When I follow "upvote"
-    Then I should have upvoted the tip
+    Then my upvote for the tip should have been recorded
     And I should be on the venue page for the venue
     And I should not see "upvote"
 
