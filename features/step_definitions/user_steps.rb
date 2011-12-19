@@ -13,6 +13,10 @@ Then /^I should see the following users:$/ do |expected_users_table|
   expected_users_table.diff!(tableish('table tr', 'td,th'))
 end
 
+Then /^I should be asked to sign in$/ do
+  Then "I should be on the new user session page"
+end
+
 Given /^I am signed in$/ do
   Given('I am signed in as email: "bob@example.com"')
 end

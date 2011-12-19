@@ -24,3 +24,8 @@ end
 Then(/^the venue (\w+) should be "(.*)"$/) do |field, value|
   page.should have_xpath("//dt[.='#{field.capitalize}']/following-sibling::*[1][self::dd[.='#{value}']]")
 end
+
+Then /^I should see a tip by me that says "([^"]*)"$/ do |tip_text|
+  name = model!("the user").username
+  page.should have_content("#{name} said: \"#{tip_text}\"")
+end

@@ -20,6 +20,13 @@ Spork.prefork do
   rescue NameError
     raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
   end
+
+  require File.expand_path("../cuke_sunspot", __FILE__)
+  CukeSunspot.new.start
+
+  at_exit do
+    CukeSunspot.new.stop
+  end
 end
 
 Spork.each_run do
