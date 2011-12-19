@@ -92,6 +92,7 @@ GEM
     email_spec (1.2.1)
       mail (~> 2.2)
       rspec (~> 2.0)
+    ephemeral_response (0.4.0)
     erubis (2.7.0)
     escape (0.0.4)
     eventmachine (0.12.10)
@@ -133,7 +134,6 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.3)
-    json_pure (1.6.3)
     kumade (0.8.1)
       cocaine (>= 0.2.0)
       heroku (~> 2.0)
@@ -148,7 +148,7 @@ GEM
     method_source (0.6.6)
       ruby_parser (~> 2.0.5)
     mime-types (1.17.2)
-    multi_json (1.0.3)
+    multi_json (1.0.4)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.1.4)
@@ -229,10 +229,10 @@ GEM
       sass (>= 3.1.4)
       sprockets (~> 2.0.0)
       tilt (~> 1.3.2)
-    selenium-webdriver (2.13.0)
+    selenium-webdriver (2.15.0)
       childprocess (>= 0.2.1)
       ffi (~> 1.0.9)
-      json_pure
+      multi_json (~> 1.0.4)
       rubyzip
     sexp_processor (3.0.7)
     shoulda (3.0.0.beta2)
@@ -297,6 +297,7 @@ DEPENDENCIES
   database_cleaner
   devise!
   email_spec
+  ephemeral_response
   factory_girl
   fog
   foreman
