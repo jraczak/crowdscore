@@ -1,3 +1,7 @@
+When /^I sleep for (\d+) seconds?$/ do |num|
+  sleep num.to_i
+end
+
 When /^I confirm the alert that says "(.+)"$/ do |message|
   page.driver.browser.switch_to.alert.text.should == message
   page.driver.browser.switch_to.alert.accept

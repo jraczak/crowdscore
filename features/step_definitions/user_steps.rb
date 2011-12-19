@@ -14,15 +14,15 @@ Then /^I should see the following users:$/ do |expected_users_table|
 end
 
 Then /^I should be asked to sign in$/ do
-  Then "I should be on the new user session page"
+  step "I should be on the new user session page"
 end
 
 Given /^I am signed in$/ do
-  Given('I am signed in as email: "bob@example.com"')
+  step('I am signed in as email: "bob@example.com"')
 end
 
 Given /^I am signed in as an admin$/ do
-  Given('I am signed in as email: "admin@example.com", admin: true')
+  step('I am signed in as email: "admin@example.com", admin: true')
 end
 
 Given /^I am signed in as #{capture_fields}$/ do |fields|
@@ -37,11 +37,11 @@ Given /^I am signed in as #{capture_fields}$/ do |fields|
 
   user_info = "email: \"#{fields_hash['email']}\", password: \"#{password}\""
 
-  Given(%Q{a #{user_type} exists with #{user_info}})
-  When('I go to the new user session page')
-  And(%Q{I fill in "Email" with "#{fields_hash['email']}"})
-  And(%Q{I fill in "Password" with "#{password}"})
-  And('I press "Sign in"')
+  step(%Q{a #{user_type} exists with #{user_info}})
+  step('I go to the new user session page')
+  step(%Q{I fill in "Email" with "#{fields_hash['email']}"})
+  step(%Q{I fill in "Password" with "#{password}"})
+  step('I press "Sign in"')
 end
 
 When /^I sign out$/ do
