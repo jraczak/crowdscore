@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/buger/state_select.git
-  revision: 24cd240b7b84190d10272afff7cfd63ca1d6448c
-  specs:
-    state_select (0.1.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -245,6 +239,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    state_select (0.1.0)
     sunspot (2.0.0.pre.111215)
       escape (~> 0.0.4)
       pr_geohash (~> 1.0)
@@ -314,7 +309,7 @@ DEPENDENCIES
   slim
   slim-rails
   spork (~> 0.9.0.rc)
-  state_select!
+  state_select (~> 0.1.0)
   sunspot_rails (~> 2.0.0.pre)
   sunspot_solr (~> 2.0.0.pre)
   thin
