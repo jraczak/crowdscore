@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require jquery.tmpl.min
 //= require jquery.geolocation
+//= require bootstrap-modal
 //= require_tree .
