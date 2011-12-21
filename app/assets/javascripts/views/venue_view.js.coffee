@@ -13,23 +13,6 @@ class Crowdscore.Views.VenueView extends Backbone.View
 
     @category_field.trigger("change")
 
-  setBusyState: (e) =>
-    @disableSelect()
-    @category_throbber.show()
-
-  unsetBusyState: (e) =>
-    @enableSelect()
-    @category_throbber.hide()
-    @hideFieldIfNoOptions()
-
-  resetSubcategoryField: =>
-    @subcategory_field.html('<option value></option')
-
-  updateSubcategorySelectOptions: (data) =>
-    @resetSubcategoryField()
-    markup = '<option value="${id}">${name}</option>'
-    $.tmpl(markup, data).appendTo(@subcategory_field)
-
   updateSubcategorySelect: (e) =>
     cat_id = @category_field.val()
 
@@ -40,6 +23,23 @@ class Crowdscore.Views.VenueView extends Backbone.View
         .complete(@unsetBusyState)
     else
       @hideFieldIfNoOptions()
+
+  updateSubcategorySelectOptions: (data) =>
+    @resetSubcategoryField()
+    markup = '<option value="${id}">${name}</option>'
+    $.tmpl(markup, data).appendTo(@subcategory_field)
+
+  resetSubcategoryField: =>
+    @subcategory_field.html('<option value></option')
+
+  setBusyState: (e) =>
+    @disableSelect()
+    @category_throbber.show()
+
+  unsetBusyState: (e) =>
+    @enableSelect()
+    @category_throbber.hide()
+    @hideFieldIfNoOptions()
 
   disableSelect: ->
     @subcategory_field.attr('disabled', 'disabled').addClass('disabled')
