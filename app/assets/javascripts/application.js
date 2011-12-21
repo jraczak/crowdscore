@@ -9,6 +9,7 @@
 //= require jquery.tmpl.min
 //= require jquery.geolocation
 //= require bootstrap-modal
+//= require backbone-rails
 //= require utils
 //= require crowdscore
 //= require_tree .
