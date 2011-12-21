@@ -2,9 +2,13 @@ window.Crowdscore =
   Models: {}
   Views: {}
 
-class window.View
-  el: -> console.log('This must be overridden')
+  initialize: ->
+    new Crowdscore.Views.NavView if $(".topbar").length
 
-  constructor: ->
-    if $(@el).length
-      @render()
+    new Crowdscore.Views.VenueMapView if $("#map_canvas.venue-map").length
+    new Crowdscore.Views.VenueSearchFormView if $("form#search").length
+    new Crowdscore.Views.VenueView if $("#new_venue").length
+    new Crowdscore.Views.VenueSearchView if $("#venue_list th.distance").length
+
+$ ->
+  Crowdscore.initialize()

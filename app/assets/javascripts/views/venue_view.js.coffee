@@ -53,6 +53,3 @@ class Crowdscore.Views.VenueView extends Backbone.View
       @subcategory_field.parents(".clearfix").show()
     else
       @subcategory_field.parents(".clearfix").hide()
-
-$ ->
-  new Crowdscore.Views.VenueView

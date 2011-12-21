@@ -1,8 +1,10 @@
-class Crowdscore.Views.VenueSearchView extends View
-  el: -> @headerCell
+class Crowdscore.Views.VenueSearchView extends Backbone.View
+  el: "#venue_list"
 
-  headerCell: '#venue_list .distance'
-  distanceCells: '#venue_list td.distance'
+  headerCell: 'th.distance'
+  distanceCells: 'td.distance'
+
+  initialize: -> @render()
 
   render: ->
     # Distances are hidden by default so that browsers without geolocation
@@ -12,18 +14,16 @@ class Crowdscore.Views.VenueSearchView extends View
       @showDistances()
 
   showDistances: ->
-    $(@headerCell).add(@distanceCells).removeClass('hidden')
+    @$(@headerCell).removeClass('hidden')
+    @$(@distanceCells).removeClass('hidden')
 
   calculateAndDisplayDistances: ->
     $(@distanceCells).each (index, element) =>
       $.geolocation.find (location) =>
-        @fillInDistance(location, $(element))
+        @fillInDistance(location, @$(element))
 
   fillInDistance: (current_location, element) ->
     lat = parseFloat(element.data('lat'))
     long = parseFloat(element.data('long'))
     distance = Utils.calculateDistanceInMiles(lat, long, current_location.latitude, current_location.longitude)
     element.html("#{distance.toFixed(1)} miles")
-
-$ ->
-  new Crowdscore.Views.VenueSearchView

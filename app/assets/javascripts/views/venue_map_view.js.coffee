@@ -29,6 +29,3 @@ class Crowdscore.Views.VenueMapView extends Backbone.View
       draggable: true
 
     marker.setPosition(@location)
-
-
-$ -> new Crowdscore.Views.VenueMapView
