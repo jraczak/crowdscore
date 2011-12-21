@@ -1,20 +1,22 @@
-class Crowdscore.Views.VenueMapView extends View
+class Crowdscore.Views.VenueMapView extends Backbone.View
   el: "#map_canvas.venue-map"
 
-  render: ->
-    @element = $(@el)
+  initialize: ->
+    @render()
 
+  render: ->
+    @$el = $(@el)
     @setCoords()
     @initializeMap()
     @setMarker()
 
   setCoords: ->
-    lat = @element.data('lat')
-    long = @element.data('long')
+    lat = @$el.data('lat')
+    long = @$el.data('long')
     @location = new google.maps.LatLng(lat, long)
 
   initializeMap: ->
-    @map = new google.maps.Map @element[0],
+    @map = new google.maps.Map @$el[0],
       zoom: 15
       center: @location
       disableDefaultUI: true
