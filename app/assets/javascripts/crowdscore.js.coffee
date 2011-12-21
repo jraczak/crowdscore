@@ -3,7 +3,7 @@ window.Crowdscore =
   Views: {}
 
   initialize: ->
-    new Crowdscore.Views.NavView if $(".topbar").length
+    new Crowdscore.Views.NavView
 
     new Crowdscore.Views.VenueMapView if $("#map_canvas.venue-map").length
     new Crowdscore.Views.VenueSearchFormView if $("form#search").length
