@@ -45,16 +45,17 @@
 
     br/
 
-    h3.header
-      | Tips 
-      = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
-    #tips
-      = render resource.tips.by_recent
-    p.sort
-      | Sort by: 
-      = link_to 'Recent', sort_venue_tips_path(resource, sort: 'recent'), class: 'selected', id: 'sort-tips-recent'
-      |  | 
-      = link_to 'Popularity', sort_venue_tips_path(resource, sort: 'popularity'), id: 'sort-tips-popularity'
+    #tip_list
+      h3.header
+        | Tips 
+        = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
+      #tips
+        = render resource.tips.by_recent
+      p.sort
+        | Sort by: 
+        = link_to 'Recent', sort_venue_tips_path(resource, sort: 'recent'), class: 'selected', id: 'sort-tips-recent'
+        |  | 
+        = link_to 'Popularity', sort_venue_tips_path(resource, sort: 'popularity'), id: 'sort-tips-popularity'
 
 
 #submit-score-modal.modal style="display: none;"

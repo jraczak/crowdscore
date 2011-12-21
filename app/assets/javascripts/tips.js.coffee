@@ -1,20 +1,27 @@
-class Tip
-  updateTipSort: (sort) ->
-    $.get location.href + "/tips/sort?sort=#{sort}", (data) =>
-      $('#tips').html(data)
-      @updateSelectedFilter(sort)
+class Crowdscore.Views.TipListView extends Backbone.View
+  el: "#tip_list"
 
-  updateSelectedFilter: (sort) ->
-    $('p.sort a').removeClass('selected')
-    $("p.sort a#sort-tips-#{sort}").addClass('selected')
+  events:
+    "click #sort-tips-recent": "sortByRecent"
+    "click #sort-tips-popularity": "sortByPopularity"
 
-$.Tip = new Tip
+  initialize: ->
+    @sort = "recent"
 
-$ ->
-  $('#sort-tips-recent').click (e) ->
+  sortByRecent: (e) ->
     e.preventDefault()
-    $.Tip.updateTipSort('recent')
+    @updateTipSort "recent"
 
-  $('#sort-tips-popularity').click (e) ->
+  sortByPopularity: (e) ->
     e.preventDefault()
-    $.Tip.updateTipSort('popularity')
+    @updateTipSort "popularity"
+
+  sortUrl: -> "#{location.href}/tips/sort?sort=#{@sort}"
+
+  updateTipSort: (@sort) ->
+    @updateSelectedFilter()
+    $.get @sortUrl(), (data) => @$('#tips').html(data)
+
+  updateSelectedFilter: ->
+    @$('p.sort a').removeClass('selected')
+    @$("p.sort a#sort-tips-#{@sort}").addClass('selected')
