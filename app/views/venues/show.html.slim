@@ -1,5 +1,3 @@
-script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor=false'
-
 .row
   .span12#venue-detail
     h1 = resource.name
@@ -32,7 +30,7 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
       br/
       = link_to resource.url, resource.url
 
-    #map_canvas style="width: 100%; height: 300px; margin-bottom: 1em;"
+    #map_canvas.venue-map style="width: 100%; height: 300px; margin-bottom: 1em;" data-lat="#{resource.latitude}" data-long="#{resource.longitude}"
     address = inline_address(resource)
 
   .span10.offset1
@@ -70,30 +68,3 @@ script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?sensor
     .modal-footer
       = f.submit "Submit", class: 'btn primary'
 
-
-javascript:
-  $(function() {
-
-    var setMarker = function(position) {
-      var myOptions = {
-        zoom: 15,
-        center: position,
-        disableDefaultUI: true,
-        zoomControl: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-
-      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-      marker = new google.maps.Marker({
-        map: map,
-        draggable: true
-      });
-      marker.setPosition(position);
-    };
-
-    var location = new google.maps.LatLng(#{resource.latitude}, #{resource.longitude});
-    setMarker(location);
-
-    $("#submit-score-model").modal();
-  });
