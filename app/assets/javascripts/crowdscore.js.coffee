@@ -10,7 +10,5 @@ window.Crowdscore =
     new Crowdscore.Views.VenueView if $("#new_venue").length
     new Crowdscore.Views.VenueSearchView if $("#venue_list th.distance").length
 
-    new Crowdscore.Views.TipListView if $("#tips").length
-
 $ ->
   Crowdscore.initialize()

@@ -17,10 +17,10 @@ Feature: Upvoting tips
     When I follow "upvote"
     Then my upvote for the tip should have been recorded
     And I should be on the venue page for the venue
-    And I should not see "upvote"
+    And I should not see "upvote" within "#tips"
 
   Scenario: A signed in user cannot upvote their own tip
     Given I am signed in
     And I created a tip for the venue with text: "My tip"
     When I go to the venue page for the venue
-    Then I should not see "upvote"
+    Then I should not see "upvote" within "#tips"

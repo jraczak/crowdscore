@@ -19,6 +19,7 @@ gem "airbrake"
 gem "sunspot_rails", "~> 2.0.0.pre"
 gem "geocoder"
 gem "backbone-rails"
+gem "ejs"
 
 # Gems used only for assets and not required
 # in production environments by default.

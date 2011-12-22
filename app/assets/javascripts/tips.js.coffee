@@ -6,22 +6,23 @@ class Crowdscore.Views.TipListView extends Backbone.View
     "click #sort-tips-popularity": "sortByPopularity"
 
   initialize: ->
-    @sort = "recent"
+    console.log("ERROR: View must be initialized with a model") unless @model
+    @model.bind('reset', @render)
+
+  render: =>
+    tips = @model.map (tip) -> JST['templates/tip'](tip: tip)
+    @$('#tips').html(tips.join("\n"))
 
   sortByRecent: (e) ->
     e.preventDefault()
-    @updateTipSort "recent"
+    @model.enableSortRecent()
+    @updateSelectedFilter('recent')
 
   sortByPopularity: (e) ->
     e.preventDefault()
-    @updateTipSort "popularity"
+    @model.enableSortPopularity()
+    @updateSelectedFilter('popularity')
 
-  sortUrl: -> "#{location.href}/tips/sort?sort=#{@sort}"
-
-  updateTipSort: (@sort) ->
-    @updateSelectedFilter()
-    $.get @sortUrl(), (data) => @$('#tips').html(data)
-
-  updateSelectedFilter: ->
+  updateSelectedFilter: (sort) ->
     @$('p.sort a').removeClass('selected')
-    @$("p.sort a#sort-tips-#{@sort}").addClass('selected')
+    @$("p.sort a#sort-tips-#{sort}").addClass('selected')

@@ -11,5 +11,6 @@
 //= require bootstrap-modal
 //= require backbone-rails
 //= require utils
+//= require_tree ./templates
 //= require crowdscore
 //= require_tree .

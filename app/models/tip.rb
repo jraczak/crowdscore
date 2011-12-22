@@ -1,4 +1,6 @@
 class Tip < ActiveRecord::Base
+  attr_writer :current_user_id # this is definitely not ideal
+
   scope :by_recent, order('created_at DESC')
   scope :by_likes, order('tip_likes_count DESC')
 
@@ -10,4 +12,17 @@ class Tip < ActiveRecord::Base
 
   validates :venue, :user, presence: true
   validates :text, presence: true, length: { maximum: 100 }
+
+  def as_json(options = nil)
+    methods = []
+    methods << :can_upvote if @current_user_id.present?
+    super(methods: methods, include: { user: { only: :username } })
+  end
+
+  def can_upvote(user = nil)
+    current_id = user.present? ? user.id : @current_user_id
+    logger.info "CURRENT: #{current_id}"
+    logger.info "TIP CREATOR: #{user_id}"
+    current_id && user_id != current_id && !liked_by_ids.include?(current_id)
+  end
 end

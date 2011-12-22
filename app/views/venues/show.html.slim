@@ -1,3 +1,10 @@
+= content_for :javascript do
+  javascript:
+    jQuery(function() {
+      Crowdscore.venueTips = new Crowdscore.Models.TipCollection(#{tips = resource.tips.by_recent; tips.each { |t| t.current_user_id = current_user.try(:id) }; raw tips.to_json}, {venue_id: #{resource.id}});
+      new Crowdscore.Views.TipListView({model: Crowdscore.venueTips});
+    });
+
 .row
   .span12#venue-detail
     h1 = resource.name
@@ -53,9 +60,9 @@
         = render resource.tips.by_recent
       p.sort
         | Sort by: 
-        = link_to 'Recent', sort_venue_tips_path(resource, sort: 'recent'), class: 'selected', id: 'sort-tips-recent'
+        = link_to 'Recent', '#', class: 'selected', id: 'sort-tips-recent'
         |  | 
-        = link_to 'Popularity', sort_venue_tips_path(resource, sort: 'popularity'), id: 'sort-tips-popularity'
+        = link_to 'Popularity', '#', id: 'sort-tips-popularity'
 
 
 #submit-score-modal.modal style="display: none;"

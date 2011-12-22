@@ -47,6 +47,7 @@ html
 
     = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
     = javascript_include_tag "application"
+    = content_for :javascript
 
     - if Rails.env.production?
       = render "shared/google_analytics"
