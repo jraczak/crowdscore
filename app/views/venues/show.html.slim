@@ -1,9 +1,8 @@
 = content_for :javascript do
   javascript:
-    jQuery(function() {
-      var venueTips = new TipCollection(#{tips = resource.tips.by_recent; tips.each { |t| t.current_user_id = current_user.try(:id) }; raw tips.to_json}, {venue_id: #{resource.id}});
-      new CS.TipListView({model: venueTips});
-    });
+    var venueTips = new TipCollection(#{prepare_tips_for_js_init(resource)}, {venue_id: #{resource.id}});
+    new CS.TipListView({model: venueTips});
+    new CS.VenueMapView();
 
 .row
   .span12#venue-detail

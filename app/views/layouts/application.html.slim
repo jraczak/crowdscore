@@ -47,6 +47,9 @@ html
 
     = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
     = javascript_include_tag "application"
+    coffee:
+      new CS.NavView()
+
     = content_for :javascript
 
     - if Rails.env.production?
