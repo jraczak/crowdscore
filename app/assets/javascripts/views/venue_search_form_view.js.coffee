@@ -1,4 +1,4 @@
-class Crowdscore.Views.VenueSearchFormView extends Backbone.View
+class CS.VenueSearchFormView extends Backbone.View
   el: "form#search"
 
   events:

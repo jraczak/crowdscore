@@ -1,4 +1,4 @@
-class Crowdscore.Views.VenueEditView extends Backbone.View
+class CS.VenueEditView extends Backbone.View
   el: '#new_venue'
 
   events:

@@ -1,14 +1,13 @@
-window.Crowdscore =
-  Models: {}
+window.CS =
   Views: {}
 
   initialize: ->
-    new Crowdscore.Views.NavView
+    new CS.NavView
 
-    new Crowdscore.Views.VenueMapView if $("#map_canvas.venue-map").length
-    new Crowdscore.Views.VenueSearchFormView if $("form#search").length
-    new Crowdscore.Views.VenueEditView if $("#new_venue").length
-    new Crowdscore.Views.VenueSearchView if $("#venue_list th.distance").length
+    new CS.VenueMapView if $("#map_canvas.venue-map").length
+    new CS.VenueSearchFormView if $("form#search").length
+    new CS.VenueEditView if $("#new_venue").length
+    new CS.VenueSearchView if $("#venue_list th.distance").length
 
 $ ->
-  Crowdscore.initialize()
+  CS.initialize()

@@ -1,4 +1,4 @@
-class Crowdscore.Views.VenueSearchView extends Backbone.View
+class CS.VenueSearchView extends Backbone.View
   el: "#venue_list"
 
   headerCell: 'th.distance'

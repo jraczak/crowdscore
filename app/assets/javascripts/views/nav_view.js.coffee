@@ -1,4 +1,4 @@
-class Crowdscore.Views.NavView extends Backbone.View
+class CS.NavView extends Backbone.View
   el: '.nav a.menu'
 
   events:

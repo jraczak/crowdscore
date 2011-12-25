@@ -1,4 +1,4 @@
-class Crowdscore.Views.VenueMapView extends Backbone.View
+class CS.VenueMapView extends Backbone.View
   el: "#map_canvas.venue-map"
 
   initialize: ->

@@ -1,4 +1,4 @@
-class Crowdscore.Views.TipListView extends Backbone.View
+class CS.TipListView extends Backbone.View
   el: "#tip_list"
 
   events:

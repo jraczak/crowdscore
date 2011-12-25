@@ -1,4 +1,4 @@
-class Crowdscore.Models.Tip extends Backbone.Model
+class window.Tip extends Backbone.Model
   upvoteUrl: ->
     "#{@url()}/upvote"
 

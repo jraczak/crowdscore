@@ -1,6 +1,6 @@
-class Crowdscore.Models.TipCollection extends Backbone.Collection
+class window.TipCollection extends Backbone.Collection
   url: -> "/venues/#{@venue_id}/tips"
-  model: Crowdscore.Models.Tip
+  model: Tip
   comparator: (tip) => @sortRecent(tip)
 
   initialize: (models, options) ->
