@@ -87,4 +87,13 @@ describe Venue do
       subject.should be_persisted
     end
   end
+
+  describe ".alphabetical" do
+    let!(:first_venue) { Factory(:venue, name: "Zeta") }
+    subject { Factory(:venue, name: "Alpha") }
+
+    it "should sort alphabetically" do
+      Venue.alphabetical.should == [subject, first_venue]
+    end
+  end
 end

@@ -2,6 +2,7 @@ class Venue < ActiveRecord::Base
   acts_as_audited protected: false
 
   scope :active, where(active: true)
+  scope :alphabetical, order(:name)
   scope :matching, ->(q) { venues = Venue.arel_table; where(venues[:name].matches("%#{q}%")) }
 
   belongs_to :venue_category

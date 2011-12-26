@@ -15,7 +15,7 @@ class VenuesController < InheritedResources::Base
   private
 
   def collection
-    @venues ||= Venue.active.page(params[:page])
+    @venues ||= Venue.active.alphabetical.page(params[:page])
   end
 
   def resource
