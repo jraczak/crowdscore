@@ -13,6 +13,8 @@ class Tip < ActiveRecord::Base
   validates :venue, :user, presence: true
   validates :text, presence: true, length: { maximum: 100 }
 
+  after_save :reindex_venue
+
   def as_json(options = nil)
     methods = []
     methods << :can_upvote if @current_user_id.present?
@@ -24,5 +26,11 @@ class Tip < ActiveRecord::Base
     logger.info "CURRENT: #{current_id}"
     logger.info "TIP CREATOR: #{user_id}"
     current_id && user_id != current_id && !liked_by_ids.include?(current_id)
+  end
+
+  private
+
+  def reindex_venue
+    venue.index!
   end
 end
