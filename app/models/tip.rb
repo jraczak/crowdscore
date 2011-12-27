@@ -14,6 +14,7 @@ class Tip < ActiveRecord::Base
   validates :text, presence: true, length: { maximum: 100 }
 
   after_save :reindex_venue
+  after_destroy :reindex_venue
 
   def as_json(options = nil)
     methods = []

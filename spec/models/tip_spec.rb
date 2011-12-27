@@ -24,4 +24,11 @@ describe Tip do
     subject.venue.should_receive(:index!)
     subject.save!
   end
+
+  it "should reindex the venue when deleted" do
+    subject.save!
+
+    subject.venue.should_receive(:index!)
+    subject.destroy
+  end
 end
