@@ -10,7 +10,7 @@ class VenueSearch
     fake_distance = 20 * 0.6214 # 1.5 miles
 
     Venue.search(include: [:venue_category, :venue_subcategory]) do
-      fulltext params[:q]
+      fulltext params[:q].gsub(/[\s\w]/, '')
       paginate page: params[:page]
       order_by_geodist :location, lat, long
       with(:location).in_radius(lat, long, fake_distance)
