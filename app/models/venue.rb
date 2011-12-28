@@ -16,11 +16,13 @@ class Venue < ActiveRecord::Base
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
                                :longitude]
+  noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]
 
   attr_accessible *default_accessible_fields
-  attr_accessible *(default_accessible_fields + admin_only_fields), :as => :admin
+  attr_accessible *(default_accessible_fields - noneditable_fields), as: :regular_user_editing
+  attr_accessible *(default_accessible_fields + admin_only_fields), as: :admin
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }

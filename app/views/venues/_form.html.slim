@@ -1,7 +1,9 @@
-.clearfix
-  = f.label :name
-  .input
-    = f.text_field :name, class: "xlarge", size: "30"
+- admin ||= false
+- if resource.new_record? || admin
+  .clearfix
+    = f.label :name
+    .input
+      = f.text_field :name, class: "xlarge", size: "30"
 
 .clearfix
   = f.label :address1, "Address 1"
@@ -38,12 +40,13 @@
   .input
     = f.text_field :url, class: "xlarge", size: "30"
 
-.clearfix
-  = f.label :venue_category_id, "Category"
-  .input
-    = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
-    |  
-    = image_tag 'loader.gif', style: "display: none"
+- if resource.new_record? || admin
+  .clearfix
+    = f.label :venue_category_id, "Category"
+    .input
+      = f.collection_select :venue_category_id, VenueCategory.all, :id, :name, include_blank: true
+      |  
+      = image_tag 'loader.gif', style: "display: none"
 
 .clearfix
   = f.label :venue_subcategory_id, "Subcategory"

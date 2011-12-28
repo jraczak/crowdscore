@@ -1,7 +1,7 @@
 class VenuesController < InheritedResources::Base
   include VenueControllerAdditions
-  actions :index, :show, :new, :create
-  before_filter :authenticate_user!, :except => [:index, :show, :search]
+  actions :index, :show, :new, :create, :edit, :update
+  before_filter :authenticate_user!, except: [:index, :show, :search]
 
   def search
     if params[:zip].blank? && params[:latitude].blank?
@@ -20,5 +20,9 @@ class VenuesController < InheritedResources::Base
 
   def resource
     @venue ||= Venue.active.find(params[:id])
+  end
+
+  def as_role
+    resource.presisted? ? { as: :regular_user_editing } : super
   end
 end

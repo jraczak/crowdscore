@@ -14,6 +14,9 @@ module NavigationHelpers
     when /^the venue page for (.*)$/
       venue_path(model!($1))
 
+    when /^the edit venue page for (.*)$/
+      edit_venue_path(model!($1))
+
     when /^the admin user page for (.*)$/
       admin_user_path(model!($1))
 

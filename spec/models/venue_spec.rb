@@ -47,6 +47,21 @@ describe Venue do
   it { should allow_mass_assignment_of(:active).as(:admin) }
   it { should_not allow_mass_assignment_of(:computed_score).as(:admin) }
 
+  it { should_not allow_mass_assignment_of(:name).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:address1).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:address2).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:city).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:state).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:zip).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:phone).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:url).as(:regular_user_editing) }
+  it { should_not allow_mass_assignment_of(:venue_category_id).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:venue_subcategory_id).as(:regular_user_editing) }
+  it { should_not allow_mass_assignment_of(:venue_category).as(:regular_user_editing) }
+  it { should allow_mass_assignment_of(:venue_subcategory).as(:regular_user_editing) }
+  it { should_not allow_mass_assignment_of(:active).as(:regular_user_editing) }
+  it { should_not allow_mass_assignment_of(:computed_score).as(:regular_user_editing) }
+
   describe "#full_category_name" do
     let!(:category) { Factory.create(:venue_category, name: "Restaurant") }
 
