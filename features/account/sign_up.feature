@@ -81,6 +81,7 @@ Feature: User registration
 
     When I open the email
     Then I should see "Confirmation instructions" in the email subject
+    And they should see the email delivered from "support@crowdscoreapp.com"
 
     When I follow "confirm" in the email
     Then a user should exist with email: "sam@example.com"
