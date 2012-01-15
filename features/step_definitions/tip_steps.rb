@@ -29,3 +29,8 @@ end
 Given /^I created a tip for the venue with text: "([^"]*)"$/ do |text|
   create_model("the tip", venue: model!("the venue"), text: text, user: model!("the user"))
 end
+
+Then /^I should see "([^"]*)" next to the "([^"]*)" tip$/ do |text, tip_name|
+  tip = Tip.find_by_text(tip_name)
+  find("#tip_#{tip.id}").should have_content(text)
+end

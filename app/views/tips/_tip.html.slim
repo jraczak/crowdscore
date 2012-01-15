@@ -1,5 +1,7 @@
 p id="#{dom_id(tip)}"
   strong #{tip.user.username}
-  |  said: "#{tip.text}"
+  |  said (
+  = pluralize tip.tip_likes.count, "vote"
+  | ): "#{tip.text}"
 
   = upvote_link_for tip

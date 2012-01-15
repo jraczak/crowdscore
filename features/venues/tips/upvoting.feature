@@ -24,3 +24,10 @@ Feature: Upvoting tips
     And I created a tip for the venue with text: "My tip"
     When I go to the venue page for the venue
     Then I should not see "upvote" within "#tips"
+
+  Scenario: Number of upvotes should be displayed next to a tip
+    Given a tip was created yesterday for the venue with text: "First tip"
+    And "First tip" has been upvoted
+    When I go to the venue page for the venue
+    Then I should see "(1 vote)" next to the "First tip" tip
+

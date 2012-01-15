@@ -1,5 +1,5 @@
 <p id="<%= tip.domId() %>">
-  <strong><%= tip.get('user').username %></strong> said: <%= tip.get('text') %>
+  <strong><%= tip.get('user').username %></strong> said <%= tip.upvoteCountText() %>: "<%= tip.get('text') %>"
 
   <% if(tip.get('can_upvote')) { %>
     <a href="<%= tip.upvoteUrl() %>">upvote</a>
