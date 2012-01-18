@@ -38,7 +38,7 @@ end
 group :development, :test do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem "pry"
-  gem "rspec-rails", "~> 2.7.0"
+  gem "rspec-rails", "~> 2.8.0"
   gem 'heroku'
   gem "pickle"
   gem "rails3-generators"
@@ -56,6 +56,6 @@ group :test do
   gem "timecop"
   gem "shoulda", "~> 3.0.0.beta2"
   gem "launchy"
-  gem "email_spec"
+  gem "email_spec", "~> 1.2.1"
   gem "ephemeral_response"
 end
