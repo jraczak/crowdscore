@@ -4,7 +4,6 @@ gem 'rails', '3.1.3'
 
 gem "pg"
 gem "inherited_resources"
-gem "slim"
 gem "slim-rails"
 gem "devise", "~> 2.0.0.rc"
 gem "cancan"

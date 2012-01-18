@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe VenueImage do
+  disconnect_sunspot
+
   subject { Factory.build(:venue_image) }
 
   it { should be_valid }

@@ -39,6 +39,6 @@ Feature: Editing an existing venue
   @javascript
   Scenario: A user can add a website easily
     Given I am signed in
-    When I go to the edit venue page for the venue
+    When I go to the venue page for the venue
     And I follow "Add the website"
     Then I should be on the edit venue page for the venue

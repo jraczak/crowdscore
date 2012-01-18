@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe AttachmentUploader do
+  disconnect_sunspot
+
   include CarrierWave::Test::Matchers
 
   let(:venue_image) { Factory.build(:venue_image, :image_file => nil) }

@@ -27,5 +27,5 @@ end
 
 Then /^I should see a tip by me that says "([^"]*)"$/ do |tip_text|
   name = model!("the user").username
-  page.should have_content("#{name} said: \"#{tip_text}\"")
+  page.should have_content("#{name} said (0 votes): \"#{tip_text}\"")
 end
