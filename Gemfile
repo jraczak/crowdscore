@@ -43,8 +43,6 @@ group :development, :test do
   gem "pickle"
   gem "rails3-generators"
   gem "spork", "~> 0.9.0.rc"
-  gem "ZenTest"
-  gem "foreman"
   gem "sunspot_solr", "~> 2.0.0.pre"
 end
 
