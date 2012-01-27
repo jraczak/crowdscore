@@ -27,11 +27,12 @@ describe User do
   it { should allow_mass_assignment_of(:remember_me) }
   it { should allow_mass_assignment_of(:birth_month) }
   it { should allow_mass_assignment_of(:birth_day) }
+  it { should allow_mass_assignment_of(:gender) }
   it { should_not allow_mass_assignment_of(:locked_at) }
   it { should_not allow_mass_assignment_of(:admin) }
 
   it { should allow_mass_assignment_of(:email).as(:admin) }
-  it { should allow_mass_assignment_of(:username) }
+  it { should allow_mass_assignment_of(:username).as(:admin) }
   it { should allow_mass_assignment_of(:first_name).as(:admin) }
   it { should allow_mass_assignment_of(:last_name).as(:admin) }
   it { should allow_mass_assignment_of(:zip_code).as(:admin) }
@@ -40,6 +41,7 @@ describe User do
   it { should allow_mass_assignment_of(:remember_me).as(:admin) }
   it { should allow_mass_assignment_of(:birth_month).as(:admin) }
   it { should allow_mass_assignment_of(:birth_day).as(:admin) }
+  it { should allow_mass_assignment_of(:gender).as(:admin) }
   it { should allow_mass_assignment_of(:admin).as(:admin) }
 
   it { should_not be_admin }
