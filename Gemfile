@@ -5,7 +5,7 @@ gem 'rails', '3.2.1'
 gem "pg"
 gem "inherited_resources"
 gem "slim-rails"
-gem "devise", "~> 2.0.0.rc"
+gem "devise", "~> 2.0.0"
 gem "cancan"
 gem "thin"
 gem "carrierwave"
