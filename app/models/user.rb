@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :tip_likes, dependent: :destroy
   has_many :liked_tips, through: :tip_likes, source: :tip
+  has_many :lists
 
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true

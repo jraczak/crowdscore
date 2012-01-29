@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_many(:lists) }
+
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:username) }
   it { should validate_presence_of(:zip_code) }
