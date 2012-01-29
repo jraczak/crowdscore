@@ -30,6 +30,8 @@
     - else
       p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn primary large', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
+    p.detail.note = link_to "Add to List", lists_path(:venue => resource), :class => 'btn primary large', :"data-controls-modal" => "lists-modal", :"data-backdrop" => "true"
+
     p.detail
       strong Phone: 
       = number_to_phone resource.phone
@@ -81,3 +83,9 @@
     .modal-footer
       = f.submit "Submit", class: 'btn primary'
 
+#lists-modal.modal style="display: none;"
+  .modal-header
+    a.close href="#" x
+    h3 My Lists
+
+    p Please #{link_to "sign in", new_user_session_path} or #{link_to "create an account", new_user_registration_path} to use lists.

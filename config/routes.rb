@@ -24,6 +24,8 @@ Crowdscore::Application.routes.draw do
     resources :venue_subcategories, :only => :index
   end
 
+  resources :lists
+
   namespace :admin do
     resources :users do
       resource :lock, :controller => :user_locks, :as => :lock, :only => [:new, :create, :destroy]

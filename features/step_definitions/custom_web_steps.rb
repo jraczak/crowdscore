@@ -39,3 +39,7 @@ end
 Then /^(.*) should not be visible$/ do |field|
   page.should have_no_css(selector_for(field), visible: true)
 end
+
+Then /^I should see "([^"]*)" in the modal$/ do |text|
+  find(".modal").should have_content(text)
+end
