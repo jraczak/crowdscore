@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :list do
-      user nil
+      user
       name "MyString"
     end
 end
