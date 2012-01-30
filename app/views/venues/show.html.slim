@@ -77,11 +77,19 @@
     a.close href="#" x
     h3 What did you think of #{ resource.name }?
 
-  = form_for resource.venue_scores.build, url: venue_score_path(resource) do |f|
-    == render partial: 'venue_scores/form', locals: { f: f, parent: resource }
+    - if user_signed_in?
+      = form_for resource.venue_scores.build, url: venue_score_path(resource) do |f|
+        .modal-body
+            == render partial: 'venue_scores/form', locals: { f: f, parent: resource }
 
-    .modal-footer
-      = f.submit "Submit", class: 'btn primary'
+        .modal-footer
+          = f.submit "Submit", class: 'btn primary'
+    - else
+      .modal-body
+        p
+          | Please #{link_to "sign in", "/users/sign_in?return_to=#{venue_path(resource)}"} 
+          | or #{link_to "create an account", "/users/sign_up?return_to=#{venue_path(resource)}"} 
+          | to use lists.
 
 #lists-modal.modal style="display: none;"
   .modal-header
