@@ -19,6 +19,9 @@ class CS.ListModalView extends Backbone.View
     @$content_el = $(@content_el)
     @$footer = $(@footer_el)
 
+    $("#done_with_lists").live 'click', =>
+      @$el.modal('hide')
+
     @$el.bind 'hide', ->
       location.hash = "#"
 
@@ -90,6 +93,6 @@ class CS.ListModalView extends Backbone.View
 
     false
 
-   resetFooter: =>
-     @$footer.html(@defaultFooter)
-     false
+  resetFooter: =>
+    @$footer.html(@defaultFooter)
+    false
