@@ -45,7 +45,6 @@ group :development, :test do
   gem "rails3-generators"
   gem "spork", "~> 0.9.0.rc"
   gem "sunspot_solr", "~> 2.0.0.pre"
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-spin'
 end
 
