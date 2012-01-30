@@ -1,6 +1,16 @@
-p#notice = notice
+.span16
+  h1 #{resource.name}
 
+  table#lists_list.zebra-striped
+    tr
+      th Name
+      th Category
+      th Crowdscore
 
-= link_to 'Edit', edit_list_path(@list)
-'|
-= link_to 'Back', lists_path
+    - resource.venues.each do |venue|
+      tr
+        td = link_to(venue.name, venue)
+        td = venue.full_category_name
+        td = venue.score
+
+= link_to "&laquo; Back to My Lists".html_safe, lists_path

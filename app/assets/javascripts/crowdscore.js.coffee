@@ -6,6 +6,10 @@ window.CS =
     new CS.VenueEditView if $("#new_venue").length
     new CS.VenueSearchView if $("#venue_list th.distance").length
 
+    if $("#venue-detail").length
+      new CS.VenueDetailRouter
+      Backbone.history.start()
+
     getParameterByName = (name) ->
       name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]")
       regexS = "[\\?&]" + name + "=([^&#]*)"

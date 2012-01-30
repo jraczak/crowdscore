@@ -30,7 +30,7 @@
     - else
       p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn primary large', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
-    p.detail.note = link_to "Add to List", lists_path(:venue => resource), :class => 'btn primary large', :"data-controls-modal" => "lists-modal", :"data-backdrop" => "true"
+    p.detail.note = link_to "Add to List", "#lists", :class => 'btn primary large'
 
     p.detail
       strong Phone: 
@@ -88,4 +88,10 @@
     a.close href="#" x
     h3 My Lists
 
-    p Please #{link_to "sign in", new_user_session_path} or #{link_to "create an account", new_user_registration_path} to use lists.
+  .modal-body
+    .content
+      = image_tag "loader.gif"
+
+  - if user_signed_in?
+    .modal-footer
+      = link_to "Create new list", "#", id: "new_list", class: "btn"

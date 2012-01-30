@@ -24,7 +24,12 @@ Crowdscore::Application.routes.draw do
     resources :venue_subcategories, :only => :index
   end
 
-  resources :lists
+  resources :lists do
+    member do
+      put :add
+      put :remove
+    end
+  end
 
   namespace :admin do
     resources :users do

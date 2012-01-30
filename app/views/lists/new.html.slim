@@ -1,5 +1,9 @@
-h1 New list
+= errors_for resource
 
-== render 'form'
+h1 Create a new list
 
-= link_to 'Back', lists_path
+= form_for resource do |f|
+  fieldset
+    == render partial: "form", locals: { f: f }
+    .actions
+      button.btn.primary(type="submit") Create

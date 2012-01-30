@@ -15,6 +15,12 @@ Feature: A user can see a list of their Lists
 
   @logged-in
   Scenario: A user cannot see anyone else's lists on their dashboard
-    Given someone else has a list called "Worst Restaurants"
+    Given I have a list called "Best in Denver"
+    And someone else has a list called "Worst Restaurants"
     When I view my lists
     Then I should not see a list called "Worst Restaurants"
+
+  @logged-in
+  Scenario: A user with no lists is told to create one
+    When I view my lists
+    Then I should see "You don't have any lists yet."

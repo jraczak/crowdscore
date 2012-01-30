@@ -1,19 +1,19 @@
-h1 Listing lists
+h1 My Lists
 
-table
-  tr
-    th
-    th
-    th
-    th
-
-  - @lists.each do |list|
+- if @lists.any?
+  table#lists_list.zebra-striped
     tr
-      td= list.name
-      td= link_to 'Show', list
-      td= link_to 'Edit', edit_list_path(list)
-      td= link_to 'Destroy', list, :confirm => 'Are you sure?', :method => :delete
+      th Name
+      th # of Venues
+
+    - @lists.each do |list|
+      tr
+        td= link_to list.name, list
+        td= list.venues.count
+- else
+  p You don't have any lists yet.
 
 br
 
-= link_to 'New List', new_list_path
+.well
+  = link_to "Create a new list", new_list_path, class: 'btn primary'

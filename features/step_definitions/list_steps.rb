@@ -17,3 +17,7 @@ end
 Then /^I should not see a list called "([^"]*)"$/ do |name|
   find("table").should_not have_content(name)
 end
+
+Then /^I should have a list called "([^"]*)"$/ do |name|
+  model!("the user").lists.pluck(:name).should include(name)
+end

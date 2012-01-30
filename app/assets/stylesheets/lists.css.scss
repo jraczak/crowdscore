@@ -1,0 +1,14 @@
+#lists-modal {
+  #pickers {
+    margin-left: 30px;
+
+    label {
+      text-align: left;
+      clear: both;
+    }
+  }
+
+  form div, form button, #new_list {
+    float: left;
+  }
+}

@@ -12,6 +12,8 @@ class Venue < ActiveRecord::Base
   has_many :tips
   has_many :venue_images
 
+  has_and_belongs_to_many :lists
+
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
