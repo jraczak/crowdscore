@@ -38,6 +38,7 @@ class CS.ListModalView extends Backbone.View
     @model.bind('reset', @renderList)
 
     @model.bind 'add', =>
+      @renderList()
       @resetFooter()
 
     @model.fetch
@@ -58,24 +59,21 @@ class CS.ListModalView extends Backbone.View
 
     label = $("<label></label>").append(check, "&nbsp;", model.get('name'))
 
-    $("<p></p>").data('id', model.id).append(label)
+    $("<p></p>").data('cid', model.cid).append(label)
 
   addOrRemoveFromList: (e) =>
     $ele = $(e.target)
     $ele.attr(disabled: true)
 
-    list_id = $ele.parents('p').data('id')
-    url = "/lists/#{list_id}/"
+    @model.bind 'change', =>
+      $ele.attr(disabled: false)
+
+    list = @model.getByCid($ele.parents('p').data('cid'))
 
     if $ele.attr('checked')
-      url += "add"
+      list.addVenue(@id)
     else
-      url += "remove"
-
-    $.post(url, {venue_id: @options.id, "_method": 'put'}).complete =>
-      $ele.attr(disabled: false)
-      # TODO: We're not currently doing any error checking here. That's probably a bad idea.
-
+      list.removeVenue(@id)
 
   renderSignupNotification: (data) =>
     @$content_el.html JST['templates/modal_signup_note'](location: location.href)
@@ -94,10 +92,6 @@ class CS.ListModalView extends Backbone.View
     name = $(e.target).find('#list_name').val()
     @model.create {list: {name: name, venue_ids: [@id]}}
     false
-
-    # $.post(form.attr('action'), form.serializeArray()).success =>
-    #   @resetListDisplay()
-    #   @resetFooter()
 
   resetFooter: =>
     @$footer.html(@defaultFooter)
