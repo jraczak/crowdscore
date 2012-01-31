@@ -34,26 +34,31 @@ class CS.ListModalView extends Backbone.View
       show: true
 
   resetListDisplay: ->
-    $.get(@listsUrl)
-      .success(@renderList)
-      .error(@renderSignupNotification)
+    @model = new ListCollection
+    @model.bind('reset', @renderList)
 
-  renderList: (data) =>
+    @model.bind 'add', =>
+      @resetFooter()
+
+    @model.fetch
+      error: @renderSignupNotification
+
+  renderList: =>
     @$content_el.html JST['templates/list_modal_instructions']()
 
-    pickers = $.map(data, @createListPicker)
+    pickers = $.map(@model.models, @createListPicker)
     $.each pickers, (i, p) =>
       @$content_el.find("#pickers").append(p)
 
-  createListPicker: (json) =>
+  createListPicker: (model) =>
     check = $("<input type='checkbox'/>")
     check.change(@addOrRemoveFromList)
 
-    check[0].checked = true if json.venue_ids.indexOf(parseInt(@options.id)) > -1
+    check[0].checked = true if model.get('venue_ids').indexOf(parseInt(@options.id)) > -1
 
-    label = $("<label></label>").append(check, "&nbsp;", json.name)
+    label = $("<label></label>").append(check, "&nbsp;", model.get('name'))
 
-    $("<p></p>").data('id', json.id).append(label)
+    $("<p></p>").data('id', model.id).append(label)
 
   addOrRemoveFromList: (e) =>
     $ele = $(e.target)
@@ -86,12 +91,13 @@ class CS.ListModalView extends Backbone.View
     false
 
   createList: (e) =>
-    form = $(e.target)
-    $.post(form.attr('action'), form.serializeArray()).success =>
-      @resetListDisplay()
-      @resetFooter()
-
+    name = $(e.target).find('#list_name').val()
+    @model.create {list: {name: name, venue_ids: [@id]}}
     false
+
+    # $.post(form.attr('action'), form.serializeArray()).success =>
+    #   @resetListDisplay()
+    #   @resetFooter()
 
   resetFooter: =>
     @$footer.html(@defaultFooter)

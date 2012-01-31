@@ -1,7 +1,7 @@
 <form action="/lists" method="post">
   <input type="hidden" value="<%= venue_id %>" name="list[venue_ids][]"/>
   <p style="float: right;">
-    <div><input placeholder="New list name" name="list[name]" class="span3"/> </div>
+    <div><input placeholder="New list name" id="list_name" class="span3"/> </div>
     <button class="btn primary" type="submit">Create</button>
     <button class="btn cancel">Cancel</button>
   </p>
