@@ -1,98 +1,121 @@
+# Public: A view that displays a list of the current user's lists and 
+# allows the association of a venue id to each one. Also allows the user 
+# to create a new list on the fly.
+#
+# Examples
+#
+#   new CS.ListModalView(2) # 2 is the venue's id
 class CS.ListModalView extends Backbone.View
   el: "#lists-modal"
   content_el: "#lists-modal .content"
   footer_el: "#lists-modal .modal-footer"
-  listsUrl: "/lists.json"
 
   events:
+    "hide": "resetHash"
     "click #new_list": "newListForm"
+    "click #done_with_lists": "hideModal"
+    "submit .modal-footer form": "createList"
+    "click .modal-footer button.cancel": "resetFooter"
+    "click .modal-footer button.cancel": "resetFooter"
+    "change .picker input": "addOrRemoveFromList"
 
+  # Initializes the view and calls render. Note that a
+  # venue id is explicitly required.
   initialize: ->
-    unless @options.id?
+    unless @id?
       console.log("Must initialize with venue id.") 
       return false
 
-    @render()
-
-  render: ->
     @$el = $(@el)
     @$content_el = $(@content_el)
     @$footer = $(@footer_el)
 
-    $("#done_with_lists").live 'click', =>
-      @$el.modal('hide')
+    @render()
 
-    @$el.bind 'hide', ->
-      location.hash = "#"
+  # Public: displays the modal dialog and sets up the list display.
+  render: ->
+    @displayModal()
+    @setupListDisplay()
 
-    @initializeModal()
-    @resetListDisplay()
-
-  initializeModal: ->
+  # Public: Pops up the modal dialog.
+  displayModal: ->
     @$el.modal
       backdrop: true
       show: true
 
-  resetListDisplay: ->
-    @model = new ListCollection
-    @model.bind('reset', @renderList)
+  # Public: Fetches the ListCollection for the current user.
+  setupListDisplay: ->
+    @collection = new ListCollection
+    @setBindings()
 
-    @model.bind 'add', =>
-      @renderList()
-      @resetFooter()
-
-    @model.fetch
+    @collection.fetch
       error: @renderSignupNotification
 
-  renderList: =>
+  # Public: sets up the appropriate bindings for the association ListCollection.
+  setBindings: ->
+    @collection.bind('reset', @renderListCollection)
+
+    @collection.bind 'add', =>
+      @renderListCollection()
+      @resetFooter()
+
+  # Public: Renders the list collection as a group of checkboxes. If this venue 
+  # is already in the list, the checkbox will be checked.
+  renderListCollection: =>
     @$content_el.html JST['templates/list_modal_instructions']()
 
-    pickers = $.map(@model.models, @createListPicker)
+    pickers = $.map(@collection.models, @createListPicker)
     $.each pickers, (i, p) =>
       @$content_el.find("#pickers").append(p)
 
+  # Creates the HTML representation of a list picker (a checkbox) for a given 
+  # list model.
   createListPicker: (model) =>
-    check = $("<input type='checkbox'/>")
-    check.change(@addOrRemoveFromList)
+    checked = if parseInt(@id) in model.get('venue_ids') then ' checked="checked"' else ''
 
-    check[0].checked = true if model.get('venue_ids').indexOf(parseInt(@options.id)) > -1
+    JST['templates/list_picker']
+      name: model.get('name')
+      checked: checked
+      cid: model.cid
 
-    label = $("<label></label>").append(check, "&nbsp;", model.get('name'))
-
-    $("<p></p>").data('cid', model.cid).append(label)
-
+  # Change handler for a list picker checkbox. Determines if the list should be 
+  # added as an association or not, then tells the model to adjust accordingly.
   addOrRemoveFromList: (e) =>
     $ele = $(e.target)
-    $ele.attr(disabled: true)
-
-    @model.bind 'change', =>
-      $ele.attr(disabled: false)
-
-    list = @model.getByCid($ele.parents('p').data('cid'))
+    list = @collection.getByCid( $ele.parents('p').data('cid') )
 
     if $ele.attr('checked')
       list.addVenue(@id)
     else
       list.removeVenue(@id)
 
-  renderSignupNotification: (data) =>
-    @$content_el.html JST['templates/modal_signup_note'](location: location.href)
-
   newListForm: =>
     @defaultFooter = @$footer.html()
-    @$footer.html(JST['templates/new_list_form_for_modals'](venue_id: @options.id))
-
-    @$footer.find('form').submit(@createList)
-    @$footer.find('button.cancel').click(@resetFooter)
+    @$footer.html(JST['templates/new_list_form_for_modals'](venue_id: @id))
     @$footer.find('input').focus()
 
     false
 
   createList: (e) =>
     name = $(e.target).find('#list_name').val()
-    @model.create {list: {name: name, venue_ids: [@id]}}
+    @collection.create
+      list:
+        name: name
+        venue_ids: [@id]
+
     false
 
   resetFooter: =>
     @$footer.html(@defaultFooter)
     false
+
+  # Displays a fallback template -- displays a request to the user to sign in or 
+  # sign up before they can use lists.
+  renderSignupNotification: (data) =>
+    @$content_el.html JST['templates/modal_signup_note'](location: location.href)
+
+  hideModal: ->
+    @$el.modal('hide')
+
+  resetHash: ->
+    location.hash = "#"
