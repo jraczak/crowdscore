@@ -17,6 +17,12 @@ class User < ActiveRecord::Base
   has_many :liked_tips, through: :tip_likes, source: :tip
   has_many :lists
 
+  has_many :my_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
+  has_many :follows, through: :my_follows, source: :followed
+
+  has_many :their_follows, foreign_key: :followed_id, class_name: 'Follow', dependent: :destroy
+  has_many :followers, through: :their_follows
+
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
   validates :zip_code, presence: true, numericality: true, length: { is: 5 }
@@ -38,6 +44,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def to_param
+    "#{id}-#{username}"
+  end
+
   # Public: lock a user's account and provide a reason why.
   #
   # Returns boolean whether the user's access was locked or not.
@@ -48,6 +58,10 @@ class User < ActiveRecord::Base
     else
       errors[:lock_reason] << "can't be blank"
     end
+  end
+
+  def follows?(user)
+    follows.include?(user)
   end
 
   def unlock_access!

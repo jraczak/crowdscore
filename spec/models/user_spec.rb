@@ -138,4 +138,12 @@ describe User do
     its(:locked_at) { should be_blank }
     its(:access_locked?) { should_not be }
   end
+
+  context "#to_param" do
+    subject { Factory.create(:user, username: 'myuser') }
+
+    it "includes the id and username" do
+      subject.to_param.should eql("#{subject.id}-myuser")
+    end
+  end
 end

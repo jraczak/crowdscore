@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130072523) do
+ActiveRecord::Schema.define(:version => 20120207070936) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20120130072523) do
   add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
   add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
   add_index "audits", ["user_id", "user_type"], :name => "user_index"
+
+  create_table "follows", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "follows", ["followed_id"], :name => "index_follows_on_followed_id"
+  add_index "follows", ["follower_id"], :name => "index_follows_on_follower_id"
 
   create_table "lists", :force => true do |t|
     t.integer  "user_id"

@@ -5,6 +5,13 @@ Crowdscore::Application.routes.draw do
   get "user_locks/create"
 
   devise_for :users
+
+  resources :users, only: [:show] do
+    member do
+      post :follow
+    end
+  end
+
   resources :venues do
     collection do
       get :search
