@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207070936) do
+ActiveRecord::Schema.define(:version => 20120212031510) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -112,10 +112,12 @@ ActiveRecord::Schema.define(:version => 20120207070936) do
     t.datetime "locked_at"
     t.string   "lock_reason"
     t.string   "gender"
+    t.integer  "facebook_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["facebook_id"], :name => "index_users_on_facebook_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "venue_categories", :force => true do |t|

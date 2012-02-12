@@ -185,6 +185,24 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
+  facebook_tokens = {
+    'development' => {
+      :id => "247221165356618",
+      :secret => "500bccae693a79c0d7b8f3e05c52f850"
+    },
+    'staging' => {
+      :id => "283384301728170",
+      :secret => "7e4d55f7aaf5a91ac6ed4edf41393759"
+    },
+    'production' => {
+      :id => "265876943444002",
+      :secret => "d516242fd4c4fa8af014b3a033756da6"
+    }
+  }
+
+  options = Rails.env.development? ? {} : { client_options: { ssl: { ca_file: '/usr/lib/ssl/certs/ca-certificates.crt' }}}
+  config.omniauth :facebook, facebook_tokens[Rails.env.to_s][:id], facebook_tokens[Rails.env.to_s][:secret], {scope: "email"}.merge(options)
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

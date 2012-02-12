@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   # and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
@@ -117,6 +117,31 @@ class User < ActiveRecord::Base
   def prevent_username_change
     if persisted? && username_changed?
       errors.add(:username, "cannot be changed")
+    end
+  end
+
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    if signed_in_resource && (signed_in_resource.facebook_id.blank? || signed_in_resource.facebook_id == data.id)
+      signed_in_resource.update_attribute(:facebook_id, data.id)
+      signed_in_resource
+    elsif user = User.where(facebook_id: data.id).first
+      user
+    else # Create a user with a stub password. 
+      nil
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"]
+        user.first_name = data["first_name"]
+        user.last_name = data["last_name"]
+        user.username = data["username"]
+        user.gender = data["gender"].capitalize
+        user.facebook_id = data["facebook_id"]
+      end
     end
   end
 end

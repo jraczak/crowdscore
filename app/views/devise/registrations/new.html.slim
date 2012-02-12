@@ -4,7 +4,8 @@ h1 Let&rsquo;s get you set up.
 
 p.lead In order to create your account we need a little bit of information about you. Some of it we need and some of it is optional, but remember, the more you tell us the better we can make your experience. Let&rsquo;s get started!
 
-p.lead = link_to image_tag("facebook_sign_in.png"), 'http://www.facebook.com/', target: "_blank"
+- if session['devise.facebook_data'].blank?
+  p.lead = link_to image_tag("facebook_sign_in.png"), user_omniauth_authorize_path(:facebook)
 
 = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-stacked' } do |f|
   = render partial: 'form', locals: { f: f }

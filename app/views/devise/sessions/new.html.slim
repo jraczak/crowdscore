@@ -1,5 +1,7 @@
 h1 Sign in
 
+p = link_to image_tag("facebook_sign_in.png"), user_omniauth_authorize_path(:facebook)
+
 = form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "form-stacked"} do |f|
   fieldset
     .clearfix
