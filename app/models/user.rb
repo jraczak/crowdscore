@@ -140,7 +140,7 @@ class User < ActiveRecord::Base
         user.last_name = data["last_name"]
         user.username = data["username"]
         user.gender = data["gender"].capitalize
-        user.facebook_id = data["facebook_id"]
+        user.facebook_id = data["id"]
       end
     end
   end
