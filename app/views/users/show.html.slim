@@ -4,7 +4,9 @@
 
 .row
   .span12
-    - if user_signed_in? && current_user.follows?(resource)
+    - if user_signed_in? && current_user == resource
+      = link_to "This is you", '#', class: 'btn'
+    - elsif user_signed_in? && current_user.follows?(resource)
       = link_to "&#x2713; Following".html_safe, '#', class: 'btn'
     - else
       = link_to "Follow", follow_user_path(resource), class: 'btn primary', method: :post
