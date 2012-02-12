@@ -20,7 +20,6 @@ gem "geocoder"
 gem "backbone-rails"
 gem "ejs"
 gem "omniauth-facebook"
-gem "newrelic_rpm"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -60,4 +59,8 @@ group :test do
   gem "launchy"
   gem "email_spec", "~> 1.2.1"
   gem "ephemeral_response"
+end
+
+group :staging, :production do
+  gem "newrelic_rpm"
 end
