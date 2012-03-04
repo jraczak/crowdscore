@@ -14,11 +14,12 @@ h1 I want to&hellip;
           a Use my current location
         p = submit_tag "Find it!", class: "btn primary"
 
-  .span6.offset1.sign-up
-    div
-      h2 Join Crowdscore!
-      = link_to "Let's Get Started", new_user_registration_path, class: 'btn primary large'
-      p Already a member? #{link_to "Sign in here", new_user_session_path}.
+  - unless user_signed_in?
+    .span6.offset1.sign-up
+      div
+        h2 Join Crowdscore!
+        = link_to "Let's Get Started", new_user_registration_path, class: 'btn primary large'
+        p Already a member? #{link_to "Sign in here", new_user_session_path}.
 
 
   /.span6.offset1 test

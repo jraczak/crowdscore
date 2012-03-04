@@ -24,7 +24,7 @@ Feature: Creating a new venue
     And I press "Create"
     Then a venue should exist with name: "My Biz", venue_subcategory: the venue subcategory
 
-  @javascript
+  @javascript @fails-randomly
   Scenario: A user does not see the subcategory dropdown for categories that don't have subcategories
     Given a venue subcategory exists with name: "Indian", venue_category: the venue category
     And a venue category exists with name: "Hotel"

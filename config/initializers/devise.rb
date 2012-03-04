@@ -191,6 +191,11 @@ Devise.setup do |config|
       :secret => "500bccae693a79c0d7b8f3e05c52f850",
       :domain => "crowdscore.dev"
     },
+    'test' => {
+      :id => "000000000000000",
+      :secret => "test",
+      :domain => "test.host"
+    },
     'staging' => {
       :id => "283384301728170",
       :secret => "7e4d55f7aaf5a91ac6ed4edf41393759",

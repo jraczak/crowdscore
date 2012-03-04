@@ -10,33 +10,13 @@ Feature: Manage users
     Then I should see "Bobby Barker"
 
   Scenario: Create a new user
-    When I go to the admin users page
-    And I follow "Add a user"
-    And I fill in "First name" with "Jason"
-    And I fill in "Last name" with "Sudeikis"
-    And I fill in "Email" with "jason@example.com"
-    And I fill in "Zip code" with "80202"
-    And I fill in "Username" with "jasons"
-    And I fill in "Password" with "newpass"
-    And I fill in "Password confirmation" with "newpass"
-    And I press "Create user"
+    When I create a new user in the admin area with the email "jason@example.com"
     Then a user should exist with email: "jason@example.com"
     And the user should be confirmed
     And I should be on the admin user page for the user
 
   Scenario: Create a new admin
-    When I go to the admin users page
-    And I follow "Add a user"
-    And I fill in "First name" with "Jason"
-    And I fill in "Last name" with "Sudeikis"
-    And I fill in "Email" with "jason@example.com"
-    And I fill in "Zip code" with "80202"
-    And I fill in "Username" with "jasons"
-    And I fill in "Password" with "newpass"
-    And I fill in "Password confirmation" with "newpass"
-    And I fill in "Password confirmation" with "newpass"
-    And I check "Admin"
-    And I press "Create user"
+    When I create a new admin user in the admin area with the email "jason@example.com"
     Then a user should exist with email: "jason@example.com", admin: true
     And the user should be confirmed
     And I should be on the admin user page for the user
@@ -59,19 +39,13 @@ Feature: Manage users
     And I should see "Mike Barker"
 
   Scenario: Change a user's password
-    When I go to the admin users page
-    And I follow "bobbyb"
-    And I follow "Edit" within the toolbox
-    And I fill in "Password" with "awesomepass"
-    And I fill in "Password confirmation" with "awesomepass"
-    And I press "Save"
+    Given I change the password of "bobbyb" to "definitely_new_pass"
     And I sign out
-
     When I go to the new user session page
     And I fill in "Email" with "bobby@example.com"
-    And I fill in "Password" with "awesomepass"
+    And I fill in "Password" with "definitely_new_pass"
     And I press "Sign in"
-    Then I should be on the root page
+    Then I should be signed in
 
   Scenario: Make a user an admin
     When I go to the admin users page

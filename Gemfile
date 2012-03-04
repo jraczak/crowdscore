@@ -17,7 +17,7 @@ gem "acts_as_audited", "2.0.0"
 gem "airbrake"
 gem "sunspot_rails", "~> 2.0.0.pre"
 gem "geocoder"
-gem "backbone-rails"
+gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
 gem "omniauth-facebook"
 
@@ -52,7 +52,7 @@ end
 group :test do
   gem "cucumber-rails", require: false
   gem "factory_girl"
-  gem "capybara", "~> 1.1.0"
+  gem "capybara", git: "https://github.com/jnicklas/capybara.git"
   gem "database_cleaner"
   gem "timecop"
   gem "shoulda", "~> 3.0.0.beta2"

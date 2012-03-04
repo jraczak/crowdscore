@@ -72,15 +72,6 @@ Then(/^"(.+)" should receive an email containing "(.+)"$/) do |email, message|
   current_email.default_part_body.to_s.should include(message)
 end
 
-Then /^I should be able to sign in with "([^"]*)" and "([^"]*)"$/ do |email, password|
-  sign_out
-  click_link "Sign in"
-  fill_in "Email", with: email
-  fill_in "Password", with: password
-  click_button "Sign in"
-  page.should have_content("Sign out")
-end
-
 Then "the user is locked" do
   model!('the user').lock_with_reason!("test")
 end
@@ -91,6 +82,10 @@ end
 
 Then "the user should not be locked" do
   User.last.access_locked?.should_not be
+end
+
+Then "I should be signed in" do
+  page.should have_no_content("Sign in")
 end
 
 Then "I should not be signed in" do

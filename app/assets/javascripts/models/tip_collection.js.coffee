@@ -8,11 +8,11 @@ class window.TipCollection extends Backbone.Collection
     @venue_id = options.venue_id
 
   enableSortRecent: =>
-    @comparator = @sortRecent
+    @comparator = (tip) => @sortRecent(tip)
     @sort()
 
   enableSortPopularity: =>
-    @comparator = @sortPopularity
+    @comparator = (tip) => @sortPopularity(tip)
     @sort()
 
   sortRecent: (tip) =>

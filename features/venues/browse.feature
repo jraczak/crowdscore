@@ -11,7 +11,7 @@ Feature: Browse venues
     When I go to the venues page
     Then there should be 30 venues displayed
 
-    When I follow "Next"
+    When I click to go to the next page
     Then there should be 1 venue displayed
 
   Scenario: A user does not see inactive venues in the venue listing

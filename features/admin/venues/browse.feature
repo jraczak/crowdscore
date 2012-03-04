@@ -5,7 +5,7 @@ Feature: Browsing venues (admin)
     When I go to the admin venues page
     Then there should be 30 venues displayed
 
-    When I follow "Next"
+    When I click to go to the next page
     Then there should be 1 venue displayed
 
   Scenario: An admin can visit a venue's admin page

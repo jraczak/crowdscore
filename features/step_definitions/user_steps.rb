@@ -1,3 +1,28 @@
+When "I sign in as a confirmed user" do
+  create_model("a user", email: "sam@example.com", password: "password")
+  sign_in_as("sam@example.com", "password")
+end
+
+When "I sign in as an unconfirmed user" do
+  create_model("an unconfirmed user", email: "sam@example.com", password: "password")
+  sign_in_as("sam@example.com", "password")
+end
+
+When "I sign in with the wrong password" do
+  create_model("a user", email: "sam@example.com", password: "password")
+  sign_in_as("sam@example.com", "wrongpassword")
+end
+
+When "I sign in with an email that isn't in the database" do
+  sign_in_as("nonexistant@example.com", "password")
+end
+
+When "I sign in and my account is locked" do
+  user = create_model("a user", email: "sam@example.com", password: "password")
+  user.lock_with_reason!("test")
+  sign_in_as("sam@example.com", "password")
+end
+
 Given /^the following users:$/ do |users|
   User.create!(users.hashes)
 end
@@ -44,8 +69,34 @@ Given /^I am signed in as #{capture_fields}$/ do |fields|
   step('I press "Sign in"')
 end
 
+When /^I change my birthday to (\w+) (\d+)$/ do |month, day|
+  within "#new_user" do
+    select month, from: "user_birth_month"
+
+    # For whatever reason, Capybara can't find the right option for the day without doing this.
+    page.find("#user_birth_day").all("option[value='#{day}']").first.select_option
+  end
+end
+
+Then /^I should be able to sign in with "([^"]*)" and "([^"]*)"$/ do |email, password|
+  sign_out
+  sign_in_as(email, password)
+  page.should have_content("Sign out")
+end
+
 When /^I sign out$/ do
   sign_out
+end
+
+def sign_in_as(email, password)
+  visit root_path
+  within ".nav" do
+    click_link "Sign in"
+  end
+
+  fill_in "Email", with: email
+  fill_in "Password", with: password
+  click_button "Sign in"
 end
 
 def sign_out

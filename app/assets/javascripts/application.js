@@ -10,7 +10,12 @@
 //= require jquery.scrollTo-1.4.2-min
 //= require jquery.geolocation
 //= require bootstrap-modal
-//= require backbone-rails
+
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+
 //= require utils
 //= require_tree ./templates
 //= require crowdscore

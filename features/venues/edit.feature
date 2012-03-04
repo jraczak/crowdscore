@@ -34,7 +34,7 @@ Feature: Editing an existing venue
     Given I am signed in
     When I go to the edit venue page for the venue
     Then I should not see "Category"
-    And I should not see "Name"
+    And I should not see a form field labeled "Name"
 
   @javascript
   Scenario: A user can add a website easily

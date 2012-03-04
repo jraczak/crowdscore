@@ -7,7 +7,7 @@ Feature: Venue lists on venue detail page
 
   Scenario: An anonymous user is told they must create an account to use lists
     When I follow "Add to List"
-    Then I should see "Please sign in or create an account to use lists." in the modal
+    Then I should see "Please sign in or create an account to use lists." in the lists modal
 
   @wip @logged-in
   Scenario: Open the list viewer on a venue page

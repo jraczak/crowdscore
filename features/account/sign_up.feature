@@ -93,10 +93,9 @@ Feature: User registration
     And I fill in "Last name" with "Smith"
     And I press "Sign me up!"
     Then a user should exist with last_name: "Smith"
- 
+
   Scenario: A user can enter their birthday
     When I fill out the sign up form as "sam@example.com"
-    And I select "July" from "user_birth_month"
-    And I select "5" from "user_birth_day"
+    And I change my birthday to July 5
     And I press "Sign me up!"
     Then a user should exist with email: "sam@example.com", birth_month: "July", birth_day: "5"

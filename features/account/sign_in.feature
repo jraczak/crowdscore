@@ -1,31 +1,27 @@
 Feature: Sign in
 
   Scenario: A confirmed user can sign in
-    Given a user exists with email: "sam@example.com", password: "password"
-    When I go to the home page
-    And I follow "Sign in"
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Password" with "password"
-    And I press "Sign in"
-    Then I should see "Signed in successfully."
+    When I sign in as a confirmed user
+    Then I should be signed in
+    And I should see "Signed in successfully."
 
   Scenario: A user cannot sign in if their email address has not been confirmed
-    Given an unconfirmed user exists with email: "sam@example.com", password: "password"
-    When I go to the home page
-    And I follow "Sign in"
-    And I fill in "Email" with "sam@example.com"
-    And I fill in "Password" with "password"
-    And I press "Sign in"
-    Then I should see "You have to confirm your account before continuing."
+    When I sign in as an unconfirmed user
+    Then I should not be signed in
+    And I should see "You have to confirm your account before continuing."
 
   Scenario: A user cannot sign in if their password is incorrect
+    When I sign in with the wrong password
+    Then I should not be signed in
+    And I should see "Invalid email or password."
 
   Scenario: A user cannot sign in if their account doesn't exist
+    When I sign in with an email that isn't in the database
+    Then I should not be signed in
+    And I should see "Invalid email or password."
 
   Scenario: A user cannot sign in if their account is locked
-    Given a user exists with email: "sam@example.com", password: "password"
-    And the user is locked
-    When I sign in as "sam@example.com" and "password"
+    When I sign in and my account is locked
     Then I should not be signed in
     And I should see "Your account has been locked. If you believe this to be in error, please contact an administrator."
     And "contact an administrator" should link to email "help@crowdscoreapp.com"
