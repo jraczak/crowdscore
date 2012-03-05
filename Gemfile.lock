@@ -1,4 +1,10 @@
 GIT
+  remote: git@github.com:heimidal/state_select.git
+  revision: 9303881fc9e0ada6350bb5a7f376eedaaf72ee6e
+  specs:
+    state_select (0.1.0)
+
+GIT
   remote: https://github.com/jnicklas/capybara.git
   revision: bb7f4b1d688b57b5c1ccbe6a996a0860323e2f3f
   specs:
@@ -9,11 +15,6 @@ GIT
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-
-PATH
-  remote: ../oss/state_select
-  specs:
-    state_select (0.1.0)
 
 GEM
   remote: http://rubygems.org/
