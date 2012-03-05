@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.2'
 
 gem "pg"
 gem "inherited_resources"
@@ -12,7 +12,7 @@ gem "carrierwave"
 gem "rmagick"
 gem "fog"
 gem "will_paginate", "~> 3.0.0"
-gem "state_select", "~> 0.1.0"
+gem "state_select", path: "../oss/state_select"
 gem "acts_as_audited", "2.0.0"
 gem "airbrake"
 gem "sunspot_rails", "~> 2.0.0.pre"
