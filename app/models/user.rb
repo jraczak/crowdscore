@@ -32,6 +32,12 @@ class User < ActiveRecord::Base
   validate :check_date_for_realness
   validate :prevent_username_change, on: :update
 
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    email = conditions.delete(:email)
+    where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
+  end
+
   # Public: Get the user's full name.
   #
   # Examples:

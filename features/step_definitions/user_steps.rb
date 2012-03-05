@@ -3,6 +3,11 @@ When "I sign in as a confirmed user" do
   sign_in_as("sam@example.com", "password")
 end
 
+When "I sign in as a confirmed user using my username" do
+  create_model("a user", username: "sam", password: "password")
+  sign_in_as("sam", "password")
+end
+
 When "I sign in as an unconfirmed user" do
   create_model("an unconfirmed user", email: "sam@example.com", password: "password")
   sign_in_as("sam@example.com", "password")

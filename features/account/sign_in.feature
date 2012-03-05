@@ -5,6 +5,11 @@ Feature: Sign in
     Then I should be signed in
     And I should see "Signed in successfully."
 
+  Scenario: A confirmed user can sign in with their username
+    When I sign in as a confirmed user using my username
+    Then I should be signed in
+    And I should see "Signed in successfully."
+
   Scenario: A user cannot sign in if their email address has not been confirmed
     When I sign in as an unconfirmed user
     Then I should not be signed in
