@@ -41,6 +41,11 @@ class Venue < ActiveRecord::Base
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
 
+  def to_param
+    slug = "#{id}-"
+    slug += "#{name} #{city} #{state}".downcase.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
+  end
+
   def full_category_name
     full_name = venue_category.name
     full_name += " - #{venue_subcategory.name}" if venue_subcategory.present?

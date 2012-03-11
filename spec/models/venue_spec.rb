@@ -113,4 +113,38 @@ describe Venue do
       Venue.alphabetical.should == [subject, first_venue]
     end
   end
+
+  describe "#to_param" do
+    context "with an alpha-only name" do
+      subject { Factory(:venue, name: "Panda Express", city: "New York", state: "NY") }
+
+      it "should be SEO friendly" do
+        subject.to_param.should == "#{subject.id}-panda-express-new-york-ny"
+      end
+    end
+
+    context "with an alphanumeric name" do
+      subject { Factory(:venue, name: "101 Asian Fusion", city: "San Francisco", state: "CA") }
+
+      it "should be SEO friendly" do
+        subject.to_param.should == "#{subject.id}-101-asian-fusion-san-francisco-ca"
+      end
+    end
+
+    context "with a name containing a bunch of terrible characters" do
+      subject { Factory(:venue, name: "Thi$ I$ NOT A REAL RE$T@URAN4", city: "New York", state: "NY") }
+
+      it "should be SEO friendly" do
+        subject.to_param.should == "#{subject.id}-thi-i-not-a-real-returan4-new-york-ny"
+      end
+    end
+
+    context "with a name containing a bunch spaces in a row" do
+      subject { Factory(:venue, name: "My      Restaurant", city: "New York", state: "NY") }
+
+      it "should be SEO friendly" do
+        subject.to_param.should == "#{subject.id}-my-restaurant-new-york-ny"
+      end
+    end
+  end
 end
