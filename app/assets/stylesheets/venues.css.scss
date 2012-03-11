@@ -6,6 +6,12 @@
   margin-bottom: 30px;
 }
 
+.social-links {
+  a, iframe {
+    float: right;
+  }
+}
+
 #score-box {
   background-color: #444;
   color: white;

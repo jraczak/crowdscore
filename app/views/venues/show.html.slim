@@ -5,9 +5,15 @@
     new CS.VenueMapView();
 
 .row
-  .span12#venue-detail
+  .span14#venue-detail
     h1 = resource.name
     h4 = resource.full_category_name
+
+  .span2.social-links
+    = link_to "Tweet", "https://twitter.com/share", :class => "twitter-share-button", :"data-via" => "crowdscoreapp", :"data-count" => "none", :"data-text" => "Check out #{resource.name} in #{resource.city}, #{resource.state}"
+
+    javascript:
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 .row
   .span5 style="margin-bottom: 30px;"
