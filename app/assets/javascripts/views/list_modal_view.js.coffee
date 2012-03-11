@@ -76,13 +76,15 @@ class CS.ListModalView extends Backbone.View
     JST['templates/list_picker']
       name: model.get('name')
       checked: checked
-      cid: model.cid
+      id: model.get('id')
 
   # Change handler for a list picker checkbox. Determines if the list should be 
   # added as an association or not, then tells the model to adjust accordingly.
   addOrRemoveFromList: (e) =>
     $ele = $(e.target)
-    list = @collection.getByCid( $ele.parents('p').data('cid') )
+    id = parseInt($ele.parents('p').data('id'))
+    console.log(id)
+    list = @collection.find (list) -> id is parseInt(list.get('id'))
 
     if $ele.attr('checked')
       list.addVenue(@id)
