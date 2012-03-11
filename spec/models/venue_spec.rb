@@ -8,6 +8,7 @@ describe Venue do
 
   it { should have_many(:venue_images) }
 
+  it { should have_and_belong_to_many(:tags) }
   it { should have_and_belong_to_many(:lists) }
 
   it { should validate_presence_of(:name) }

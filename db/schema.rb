@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120212031510) do
+ActiveRecord::Schema.define(:version => 20120310235050) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -60,6 +60,32 @@ ActiveRecord::Schema.define(:version => 20120212031510) do
 
   add_index "lists_venues", ["list_id"], :name => "index_lists_venues_on_list_id"
   add_index "lists_venues", ["venue_id"], :name => "index_lists_venues_on_venue_id"
+
+  create_table "tag_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tag_categories", ["name"], :name => "index_tag_categories_on_name"
+
+  create_table "tags", :force => true do |t|
+    t.integer  "tag_category_id"
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name"
+  add_index "tags", ["tag_category_id"], :name => "index_tags_on_tag_category_id"
+
+  create_table "tags_venues", :id => false, :force => true do |t|
+    t.integer "tag_id"
+    t.integer "venue_id"
+  end
+
+  add_index "tags_venues", ["tag_id"], :name => "index_tags_venues_on_tag_id"
+  add_index "tags_venues", ["venue_id"], :name => "index_tags_venues_on_venue_id"
 
   create_table "tip_likes", :force => true do |t|
     t.integer  "tip_id"

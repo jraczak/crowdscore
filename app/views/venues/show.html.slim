@@ -36,7 +36,8 @@
     - else
       p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn primary large', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
-    p.detail.note = link_to "Add to List", "#lists", :class => 'btn primary large'
+    p.detail.note = link_to "Add to List", "#lists", :class => 'btn large'
+    p.detail.note = link_to "View Tags", "#tags", :class => 'btn large'
 
     p.detail
       strong Phone: 
@@ -110,3 +111,19 @@
     .modal-footer
       = link_to "Create new list", "#", id: "new_list", class: "btn"
       = link_to "All Done!", "#", id: "done_with_lists", class: "btn primary right"
+
+#tag-modal.modal style="display: none;"
+  .modal-header
+    a.close href="#" x
+    h3 Tags for #{resource.name}
+
+  .modal-body
+    .content
+      = image_tag "loader.gif"
+
+  .modal-footer
+    - if user_signed_in?
+      = link_to "Add a new tag", "#", id: "new_tag", class: "btn left"
+    - else
+      p.left #{link_to "Sign in", new_user_session_path} to add a new tag.
+    = link_to "All Done!", "#", id: "done_with_tags", class: "btn primary right"

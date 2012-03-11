@@ -1,0 +1,20 @@
+<form action="/venues/<%= venue_id %>/tags" method="post">
+  <p style="float: right;">
+    <div>
+      <select id="tag_category_id" class="span2">
+        <% _.each(tag_categories, function(category) { %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div>
+      <select id="tag_id" class="span3">
+        <% _.each(tag_categories[0].tags, function(tag) { %>
+          <option value="<%= tag.id %>"><%= tag.get('name') %></option>
+        <% }); %>
+      </select>
+    </div>
+    <button class="btn primary" type="submit">Add</button>
+    <button class="btn cancel">Cancel</button>
+  </p>
+</form>

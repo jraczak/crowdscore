@@ -1,0 +1,10 @@
+<% _.each(tag_categories, function(category) { %>
+  <div>
+    <h2><%= category.name %>...</h2>
+    <ul>
+      <% _.each(category.tags, function(tag) { %>
+        <li><%= tag.get('name') %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% }); %>

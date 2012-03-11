@@ -44,6 +44,10 @@ Then /^I should see "([^"]*)" in the lists modal$/ do |text|
   find("#lists-modal").should have_content(text)
 end
 
+Then /^I should see "([^"]*)" in the tag modal$/ do |text|
+  find("#tag-modal").should have_content(text)
+end
+
 Then /^I should see "([^"]*)" in the modal$/ do |text|
   find(".modal").should have_content(text)
 end

@@ -13,6 +13,7 @@ class Venue < ActiveRecord::Base
   has_many :venue_images
 
   has_and_belongs_to_many :lists
+  has_and_belongs_to_many :tags, uniq: true
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
@@ -32,11 +33,12 @@ class Venue < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode, if: :address_parts_changed?
 
-  searchable(include: [:tips, :venue_category, :venue_subcategory]) do
+  searchable(include: [:tips, :venue_category, :venue_subcategory, {:tags => :tag_category}]) do
     text :name
     text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
+    text(:tags) { |venue| venue.tags.map(&:full_name) }
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end

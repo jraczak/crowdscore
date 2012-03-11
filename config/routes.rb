@@ -6,6 +6,8 @@ Crowdscore::Application.routes.draw do
 
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
 
+  resources :venue_tags, only: [:index]
+
   resources :users, only: [:show] do
     member do
       post :follow
@@ -17,6 +19,7 @@ Crowdscore::Application.routes.draw do
       get :search
     end
 
+    resources :tags, :controller => :venue_tags, :as => :tags, :only => [:index, :create]
     resources :images, :controller => :venue_images, :as => :images, :only => [:new, :create]
 
     resource :score, controller: :venue_scores, as: :score, only: [:new, :create]
