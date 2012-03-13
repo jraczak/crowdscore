@@ -148,4 +148,20 @@ describe Venue do
       end
     end
   end
+
+  describe "tag association changes" do
+    subject { Factory(:venue) }
+
+    it "should perform a reindex on add" do
+      subject.should_receive :index!
+      subject.tags << Factory(:tag)
+    end
+
+    it "should perform a reindex on remove" do
+      subject.tags << Factory(:tag)
+
+      subject.should_receive :index!
+      subject.tags.clear
+    end
+  end
 end

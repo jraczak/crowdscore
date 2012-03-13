@@ -13,7 +13,7 @@ class Venue < ActiveRecord::Base
   has_many :venue_images
 
   has_and_belongs_to_many :lists
-  has_and_belongs_to_many :tags, uniq: true
+  has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
@@ -110,5 +110,9 @@ class Venue < ActiveRecord::Base
 
   def address_parts_changed?
     address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
+  end
+
+  def reindex_tags(tag)
+    index!
   end
 end
