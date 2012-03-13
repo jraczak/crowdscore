@@ -11,7 +11,7 @@ class VenueSearch
 
     Venue.search(include: [:venue_category, :venue_subcategory]) do
       fulltext params[:q].gsub(/[^\s\w]/, ''), minimum_match: 2 do
-        boost_fields name: 2.0, name_without_punc: 2.0, category: 1.5, tags: 1.2
+        boost_fields name: 5.0, name_without_punc: 5.0, category: 3.5, tags: 3.0
       end
 
       paginate page: params[:page]
