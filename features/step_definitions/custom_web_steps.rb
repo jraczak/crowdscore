@@ -51,3 +51,11 @@ end
 When "I click to go to the next page" do
   all('.pagination li.next').first.find('a').click
 end
+
+Then /^I should see a button titled "([^"]*)"$/ do |text|
+  page.should have_css('a', content: "Add to list")
+end
+
+Then /^the modal should be hidden$/ do
+  page.should_not have_css('.modal.in')
+end

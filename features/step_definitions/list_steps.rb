@@ -21,3 +21,26 @@ end
 Then /^I should have a list called "([^"]*)"$/ do |name|
   model!("the user").lists.pluck(:name).should include(name)
 end
+
+When /^I check off the "([^"]*)" list$/ do |name|
+  check(name)
+end
+
+When /^I uncheck the "([^"]*)" list$/ do |name|
+  uncheck(name)
+end
+
+Then /^the venue should be in my "([^"]*)" list$/ do |name|
+  list = model!("the user").lists.find_by_name(name)
+  list.venues.should include(model!("the venue"))
+end
+
+Then /^the venue should not be in my "([^"]*)" list$/ do |name|
+  list = model!("the user").lists.find_by_name(name)
+  list.venues.should_not include(model!("the venue"))
+end
+
+Given /^the venue is in my list called "([^"]*)"$/ do |name|
+  list = model!("the user").lists.find_or_create_by_name(name)
+  list.venues << model!('the venue')
+end
