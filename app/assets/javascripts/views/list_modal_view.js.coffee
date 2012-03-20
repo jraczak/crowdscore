@@ -100,10 +100,7 @@ class CS.ListModalView extends Backbone.View
 
   createList: (e) =>
     name = $(e.target).find('#list_name').val()
-    @collection.create
-      list:
-        name: name
-        venue_ids: [@id]
+    @collection.create({list: { name: name, venue_ids: [@id] }}, {wait: true})
 
     false
 
