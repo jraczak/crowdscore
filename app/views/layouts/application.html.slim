@@ -24,7 +24,7 @@ html
                 ul.menu-dropdown
                     li = link_to "Sign out", destroy_user_session_path, method: "delete"
                     li = link_to "View My Lists", lists_path
-                    li = link_to "Edit Info", edit_user_registration_path
+                    li = link_to "My Account", edit_user_registration_path
                     - if current_user.admin?
                       li.divider
                       li = link_to "Administrative Area", admin_root_path
