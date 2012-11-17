@@ -331,7 +331,7 @@ DEPENDENCIES
   rails-backbone (~> 0.7.0)
   rails-erd
   rails3-generators
-  rmagick
+  rmagick (~> 2.13.1)
   rspec-rails (~> 2.8.0)
   sass-rails (~> 3.2.3)
   shoulda (~> 3.0.0.beta2)
