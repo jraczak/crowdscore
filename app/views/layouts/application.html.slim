@@ -16,7 +16,7 @@ html
             - if params[:controller] =~ /^admin/
               li = link_to "← Return to site", root_path
             - else
-              li = link_to "Venues", venues_path
+              li = link_to "See All Venues", venues_path
           ul.nav.secondary-nav
             - if user_signed_in?
               li.menu

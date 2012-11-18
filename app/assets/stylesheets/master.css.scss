@@ -1,3 +1,95 @@
+/* TYPOGRAPHY */
+
+/* FONT FACE ASSET ASSIGNMENT */
+
+@font-face {
+  font-family: 'Gotham-XLight';
+  src: local('Gotham-XLight.ttf'), url('Gotham-XLight.eot');
+  src: url('Gotham-XLight.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-XLight.ttf') format('truetype'),
+       url('Gotham-XLight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('Gotham-Light.eot');
+  src: url('Gotham-Light.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-Light.ttf') format('truetype'),
+       url('Gotham-Light.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('Gotham-Book.eot');
+  src: url('Gotham-Book.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-Book.ttf') format('truetype'),
+       url('Gotham-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Medium';
+  src: url('Gotham-Medium.eot');
+  src: url('Gotham-Medium.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-Medium.ttf') format('truetype'),
+       url('Gotham-Medium.otf') format('opentype');
+}
+
+/* GLOBAL STYLES */
+
+html {
+  background-color: #f6f6f6;
+}
+
+body {
+  background-color: #f6f6f6;
+}
+
+div {
+  margin: 0px;
+}
+
+/*
+.btn-main {
+  width: 220px;
+  height: 40px;
+  background-color: #0099cc;
+  color: white;
+} 
+*/
+
+.btn-main {
+	background-color:#0099cc;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	color:#ffffff;
+	font-family: 'Gotham-Light';
+	font-size:24px;
+	text-align: center;
+	text-decoration:none;
+	padding: 10px 0px;
+	margin-bottom: 10px;
+	margin-left: 0px
+}.btn-main:hover {
+	background-color:#0089b6;
+	color: white;
+	text-decoration: none;
+}.btn-main:active {
+    background-color: #0089b6;
+    color: white;
+    text-decoration: none;
+	position:relative;
+	top:1px;
+}
+
+div.btn-div {
+
+}
+
+
+
 p.lead {
   width: 90%;
   margin-bottom: 20px;

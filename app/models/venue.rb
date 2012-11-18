@@ -50,7 +50,7 @@ class Venue < ActiveRecord::Base
 
   def full_category_name
     full_name = venue_category.name
-    full_name += " - #{venue_subcategory.name}" if venue_subcategory.present?
+    full_name += " | #{venue_subcategory.name}" if venue_subcategory.present?
     full_name
   end
 

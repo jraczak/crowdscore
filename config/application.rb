@@ -35,6 +35,12 @@ module Crowdscore
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # Add fonts path for asset pipeline
+    config.assets.path << "#{Rails.root}/app/assets/fonts"
+    
+    # Precompile additional assets
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     # Enable the asset pipeline
     config.assets.enabled = true

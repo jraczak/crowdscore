@@ -16,28 +16,37 @@
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 .row
-  .span5 style="margin-bottom: 30px;"
+  .span4 style="margin-bottom: 30px;"
     #score-box
-      h5 Crowdscore
       - if resource.computed_score?
         h2.big = resource.score
-        p.total_scores Scored by #{pluralize(resource.venue_scores.count, "person")}
+        p.total_scores based on #{pluralize(resource.venue_scores.count, "score")}
       - else
         h2 = resource.score
 
       #breakdown
-        p #{resource.venue_category.prompt1}: #{resource.score_breakdown1}
-        p #{resource.venue_category.prompt2}: #{resource.score_breakdown2}
-        p #{resource.venue_category.prompt3}: #{resource.score_breakdown3}
-        p #{resource.venue_category.prompt4}: #{resource.score_breakdown4}
+        table
+          tr
+            td.prompt = resource.venue_category.prompt1
+            td.score = resource.score_breakdown1
+          tr
+            td.prompt = resource.venue_category.prompt2
+            td.score = resource.score_breakdown2
+          tr
+            td.prompt = resource.venue_category.prompt3
+            td.score = resource.score_breakdown3
+          tr
+            td.prompt = resource.venue_category.prompt4
+            td.score = resource.score_breakdown4
 
     - if current_user && current_user.has_scored_venue?(resource)
       p.detail.note Your score has already been submitted.
     - else
-      p.detail.note = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn primary large', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+      div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
-    p.detail.note = link_to "Add to List", "#lists", :class => 'btn large'
-    p.detail.note = link_to "View Tags", "#tags", :class => 'btn large'
+    div = link_to "Add to List", "#lists", :class => 'btn-main span4'
+    div = link_to "View Tags", "#tags", :class => 'btn-main span4'
+    p.detail.note
 
     p.detail
       strong Phone: 
@@ -62,14 +71,14 @@
         .placeholder-image
           p No images yet.
 
-    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'btn primary large'
+    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'btn-main'
 
     br/
 
     #tip_list
       h3.header
         | Tips 
-        = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn'
+        = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn-main'
       #tips
         = render resource.tips.by_recent
       p.sort
