@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jraczak/state_select.git
+  remote: git://github.com/jraczak/state_select.git
   revision: 9303881fc9e0ada6350bb5a7f376eedaaf72ee6e
   specs:
     state_select (0.1.0)
