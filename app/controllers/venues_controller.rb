@@ -11,6 +11,17 @@ class VenuesController < InheritedResources::Base
 
     @venues = VenueSearch.search(params)
   end
+  
+  def get_tag_categories
+    @venue ||= Venue.active.find(params[:id])
+    tag_categories = []
+    @venue.tags.each do |t|
+      unless tag_categories.include?(t.name)
+        tag_categories << t.name
+      end
+    end
+    tag_categories
+  end
 
   private
 
@@ -25,4 +36,5 @@ class VenuesController < InheritedResources::Base
   def as_role
     resource.presisted? ? { as: :regular_user_editing } : super
   end
+  
 end

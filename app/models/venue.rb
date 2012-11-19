@@ -115,4 +115,6 @@ class Venue < ActiveRecord::Base
   def reindex_tags(tag)
     index!
   end
+  
+  
 end

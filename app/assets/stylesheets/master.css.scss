@@ -49,6 +49,18 @@ div {
   margin: 0px;
 }
 
+a {
+  font-family: 'Gotham-Book';
+  font-weight: normal;
+  font-size: 1.25em;
+  color: #0099cc;
+}
+
+a:hover {
+  color: #0089b6;
+  text-decoration: none;
+}
+
 /*
 .btn-main {
   width: 220px;
@@ -84,9 +96,7 @@ div {
 	top:1px;
 }
 
-div.btn-div {
 
-}
 
 
 

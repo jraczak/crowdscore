@@ -1,4 +1,10 @@
 GIT
+  remote: git@github.com:heimidal/state_select.git
+  revision: 9303881fc9e0ada6350bb5a7f376eedaaf72ee6e
+  specs:
+    state_select (0.1.0)
+
+GIT
   remote: https://github.com/jnicklas/capybara.git
   revision: bb7f4b1d688b57b5c1ccbe6a996a0860323e2f3f
   specs:
@@ -265,7 +271,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    state_select (0.1.0)
     sunspot (2.0.0.pre.111215)
       escape (~> 0.0.4)
       pr_geohash (~> 1.0)
@@ -338,7 +343,7 @@ DEPENDENCIES
   slim-rails
   spin
   spork (~> 0.9.0.rc)
-  state_select
+  state_select!
   sunspot_rails (~> 2.0.0.pre)
   sunspot_solr (~> 2.0.0.pre)
   thin
