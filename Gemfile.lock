@@ -1,6 +1,6 @@
 GIT
-  remote: git@github.com:heimidal/state_select.git
-  revision: 9303881fc9e0ada6350bb5a7f376eedaaf72ee6e
+  remote: git@github.com:lordzork/state_select.git
+  revision: 96643fb156606d86ff339e802e8d1668627e6dc2
   specs:
     state_select (0.1.0)
 
