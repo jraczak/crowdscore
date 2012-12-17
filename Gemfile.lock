@@ -119,6 +119,7 @@ GEM
     geocoder (1.1.1)
     gherkin (2.9.0)
       json (>= 1.4.6)
+    gmaps4rails (1.5.6)
     guard (1.0.0)
       ffi (>= 0.5.0)
       thor (~> 0.14.6)
@@ -321,6 +322,7 @@ DEPENDENCIES
   factory_girl
   fog
   geocoder
+  gmaps4rails
   guard-spin
   heroku
   inherited_resources

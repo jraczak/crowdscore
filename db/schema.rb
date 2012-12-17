@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310235050) do
+ActiveRecord::Schema.define(:version => 20121217185015) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
   create_table "tip_likes", :force => true do |t|
     t.integer  "tip_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "tip_likes", ["tip_id"], :name => "index_tip_likes_on_tip_id"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
     t.integer  "venue_id"
     t.integer  "user_id"
     t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "tip_likes_count", :default => 0
   end
 
@@ -110,12 +110,12 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
   add_index "tips", ["venue_id"], :name => "index_tips_on_venue_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -123,22 +123,24 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "birth_month"
     t.integer  "birth_day"
-    t.string   "unconfirmed_email"
-    t.boolean  "admin",                                 :default => false
+    t.boolean  "admin",                  :default => false
     t.string   "username"
     t.string   "zip_code"
-    t.integer  "failed_attempts",                       :default => 0
+    t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "lock_reason"
     t.string   "gender"
     t.integer  "facebook_id"
+    t.string   "bio"
+    t.string   "twitter_username"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -148,8 +150,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
 
   create_table "venue_categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "prompt1"
     t.string   "prompt2"
     t.string   "prompt3"
@@ -160,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
     t.string   "image_file"
     t.string   "caption"
     t.integer  "venue_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
 
@@ -175,8 +177,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
     t.integer  "score2"
     t.integer  "score3"
     t.integer  "score4"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "venue_scores", ["user_id"], :name => "index_venue_scores_on_user_id"
@@ -185,8 +187,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
   create_table "venue_subcategories", :force => true do |t|
     t.integer  "venue_category_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "venue_subcategories", ["venue_category_id"], :name => "index_venue_subcategories_on_venue_category_id"
@@ -199,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20120310235050) do
     t.string   "state"
     t.string   "zip"
     t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "venue_category_id"
     t.string   "url"
     t.integer  "venue_subcategory_id"

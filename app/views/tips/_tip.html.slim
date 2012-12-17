@@ -1,11 +1,11 @@
 .tip
   
-  p.tip-author  #{link_to tip.user.username, tip.user} | 
+  p.tip-author #{link_to tip.user.username, tip.user} |
   p.tip-timestamp  #{time_ago_in_words(tip.created_at)} ago
   p.tip-likes.pull-right #{pluralize tip.tip_likes.count, "vote"}
   p id="#{dom_id(tip)}"
     |  "#{tip.text}"
-    = pluralize tip.tip_likes.count, "vote"
+    /= pluralize tip.tip_likes.count, "vote"
 
   = upvote_link_for tip
   / p id="#{dom_id(tip)}"

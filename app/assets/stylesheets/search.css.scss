@@ -1,0 +1,131 @@
+/* PAGE STYLES */
+
+
+/* SEARCH RESULTS MODULE */
+
+#query-redisplay {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+
+#search-results {
+  width: 38%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 10px;
+  
+    form {
+      margin-bottom: 20px;
+    }
+    
+    #results-list {
+      max-height: 400px;
+      overflow-y: scroll;
+      background: white;
+    }
+    
+    .search-fields {
+      width: 100%;
+    }
+    
+    .search-field {
+      width: 95%;
+      margin-bottom: 9px;
+      margin-right: 0px;
+      padding-left: 5px;
+    }
+    
+    .button-container {
+      text-align: right;
+      margin-right: 10px;
+      
+        .btn-main {
+          margin-bottom: 0px;
+        }
+    }
+}
+
+.result {
+  padding: 10px 10px 10px 0px;
+  /*height: 150px; */
+  border-bottom: 1px solid #898989;
+  
+  p:last-of-type {
+    margin-bottom: 0px;
+  }
+  
+  &:hover {
+    background: white;
+  }
+  
+  .venue-score {
+    display: inline-block;
+    float: left;
+    width: 62px;
+    height: 62px;
+    color: white;
+    background: #1e1e1e;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    
+      h2 {
+        color: white;
+        font-size: 1.75em;
+        line-height: 60px;
+      }
+  }
+  
+  h3 {
+    font-size: 1.25em;
+    line-height: 1.25em;
+    margin-top: 0px;
+    vertical-align: top;
+  }
+  
+  .venue-name {
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  
+  .add-to-list {
+    display: inline-block;
+    font-size: .75em;
+    text-align: right;
+  }
+  
+  .venue-category, .distance {
+    color: #898989;
+    font-size: .9em;
+  }
+  
+  p {
+    margin-bottom: 0px;
+  }
+  
+  .recent-tip {
+    margin-top: 15px;
+  }
+  
+  .recent-tip-text {
+    font-size: 1.0em;
+  }
+  
+  .recent-tip-attribution {
+    font-size: .9em;
+    color: #898989;
+    
+      a {
+        font-size: 1.0em;
+      }
+  }
+  
+}
+
+/* MAP MODULE */
+
+#outter-map-container {
+  width: 60%;
+  display: inline-block;
+}

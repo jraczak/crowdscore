@@ -1,12 +1,47 @@
 .row
-  .span12#user-detail
-    h1 = resource.username
+  #user-details.span11
+    h1 = resource.full_name
+    p = resource.bio
+    table
+      tr
+        td.label = "known as"
+        td.label = "member since"
+        - unless resource.twitter_username.nil? || resource.twitter_username.empty?
+          td.label = "tweets from"
+      tr
+        td.username = resource.username
+        td.member_since = resource.created_at.strftime("%b '%y")
+        - unless resource.twitter_username.nil? || resource.twitter_username.empty?
+          td.twitter = link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank"
 
-.row
-  .span12
-    - if user_signed_in? && current_user == resource
-      = link_to "This is you", '#', class: 'btn'
-    - elsif user_signed_in? && current_user.follows?(resource)
-      = link_to "&#x2713; Following".html_safe, '#', class: 'btn'
-    - else
-      = link_to "Follow", follow_user_path(resource), class: 'btn primary', method: :post
+  .span5#user-stats
+    table#stats
+      /tr
+      /  td.karma = "100,000"
+      /tr
+      /  td.label = "karma"
+      tr
+        td.scores = resource.venue_scores.count
+        td.tips = resource.tips.count
+        td.followers = resource.followers.count
+      tr
+        td.label = "scores"
+        td.label = "tips"
+        td.label = "followers"
+    #follow-button-container.span5
+      - if user_signed_in? && current_user == resource
+        #follow-button = link_to "this is you", '#', class: 'btn-main'
+      -elsif user_signed_in? && current_user.follows?(resource)
+        #follow-button = link_to "&#x2713; following".html_safe, unfollow_user_path(resource), class: 'btn-main', method: :delete
+      -else
+        #follow-button = link_to "follow", follow_user_path(resource), class: 'btn-main', method: :post
+
+
+/.row
+/  .span12
+/    - if user_signed_in? && current_user == resource
+/      = link_to "This is you", '#', class: 'btn'
+/    - elsif user_signed_in? && current_user.follows?(resource)
+/      = link_to "&#x2713; Following".html_safe, '#', class: 'btn'
+/    - else
+/      = link_to "Follow", follow_user_path(resource), class: 'btn primary', method: :post

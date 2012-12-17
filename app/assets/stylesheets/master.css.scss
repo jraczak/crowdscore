@@ -43,6 +43,7 @@ html {
 
 body {
   background-color: #f6f6f6;
+  font-family: 'Gotham-Light';
 }
 
 div {
@@ -75,19 +76,21 @@ a:hover {
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	border-radius:6px;
-	display:inline-block;
+	display:inline-block; 
 	color:#ffffff;
 	font-family: 'Gotham-Light';
 	font-size:24px;
 	text-align: center;
 	text-decoration:none;
-	padding: 10px 0px;
+	vertical-align: middle;
+	padding: 10px 0;
 	margin-bottom: 10px;
 	margin-left: 0px
 }.btn-main:hover {
 	background-color:#0089b6;
 	color: white;
 	text-decoration: none;
+	cursor: pointer;
 }.btn-main:active {
     background-color: #0089b6;
     color: white;
@@ -109,4 +112,21 @@ p.lead {
   float: left;
   margin-right: 10px;
   width: 130px;
+}
+
+/* MODAL STYLES */
+
+#sign-in-modal{
+  width: 460px;
+  
+  input.search_field {
+    margin-left: 20px;
+  }
+  
+}
+
+/* FOOTER STYLES */
+
+#footer {
+
 }

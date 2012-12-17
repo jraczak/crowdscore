@@ -1,26 +1,40 @@
-h1 I want to&hellip;
+h1 id='hero'
+  | Share experiences about places you've been.</br>
+      
+      Find new places to love.
 
 .row.home
-  .span6.submit
-    div
-      h2 Submit my score
-      p Where did you go? Search for the venue you want to score below.
-      = form_tag search_venues_path, method: :get, id: 'search' do |f|
-        p = text_field_tag :q, '', placeholder: "Search"
-        p = text_field_tag :zip, '', placeholder: "Zip code"
+  .span16.submit
+    = form_tag search_venues_path, method: :get, id: 'search' do |f|
+      .search-fields.span16
+        p = text_field_tag :q, '', placeholder: "Search for coffee, hotel, etc", class: 'span7 search-field'
+        p = text_field_tag :zip, '', placeholder: "Zip code or city name", class: 'span4 search-field'
+        p = submit_tag "Find it!", class: "btn-main span4"
+        br
         = hidden_field_tag :latitude, ''
         = hidden_field_tag :longitude, ''
-        p.current_location.hidden
+        p.current_location.hidden.offset1
           a Use my current location
-        p = submit_tag "Find it!", class: "btn primary"
+          
+/.row
+/  .learn-more-container
+/    .learn-more.span6.offset5
+/      p To learn more about how it works, <a href='#'>read on</a>.        
 
-  - unless user_signed_in?
-    .span6.offset1.sign-up
-      div
-        h2 Join Crowdscore!
-        = link_to "Let's Get Started", new_user_registration_path, class: 'btn primary large'
-        p Already a member? #{link_to "Sign in here", new_user_session_path}.
+  
+/.row
+/  - unless user_signed_in?
+/    .span6.offset1.sign-up
+/      div
+/        h2 Join Crowdscore!
+/        = link_to "Let's Get Started", new_user_registration_path, class: 'btn primary large'
+/        p Already a member? #{link_to "Sign in here", new_user_session_path}.
+/        
+/    .span6
+/      = link_to "Sign In Overlay Here!", new_user_session_path, :class => 'btn-main span4', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
 
 
   /.span6.offset1 test
+
+
 

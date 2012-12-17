@@ -20,10 +20,15 @@
   }
 }
 
+input {
+  border: none;
+}
+
+
 /* SCORE MODULE */
 
 #score-box {
-  background:url('dark-pattern.png') repeat fixed center; 
+  background: #1e1e1e; 
   color: white;
   text-align: center;
   margin-bottom: 30px;
@@ -46,7 +51,7 @@
       font-size: 90px;
       font-weight: normal;
       line-height: 56px;
-      text-shadow: 1px 1px #cbcbcb;
+      /* text-shadow: 1px 1px #cbcbcb; */
     }
   }
 
@@ -182,8 +187,8 @@
 
 /* TIPS MODULE */
 
-#tip_list {
-  background: white;
+#tip_module {
+  background: #f;
   margin-bottom: 30px;
   padding-bottom: 10px;
   
@@ -194,6 +199,19 @@
       font-family: 'Gotham-Light';
       font-weight: normal;
       font-size: 1.0em;
+  }
+  
+  h3 {
+    font-family: 'Gotham-Medium';
+    font-weight: normal;
+  }
+  
+  form .input {
+    margin-left: 0px;
+  }
+  
+  .actions {
+    border-top: none;
   }
   
   p.tip-author {
@@ -218,7 +236,9 @@
   }
     
   #tips {
-    background: white;
+    background: #f;
+    width: 100%;
+    display: inline-block;
     
     .tip {
     display: block;
@@ -232,11 +252,91 @@
     }
     
     p.sort {
-      
+      float: right;
+      margin-right: 10px;
+      margin-top: 10px;
     }
  
   }
+  
+  input.search-field {
+    border: none;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    height: 40px;
+    line-height: 1.2em;
+    font-family: 'Gotham-Light';
+    font-weight: normal;
+    font-size: 2.0em;
+    vertical-align: middle;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
 }
+
+  input.search-field:focus {
+  -webkit-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  -moz-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  -ms-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  }
+  
+  input.tip-input {
+    border: none;
+    border-bottom: none;
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    width: 99%;
+    height: 40px;
+    line-height: 1.2em;
+    font-family: 'Gotham-Light';
+    font-weight: normal;
+    font-size: 1.0em;
+    vertical-align: middle;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+  input.tip-input:focus {
+    border-bottom: none;
+    -webkit-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+    -moz-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+    -ms-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+    box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  }
+  
+  #submit-tip-button {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
+/* END TIPS MODULE */
+
+/* HIGHER SCORED VENUES MODULE */
+
+#higher-scored-venues {
+}
+
+.higher-scored-venue-container {
+  margin: 10px 0px;
+}
+
+/* END HIGHER SCORED VENUES MODULE */
 
 p.note {
   text-align: center;

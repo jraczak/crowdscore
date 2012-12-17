@@ -21,6 +21,7 @@ gem "geocoder"
 gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
 gem "omniauth-facebook"
+gem "gmaps4rails"
 
 # Gems used only for assets and not required
 # in production environments by default.

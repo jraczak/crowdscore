@@ -1,5 +1,8 @@
 class CS.TipListView extends Backbone.View
-  el: "#tip_list"
+  el: "#tips"
+  tagName: 'div'
+  className: 'tip'
+  
 
   events:
     "click #sort-tips-recent": "sortByRecent"
@@ -11,7 +14,7 @@ class CS.TipListView extends Backbone.View
 
   render: =>
     tips = @model.map (tip) -> JST['templates/tip'](tip: tip)
-    @$('#tips').html(tips.join("\n"))
+    @$('#tip-list').html(tips.join("\n"))
 
   sortByRecent: (e) ->
     e.preventDefault()

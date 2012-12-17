@@ -1,23 +1,93 @@
-h1 You searched for "#{params[:q]}"
+- if collection.results.count > 0
+  css:
+    #uvTab {visibility: hidden;}
+    .container {width: 100%;} 
+    #masthead {margin-top: 40px; height: 600px; overflow-y: hidden;}
+    #venue_list {display: none;}
+    #footer {display: none;} 
+
+- json = collection.results.to_gmaps4rails
+- if collection.results.count > 1
+  - zoom = true
+- else
+  - zoom = false
+
+/h4#query-redisplay We found #{collection.results.count} results for "#{params[:q]}" near #{params[:zip]}.
+
+- if collection.hits.any?
+  #search-results
+    h4#query-redisplay We found #{collection.results.count} results for "#{params[:q]}" near #{params[:zip]}.
+    = form_tag search_venues_path, method: :get, id: 'search' do |f|
+      .search-fields
+        = text_field_tag :q, '', placeholder: "#{params[:q]}", class: 'span6 search-field'
+        .button-container
+          = submit_tag "Search again", class: "btn-main span4"
+        
+        = hidden_field_tag :latitude, '#{params[:latitude]'
+        = hidden_field_tag :longitude, '#{params[:longitude]'
+        = hidden_field_tag :zip, '#{params[:zip]}'
+    #results-list
+      - collection.results.each do |v|
+        .result
+          .venue-score
+            - if v.score.class == Fixnum
+              h2 = v.score 
+            - else
+              h2 NA
+          h3.venue-name = link_to v.name, v
+          p.add-to-list.pull-right = link_to "+ add to list", "#lists", :class => '', :"data-controls-modal" => "lists-modal", :"data-backdrop" => "true", :id => v.id
+          p.venue-category = v.full_category_name
+          p.distance data-lat="#{v.latitude}" data-long="#{v.longitude}"
+          - unless v.tips.empty?
+            .recent-tip
+              p.recent-tip-text = " \"#{v.recent_tip.text}\" "
+              p.recent-tip-attribution by #{link_to v.recent_tip.user.username, v.recent_tip.user} #{time_ago_in_words(v.recent_tip.created_at)} ago
+
+  #outter-map-container
+    = gmaps(:map_options => { "mapTypeControl" => false, "auto_zoom" => zoom, "zoom" => 16, }, :markers => { "data" => json })
+    
+    
+    
+  /gmaps4rails(json)
+           
+
+
+
+
+/h1 You searched for "#{params[:q]}"
 
 - if collection.hits.any?
   table#venue_list.zebra-striped
     tr
-      th Name
-      th Category
-      th Address
-      th Crowdscore
+      /th Name
+      /th Category
+      /th Address
+      /th Crowdscore
       th.hidden.distance Distance
-    - collection.results.each do |venue|
-      tr
-        td = link_to(venue.name, venue)
-        td = venue.full_category_name
-        td = inline_address(venue)
-        td = venue.score
-        td.hidden.distance data-lat="#{venue.latitude}" data-long="#{venue.longitude}"
+      - collection.results.each do |venue|
+        tr
+         /td = link_to(venue.name, venue)
+         /td = venue.full_category_name
+         /td = inline_address(venue)
+         /td = venue.score
+          td.hidden.distance data-lat="#{venue.latitude}" data-long="#{venue.longitude}"
 
   = paginate collection.hits
 
 - else
-  p Yikes! We couldn't find a Venue that matched your search.
-  p You can either #{link_to "ADD THE VENUE", new_venue_path} (it's what all the cool kids are doing) or #{link_to "SEARCH AGAIN", root_path}.
+  p Bummer. We couldn't find a venue that matched your search.
+  p You can either #{link_to "add a new venue", new_venue_path} for some serious karma, #{link_to "search again", root_path}, or #{mail_to "support@crowdsco.re", "shoot us an email", subject: "Request to add a new venue"} with some info about the venue and we'll get it added for you.
+
+#lists-modal.modal style="display: none;"
+  .modal-header
+    a.close href="#" x
+    h3 My Lists
+
+  .modal-body
+    .content
+      = image_tag "loader.gif"
+
+  - if user_signed_in?
+    .modal-footer
+      = link_to "Create new list", "#", id: "new_list", class: "btn"
+      = link_to "All Done!", "#", id: "done_with_lists", class: "btn primary right"

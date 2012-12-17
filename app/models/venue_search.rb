@@ -1,6 +1,8 @@
-class VenueSearch
+class VenueSearch < ActiveRecord::Base
   def self.search(params)
     if params[:zip].present?
+      logger.info "The zip code is present"
+      logger.debug(Geocoder.coordinates(params[:zip]))
       lat, long = Geocoder.coordinates(params[:zip])
     else
       lat = params[:latitude]

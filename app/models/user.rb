@@ -7,12 +7,16 @@ class User < ActiveRecord::Base
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
-                               :remember_me, :username, :zip_code, :gender]
+                               :remember_me, :username, :zip_code, :gender, :confirmed_at,
+                               :bio, :twitter_username]
   admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields
   attr_accessible *(default_accessible_fields + admin_only_fields), :as => :admin
 
+  has_many :venue_scores
+  
+  has_many :tips
   has_many :tip_likes, dependent: :destroy
   has_many :liked_tips, through: :tip_likes, source: :tip
   has_many :lists
@@ -38,6 +42,25 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
   end
 
+  # Public: Verify if a user has permission to submit a score to a given venue.
+  # TO-DO: CURRENTLY DOES NOT WORK BETWEEN YEARS. ADD CROSS-YEAR VALIDATION!
+  #
+  # 1. Using 'has_scored_venue?', check if user has submitted score here before.
+  # 2. If user has submitted score before, check if create date is before today.
+  # 3. Returns true if never submitted here or if last create date is before today.
+  #    Returns false if user has submitted here before and date is not before today.
+  
+  def can_submit_score?(venue)
+    @sorted_scores = self.venue_scores.where(venue_id: venue.id).sort_by { |score| score.created_at }
+    if !self.has_scored_venue?(venue.id)
+      true
+    elsif self.has_scored_venue?(venue.id) && @sorted_scores.last.created_at.to_date.yday < DateTime.now.to_date.yday
+      true    
+    else
+      false
+    end
+  end
+  
   # Public: Get the user's full name.
   #
   # Examples:
@@ -46,6 +69,7 @@ class User < ActiveRecord::Base
   #   # => 'Alex Matthews'
   #
   # Returns a String containing the full name
+  
   def full_name
     "#{first_name} #{last_name}"
   end

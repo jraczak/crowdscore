@@ -11,7 +11,8 @@ html
     .topbar
       .fill
         .container
-          h3 = link_to "Crowdscore", root_path
+          = link_to image_tag('crowdscore_logo.png'), root_path, class: "pull-left"
+          /h3 = link_to "Crowdscore", root_path
           ul
             - if params[:controller] =~ /^admin/
               li = link_to "← Return to site", root_path
@@ -29,7 +30,7 @@ html
                       li.divider
                       li = link_to "Administrative Area", admin_root_path
             - else
-              li = link_to "Sign in", new_user_session_path
+              li = link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
               li = link_to "Sign up", new_user_registration_path
 
     #masthead
@@ -45,24 +46,41 @@ html
         .row
           .span16
             p Copyright &copy; 2012 Crowdscore. All rights reserved.
+            
+#sign-in-modal.modal style="display: none;"
+  .modal-header
+    a.close href='#' x
+    h3 Sign in
+    
+  - unless user_signed_in?
+    = form_for "user", url: user_session_path, html: {class: ""} do |f|
+      = f.text_field :email, class: "search-field", size: "30", placeholder: "Email"
+      = f.password_field :password, class: "search-field", size: "30", placeholder: "Password"
+      #sign-in-submit-wrapper
+        button.btn-main#sign-in-submit(type="submit") Sign in
+        br
+        p = link_to "Sign in with Facebook", "#", class: "facebook-login btn-facebook"
+  
+    p.new-cta New to Crowdscore? #{link_to "Sign up.", new_user_registration_path, class: "small-link"}
 
-    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
-    = javascript_include_tag "application"
-    coffee:
-      new CS.NavView()
+= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
+= javascript_include_tag "application"
+coffee:
+  new CS.NavView()
 
-    = content_for :javascript
-    == render "shared/facebook"
+= content_for :javascript
+== render "shared/facebook"
 
-    - if Rails.env.production?
-      = render "shared/google_analytics"
-    - else
-      /! In production, analytics go here.
-    javascript:
-      var uvOptions = {};
-      (function() {
-        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/0MsUmqbikVAbKrdEYidA.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+- if Rails.env.production?
+  = render "shared/google_analytics"
+- else
+  /! In production, analytics go here.
+javascript:
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/0MsUmqbikVAbKrdEYidA.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
       })();
+= yield :scripts
 

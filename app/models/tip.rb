@@ -1,4 +1,5 @@
 class Tip < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
   attr_writer :current_user_id # this is definitely not ideal
 
   scope :by_recent, order('created_at DESC')
@@ -11,7 +12,7 @@ class Tip < ActiveRecord::Base
   has_many :liked_by, through: :tip_likes, source: :user
 
   validates :venue, :user, presence: true
-  validates :text, presence: true, length: { maximum: 100 }
+  validates :text, presence: true, length: { maximum: 150 }
 
   after_save :reindex_venue
   after_destroy :reindex_venue
@@ -19,9 +20,14 @@ class Tip < ActiveRecord::Base
   def as_json(options = nil)
     methods = []
     methods << :can_upvote if @current_user_id.present?
+    methods << :date_age
     super(methods: methods, include: { user: { only: :username } })
   end
 
+  def date_age
+    time_ago_in_words(self.created_at)
+  end
+  
   def can_upvote(user = nil)
     current_id = user.present? ? user.id : @current_user_id
     logger.info "CURRENT: #{current_id}"

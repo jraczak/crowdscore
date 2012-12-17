@@ -10,6 +10,7 @@ class VenuesController < InheritedResources::Base
     end
 
     @venues = VenueSearch.search(params)
+    #@json = Venue.all.to_gmaps4rails
   end
   
   def get_tag_categories
@@ -21,6 +22,10 @@ class VenuesController < InheritedResources::Base
       end
     end
     tag_categories
+  end
+  
+  def show
+    @higher_scored_venues = Venue.higher_scored_than(resource, 10)
   end
 
   private

@@ -1,8 +1,8 @@
 class CS.VenueSearchView extends Backbone.View
-  el: "#venue_list"
+  el: "#results-list"
 
-  headerCell: 'th.distance'
-  distanceCells: 'td.distance'
+  headerCell: 'th.hidden.distance'
+  distanceP: 'p.distance'
 
   initialize: -> @render()
 
@@ -15,10 +15,10 @@ class CS.VenueSearchView extends Backbone.View
 
   showDistances: ->
     @$(@headerCell).removeClass('hidden')
-    @$(@distanceCells).removeClass('hidden')
+    @$(@distanceP).removeClass('hidden')
 
   calculateAndDisplayDistances: ->
-    $(@distanceCells).each (index, element) =>
+    $(@distanceP).each (index, element) =>
       $.geolocation.find (location) =>
         @fillInDistance(location, @$(element))
 

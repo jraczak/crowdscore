@@ -1,0 +1,28 @@
+<!-- <div class="tip">
+  <p id="<$= tip.domId() $>">
+    <strong><$= tip.get('user').username $></strong> said <$= tip.upvoteCountText() $>: "<$= tip.get('text') $>"
+  
+    <$ if(tip.get('can_upvote')) { $>
+      <a href="<$= tip.upvoteUrl() $>">upvote</a>
+    <$ } $>
+  </p>
+</div> -->
+
+
+<div class="tip">
+  <p class="tip-author">
+    <$= tip.get('user').username $>
+  </p>
+  <p class="tip-timestamp">
+    <$= tip.get('date_age') $> ago
+  </p>
+  <p class="tip-likes pull-right">
+    <$= tip.upvoteCountText() $>
+  </p>
+  <p id="<$= tip.domId() $>">
+    <$= tip.get('text') $>
+    <$ if(tip.get('can_upvote')) { $>
+      <a href="<$= tip.upvoteUrl() $>">upvote</a>
+    <$ } $>
+  </p>
+</div>

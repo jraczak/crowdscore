@@ -139,7 +139,7 @@ select,
 textarea {
   font-size: 100%;
   margin: 0;
-  vertical-align: baseline;
+  /* vertical-align: baseline; */
   *vertical-align: middle;
 }
 button, input {
@@ -627,7 +627,7 @@ form .input {
 input[type=checkbox], input[type=radio] {
   cursor: pointer;
 }
-input,
+/*input, BOOTSTRAP INPUT CSS EDITED OUT FOR OVERLAY STYLING*/
 textarea,
 select,
 .uneditable-input {

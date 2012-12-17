@@ -1,5 +1,6 @@
 class Venue < ActiveRecord::Base
   acts_as_audited protected: false
+  acts_as_gmappable :process_geocoding => false
 
   scope :active, where(active: true)
   scope :alphabetical, order(:name)
@@ -41,6 +42,12 @@ class Venue < ActiveRecord::Base
     text(:tags) { |venue| venue.tags.map(&:full_name) }
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+  end
+  
+  def self.higher_scored_than(venue, _limit = 10)
+    # Original implementation below and not scoped to location. Trying new implementation.
+    #where('computed_score > ?', venue.computed_score.to_i).limit _limit
+    Venue.near([venue.latitude, venue.longitude], 2).where('computed_score > ?', venue.computed_score.to_i).limit _limit
   end
 
   def to_param
@@ -104,6 +111,18 @@ class Venue < ActiveRecord::Base
 
   def update_geocode
     geocode && save!
+  end
+  
+  def gmaps4rails_address
+    "#{self.address1}, #{self.city}, #{self.state}, #{self.zip}"
+  end
+  
+  def gmaps4rails_infowindow
+    "#{self.score} <br> #{self.name} <br> #{self.full_category_name}"
+  end
+  
+  def recent_tip
+    self.tips.first
   end
 
   private

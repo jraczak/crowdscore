@@ -1,0 +1,10 @@
+h3 Higher Scored
+- unless @higher_scored_venues.empty?
+  - @higher_scored_venues.each do |venue|
+    .higher-scored-venue-container
+      .higher-score.pull-right = venue.score
+      .higher-scored-venue-name = link_to venue.name,venue
+      .higher-scored-venue-category = venue.full_category_name
+- else
+  p Nice find! This venue is the top in its class.
+  

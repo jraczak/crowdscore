@@ -1,0 +1,139 @@
+/* USER STATS MODULE */
+
+#user-name {
+
+  h2 {
+    font-family: 'Gotham-Light';
+    font-weight: normal;
+    font-size: 3.0em;
+    margin-bottom: 30px;
+  }
+  
+}
+
+#user-stats {
+  
+  table {
+    border: none;
+    background: #1e1e1e;
+    color: white;
+    padding: 30px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+  }
+  
+  table tr td {
+    border: none;
+    width: 30%;
+    text-align: center;
+    font-family: 'Gotham-XLight';
+    font-weight: normal;
+    font-size: 1.25em;
+  }
+  
+  td.label {
+    padding-top: 5px;
+  }
+  
+  .label {
+    background: none;
+    color: #898989;
+    font-family: 'Gotham-Light';
+    text-transform: none;
+    font-size: 1.1em;
+    padding-bottom: 0px;
+  }
+  
+  .scores, .tips, .followers {
+    font-size: 4.0em;
+  }
+  
+  #follow-button-container {
+    background: #1e1e1e;
+    margin-left: 0px;
+  
+  #follow-button {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    
+  .btn-main {
+      padding-right: 10px;
+      padding-left: 10px;
+      margin-bottom: 30px;
+      width: 150px;
+    }
+  }
+  
+}
+   
+}
+
+/* USER DETAILS MODULE */
+
+#user-details {
+  background: none;
+  margin-left: 0;
+  margin-top: 30px;
+  padding: 10px;
+  
+  h1 {
+    font-family: 'Gotham-Book';
+    font-weight: normal;
+    font-size: 3.0em;
+    border-bottom: 2px solid #898989;
+  }
+  
+  h2 {
+    font-family: 'Gotham-Book';
+    font-weight: normal;
+    font-size: 2.5em;
+    
+  }
+  
+  h3 {
+    font-family: 'Gotham-Light';
+    font-weight: normal;
+    font-size: 1.0em;
+    
+    line-height: 1.2em;
+  }
+  
+  p {
+    font-family: 'Gotham-Light';
+    font-size: 1.3em;
+    line-height: 1.2em;
+  }
+  
+  table {
+    border: none;
+    padding-top: 10px;
+  
+    td {
+      border: none;
+    }
+    
+    .label {
+      font-family: 'Gotham-Light';
+      font-weight: normal;
+      font-size: 1.0em;
+      line-height: 1.2em;
+      text-transform: none;
+      background: none;
+      color: black;
+    }
+    
+    .username, .member_since, .twitter {
+     font-family: 'Gotham-Book';
+     font-weight: normal;
+     font-size: 2.2em;
+     padding-left: 0;
+    }
+  
+  }
+
+}

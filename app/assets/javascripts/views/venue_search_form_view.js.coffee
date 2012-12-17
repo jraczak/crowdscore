@@ -25,4 +25,4 @@ class CS.VenueSearchFormView extends Backbone.View
 
     @$('[name=latitude]').val(location.latitude)
     @$('[name=longitude]').val(location.longitude)
-    @$('#zip').attr('placeholder', 'Using current location')
+    @$('#zip').attr('placeholder', 'current location')

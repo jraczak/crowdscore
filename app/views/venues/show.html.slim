@@ -39,8 +39,12 @@
             td.prompt.last = resource.venue_category.prompt4
             td.score.last = resource.score_breakdown4
 
-    - if current_user && current_user.has_scored_venue?(resource)
-      p.detail.note Your score has already been submitted.
+    - if current_user && current_user.can_submit_score?(resource)
+      div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+    
+    -elsif current_user && !current_user.can_submit_score?(resource)
+      p.detail.note You've already submitted a score here today.
+    
     - else
       div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
 
@@ -67,21 +71,31 @@
         .placeholder-image
           p No images yet.
 
-    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'btn-main'
+    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'pull-right'
 
     br/
 
-    #tip_list
+    #tip_module
       h3.header
-        | Tips 
-      = link_to "Add a tip", new_venue_tip_path(resource), class: 'btn-main span4'
+        | Tips for #{resource.name}
+      /= link_to "Add a tip", new_venue_tip_path(resource), class: 'btn-main span4'
+      
+      = form_for resource.tips.build, url: venue_tips_path(resource) do |f|
+        /= f.label :text, 'Tip'
+        .input
+          = f.text_field :text, class: 'tip-input', size: "80", maxlength: 150, placeholder: 'share something that\'s good to know here'
+        #submit-tip-button
+          = submit_tag "Add my tip", class: 'btn-main span4'
+      
       #tips
-        p.sort.span4
-          | Sort by: 
-          = link_to 'Recent', '#', class: 'selected', id: 'sort-tips-recent'
-          |  | 
-          = link_to 'Popularity', '#', id: 'sort-tips-popularity'
-        = render resource.tips.by_recent
+        - unless resource.tips.count == 0
+          p.sort
+            | Sort by: 
+            = link_to 'Recent', '#', class: 'selected', id: 'sort-tips-recent'
+            |  | 
+            = link_to 'Popularity', '#', id: 'sort-tips-popularity'
+        #tip-list
+          = render resource.tips.by_recent
       
         
   .span4
@@ -94,13 +108,15 @@
       - else
         p.links #{link_to "add the website", edit_venue_path(resource, autofocus: "venue_url")} | #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
 
-      p = link_to "edit this venue's details", edit_venue_path(resource)    
+      p = link_to "edit this venue's details", edit_venue_path(resource)
+      
+    #higher-scored-venues = render 'higher_scored_venues'    
 
 
 #submit-score-modal.modal style="display: none;"
   .modal-header
     a.close href="#" x
-    h3 What did you think of #{ resource.name }?
+    h3 How was your experience at #{ resource.name }?
 
     - if user_signed_in?
       = form_for resource.venue_scores.build, url: venue_score_path(resource) do |f|
