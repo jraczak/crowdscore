@@ -1,61 +1,71 @@
 .row
   .span8
-    h2 This is what we need.
+    h2.user-form-header This is what we need.
 
     fieldset
       .clearfix
-        = f.label :first_name
+        = f.label :first_name, class: "user-form-label"
         .input
-          = f.text_field :first_name, size: "30"
+          = f.text_field :first_name, size: "30", class: "text-field-standard"
 
       .clearfix
-        = f.label :email
+        = f.label :email, class: "user-form-label"
         .input
-          = f.text_field :email, class: "xlarge", size: "30"
+          = f.text_field :email, class: "text-field-standard", size: "30"
 
       .clearfix
-        = f.label :username
+        = f.label :username, class: "user-form-label"
         .input
-          = f.text_field :username, class: "xlarge#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?
+          = f.text_field :username, class: "text-field-standard#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?
           - if f.object.persisted?
             span.help-block Username cannot be changed.
 
       .clearfix
-        = f.label :password
+        = f.label :password, class: "user-form-label"
         .input
-          = f.password_field :password, size: "30"
+          = f.password_field :password, class: "text-field-standard", size: "30"
           - if f.object.persisted?
             span.help-block Leave this blank if you don't want your password to change
           - else
             span.help-block Hint: this should be at least 6 characters long.
 
       .clearfix
-        = f.label :password_confirmation, 'Confirm your password'
+        = f.label :password_confirmation, 'Confirm your password', class: "user-form-label"
         .input
-          = f.password_field :password_confirmation, size: "30"
+          = f.password_field :password_confirmation, class: "text-field-standard", size: "30"
 
       .clearfix
-        = f.label :zip_code, "And lastly, what's your zip code?"
+        = f.label :zip_code, "And lastly, what's your zip code?", class: "user-form-label"
         .input
-          = f.text_field :zip_code, size: "10", class: "mini"
+          = f.text_field :zip_code, size: "10", class: "text-field-standard"
 
   .span6
-    h2 And these are optional.
+    h2.user-form-header And these are optional.
 
     fieldset
       .clearfix
-        = f.label :last_name
+        = f.label :last_name, class: "user-form-label"
         .input
-          = f.text_field :last_name, class: "xlarge", size: "30"
+          = f.text_field :last_name, class: "text-field-standard", size: "30"
 
       .clearfix
-        = f.label :gender
+        = f.label :gender, class: "user-form-label"
         .input
-          = f.select :gender, ['Male', 'Female'], include_blank: true
+          = f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender"
 
       .clearfix
-        = f.label :birth_month, "When is your birthday?"
+        = f.label :birth_month, "When is your birthday?", class: "user-form-label"
         .input
           = f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'side-by-side'
           = f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side'
+          
+      .clearfix
+        = f.label :twitter_username, "Are you on Twitter?", class: "user-form-label"
+        .input
+          = f.text_field :twitter_username, class: "text-field-standard", size: "30"
+          
+      .clearfix
+        = f.label :bio, "Sum yourself up in 250 characters.", class: "user-form-label"
+        .input
+          = f.text_area :bio, class: "text-field-standard", size: "250"     
 

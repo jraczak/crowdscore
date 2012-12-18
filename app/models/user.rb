@@ -2,13 +2,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   # and :omniauthable
+  
+  before_save :create_permalink
+  
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
                                :remember_me, :username, :zip_code, :gender, :confirmed_at,
-                               :bio, :twitter_username]
+                               :bio, :twitter_username] #, :permalink
   admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields
@@ -75,7 +78,8 @@ class User < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{username}"
+    permalink
+    #"#{id}-#{username}"
   end
 
   # Public: lock a user's account and provide a reason why.
@@ -106,6 +110,12 @@ class User < ActiveRecord::Base
 
   private
 
+  # Create permalink using provided username for user-friendly URLs
+  #
+  def create_permalink
+    self.permalink = username.downcase
+  end
+  
   # Check if any facet of a user's birthday is provided.
   #
   # Returns true if birth month or birthday is provided, false otherwise.

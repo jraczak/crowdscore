@@ -47,7 +47,7 @@ class Venue < ActiveRecord::Base
   def self.higher_scored_than(venue, _limit = 10)
     # Original implementation below and not scoped to location. Trying new implementation.
     #where('computed_score > ?', venue.computed_score.to_i).limit _limit
-    Venue.near([venue.latitude, venue.longitude], 2).where('computed_score > ?', venue.computed_score.to_i).limit _limit
+    Venue.near([venue.latitude, venue.longitude], 2).where('computed_score > ? AND venue_category_id = ?', venue.computed_score.to_i, venue.venue_category_id).limit _limit
   end
 
   def to_param

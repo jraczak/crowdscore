@@ -1,5 +1,5 @@
 .row
-  #user-details.span11
+  #user-details.span10
     h1 = resource.full_name
     p = resource.bio
     table
@@ -14,7 +14,7 @@
         - unless resource.twitter_username.nil? || resource.twitter_username.empty?
           td.twitter = link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank"
 
-  .span5#user-stats
+  .span6#user-stats
     table#stats
       /tr
       /  td.karma = "100,000"
@@ -28,7 +28,7 @@
         td.label = "scores"
         td.label = "tips"
         td.label = "followers"
-    #follow-button-container.span5
+    #follow-button-container.span6
       - if user_signed_in? && current_user == resource
         #follow-button = link_to "this is you", '#', class: 'btn-main'
       -elsif user_signed_in? && current_user.follows?(resource)

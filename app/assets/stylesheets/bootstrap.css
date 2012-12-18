@@ -1044,7 +1044,7 @@ textarea[readonly] {
   display: block;
   float: none;
   width: auto;
-  font-weight: bold;
+  font-weight: normal;
   text-align: left;
   line-height: 20px;
   padding-top: 0;

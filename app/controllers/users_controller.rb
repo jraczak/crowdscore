@@ -4,6 +4,10 @@ class UsersController < InheritedResources::Base
 
   before_filter :authenticate_user!, only: [:follow]
 
+  def show
+    @user = User.find_by_permalink(params[:id])
+  end
+  
   def follow
     if current_user == resource
       flash[:notice] = "You can't follow yourself."

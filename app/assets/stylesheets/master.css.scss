@@ -1,5 +1,51 @@
 /* TYPOGRAPHY */
 
+.user-form-label {
+  font-size: 1.25em;
+  font-weight: normal;
+  font-family: 'Gotham-Light';
+}
+
+.user-form-header {
+  font-size: 2.0em;
+  font-weight: normal;
+  font-family: 'Gotham-Medium';
+  margin-bottom: 30px;
+}
+
+.user-form-gender {
+  height: 40px;
+  font-family: 'Gotham-Light';
+  font-weight: normal;
+}
+
+select {
+  height: 40px;
+  color: black;
+  font-family: 'Gotham-Light';
+  font-weight: normal;
+  font-size: 1.25em;
+  border: none;
+  border-radius: 0px;
+  -ms-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+option {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  vertical-align: middle;
+}
+
+option:hover {
+  color: #0099cc; 
+}
+
+::selection {
+  color: #0099cc;
+}
+
 /* FONT FACE ASSET ASSIGNMENT */
 
 @font-face {
@@ -71,6 +117,35 @@ a:hover {
 } 
 */
 
+input.text-field-standard {
+  border: none;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  margin-left: 0;
+  padding-left: 4px;
+  height: 40px;
+  line-height: 1.2em;
+  font-family: 'Gotham-Light';
+  font-weight: normal;
+  font-size: 2.0em;
+  vertical-align: middle;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+
+input.text-field-standard:focus {
+  -webkit-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  -moz-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  -ms-box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+  box-shadow: inset 0px  0px 0px 2px rgba(0, 153, 204, 1);
+}
+
 .btn-main {
 	background-color:#0099cc;
 	-moz-border-radius:6px;
@@ -97,6 +172,10 @@ a:hover {
     text-decoration: none;
 	position:relative;
 	top:1px;
+}
+
+.btn-main-fixed {
+  width: 220px;
 }
 
 
