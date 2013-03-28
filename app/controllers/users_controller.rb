@@ -6,7 +6,7 @@ class UsersController < InheritedResources::Base
 
   def show
     #@user = User.find_by_permalink(params[:id])
-    @user = User.find_by_permalink(params[:permalink])
+    @user = User.find_by_permalink(params[:id])
   end
   
   def follow
