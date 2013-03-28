@@ -97,7 +97,8 @@ class User < ActiveRecord::Base
 
   # NEED TO CHANGE THIS BACK TO FRIENDLY URLS AFTER FOLLOWING
   def to_param
-    "#{id}"
+    "#{username}"
+    #"#{id}"
     #permalink
     #"#{id}-#{username}"
   end
