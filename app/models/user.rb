@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
                                :remember_me, :username, :zip_code, :gender, :confirmed_at,
-                               :bio, :twitter_username] #, :permalink
+                               :bio, :twitter_username, :permalink] #, :permalink
   admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields
