@@ -9,7 +9,7 @@ gem "devise", "~> 2.0.0"
 gem "cancan"
 gem "thin"
 gem "carrierwave"
-gem "rmagick", "~> 2.13.1"
+gem "rmagick", "~> 2.13.2"
 gem "fog"
 gem "will_paginate", "~> 3.0.0"
 gem "state_select", git: "git://github.com/jraczak/state_select.git"
@@ -22,6 +22,7 @@ gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
 gem "omniauth-facebook"
 gem "gmaps4rails"
+gem "merit"
 
 # Gems used only for assets and not required
 # in production environments by default.

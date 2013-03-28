@@ -5,7 +5,8 @@ class UsersController < InheritedResources::Base
   before_filter :authenticate_user!, only: [:follow]
 
   def show
-    @user = User.find_by_permalink(params[:id])
+    #@user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:username])
   end
   
   def follow

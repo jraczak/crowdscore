@@ -1,17 +1,49 @@
+#score1 {
+	  width: 138px;
+	  height: 110px;
+  }
+
+#header-module {
+	margin-top: 40px;
+}
+
+#venue-detail {
+  width: 640px;
+  display: inline-block;
+  float: right;
+  margin-left: 40px;
+  padding: 40px 0 0 0;
+	
+  a {
+    font-size:  1.0em;
+    padding-left: 5px;
+  }
+  
+  h4.phone {
+	  padding-left: 15px;
+  }
+  
+  h4.website {
+	  padding-left: 15px;
+  }	
+}
+
 #venue-detail h1 {
   margin-bottom: 0;
-  padding-top: 20px;
+  padding-top: 0px;
   font-family: 'Gotham-XLight';
-  font-size: 36pt;
+  font-size: 2.75em;
   font-weight: normal;
 }
 
 #venue-detail h4 {
   margin-bottom: 30px;
   padding-left: 5px;
+  display: inline-block;
   font-family: 'Gotham-XLight';
   font-weight: normal;
-  font-size: 1.25em;
+  font-size: 1.1em;
+  color: #898b92;
 }
 
 .social-links {
@@ -27,15 +59,46 @@ input {
 
 /* SCORE MODULE */
 
-#score-box {
-  background: #1e1e1e; 
+#overall-score-container {
+	width: 260px;
+	display: inline-block;
+}
+
+#overall-score {
+	background: white;
+	height: 300px;
+	text-align: center;
+
+  .crowdscore {
+	  padding-top: 70px;
+	  font-family: 'Gotham-Medium';
+	  font-size: 50px;
+	  color: #ea4f4f;
+  }
+  
+  .total_scores {
+    padding-bottom: 0px;
+    margin-top: 50px;
+    font-family: 'Gotham-Light';
+    font-weight: normal;
+    font-size: .85em;
+  }
+}
+
+#overall-score-header {
+  background: #34373f;
+  height: 35px; 
   color: white;
   text-align: center;
-  margin-bottom: 30px;
 
   h5 {
     color: white;
     padding-top: 20px;
+  }
+  
+  h4 {
+    color: white;
+    font-size: .8em;	  
   }
 
   h2 {
@@ -54,56 +117,85 @@ input {
       /* text-shadow: 1px 1px #cbcbcb; */
     }
   }
+}
 
-  .total_scores {
-    padding-bottom: 0px;
+#breakdown {
+  width: 640px;
+  padding: 30px 0px 0px;
+  margin-left: 40px;
+  display: inline-block;
+  float: right;
+  border-top: 1px solid #dadada;
+
+  p {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  table {
+    width: 640px;
+    border: none;
+    padding: 0px 0px;
+    margin-bottom: 0px;
     font-family: 'Gotham-Light';
     font-weight: normal;
-    font-size: .85em;
+    font-size: 1.25em;
+    display: inline-block;
+  }
+  
+  tbody {
+	width: 640px;
+  }
+  
+  td {
+    border: none;
+    width: 160px;
+    vertical-align: middle;
   }
 
-  #breakdown {
-    padding: 15px 0px;
-    background: white;
-    color: black;
-
-    p {
-      font-weight: bold;
-      font-size: 20px;
+  
+  table td.prompt {
+    text-align: center;
+    font-size: 12px;
+    color: #949498;
+    font-family: 'Gotham-Book';
+  }
+  
+  table td.score {
+    height: 110px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Gotham-Medium';
+  }
+  .category1 {
+	    color: #4fcfea;
     }
     
-    table {
-      border: none;
-      padding: 0px 10px;
-      margin-bottom: 0px;
-      font-family: 'Gotham-Light';
-      font-weight: normal;
-      font-size: 1.25em;
+  #score1 {
+	  width: 138px;
+	  height: 110px;
+  }
+    
+  .category2 {
+	    color: #f6bc32;
     }
     
-    td {
-      border: none;
-      border-bottom: 1px solid #cbcbcb;
-    }
-
-    
-    table td.prompt {
-      text-align: left;
+  .category3 {
+	    color: #5ad385;
     }
     
-    table td.score {
-      text-align: right;
+  .category4 {
+	    color: #8d66e5;
     }
-    
-    table td.prompt.last {
+}
+    /*table td.prompt.last {
       border-bottom: none;
     }
     
     table td.score.last {
       border-bottom: none;
-    }
-  }
-}
+    } */
+
 
 /* TAGS MODULE */
 

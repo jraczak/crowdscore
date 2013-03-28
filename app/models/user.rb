@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_merit
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   # and :omniauthable
@@ -30,9 +32,10 @@ class User < ActiveRecord::Base
   has_many :their_follows, foreign_key: :followed_id, class_name: 'Follow', dependent: :destroy
   has_many :followers, through: :their_follows
 
-  validates :first_name, presence: true
+  # For now, removing first_name requirement to lower registration barrier.
+  # validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :zip_code, presence: true, numericality: true, length: { is: 5 }
+  validates :zip_code, numericality: true, length: { is: 5 }
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }
@@ -57,11 +60,26 @@ class User < ActiveRecord::Base
     @sorted_scores = self.venue_scores.where(venue_id: venue.id).sort_by { |score| score.created_at }
     if !self.has_scored_venue?(venue.id)
       true
-    elsif self.has_scored_venue?(venue.id) && @sorted_scores.last.created_at.to_date.yday < DateTime.now.to_date.yday
+    elsif self.has_scored_venue?(venue.id) && @sorted_scores.last.created_at.to_date.jd < DateTime.now.to_date.jd
       true    
     else
       false
     end
+  end
+  
+  def get_network_activity
+    @activities = []
+    @follows = self.follows.all
+   
+    @follows.each do |f|
+      f.venue_scores.each do |a|
+        @activities << a
+      end
+      f.tips.each do |t|
+        @activities << t
+      end
+    end
+    @activities
   end
   
   # Public: Get the user's full name.
@@ -77,8 +95,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  # NEED TO CHANGE THIS BACK TO FRIENDLY URLS AFTER FOLLOWING
   def to_param
-    permalink
+    "#{id}"
+    #permalink
     #"#{id}-#{username}"
   end
 

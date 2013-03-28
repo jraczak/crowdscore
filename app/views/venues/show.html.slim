@@ -1,116 +1,168 @@
+= provide(:title, " | #{resource.name.titlecase}")
 = content_for :javascript do
   javascript:
     var venueTips = new TipCollection(#{prepare_tips_for_js_init(resource)}, {venue_id: #{resource.id}});
     new CS.TipListView({model: venueTips});
     new CS.VenueMapView();
+  javascript:  
+    function animateScores(){
+      var circleColors = [["#F1C6C6","#EA4F4F"], ["#AFE1EB", "#4FCFEA"],["#EFDFBA","#F6BC32"],["#A2DEB7","#5AD385"],["#B8A3E9","#8D66E5"]];
+      var scores = [#{resource.score}, #{resource.score_breakdown1}, #{resource.score_breakdown2}, #{resource.score_breakdown3}, #{resource.score_breakdown4}];
+      score1 = new Animation(document.getElementById("score3"), circleColors[0][0], circleColors[0][1], scores[0], Math.PI*3/2);
+      score1.drawFullCircle();
+      score1.drawPartialCircle();
+      score1.drawScore(25);
+      
+      score2 = new Animation(document.getElementById("score2"), circleColors[1][0], circleColors[1][1], scores[1], Math.PI*3/2);
+      score2.drawFullCircle();
+      score2.drawPartialCircle();
+      score2.drawScore(25);
+    }
+    
+    animateScores(); // perform when body is finished loading
+    
 
-.row
-  .span14#venue-detail
-    h1 = resource.name.titlecase
-    h4 = resource.full_category_name
+canvas#score3 height="110"width="110"
+canvas#score2 height="110"width="110"
 
-  .span2.social-links
-    = link_to "Tweet", "https://twitter.com/share", :class => "twitter-share-button", :"data-via" => "crowdscoreapp", :"data-count" => "none", :"data-text" => "Check out #{resource.name} in #{resource.city}, #{resource.state}"
+/.row
+/  .span2.social-links
+/    = link_to "Tweet", "https://twitter.com/share", :class => "twitter-share-button", :"data-via" => /"crowdscoreapp", :"data-count" => "none", :"data-text" => "Check out #{resource.name} in #{resource.city}, #{resource.state}"
 
     javascript:
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
-.row
-  .span4 style="margin-bottom: 30px;"
-    #score-box
+
+#header-module
+  #overall-score-container
+    #overall-score-header
+      h4 OVERALL SCORE
+    #overall-score
       - if resource.computed_score?
-        h2.big = resource.score
+        h2.big.crowdscore = resource.score
         p.total_scores based on #{pluralize(resource.venue_scores.count, "score")}
       - else
-        h2 = resource.score
-
-      #breakdown
-        table
-          tr
-            td.prompt = resource.venue_category.prompt1
-            td.score = resource.score_breakdown1
-          tr
-            td.prompt = resource.venue_category.prompt2
-            td.score = resource.score_breakdown2
-          tr
-            td.prompt = resource.venue_category.prompt3
-            td.score = resource.score_breakdown3
-          tr
-            td.prompt.last = resource.venue_category.prompt4
-            td.score.last = resource.score_breakdown4
-
-    - if current_user && current_user.can_submit_score?(resource)
-      div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+        h2.crowdscore = resource.score
+        
+      - if current_user && current_user.can_submit_score?(resource)
+        div = link_to "SUBMIT MY SCORE", new_venue_score_path(resource), :class => 'new-btn-main', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
     
-    -elsif current_user && !current_user.can_submit_score?(resource)
-      p.detail.note You've already submitted a score here today.
+      -elsif current_user && !current_user.can_submit_score?(resource)
+        p.detail.note You've already submitted a score here today.
     
+      - else
+        div = link_to "SUBMIT MY SCORE", new_venue_score_path(resource), :class => 'new-btn-main', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"       
+        
+  #venue-detail
+    h1 = resource.name.titlecase
+    /h4 = resource.full_category_name
+    h4 #{inline_address(resource)} #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
+    h4.phone #{number_to_phone( resource.phone, area_code: true)}
+    - if resource.url.present? && resource.url != "http://"
+      h4.website #{link_to "visit website", resource.url, target: "_new"}
     - else
-      div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+      h4.website #{link_to "add the website", edit_venue_path(resource, autofocus: "venue_url")}
+    #breakdown
+      table
+        tr.scores
+          td.score.category1 = resource.score_breakdown1
+          td.score.category2 = resource.score_breakdown2
+          td.score.category3 = resource.score_breakdown3
+          td.score.category4 = resource.score_breakdown4
+        tr.prompts
+          td.prompt = resource.venue_category.prompt1.upcase
+          td.prompt = resource.venue_category.prompt2.upcase
+          td.prompt = resource.venue_category.prompt3.upcase
+          td.prompt.last = resource.venue_category.prompt4.upcase
 
-    div = link_to "Add to List", "#lists", :class => 'btn-main span4'
-    div = link_to "View Tags", "#tags", :class => 'btn-main span4'
-
-    #tags-box.span4
-      h2 Tags
-        
-      #tags-box-list      
-        - if resource.tags.any?
-          - resource.tags.each do |t|
-            p.tag = t.name
-        - else
-          p This venue does not yet have any tags.
-        br
-        = link_to "+ add tags", "#tags" 
-
-  .span8
-    .images
-      - if resource.venue_images.any?
-        = link_to image_tag(resource.venue_images.first.image_file.url, height: 328), '#'
-      - else
-        .placeholder-image
-          p No images yet.
-
-    p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'pull-right'
-
-    br/
-
-    #tip_module
-      h3.header
-        | Tips for #{resource.name}
-      /= link_to "Add a tip", new_venue_tip_path(resource), class: 'btn-main span4'
       
-      = form_for resource.tips.build, url: venue_tips_path(resource) do |f|
-        /= f.label :text, 'Tip'
-        .input
-          = f.text_field :text, class: 'tip-input', size: "80", maxlength: 150, placeholder: 'share something that\'s good to know here'
-        #submit-tip-button
-          = submit_tag "Add my tip", class: 'btn-main span4'
-      
-      #tips
-        - unless resource.tips.count == 0
-          p.sort
-            | Sort by: 
-            = link_to 'Recent', '#', class: 'selected', id: 'sort-tips-recent'
-            |  | 
-            = link_to 'Popularity', '#', id: 'sort-tips-popularity'
-        #tip-list
-          = render resource.tips.by_recent
-      
-        
-  .span4
-    #map-address-phone
-      #map_canvas.venue-map style="width: 100%; height: 215px; margin-bottom: 1em;" data-lat="#{resource.latitude}" data-long="#{resource.longitude}"
-      address = inline_address(resource) 
-      p.phone = number_to_phone( resource.phone, area_code: true)
-      - if resource.url.present? && resource.url != "http://"
-        p.links #{link_to "visit website", resource.url, target: "_new"} | #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
-      - else
-        p.links #{link_to "add the website", edit_venue_path(resource, autofocus: "venue_url")} | #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
-
-      p = link_to "edit this venue's details", edit_venue_path(resource)
-      
-    #higher-scored-venues = render 'higher_scored_venues'    
+/#breakdown
+/  table
+/    tr
+/      td.prompt = resource.venue_category.prompt1
+/      td.score = resource.score_breakdown1
+/    tr
+/      td.prompt = resource.venue_category.prompt2
+/      td.score = resource.score_breakdown2
+/    tr
+/      td.prompt = resource.venue_category.prompt3
+/      td.score = resource.score_breakdown3
+/    tr
+/      td.prompt.last = resource.venue_category.prompt4
+/      td.score.last = resource.score_breakdown4
+/
+/  - if current_user && current_user.can_submit_score?(resource)
+/    div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+/  
+/  -elsif current_user && !current_user.can_submit_score?(resource)
+/    p.detail.note You've already submitted a score here today.
+/  
+/  - else
+/    div = link_to "Submit My Score", new_venue_score_path(resource), :class => 'btn-main span4', :"data-controls-modal" => "submit-score-modal", :"data-backdrop" => "true"
+/
+/  div = link_to "Add to List", "#lists", :class => 'btn-main span4'
+/  div = link_to "View Tags", "#tags", :class => 'btn-main span4'
+/
+/  #tags-box.span4
+/    h2 Tags
+/      
+/    #tags-box-list      
+/      - if resource.tags.any?
+/        - resource.tags.each do |t|
+/          p.tag = t.name
+/      - else
+/        p This venue does not yet have any tags.
+/      br
+/      = link_to "+ add tags", "#tags" 
+/
+/.span8
+/  .images
+/    - if resource.venue_images.any?
+/      = link_to image_tag(resource.venue_images.first.image_file.url, height: 328), '#'
+/    - else
+/      .placeholder-image
+/        p No images yet.
+/
+/  p.note.detail = link_to "Add a new image", new_venue_image_path(resource), class: 'pull-right'
+/
+/  br/
+/
+/  #tip_module
+/    h3.header
+/      | Tips for #{resource.name}
+/    /= link_to "Add a tip", new_venue_tip_path(resource), class: 'btn-main span4'
+/    
+/    = form_for resource.tips.build, url: venue_tips_path(resource) do |f|
+/      /= f.label :text, 'Tip'
+/      .input
+/        = f.text_field :text, class: 'tip-input', size: "80", maxlength: 150, placeholder: 'share something that\'s good to know here'
+/      #submit-tip-button
+/        = submit_tag "Add my tip", class: 'btn-main span4'
+/    
+/    #tips
+/      - unless resource.tips.count == 0
+/        p.sort
+/          | Sort by: 
+/          = link_to 'Recent', '#', class: 'selected', id: 'sort-tips-recent'
+/          |  | 
+/          = link_to 'Popularity', '#', id: 'sort-tips-popularity'
+/      #tip-list
+/        = render resource.tips.by_recent
+/    
+/      
+/.span4
+/  #map-address-phone
+/    #map_canvas.venue-map style="width: 100%; height: 215px; margin-bottom: 1em;" data-lat="#{resource.latitude}" data-long="#{resource.longitude}"
+/    address = inline_address(resource) 
+/    p.phone = number_to_phone( resource.phone, area_code: true)
+/    - if resource.url.present? && resource.url != "http://"
+/      p.links #{link_to "visit website", resource.url, target: "_new"} | #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
+/    - else
+/      p.links #{link_to "add the website", edit_venue_path(resource, autofocus: "venue_url")} | #{link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new"}
+/
+/    p = link_to "edit this venue's details", edit_venue_path(resource)
+/    
+/  #higher-scored-venues = render 'higher_scored_venues'    
 
 
 #submit-score-modal.modal style="display: none;"

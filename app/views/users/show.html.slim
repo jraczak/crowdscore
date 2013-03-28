@@ -13,6 +13,15 @@
         td.member_since = resource.created_at.strftime("%b '%y")
         - unless resource.twitter_username.nil? || resource.twitter_username.empty?
           td.twitter = link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank"
+      tr
+        td.karma = "karma: #{resource.points}"
+        td.follows = "following: #{resource.follows.count}"
+        - activity = resource.get_network_activity
+        - activity.each do |a|
+          - if a.class == VenueScore
+            td = "#{User.find(a.user_id).first_name} posted a score of #{a.computed_score} to #{Venue.find(a.venue_id).name }."
+          - elsif a.class == Tip
+            td = "#{User.find(a.user_id).first_name} posted a tip to #{Venue.find(a.venue_id).name}."
 
   .span6#user-stats
     table#stats

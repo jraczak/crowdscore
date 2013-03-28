@@ -84,11 +84,11 @@ option:hover {
 /* GLOBAL STYLES */
 
 html {
-  background-color: #f6f6f6;
+  background-color: #f7f7f7;
 }
 
 body {
-  background-color: #f6f6f6;
+  background-color: #f7f7f7;
   font-family: 'Gotham-Light';
 }
 
@@ -116,6 +116,10 @@ a:hover {
   color: white;
 } 
 */
+
+.header-logo {
+  line-height: 60px;
+}
 
 input.text-field-standard {
   border: none;
@@ -178,7 +182,21 @@ input.text-field-standard:focus {
   width: 220px;
 }
 
+.new-btn-main {
+	background-color:#ea4f4f;
+	width: 220px;
+	display:inline-block; 
+	color:#ffffff;
+	font-family: 'Gotham-Light';
+	font-size:12px;
+	text-align: center;
+	text-decoration:none;
+	vertical-align: middle;
+	padding: 10px 0;
+	margin: auto;
+	margin-top: 30px;
 
+}
 
 
 
