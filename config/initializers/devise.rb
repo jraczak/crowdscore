@@ -204,7 +204,7 @@ Devise.setup do |config|
     'production' => {
       :id => "265876943444002",
       :secret => "d516242fd4c4fa8af014b3a033756da6",
-      :domain => "beta.crowdscoreapp.com"
+      :domain => "crowdsco.re"
     }
   }
 
