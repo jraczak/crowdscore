@@ -30,6 +30,8 @@ Crowdscore::Application.routes.draw do
       end
     end
   end
+  
+  resources :venue_snapshots
 
   resources :venue_categories, :only => [] do
     resources :venue_subcategories, :only => :index

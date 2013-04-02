@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213210414) do
+ActiveRecord::Schema.define(:version => 20130401230126) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -227,6 +227,19 @@ ActiveRecord::Schema.define(:version => 20130213210414) do
 
   add_index "venue_scores", ["user_id"], :name => "index_venue_scores_on_user_id"
   add_index "venue_scores", ["venue_id"], :name => "index_venue_scores_on_venue_id"
+
+  create_table "venue_snapshots", :force => true do |t|
+    t.integer  "venue_id"
+    t.integer  "venue_score_count"
+    t.integer  "tip_count"
+    t.integer  "current_crowdscore"
+    t.integer  "score_breakdown1"
+    t.integer  "score_breakdown2"
+    t.integer  "score_breakdown3"
+    t.integer  "score_breakdown4"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "venue_subcategories", :force => true do |t|
     t.integer  "venue_category_id"

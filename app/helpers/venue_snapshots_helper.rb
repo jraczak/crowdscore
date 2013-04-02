@@ -1,0 +1,2 @@
+module VenueSnapshotsHelper
+end

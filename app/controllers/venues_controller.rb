@@ -27,6 +27,21 @@ class VenuesController < InheritedResources::Base
   def show
     @higher_scored_venues = Venue.higher_scored_than(resource, 10)
   end
+  
+  def create_snapshot
+    venue = Venue.find(params[:id])
+    snapshot = VenueSnapshot.new(
+    							venue_id: venue.id,
+    							venue_scores_count: venue.venue_scores.count,
+    							tip_count: venue.tips.count,
+    							current_crowdscore: venue.computed_score,
+    							score_breakdown1: venue.score_breakdown1,
+    							score_breakdown2: venue.score_breakdown2,
+    							score_breakdown3: venue.score_breakdown3,
+    							score_breakdown4: venue.score_breakdown4
+    							)
+    snapshot.save!
+  end
 
   private
 

@@ -12,6 +12,7 @@ class Venue < ActiveRecord::Base
   has_many :venue_scores
   has_many :tips
   has_many :venue_images
+  has_many :venue_snapshots
 
   has_and_belongs_to_many :lists
   has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
@@ -49,7 +50,7 @@ class Venue < ActiveRecord::Base
     #where('computed_score > ?', venue.computed_score.to_i).limit _limit
     Venue.near([venue.latitude, venue.longitude], 2).where('computed_score > ? AND venue_category_id = ?', venue.computed_score.to_i, venue.venue_category_id).limit _limit
   end
-
+  
   def to_param
     slug = "#{id}-"
     slug += "#{name} #{city} #{state}".downcase.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
