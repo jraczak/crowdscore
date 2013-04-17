@@ -1,0 +1,587 @@
+<% provide(:title, " | #{resource.name.titlecase}") %>
+<script>
+// set JS variables for controls to be made available for gmaps4rails JS files
+var disable_default_ui = true;
+var page_zoom_level = 14;
+var auto_adjust = false;
+var auto_zoom = false;
+</script>
+
+<div class="navbar"></div>
+  <div class="top-block"></div>
+  <div id="gray-bar" class="bottom-block"></div>
+
+  <div class="container">
+
+  	<!-- Start of left rail -->
+  	<div class="left-rail-container">
+
+			<!-- Overall score container-->
+		  <div class="overall-score-container">
+			  <div class="inner-color"></div>
+			  <div class="header">OVERALL SCORE</div>
+			  <div class="inner-body">
+					<canvas id="overallScoreCanvas" width="173" height="173"></canvas>
+			  	<div id="overallScorePercentage"><%= resource.score %></div>
+			  	<% unless resource.venue_scores.empty? %>
+			  	<p>based on <%= pluralize(resource.venue_scores.count, "score") %></p>
+			  	<% end %>
+					<a class="submit-score-btn" href="#">SUBMIT YOUR SCORE</a>
+				</div>
+		  </div><!-- end overall score container -->
+
+
+		 	<!-- Image container -->
+			<div class="venue-image" style="background-image: url(./assets/images/food.jpg)">
+			  <img src="./assets/images/zoom.png"></img>
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a href="#">+</a></div>
+			</div><!-- End Container -->
+
+
+		 	<!-- Tags container -->
+			<div class="tags-container">
+				<div class="header">
+					<h4>TAGS</h4>
+				</div>
+				
+				<div class="tag-group">
+					<h4>GOOD FOR...</h4>
+					<a class="tag-btn" href="#">GUYS NIGHT OUT</a>
+					<a class="tag-btn" href="#">PARTIES</a>
+					<a class="tag-btn" href="#">DATES</a>
+					<a class="tag-btn" href="#">DATES</a>
+				</div>
+				
+				<div class="tag-group">
+					<h4>HAS...</h4>
+					<a class="tag-btn" href="#">WI-FI</a>
+					<a class="tag-btn" href="#">HAPPY HOUR</a>
+					<a class="tag-btn" href="#">WI-FI</a>
+					<a class="tag-btn" href="#">OUTDOOR SEATING</a>
+				</div>
+				<a class="see-all-tags" href="#">
+					<h4>SEE ALL TAGS</h4>
+				</a>
+			  
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a href="#">+</a></div>
+
+			</div><!-- End tags container -->
+  	</div><!-- End of left rail -->
+
+
+  	<!-- Start of right rail -->
+  	<div class="right-rail-container">
+  		<div class="right-rail-header">
+	  		<div class="venue-title"><%= resource.name.titlecase %></div>
+
+				<!-- Grey bar section -->
+				<div class="venue-sub-header">
+					<div class="inner-body">
+						<span class="venue-type">
+							<p><%= resource.venue_category.name %></p>
+						</span>
+						<span class="venue-hours">
+							<p class="hours">12:30AM - 11:30PM</p>
+							<div class="operation-status-open">OPEN</div>
+						</span>
+						<span class="share-venue">	  			
+							<a href="#">
+								<p>
+									<img src="./assets/images/share.png" alt="">SHARE
+								</p>
+							</a>
+						</span>	
+						<span class="add-venue-to-list">
+							<a href="#">
+								<p>
+									<img src="./assets/images/add-btn.png" alt="">ADD TO LIST
+								</p>
+							</a>
+						</span>
+					</div>
+				</div> <!-- End grey bar section -->
+
+
+				<!-- Venue details section (with google map) -->
+				<div class="venue-details">
+					<div class="map-container">
+						<div id="map_canvas" class="map" style="">
+							<%= gmaps4rails(@json) %>
+						</div>
+						<!--<div id="map_canvas" class="map" style="background-image: url(https://www.google.com/maps/vt/data=Ay5GWBeob_WIPLDYoIWcfVXxvZu9XwJ55OX7Ag,vhh4At2l71MGYYtVxfBqIC_CRGSZyg-GRrwtqNhZJ-t4HcGuMeZueJA5IiX3T1FONpIFj1Swu0W30z3xZ49FfJrLe_As5c6T4I3M_LGx);"></div> -->
+					</div>
+					<div class="body">
+						<div class="address-contact-container">
+							<div class="center-text">
+								<div class="address">
+									<%= "#{resource.address1} #{resource.address2}" %></br>
+									<%= "#{resource.city}, #{resource.state} #{resource.zip}" %></br>
+									<%= link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new" %>
+								</div>
+								<div class="contact">
+									<% if resource.phone.present? %>
+									  <%= number_to_phone(resource.phone, area_code: true) %></br>
+									<% else %>
+									  <%= link_to "add the phone number", edit_venue_path %></br>
+									<% end %>
+									
+									<% if resource.url.present? && resource.url != "http://" %>
+									  <%= link_to "visit the webiste", resource.url %>
+									<% else %>
+									  <%= link_to "add the website", edit_venue_path %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+						<div class="venue-traits-container">
+							<div class="center-text">
+								<div class="venue-traits">
+									<li href="#">
+										<img src="./assets/images/platter.png" alt=""><%= resource.venue_subcategory.name %>
+									</li>
+									<% if resource.tags.include?("credit cards") %>
+									  <li href="#" style="padding-left: 1px;">
+										<img src="./assets/images/credit-card.png" alt="">Accepts credit cards
+									  </li>
+									<% end %>
+									<% if resource.tags.include?("reservations") %>
+									  <li href="#" style="padding-left: 1px;">
+										<img src="./assets/images/calendar.png" alt="">Takes reservations
+									  </li>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- end of venue details section -->
+
+
+				<!-- Venue score section with graphs -->
+				<div class="venue-scores">
+					<span>
+						<div class="left-offset">
+							<canvas id="graph<%= resource.venue_category.prompt1 %>" width="68" height="68"></canvas>
+							<p><%= resource.venue_category.prompt1.upcase %></p>
+							<div class="score-percentage"></div>
+						</div>
+					</span>
+					<span>	
+						<canvas id="graph<%= resource.venue_category.prompt2 %>" width="68" height="68"></canvas>
+						<p><%= resource.venue_category.prompt2.upcase %></p>
+						<div class="score-percentage"></div>
+					</span>
+					<span>
+						<canvas id="graph<%= resource.venue_category.prompt3 %>" width="68" height="68"></canvas>
+						<p><%= resource.venue_category.prompt3.upcase %></p>
+						<div class="score-percentage"></div>
+					</span>
+					<span>
+						<div class="right-offset">
+							<canvas id="graph<%= resource.venue_category.prompt4 %>" width="68" height="68"></canvas>
+							<p><%= resource.venue_category.prompt4.upcase %></p>
+							<div class="score-percentage"></div>
+						</div>
+					</span>
+				</div><!-- End venue score section -->
+			</div><!-- End Venue right rail header -->
+
+
+			<!-- Comment box container -->
+			<div class="commentbox-container">
+				<div class="avatar circletag"></div>
+				<div class="text-bubble"></div>
+				<textarea id="tip-input" onkeyup="charCounter(this)" class="text-bubble" type="text" rows="2" max="20" placeholder="Add a tip. What's good to know about <%= resource.name.titlecase %>?	"></textarea>	
+				<div class="rem-char">
+					<strong id="rem-char">100</strong> characters remaining
+				</div>
+				<div class="btn-submit-tip">SUBMIT YOUR TIP</div>
+			</div><!-- End comment box container -->
+
+
+			<!-- Tip header section containing sort view and tip count -->
+			<div class="tips-header">
+				<h4><%= pluralize(resource.tips.count, "Tip") %></h4>
+				<div class="toggle-sort">
+					<div class="sort-popular-btn">POPULAR</div>
+					<div class="sort-recent-btn">RECENT</div>
+				</div>
+			</div><!-- End tip header section -->
+
+		<div class="all-tips-container">
+		<% if resource.tips.any? %>
+		  <% resource.tips.each do |t| %>
+		    <div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
+					<div class="body-text"><%= t.text %></div>					
+					<div class="upvotes-and-share">
+						<a href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b><%= t.tip_likes.count %></b> upvotes</p>
+						</a>
+						<a href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+	      <% end %>
+		<% else %>
+		  <h5>No tips here yet.</h5>
+		<% end %>	
+<!--			<div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
+					<div class="body-text">This is a really long comment. Im making this comment so long, cause I want to. It is pretty sweeeeet and I like to write annoying tips all the time on every site ever everywhere! </div>					
+					<div class="upvotes-and-share">
+						<a href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b>1,234</b> upvotes</p>
+						</a>
+						<a href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
+					<div class="body-text"> Ilike writing the same thing over and over and over again. When a tip gets this long... Someone hacked your shit.</div>					
+					<div class="upvotes-and-share">
+						<a href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b>1,234</b> upvotes</p>
+						</a>
+						<a href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time">JUSTIN | 25 minutes ago</h4>	
+					<div class="body-text">Don't let someone hack your shit. K thanks..</div>					
+					<div class="upvotes-and-share">
+						<a href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b>1,234</b> upvotes</p>
+						</a>
+						<a href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
+					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
+					<div class="upvotes-and-share">
+						<a class="thumbs-up" href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b>1,234</b> upvotes</p>
+						</a>
+						<a class="share" href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+			<div class="tip-container">
+				<div class="avatar circletag"></div>
+				<div class="body">
+					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
+					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
+					<div class="upvotes-and-share">
+						<a href="#">
+							<img src="./assets/images/thumbs-up.png" alt="">
+							<p><b>1,234</b> upvotes</p>
+						</a>
+						<a href="#">
+							<img src="./assets/images/share.png" alt="">
+							<p><b>SHARE</b></p>
+						</a>
+					</div>
+				</div>	
+			</div>
+		</div><!-- End tips container -->
+		
+		
+		<div class="show-more-tips-container">
+			<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
+		</div>
+
+
+  	</div><!-- End of right rail -->
+  </div><!-- End floating body container div -->
+	
+
+
+  <!-- Other Nearby Restaurants Division -->
+	<% if @higher_scored_venues.any? %>
+	<div class="other-nearby-restaurants-division">
+		<h4>Similar Places, Higher Scores</h4>
+
+	  <% @higher_scored_venues.each do |v| %>	
+		<div class="other-nearby-restaurants-container">
+			<div class="graph-container">
+	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
+		 		<div class="body">
+		 			<div class="text">
+						<div>	
+		 					<p><%= v.name.upcase %></p>
+		 				</div>
+		 			</div>
+	 			</div>
+	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
+			</div>
+				<p class="pull-left"><%= v.venue_subcategory.name %></p>
+				<p class="pull-right distance" data-lat="#{v.latitude}" data-long="#{v.longitude}"></p>
+		</div>
+	  <% end %>
+
+		<div class="other-nearby-restaurants-container">
+			<div class="graph-container">
+	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
+		 		<div class="body">
+		 			<div class="text">
+						<div>	
+		 					<p>GARY DANKO</p>
+		 				</div>
+		 			</div>
+	 			</div>
+	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
+			</div>
+				<p class="pull-left">New American</p>
+				<p class="pull-right">0.5 mi away</p>
+		</div>
+
+		<div class="other-nearby-restaurants-container">
+			<div class="graph-container">
+	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
+		 		<div class="body">
+		 			<div class="text">
+						<div>	
+		 					<p>THE HOUSE</p>
+		 				</div>
+		 			</div>
+	 			</div>
+	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
+			</div>
+				<p class="pull-left">Chinese</p>
+				<p class="pull-right">0.7 mi away</p>
+		</div>
+
+		<div class="other-nearby-restaurants-container">
+			<div class="graph-container">
+	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
+		 		<div class="body">
+		 			<div class="text">
+						<div>	
+		 					<p>LA FOLIE</p>
+		 				</div>
+		 			</div>
+	 			</div>
+	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
+			</div>
+				<p class="pull-left">French</p>
+				<p class="pull-right">1.0 mi away</p>
+		</div>
+
+	<% end %>
+	</div><!-- End of other Nearby Restaurant Division -->
+	<div class="footer"></div>
+
+
+
+
+
+
+
+
+<script>  
+	function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness)
+{
+	this.ctx = canvas;
+	this.canvas = canvas.getContext('2d');
+	this.outterColor = outterColor;
+	this.innerColor = innerColor;
+	this.intervalID;
+	this.thickness = thickness;
+	this.startAngle = zeroDegree;
+	this.endAngle = zeroDegree;
+	this.speed = 10; // speed * 100 = total time in ms
+	this.xCenter = canvas.width / 2;
+	this.yCenter = canvas.height / 2;
+	this.radius = this.xCenter - this.thickness / 2;
+	this.zeroDegree = zeroDegree;
+	this.percent = percent;
+}
+
+GraphAnimation.prototype.drawFullCircle = function (){
+	// Draw the solid circle 
+  this.canvas.beginPath();
+  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+  this.canvas.lineWidth = this.thickness;
+  this.canvas.strokeStyle = this.innerColor;
+  this.canvas.stroke(); 
+
+  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+  this.canvas.lineWidth = 0;
+  this.canvas.fillStyle ='#FFFFFF';
+  this.canvas.fill();
+  this.canvas.stroke();
+};
+
+GraphAnimation.prototype.drawPartialCircle = function() {
+  var self = this;
+  function updateInterval() {
+    self.updateShape();
+  }
+  this.intervalID = window.setInterval(updateInterval, this.speed)
+}
+
+GraphAnimation.prototype.stopTimer = function() {
+  if (this.intervalID != null) window.clearInterval(this.intervalID)
+  this.intervalID = null;
+}
+
+GraphAnimation.prototype.updateShape = function() {
+	
+	if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
+		// Draw a piece of the circle on each existing canvas
+		this.canvas.beginPath();
+		this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.endAngle, false);
+		this.canvas.lineWidth = this.thickness;
+		this.canvas.strokeStyle = this.outterColor;
+		this.canvas.stroke();
+		this.startAngle = this.endAngle - Math.PI/(4*180);
+		this.endAngle = this.endAngle + (2 * Math.PI/100);
+	}
+	else {
+		this.stopTimer();
+	}
+}
+
+GraphAnimation.prototype.drawPercent = function(size){
+	this.canvas.font = size + 'pt Sans-Serif';
+	this.canvas.textAlign = 'center';
+	this.canvas.fillStyle = this.outterColor;
+	this.canvas.fillText(this.percent, this.xCenter, this.yCenter + size / 2);
+}
+
+var count = 1;
+GraphAnimation.prototype.drawLoading = function(){
+	if ( count < 10 ){
+	
+		this.canvas.beginPath();
+	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+	  this.canvas.lineWidth = this.thickness + 1;
+	  this.canvas.strokeStyle = "#FFFFFF";
+	  this.canvas.stroke(); 
+	  
+		this.canvas.beginPath();
+	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+	  this.canvas.lineWidth = this.thickness;
+	  this.canvas.strokeStyle = this.innerColor;
+	  this.canvas.stroke(); 
+	  
+		// Draw a piece of the circle on each existing canvas
+		this.canvas.beginPath();
+		this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.startAngle + Math.PI/2, false);
+		this.canvas.lineWidth = this.thickness;
+		this.canvas.strokeStyle = this.outterColor;
+		this.canvas.stroke();
+		this.startAngle = this.startAngle + Math.PI/180;
+	}
+	else {
+		this.stopTimer();
+	}
+}
+
+GraphAnimation.prototype.drawArc = function() {
+  var self = this;
+  function draw() {
+    self.drawLoading();
+  }
+  this.intervalID = window.setInterval(draw, this.speed)
+}
+</script>
+	
+	<script>
+    	
+    	var overallVenueScore = <%= resource.score %> // Overall Score Container score.
+			var venueScoreCategories = [<%= resource.score_breakdown1 %>, <%= resource.score_breakdown2 %>, <%= resource.score_breakdown3 %>, <%= resource.score_breakdown4 %>]; //Venue Score Categories at the top of the page
+			var otherVenueScores = [90, 80, 70, 60]; // Other venue scores at the bottom of the page
+
+
+			var zeroLoc = Math.PI*3/2; 
+
+    	var overallScoreGraph = document.getElementById("overallScoreCanvas");
+    	var overallScoreAnimation = new GraphAnimation(overallScoreGraph, "#78E1FF", "#00B5E9", overallVenueScore, zeroLoc, 13, 50);
+			overallScoreAnimation.drawFullCircle();
+			overallScoreAnimation.drawPartialCircle();
+			document.getElementById('overallScorePercentage').innerHTML = overallVenueScore;	
+			
+			var circleColors = ["#78E1FF", "#00B5E9"];	
+		
+
+    	var graphs = new Array;
+    	var otherGraphs = new Array;
+    	var identifier = "graph";
+    	
+    	var index = 0;
+    	var arr = document.getElementsByTagName('canvas');
+    	for ( var i = 0; i < arr.length; i++ ) {
+    		if ( arr[i].id.indexOf( identifier ) !== -1 ){
+    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], zeroLoc, 5));
+    			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
+    			index++;
+    			
+    		}
+    	}
+    	
+    	index = 0;
+    	for ( var i = 0; i < arr.length; i++ ) {
+    		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
+    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], zeroLoc, 4));
+    			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
+    			index++;
+    		}
+    	}
+
+
+
+    	graphs.forEach(draw);
+    	otherGraphs.forEach(draw);
+      function draw (elem, index, arr) {
+	      elem.drawFullCircle();
+	      elem.drawPartialCircle();
+      }		
+      
+      $( document ).ready(function(){
+      	charCounter(document.getElementById('tip-input'));
+      })
+
+    	function charCounter(item){
+    		var len = item.value.length;
+    		$('#rem-char').text(100 - len );
+    	}
+
+
+
+    </script>

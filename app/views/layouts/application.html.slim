@@ -8,6 +8,8 @@ html
     = csrf_meta_tags
 
   body
+    == yield
+    
     .topbar
       .fill
         .container
@@ -17,7 +19,7 @@ html
             - if params[:controller] =~ /^admin/
               li = link_to "← Return to site", root_path
             - else
-              li = link_to "See All Venues", venues_path
+             li = link_to "See All Venues", venues_path
           ul.nav.secondary-nav
             - if user_signed_in?
               li.menu
@@ -34,13 +36,15 @@ html
               li = link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
               li = link_to "Sign up", new_user_registration_path
 
+    
+    
     #masthead
       .container
         .row
           .span16
             = flash_messages
 
-        == yield
+    
 
     #footer
       .container
