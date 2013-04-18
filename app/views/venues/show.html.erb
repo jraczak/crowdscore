@@ -44,22 +44,21 @@ var auto_zoom = false;
 				<div class="header">
 					<h4>TAGS</h4>
 				</div>
+					
+					<% tag_categories = get_active_tag_categories(resource) %>
+					<% tags = get_active_tags(resource) %>
+					
+					<% tag_categories.each do |tc| %>
+					  <div class="tag-group">
+					  <h4><%= tc.name.upcase %>...</h4>
+					    <% tags.each do |t| %>
+					    <% if t.tag_category_id == tc.id %>
+					      <a class="tag-btn" href="#"><%= t.name.upcase %></a>
+					    <% end %>
+					  <% end %>
+					  </div>
+					<% end %>
 				
-				<div class="tag-group">
-					<h4>GOOD FOR...</h4>
-					<a class="tag-btn" href="#">GUYS NIGHT OUT</a>
-					<a class="tag-btn" href="#">PARTIES</a>
-					<a class="tag-btn" href="#">DATES</a>
-					<a class="tag-btn" href="#">DATES</a>
-				</div>
-				
-				<div class="tag-group">
-					<h4>HAS...</h4>
-					<a class="tag-btn" href="#">WI-FI</a>
-					<a class="tag-btn" href="#">HAPPY HOUR</a>
-					<a class="tag-btn" href="#">WI-FI</a>
-					<a class="tag-btn" href="#">OUTDOOR SEATING</a>
-				</div>
 				<a class="see-all-tags" href="#">
 					<h4>SEE ALL TAGS</h4>
 				</a>
@@ -67,7 +66,11 @@ var auto_zoom = false;
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
 
-			</div><!-- End tags container -->
+			</div>
+			
+			
+
+			<!-- End tags container -->
   	</div><!-- End of left rail -->
 
 
@@ -318,6 +321,7 @@ var auto_zoom = false;
 					</div>
 				</div>	
 			</div>
+		-->
 		</div><!-- End tips container -->
 		
 		
@@ -343,7 +347,7 @@ var auto_zoom = false;
 		 		<div class="body">
 		 			<div class="text">
 						<div>	
-		 					<p><%= v.name.upcase %></p>
+		 					<p><%= link_to v.name.upcase, v %></p>
 		 				</div>
 		 			</div>
 	 			</div>
@@ -354,53 +358,7 @@ var auto_zoom = false;
 		</div>
 	  <% end %>
 
-		<div class="other-nearby-restaurants-container">
-			<div class="graph-container">
-	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
-		 		<div class="body">
-		 			<div class="text">
-						<div>	
-		 					<p>GARY DANKO</p>
-		 				</div>
-		 			</div>
-	 			</div>
-	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
-			</div>
-				<p class="pull-left">New American</p>
-				<p class="pull-right">0.5 mi away</p>
-		</div>
-
-		<div class="other-nearby-restaurants-container">
-			<div class="graph-container">
-	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
-		 		<div class="body">
-		 			<div class="text">
-						<div>	
-		 					<p>THE HOUSE</p>
-		 				</div>
-		 			</div>
-	 			</div>
-	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
-			</div>
-				<p class="pull-left">Chinese</p>
-				<p class="pull-right">0.7 mi away</p>
-		</div>
-
-		<div class="other-nearby-restaurants-container">
-			<div class="graph-container">
-	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
-		 		<div class="body">
-		 			<div class="text">
-						<div>	
-		 					<p>LA FOLIE</p>
-		 				</div>
-		 			</div>
-	 			</div>
-	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
-			</div>
-				<p class="pull-left">French</p>
-				<p class="pull-right">1.0 mi away</p>
-		</div>
+		
 
 	<% end %>
 	</div><!-- End of other Nearby Restaurant Division -->
