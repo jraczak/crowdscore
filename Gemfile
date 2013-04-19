@@ -23,6 +23,7 @@ gem "ejs"
 gem "omniauth-facebook"
 gem "gmaps4rails"
 gem "merit"
+gem "sunspot_solr"#, "~> 2.0.0.pre"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,7 +49,7 @@ group :development, :test do
   gem "pickle"
   gem "rails3-generators"
   gem "spork", "~> 0.9.0.rc"
-  gem "sunspot_solr", "~> 2.0.0.pre"
+  gem "sunspot_solr"#, "~> 2.0.0.pre"
   gem 'guard-spin'
 end
 

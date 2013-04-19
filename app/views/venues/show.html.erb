@@ -44,6 +44,8 @@ var auto_zoom = false;
 				<div class="header">
 					<h4>TAGS</h4>
 				</div>
+				
+				<% if resource.tags.any? %>
 					
 					<% tag_categories = get_active_tag_categories(resource) %>
 					<% tags = get_active_tags(resource) %>
@@ -62,7 +64,9 @@ var auto_zoom = false;
 				<a class="see-all-tags" href="#">
 					<h4>SEE ALL TAGS</h4>
 				</a>
-			  
+			    <% else %>
+			      <h4>NO TAGS YET</h4>
+			    <% end %>
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
 
