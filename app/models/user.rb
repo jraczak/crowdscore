@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   # For now, removing first_name requirement to lower registration barrier.
   # validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   validates :zip_code, numericality: true, length: { is: 5 }
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
@@ -127,6 +128,14 @@ class User < ActiveRecord::Base
   # TODO: TEST THIS!
   def has_scored_venue?(venue)
     VenueScore.exists?(user_id: id, venue_id: venue)
+  end
+  
+  def scored_venues
+    @scored_venues = []
+    self.venue_scores.each do |vs|
+      v = vs.venue
+      @scored_venues << v.venue
+    end
   end
 
   private

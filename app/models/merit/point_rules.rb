@@ -23,7 +23,9 @@ module Merit
       #   'comments#create',
       #   'photos#create'
       # ]
-      score 1, :on => 'venue_scores#create'
+      score 1, :on => 'venue_scores#create' do
+        current_user.scored_venues.include?(resource)
+      end
       score 1, :on => 'tips#create'
     end
   
