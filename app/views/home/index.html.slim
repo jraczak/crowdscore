@@ -3,6 +3,9 @@ h1 id='hero'
       
       Find new places to love.
 
+- if current_user
+  = link_to "Sign out", destroy_user_session_path, method: "delete" 
+
 .row.home
   .span16.submit
     = form_tag search_venues_path, method: :get, id: 'search' do |f|
