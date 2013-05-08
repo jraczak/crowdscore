@@ -1,0 +1,65 @@
+<h1>Hey, <%= current_user.first_name %>.</h1>
+<h3>Welcome back to Crowdscore.
+  <% if current_user.gone_for_a_week? %> 
+    We've missed you!
+  <% end %>
+</h3>
+
+<h4>User profile photo goes up here</h4>
+
+<h4>Update your profile</h4>
+
+<%= link_to "Update profile", edit_user_registration_path %>
+
+<h4>Your Karma</h4>
+  <p>Your contributions have earned you <%= pluralize(current_user.points, "point") %>.</p>
+
+
+<h4>Your network's activity</h4>
+
+<% activity = current_user.get_network_activity %>
+<% activity.each do |a| %>
+  <% if a.class == VenueScore %>
+    <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.</p><br>
+  <% elsif a.class == Tip %>
+    <p>-<%= User.find(a.user_id).first_name %> posted a tip to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
+    "<%= a.text %>"</p>
+  <% end %>
+<% end %>
+
+<h4>People who follow you</h4>
+  <p>You have <%= pluralize(current_user.followers.count, "follower") %>.</p><br>
+  <% unless current_user.followers.empty? %>
+    <% current_user.followers.each do |f| %>
+      <%= link_to f.username, f %><br>
+    <% end %>
+  <% end %>
+
+<h4>People you follow</h4>
+  <p>You are following <%= pluralize(current_user.follows.count, "person") %>.</p><br>
+  <% unless current_user.follows.empty? %>
+    <% current_user.follows.each do |f| %>
+      <%= link_to f.username, f %><br>
+    <% end %>
+  <% end %>
+
+<h4>Your Lists</h4>
+  <% if current_user.lists.empty? %>
+    <p>You haven't created any lists yet.</p>
+  <% else %>
+    <% current_user.lists.each do |l| %>
+      <%= l.name %><br>
+    <% end %>
+  <% end %>
+
+
+<h4>Invite people to Crowdscore</h4>
+
+<a href="#">Link to Invitations page goes here</a>
+
+
+
+
+
+        
+        

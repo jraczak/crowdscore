@@ -1,4 +1,7 @@
 Crowdscore::Application.routes.draw do
+  get "user_dashboard/show"
+  match "dashboard" => "UserDashboard#show"
+
   # TODO: Remove these.. they probably aren't needed
   get "user_locks/new"
 

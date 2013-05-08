@@ -8,7 +8,7 @@ html
     = csrf_meta_tags
 
   body
-    == yield
+    /yield used to go here
     
     .topbar
       .fill
@@ -35,6 +35,7 @@ html
             - else
               li = link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
               li = link_to "Sign up", new_user_registration_path
+            = link_to "Sign out", destroy_user_session_path, method: "delete"
 
     
     
@@ -43,6 +44,8 @@ html
         .row
           .span16
             = flash_messages
+            
+    == yield
 
     
 

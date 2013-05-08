@@ -68,6 +68,15 @@ class User < ActiveRecord::Base
     end
   end
   
+  def gone_for_a_week?
+   if (DateTime.now.to_i - self.last_sign_in_at.to_i) / (24 * 60 * 60) > 7
+     true
+   else
+     false
+   end
+  end
+  
+  
   def get_network_activity
     @activities = []
     @follows = self.follows.all
