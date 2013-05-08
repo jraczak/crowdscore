@@ -133,8 +133,7 @@ class User < ActiveRecord::Base
   def scored_venues
     @scored_venues = []
     self.venue_scores.each do |vs|
-      v = vs.venue
-      @scored_venues << v.venue
+      @scored_venues << vs.venue
     end
   end
 
