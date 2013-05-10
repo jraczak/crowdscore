@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   
   before_save :create_permalink
   
-  devise :database_authenticatable, :registerable, :confirmable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
@@ -31,22 +31,33 @@ class User < ActiveRecord::Base
 
   has_many :their_follows, foreign_key: :followed_id, class_name: 'Follow', dependent: :destroy
   has_many :followers, through: :their_follows
+  
+  has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
-  # For now, removing first_name requirement to lower registration barrier.
-  # validates :first_name, presence: true
+  
+  validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :zip_code, numericality: true, length: { is: 5 }
+  validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
   validates :birth_day, inclusion: { in: 1..31, allow_blank: true }
   validate :check_date_for_realness
-  validate :prevent_username_change, on: :update
+  # Removing username update validation - should check later for conflicts or issues arising from this
+  # validate :prevent_username_change, on: :update
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     email = conditions.delete(:email)
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
+  end
+  
+  def has_zip_code?
+    if self.zip_code.nil?
+      return false
+    else
+      return true
+    end
   end
 
   # Public: Verify if a user has permission to submit a score to a given venue.
@@ -145,14 +156,23 @@ class User < ActiveRecord::Base
       @scored_venues << vs.venue
     end
   end
+  
+  # Moving permalink method to public to address method error during invitation acceptance
+  def create_permalink
+    unless username.nil?
+      self.permalink = username.downcase
+    end
+  end
 
   private
 
   # Create permalink using provided username for user-friendly URLs
   #
-  def create_permalink
-    self.permalink = username.downcase
-  end
+  #def create_permalink
+  # unless username.nil?
+  #    self.permalink = username.downcase
+  #  end
+  #end
   
   # Check if any facet of a user's birthday is provided.
   #

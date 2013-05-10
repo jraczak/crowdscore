@@ -66,6 +66,31 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "11fa7d0cd22dc8fdf2f645c2ab920c1ab8ef83d71e9bc3a4845b9c2ff3036405b3d69a0674acca16a25495a94d3a2ace4009cd14222a04ddf370dc5d407ee5c1"
 
+  # ==> Configuration for :invitable
+  # The period the generated invitation token is valid, after
+  # this period, the invited resource won't be able to accept the invitation.
+  # When invite_for is 0 (the default), the invitation won't expire.
+  # config.invite_for = 2.weeks
+
+  # Number of invitations users can send.
+  # - If invitation_limit is nil, there is no limit for invitations, users can
+  # send unlimited invitations, invitation_limit column is not used.
+  # - If invitation_limit is 0, users can't send invitations by default.
+  # - If invitation_limit n > 0, users can send n invitations.
+  # You can change invitation_limit column for some users so they can send more
+  # or less invitations, even with global invitation_limit = 0
+  # Default: nil
+  # config.invitation_limit = 5
+
+  # The key to be used to check existing users when sending an invitation
+  # and the regexp used to test it when validate_on_invite is not set.
+  # config.invite_key = {:email => /\A[^@]+@[^@]+\z/}
+  # config.invite_key = {:email => /\A[^@]+@[^@]+\z/, :username => nil}
+
+  # Flag that force a record to be valid before being actually invited
+  # Default: false
+  # config.validate_on_invite = true
+
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is 0.days
@@ -73,7 +98,8 @@ Devise.setup do |config|
   # You can use this to let your user access some features of your application
   # without confirming the account, but blocking it after a certain period
   # (ie 2 days).
-  # config.allow_unconfirmed_access_for = 2.days
+  # ALLOW ACCESS TO NEW REGISTRATNTS WITHOUT CONFIRMING EMAIL ADDRESS FOR 2 DAYS, THEN LOCK
+  config.allow_unconfirmed_access_for = 2.days
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
@@ -87,6 +113,7 @@ Devise.setup do |config|
 
   # If true, uses the password salt as remember token. This should be turned
   # to false if you are not using database authenticatable.
+  # THIS HAS BEEN DEPRECATED BY DEVISE. LOOK INTO THE EFFECTS OF THAT.
   config.use_salt_as_remember_token = true
 
   # Options to be passed to the created cookie. For instance, you can set

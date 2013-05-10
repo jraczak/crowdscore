@@ -5,7 +5,7 @@ gem 'rails', '3.2.2'
 gem "pg"
 gem "inherited_resources"
 gem "slim-rails"
-gem "devise", "~> 2.0.0"
+gem "devise", "~> 2.1.0"
 gem "cancan"
 gem "thin"
 gem "carrierwave"
@@ -24,6 +24,7 @@ gem "omniauth-facebook"
 gem "gmaps4rails"
 gem "merit"
 gem "sunspot_solr"#, "~> 2.0.0.pre"
+gem "devise_invitable", "~> 1.1.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
