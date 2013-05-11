@@ -1,8 +1,10 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Hey, <%= @resource.email %>!</p>
 
-<p>Someone has invited you to <%= root_url %>, you can accept it through the link below.</p>
+<p>You've been invited to use Crowdscore <%= root_url %> by your friend <%= User.find(@resource.invited_by_id).first_name %>.</p>
+
+<p>Crowdscore is a new way to share experiences about places you've been and find new places to love. You can also follow others whose tastes you admire to make it even easier to find all the best places near you. Accept your invitation below and we'll get you set up!</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 
-<p>If you don't want to accept the invitation, please ignore this email.<br />
-Your account won't be created until you access the link above and set your password.</p>
+<p>If you don't want to join Crowdscore right now, simply ignore this email.<br />
+You can always come back another time to accept your invite and set up your account.</p>
