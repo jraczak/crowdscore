@@ -1,6 +1,6 @@
 <p>Hey, <%= @resource.email %>!</p>
 
-<p>You've been invited to use <%= link_to "Crowdscore", root_url %> by your friend <%= link_to User.find(@resource.invited_by_id).first_name,  User.find(@resource.invited_by_id) %>.</p>
+<p>You've been invited to use <%= link_to "Crowdscore", root_url %> by your friend <%= link_to User.find(@resource.invited_by_id).first_name,  user_path_url(User.find(@resource.invited_by_id)) %>.</p>
 
 <p>Crowdscore is a new way to share experiences about places you've been and find new places to love. You can also follow others whose tastes you admire to make it even easier to find all the best places near you. Accept your invitation below and we'll get you set up!</p>
 
