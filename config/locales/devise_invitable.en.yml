@@ -10,8 +10,8 @@ en:
         header: "Send invitation"
         submit_button: "Send an invitation"
       edit:
-        header: "Set your password"
-        submit_button: "Set my password"
+        header: "Let's set up your account."
+        submit_button: "Create my account"
     mailer:
       invitation_instructions:
-        subject: 'Invitation instructions'
+        subject: "You've been invited to try Crowdscore!"
