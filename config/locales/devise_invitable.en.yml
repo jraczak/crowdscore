@@ -1,13 +1,13 @@
 en:
   devise:
     invitations:
-      send_instructions: 'An invitation email has been sent to %{email}.'
+      send_instructions: "We've sent an invitation email to %{email}. Tell them to be on the lookout!"
       invitation_token_invalid: 'The invitation token provided is not valid!'
-      updated: 'Your password was set successfully. You are now signed in.'
+      updated: 'Your account was successfully created. Welcome to Crowdscore!'
       no_invitations_remaining: "No invitations remaining"
       invitation_removed: 'Your invitation was removed.'
       new:
-        header: "Send invitation"
+        header: "Invite friends to Crowdscore"
         submit_button: "Send an invitation"
       edit:
         header: "Let's set up your account."
