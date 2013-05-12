@@ -27,6 +27,7 @@ module Merit
         current_user.scored_venues.include?(resource)
       end
       score 1, :on => 'tips#create'
+      score 1, :on => 'venues#create'
     end
   
     #def add_karma_for_score

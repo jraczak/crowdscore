@@ -1,6 +1,8 @@
 Crowdscore::Application.routes.draw do
   get "user_dashboard/show"
   match "dashboard" => "UserDashboard#show"
+  match "sign_in" => redirect("/users/sign_in")
+  match "sign_up" => redirect("/users/sign_up")
 
   # TODO: Remove these.. they probably aren't needed
   get "user_locks/new"
