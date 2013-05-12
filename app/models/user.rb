@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true 
   validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
@@ -87,21 +87,25 @@ class User < ActiveRecord::Base
    end
   end
   
-  
   def get_network_activity
     @activities = []
     @follows = self.follows.all
    
     @follows.each do |f|
       f.venue_scores.each do |a|
-        @activities << a
+        if DateTime.now.to_i - a.created_at.to_i / (24 * 60 * 60) <= 7
+          @activities << a
+        end
       end
       f.tips.each do |t|
-        @activities << t
+        if DateTime.now.to_i - t.created_at.to_i / (24 * 60 * 60) <= 7
+          @activities << t
+        end
       end
     end
     @activities
   end
+  
   
   # Public: Get the user's full name.
   #
