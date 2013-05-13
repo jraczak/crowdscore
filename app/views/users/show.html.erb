@@ -49,7 +49,7 @@
 <%= resource.average_score %>
 
 <h4>Highest score given</h4>
-<p><%= resource.highest_score %> at <% unless resource.highest_score_venue.nil? %><%= resource.highest_score_venue.name %><% end %></p>
+<p><%= resource.highest_score %><% unless resource.highest_score_venue.nil? %> at <%= resource.highest_score_venue.name %><% end %></p>
 
 <h4>Lowest score given</h4>
-<p><%= resource.lowest_score %> at <% unless resource.lowest_score_venue.nil? %><%= resource.lowest_score_venue.name %><% end %></p>
+<p><%= resource.lowest_score %><% unless resource.lowest_score_venue.nil? %> at <%= resource.lowest_score_venue.name %><% end %></p>

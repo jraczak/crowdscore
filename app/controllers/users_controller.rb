@@ -19,13 +19,13 @@ class UsersController < InheritedResources::Base
       flash[:notice] = "You are now following #{resource.username}!"
     end
 
-    redirect_to resource
+    redirect_to user_url(resource)
   end
   
   def unfollow
     Follow.where(followed_id: resource.id, follower_id: current_user.id).first.delete
     #resource.follows.where(follower_id = current_user.id)
     flash[:notice] = "You are no longer following #{resource.username}"
-    redirect_to resource
+    redirect_to user_url(resource)
   end
 end
