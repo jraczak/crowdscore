@@ -121,22 +121,38 @@ class User < ActiveRecord::Base
   
   def highest_score
     @scores = venue_scores.all
-    @scores.sort_by {|score| score.computed_score}.last.computed_score
+    if !@scores.empty?
+      @scores.sort_by {|score| score.computed_score}.last.computed_score
+    else
+      "No scores yet"
+    end 
   end
   
   def highest_score_venue
     @scores = venue_scores.all
-    @scores.sort_by {|score| score.computed_score}.last.venue
+    if !@scores.empty?
+      @scores.sort_by {|score| score.computed_score}.last.venue
+    else
+      nil
+    end
   end
   
   def lowest_score
     @scores = venue_scores.all
-    @scores.sort_by {|score| score.computed_score}.first.computed_score
+    if !@scores.empty?
+      @scores.sort_by {|score| score.computed_score}.first.computed_score
+    else
+      "No scores yet"
+    end
   end
   
   def lowest_score_venue
     @scores = venue_scores.all
-    @scores.sort_by {|score| score.computed_score}.first.venue
+    if !@scores.empty?
+      @scores.sort_by {|score| score.computed_score}.first.venue
+    else
+      nil
+    end
   end
   
   
