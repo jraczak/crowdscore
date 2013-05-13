@@ -112,8 +112,10 @@ class User < ActiveRecord::Base
     @scores.each do |s|
       @average_score = @average_score + s.computed_score
     end
-    @average_score = @average_score / @scores.count
-    @average_score
+    if @average_score != 0
+      @average_score = @average_score / @scores.count
+    else
+      @average_score = "No scores yet"
   end
   
   def highest_score
