@@ -11,12 +11,12 @@ class UsersController < InheritedResources::Base
   
   def follow
     if current_user == resource
-      flash[:notice] = "You can't follow yourself."
+      flash[:notice] = "Whoops. You can't follow yourself."
     elsif current_user.follows?(resource)
-      flash[:notice] = "You are already following that user!"
+      flash[:notice] = "You are already following #{resource.username}!"
     else
       current_user.follows << resource
-      flash[:notice] = "You are now following #{resource.username}"
+      flash[:notice] = "You are now following #{resource.username}!"
     end
 
     redirect_to resource

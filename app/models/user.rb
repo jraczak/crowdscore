@@ -106,6 +106,36 @@ class User < ActiveRecord::Base
     @activities
   end
   
+  def average_score
+    @scores = venue_scores.all
+    @average_score = 0
+    @scores.each do |s|
+      @average_score = @average_score + s.computed_score
+    end
+    @average_score = @average_score / @scores.count
+    @average_score
+  end
+  
+  def highest_score
+    @scores = venue_scores.all
+    @scores.sort_by {|score| score.computed_score}.last.computed_score
+  end
+  
+  def highest_score_venue
+    @scores = venue_scores.all
+    @scores.sort_by {|score| score.computed_score}.last.venue
+  end
+  
+  def lowest_score
+    @scores = venue_scores.all
+    @scores.sort_by {|score| score.computed_score}.first.computed_score
+  end
+  
+  def lowest_score_venue
+    @scores = venue_scores.all
+    @scores.sort_by {|score| score.computed_score}.first.venue
+  end
+  
   
   # Public: Get the user's full name.
   #

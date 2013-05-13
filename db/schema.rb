@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510213642) do
+ActiveRecord::Schema.define(:version => 20130512234453) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -191,6 +191,8 @@ ActiveRecord::Schema.define(:version => 20130510213642) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "home_state"
+    t.string   "home_city"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

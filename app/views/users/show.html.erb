@@ -1,0 +1,55 @@
+<h1>User Profile</h1>
+
+<h4><%= resource.first_name.titleize %></h4>
+
+<h4>Also known as <%= resource.username %></h4>
+
+<h4>Joined the crowd in <%= resource.created_at.strftime("%b '%y") %>
+
+<% if !resource.home_city.nil? || !resource.home_state.nil? %>
+<h4>From 
+	<% unless !resource.home_city.nil? %>
+	  <%= resource.home_city %>, 
+	<% end %>
+	<% unless !resource.home_state.nil? %>
+	  <%= resource.home_state %>
+	<% end %>
+</h4>
+<% end %>
+
+<h4>
+	<% unless !resource.twitter_username.nil? %>
+	  <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
+	<% end %>
+</h4>
+
+<% if user_signed_in? && current_user == resource %>
+  <%= link_to "this is you", "#" %>
+<% elsif user_signed_in? && current_user.follows?(resource) %>
+  <!-- storing original route helper for reference "unfollow_user_path(resource)" -->
+  <%= link_to "&#x2713; following".html_safe, "/users/#{resource.id}/unfollow", method: :delete %>
+<% else %>
+  <!-- storing original route helper for reference "follow_user_path(resource)" -->
+  <%= link_to "follow", "/users/#{resource.id}/follow", method: :post %>
+<% end %>
+
+<h4>Points</h4>
+<%= resource.points %>
+
+<h4>Followers</h4>
+<%= resource.followers.count %>
+
+<h4>Scores submitted</h4>
+<%= resource.venue_scores.count %>
+
+<h4>Tips posted</h4>
+<%= resource.tips.count %>
+
+<h4>Average score given</h4>
+<%= resource.average_score %>
+
+<h4>Highest score given</h4>
+<p><%= resource.highest_score %> at <%= resource.highest_score_venue.name %></p>
+
+<h4>Lowest score given</h4>
+<p><%= resource.lowest_score %> at <%= resource.lowest_score_venue.name %></p>
