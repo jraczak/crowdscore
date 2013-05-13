@@ -116,6 +116,7 @@ class User < ActiveRecord::Base
       @average_score = @average_score / @scores.count
     else
       @average_score = "No scores yet"
+    end
   end
   
   def highest_score
