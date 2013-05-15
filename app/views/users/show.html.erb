@@ -18,7 +18,7 @@
 <% end %>
 
 <h4>
-	<% unless !resource.twitter_username.nil? %>
+	<% unless !resource.twitter_username.empty? %>
 	  <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
 	<% end %>
 </h4>
@@ -33,7 +33,7 @@
   <%= link_to "follow", "/users/#{resource.id}/follow", method: :post %>
 <% end %>
 
-<h4>Points</h4>
+<h4>Karma</h4>
 <%= resource.points %>
 
 <h4>Followers</h4>
@@ -46,10 +46,27 @@
 <%= resource.tips.count %>
 
 <h4>Average score given</h4>
-<%= resource.average_score %>
+<p><%= resource.average_score %><% unless resource.venue_scores.empty? %><br>
+(based on <%= resource.venue_scores.count %> score)
+<% end %></p>
 
 <h4>Highest score given</h4>
-<p><%= resource.highest_score %><% unless resource.highest_score_venue.nil? %> at <%= resource.highest_score_venue.name %><% end %></p>
+<p><%= resource.highest_score %><% unless resource.highest_score_venue.nil? %> at <%= link_to resource.highest_score_venue.name, resource.highest_score_venue %><% end %></p>
 
 <h4>Lowest score given</h4>
-<p><%= resource.lowest_score %><% unless resource.lowest_score_venue.nil? %> at <%= resource.lowest_score_venue.name %><% end %></p>
+<p><%= resource.lowest_score %><% unless resource.lowest_score_venue.nil? %> at <%= link_to resource.lowest_score_venue.name, resource.lowest_score_venue %><% end %></p>
+
+<h4>Recent Activity</h4>
+<% activity = resource.recent_activity %>
+<% if activity.empty? %>
+  <p>No recent activity by <%= resource.first_name %>.</p>
+<% else %>
+  <% activity.each do |a| %>
+    <% if a.class == VenueScore %>
+      <p>Posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.</p><br>
+    <% elsif a.class == Tip %>
+      <p>Posted a tip to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
+      "<%= a.text %>"</p>
+    <% end %>
+  <% end %>
+<% end %>

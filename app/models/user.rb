@@ -87,6 +87,18 @@ class User < ActiveRecord::Base
    end
   end
   
+  def recent_activity
+    @activities = []
+   
+    venue_scores.each do |a|
+      @activities << a
+    end
+    tips.each do |t|
+      @activities << t
+    end
+    @activities.first(10)
+  end
+  
   def get_network_activity
     @activities = []
     @follows = self.follows.all
