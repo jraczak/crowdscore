@@ -17,11 +17,12 @@
 </h4>
 <% end %>
 
-<h4>
-	<% unless !resource.twitter_username.blank? %>
-	  <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
-	<% end %>
-</h4>
+<% if resource.twitter_username %>
+  <h4>
+    <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
+  </h4>
+<% end %>
+
 
 <% if user_signed_in? && current_user == resource %>
   <%= link_to "this is you", "#" %>
