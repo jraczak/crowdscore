@@ -6,7 +6,7 @@
 
 <h4>Joined the crowd in <%= resource.created_at.strftime("%b '%y") %>
 
-<% if !resource.home_city.nil? || !resource.home_state.nil? %>
+<% if !resource.home_city.blank? || !resource.home_state.blank? %>
 <h4>From 
 	<% unless !resource.home_city.nil? %>
 	  <%= resource.home_city %>, 
@@ -18,7 +18,7 @@
 <% end %>
 
 <h4>
-	<% unless !resource.twitter_username.empty? %>
+	<% unless !resource.twitter_username.blank? %>
 	  <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
 	<% end %>
 </h4>
