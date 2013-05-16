@@ -17,7 +17,16 @@ class TipsController < InheritedResources::Base
   end
 
   def upvote
-    current_user.liked_tips << resource
+    unless current_user.liked_tips.include?(resource)
+      current_user.liked_tips << resource
+      current_user.save!
+    end
+
+    redirect_to resource.venue
+  end
+  
+  def remove_vote
+    current_user.liked_tips.delete(resource)
     current_user.save!
 
     redirect_to resource.venue

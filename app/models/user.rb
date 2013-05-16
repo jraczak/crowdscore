@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
     @activities.first(10)
   end
   
-  def get_network_activity
+  def network_activity
     @activities = []
     @follows = self.follows.all
    

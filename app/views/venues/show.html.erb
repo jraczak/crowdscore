@@ -225,7 +225,11 @@ var auto_zoom = false;
 					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
 					<div class="body-text"><%= t.text %></div>					
 					<div class="upvotes-and-share">
-						<a href="#">
+						<% if current_user.liked_tips.include?(t) %>
+						  <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
+						<% else %>
+						  <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
+						<% end %>
 							<img src="./assets/images/thumbs-up.png" alt="">
 							<p><b><%= t.tip_likes.count %></b> upvotes</p>
 						</a>

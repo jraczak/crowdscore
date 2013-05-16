@@ -25,13 +25,13 @@
 
 
 <% if user_signed_in? && current_user == resource %>
-  <%= link_to "this is you", "#" %>
+  <p><%= link_to "this is you", "#" %></p>
 <% elsif user_signed_in? && current_user.follows?(resource) %>
   <!-- storing original route helper for reference "unfollow_user_path(resource)" -->
-  <%= link_to "&#x2713; following".html_safe, "/users/#{resource.id}/unfollow", method: :delete %>
+  <p><%= link_to "&#x2713; following".html_safe, "/users/#{resource.id}/unfollow", method: :delete %></p>
 <% else %>
   <!-- storing original route helper for reference "follow_user_path(resource)" -->
-  <%= link_to "follow", "/users/#{resource.id}/follow", method: :post %>
+  <p><%= link_to "follow", "/users/#{resource.id}/follow", method: :post %></p>
 <% end %>
 
 <h4>Karma</h4>

@@ -1,9 +1,12 @@
-<h1>Hey, <%= current_user.first_name %>.</h1>
-<h3>Welcome back to Crowdscore.
-  <% if current_user.gone_for_a_week? %> 
-    We've missed you!
-  <% end %>
-</h3>
+<% if current_user.gone_for_a_week? %>
+  <h1>
+    We've missed you, <%= current_user.first_name %>!
+  </h1>  
+<% else %>
+  <h1>
+    Welcome back, <%= current_user.first_name %>!
+  </h1>
+<% end %>
 
 <h4>User profile photo goes up here</h4>
 
@@ -19,16 +22,18 @@
 <! -- BEGIN NETWORK ACTIVITY SECTION -->
 <h4>Your network's activity</h4>
 
-<% activity = current_user.get_network_activity %>
+<% activity = current_user.network_activity %>
 <% if activity.empty? %>
   <p>No recent activity by your crowd.</p>
 <% else %>
   <% activity.each do |a| %>
     <% if a.class == VenueScore %>
-      <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.</p><br>
+      <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p><br>
     <% elsif a.class == Tip %>
       <p>-<%= User.find(a.user_id).first_name %> posted a tip to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
-      "<%= a.text %>"</p>
+      "<%= a.text %>"<br>
+       (<%= time_ago_in_words(a.created_at) %> ago)
+       </p>
     <% end %>
   <% end %>
 <% end %>

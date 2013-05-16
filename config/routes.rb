@@ -32,6 +32,7 @@ Crowdscore::Application.routes.draw do
     resources(:tips, only: [:index, :new, :create]) do
       member do
         get :upvote
+        get :remove_vote
       end
     end
   end
