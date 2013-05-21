@@ -15,7 +15,7 @@
 <%= link_to "Update profile", edit_user_registration_path %>
 
 <h4>Your Karma</h4>
-  <p>Your contributions have earned you <%= pluralize(current_user.points, "point") %>.</p>
+  <p>Your contributions have earned you <%= pluralize(current_user.points, "karma point") %>.</p>
 
 
 
@@ -28,12 +28,16 @@
 <% else %>
   <% activity.each do |a| %>
     <% if a.class == VenueScore %>
-      <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p><br>
+      <div>
+        <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p>
+      </div>
     <% elsif a.class == Tip %>
+      <div>
       <p>-<%= User.find(a.user_id).first_name %> posted a tip to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
       "<%= a.text %>"<br>
        (<%= time_ago_in_words(a.created_at) %> ago)
        </p>
+      </div>
     <% end %>
   <% end %>
 <% end %>

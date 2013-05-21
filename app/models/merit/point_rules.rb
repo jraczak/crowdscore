@@ -23,9 +23,12 @@ module Merit
       #   'comments#create',
       #   'photos#create'
       # ]
-      score 1, :on => 'venue_scores#create'
-      score 1, :on => 'tips#create'
-      score 1, :on => 'venues#create'
+      #score 1, on: [
+      #  'venue_scores#create',
+      #  'tips#create',
+      #  'venues#create'
+      #]
+
     end
   
     #def add_karma_for_score

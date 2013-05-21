@@ -146,7 +146,11 @@ var auto_zoom = false;
 							<div class="center-text">
 								<div class="venue-traits">
 									<li href="#">
-										<img src="./assets/images/platter.png" alt=""><%= resource.venue_subcategory.name %>
+										<% if resource.venue_subcategory.blank? %>
+										  <%= link_to "add subcategory", edit_venue_path(resource) %>
+										<% else %>
+										  <img src="./assets/images/platter.png" alt=""><%= resource.venue_subcategory.name %>
+										<% end %>
 									</li>
 									<% if resource.tags.include?("credit cards") %>
 									  <li href="#" style="padding-left: 1px;">
@@ -225,16 +229,21 @@ var auto_zoom = false;
 					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
 					<div class="body-text"><%= t.text %></div>					
 					<div class="upvotes-and-share">
-						<% if current_user.liked_tips.include?(t) %>
-						  <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
+						<% if current_user %>
+						  <% if current_user.liked_tips.include?(t) %>
+						    <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
+						  <% else %>
+						    <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
+						  <% end %>
+						  <img src="./assets/images/thumbs-up.png" alt="sign in to vote">
+							<p><b><%= t.tip_likes.count %></b> upvotes</p>
 						<% else %>
-						  <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
-						<% end %>
-							<img src="./assets/images/thumbs-up.png" alt="">
+							<img src="./assets/images/thumbs-up.png" alt="sign in to vote">
 							<p><b><%= t.tip_likes.count %></b> upvotes</p>
 						</a>
+						<% end %>
 						<a href="#">
-							<img src="./assets/images/share.png" alt="">
+							<img src="./assets/images/share.png" alt="sign in to vote">
 							<p><b>SHARE</b></p>
 						</a>
 					</div>
