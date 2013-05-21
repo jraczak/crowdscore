@@ -23,11 +23,11 @@ module Merit
       #   'comments#create',
       #   'photos#create'
       # ]
-      #score 1, on: [
-      #  'venue_scores#create',
-      #  'tips#create',
-      #  'venues#create'
-      #]
+      score 1, on: [
+        'venue_scores#create',
+        'tips#create',
+        'venues#create'
+      ]
 
     end
   

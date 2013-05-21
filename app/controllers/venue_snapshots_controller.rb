@@ -8,8 +8,19 @@ class VenueSnapshotsController < ApplicationController
     @venue_snapshot = VenueSnapshot.new
   end
   
-  def create
-    @venue_snapshot = VenueSnapshot.create(params[:venue_snapshot])
+  def create(venue)
+    @venue_snapshot = VenueSnapshot.new
+    @venue_snapshot.update_attributes(
+      venue_id: venue.id,
+      venue_score_count: venue.venue_scores.count,
+      tip_count: venue.tips.count,
+      current_crowdscore: venue.score,
+      score_breakdown1: venue.score_breakdown1,
+      score_breakdown2: venue.score_breakdown2,
+      score_breakdown3: venue.score_breakdown3,
+      score_breakdown4: venue.score_breakdown4
+      )
+    @venue_snapshot.save!
   end
   
 end

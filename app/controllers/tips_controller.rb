@@ -13,7 +13,6 @@ class TipsController < InheritedResources::Base
   def create
     build_resource.user = current_user
     create! { parent }
-    
   end
 
   def upvote
