@@ -1,0 +1,29 @@
+<% if collection.hits.any? %>
+  <div>
+    <h4>We found <%= pluralize(collection.results.count, "result") %> for <%= params[:q] %> near <%= params[:id] %></h4>
+    
+    <div>
+      <% collection.results.each do |v| %>
+        <div>
+	        <h3><%= link_to v.name, v %></h3>
+	        <% if v.score.class == Fixnum %>
+	          <h4><%= v.score %></h4>
+	        <% else %>
+	          <h4>NA</h4>
+	        <% end %>
+	        <h4><%= v.full_category_name %></h4>
+	        <h4 data-lat=<%= v.latitude %> data-long=<%= v.longitude %>>
+	        <% unless v.tips.empty? %>
+	          <p>"<%= v.recent_tip.text %>"<br>
+	        <% end %>
+	        <%= link_to v.recent_tip.user.username, v.recent_tip.user %> | <%= time_ago_in_words(v.recent_tip.created_at) %> ago</p>
+	    </div>
+	  <% end %>
+<% else %>
+  <p>Bummer. We couldn't find a venue that matched your search for "<%= params[:q] %>".</p><br>
+  <p>You can either <%= link_to "add a new venue", new_venue_path %> for some serious karma (this requires signing in), <%= link_to "search again", root_path %>, or <%= mail_to "support@crowdsco.re", "shoot us an email", subject: "Request to add a new venue" %> with some info about the venue and we'll get it added for you.</p>
+<% end %>
+	        
+        
+    </div>
+  </div>
