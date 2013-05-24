@@ -20,22 +20,35 @@ var auto_zoom = false;
 
 			<!-- Overall score container-->
 		  <div class="overall-score-container">
-			  <div class="inner-color"></div>
 			  <div class="header">OVERALL SCORE</div>
 			  <div class="inner-body">
 					<canvas id="overallScoreCanvas" width="173" height="173"></canvas>
-			  	<div id="overallScorePercentage"><%= resource.score %></div>
-			  	<% unless resource.venue_scores.empty? %>
-			  	<p>based on <%= pluralize(resource.venue_scores.count, "score") %></p>
-			  	<% end %>
-					<a class="submit-score-btn" href="#">SUBMIT YOUR SCORE</a>
+			  	
+			  	<div class="center-absolute">
+				  	<p>
+				  	<% unless resource.venue_scores.empty? %>
+				  		based on <%= pluralize(resource.venue_scores.count, "score") %>
+				  	<% end %>
+				  	</p>
+				  </div>
+
+			  	<div class="center-absolute">
+				  	<div class="overallScorePercentage <% if resource.score.class == String %>no-score<% end %>">
+				  		<%= score = resource.score %>
+				  	</div>
+				  </div>
+
+				  <div class="center-absolute">
+						<a class="submit-score-btn" href="#">SUBMIT YOUR SCORE</a>
+					</div>
+
 				</div>
 		  </div><!-- end overall score container -->
 
 
 		 	<!-- Image container -->
 			<div class="venue-image" style="background-image: url(./assets/images/food.jpg)">
-			  <img src="./assets/images/zoom.png"></img>
+			  <%= image_tag('photo_zoom.png') %></img>
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
 			</div><!-- End Container -->
@@ -98,14 +111,14 @@ var auto_zoom = false;
 						<span class="share-venue">	  			
 							<a href="#">
 								<p>
-									<img src="./assets/images/share.png" alt="">SHARE
+									<%= image_tag('share_venue.png') %>SHARE
 								</p>
 							</a>
 						</span>	
 						<span class="add-venue-to-list">
 							<a href="#">
 								<p>
-									<img src="./assets/images/add-btn.png" alt="">ADD TO LIST
+									<%= image_tag('add_to_list.png') %>ADD TO LIST
 								</p>
 							</a>
 						</span>
@@ -390,8 +403,10 @@ var auto_zoom = false;
 
 
 <script>  
-	function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness)
+function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
 {
+
+	this.innerWhite = innerWhite;
 	this.ctx = canvas;
 	this.canvas = canvas.getContext('2d');
 	this.outterColor = outterColor;
@@ -405,6 +420,7 @@ var auto_zoom = false;
 	this.yCenter = canvas.height / 2;
 	this.radius = this.xCenter - this.thickness / 2;
 	this.zeroDegree = zeroDegree;
+
 	this.percent = percent;
 }
 
@@ -416,11 +432,13 @@ GraphAnimation.prototype.drawFullCircle = function (){
   this.canvas.strokeStyle = this.innerColor;
   this.canvas.stroke(); 
 
-  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-  this.canvas.lineWidth = 0;
-  this.canvas.fillStyle ='#FFFFFF';
-  this.canvas.fill();
-  this.canvas.stroke();
+  if (this.innerWhite == true){
+	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+	  this.canvas.lineWidth = 0;
+	  this.canvas.fillStyle ='#FFFFFF';
+	  this.canvas.fill();
+	  this.canvas.stroke();
+	}
 };
 
 GraphAnimation.prototype.drawPartialCircle = function() {
@@ -428,7 +446,7 @@ GraphAnimation.prototype.drawPartialCircle = function() {
   function updateInterval() {
     self.updateShape();
   }
-  this.intervalID = window.setInterval(updateInterval, this.speed)
+  this.intervalID = window.setInterval(updateInterval, this.speed);
 }
 
 GraphAnimation.prototype.stopTimer = function() {
@@ -437,7 +455,6 @@ GraphAnimation.prototype.stopTimer = function() {
 }
 
 GraphAnimation.prototype.updateShape = function() {
-	
 	if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
 		// Draw a piece of the circle on each existing canvas
 		this.canvas.beginPath();
@@ -453,23 +470,10 @@ GraphAnimation.prototype.updateShape = function() {
 	}
 }
 
-GraphAnimation.prototype.drawPercent = function(size){
-	this.canvas.font = size + 'pt Sans-Serif';
-	this.canvas.textAlign = 'center';
-	this.canvas.fillStyle = this.outterColor;
-	this.canvas.fillText(this.percent, this.xCenter, this.yCenter + size / 2);
-}
-
 var count = 1;
 GraphAnimation.prototype.drawLoading = function(){
 	if ( count < 10 ){
-	
-		this.canvas.beginPath();
-	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-	  this.canvas.lineWidth = this.thickness + 1;
-	  this.canvas.strokeStyle = "#FFFFFF";
-	  this.canvas.stroke(); 
-	  
+
 		this.canvas.beginPath();
 	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
 	  this.canvas.lineWidth = this.thickness;
@@ -496,22 +500,44 @@ GraphAnimation.prototype.drawArc = function() {
   }
   this.intervalID = window.setInterval(draw, this.speed)
 }
+
 </script>
 	
 	<script>
     	
-    	var overallVenueScore = <%= resource.score %> // Overall Score Container score.
-			var venueScoreCategories = [<%= resource.score_breakdown1 %>, <%= resource.score_breakdown2 %>, <%= resource.score_breakdown3 %>, <%= resource.score_breakdown4 %>]; //Venue Score Categories at the top of the page
-			var otherVenueScores = [90, 80, 70, 60]; // Other venue scores at the bottom of the page
+    	// Overall Score Container score.
+    	var overallVenueScore = "<%= resource.score %>";
 
+    	//Venue Score Categories at the top of the page
+			var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
+																	"<%= resource.score_breakdown2 %>", 
+																	"<%= resource.score_breakdown3 %>", 
+																	"<%= resource.score_breakdown4 %>"]; 
 
-			var zeroLoc = Math.PI*3/2; 
+			for ( var i = 0; i < venueScoreCategories.length; i++){
+				if ( venueScoreCategories[i].match("N/A") )
+					venueScoreCategories[i] = 0;
+			}
+			
+			// Other venue scores at the bottom of the page
+			var otherVenueScores = [90, 80, 70, 60]; 
 
     	var overallScoreGraph = document.getElementById("overallScoreCanvas");
-    	var overallScoreAnimation = new GraphAnimation(overallScoreGraph, "#78E1FF", "#00B5E9", overallVenueScore, zeroLoc, 13, 50);
+    	
+
+    	if (overallVenueScore.match('No')){
+    		var white = false
+    		var ringColor = '#f4f4f4';
+    	} else {
+    		var white = true;
+    		var ringColor = "#78E1FF";
+    	}
+    	var overallScoreAnimation = 
+    		new GraphAnimation(overallScoreGraph, ringColor, "#00B5E9", 
+    											 overallVenueScore, Math.PI*3/2, 13, white);
+
 			overallScoreAnimation.drawFullCircle();
 			overallScoreAnimation.drawPartialCircle();
-			document.getElementById('overallScorePercentage').innerHTML = overallVenueScore;	
 			
 			var circleColors = ["#78E1FF", "#00B5E9"];	
 		
@@ -524,17 +550,17 @@ GraphAnimation.prototype.drawArc = function() {
     	var arr = document.getElementsByTagName('canvas');
     	for ( var i = 0; i < arr.length; i++ ) {
     		if ( arr[i].id.indexOf( identifier ) !== -1 ){
-    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], zeroLoc, 5));
+    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], Math.PI*3/2, 5, true));
+
     			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
     			index++;
-    			
     		}
     	}
     	
     	index = 0;
     	for ( var i = 0; i < arr.length; i++ ) {
     		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
-    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], zeroLoc, 4));
+    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], Math.PI*3/2, 4, true));
     			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
     			index++;
     		}
