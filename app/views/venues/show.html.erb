@@ -9,7 +9,6 @@ var auto_adjust = false;
 var auto_zoom = false;
 </script>
 
-<div class="navbar"></div>
   <div class="top-block"></div>
   <div id="gray-bar" class="bottom-block"></div>
 
@@ -47,7 +46,17 @@ var auto_zoom = false;
 
 
 		 	<!-- Image container -->
-			<div class="venue-image" style="background-image: url(./assets/images/food.jpg)">
+			<div class="venue-image">
+
+				<div class="center-absolute">
+			  	
+			  	<div class='empty-camera'>
+			  	</div>
+			  	<div class="add-msg">
+			  		Be the first to add a photo!
+			  	</div>
+
+			  </div>
 			  <%= image_tag('photo_zoom.png') %></img>
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
@@ -55,7 +64,8 @@ var auto_zoom = false;
 
 
 		 	<!-- Tags container -->
-			<div class="tags-container">
+			<div class="<%= resource.tags.any? ? 'tags-container' : 'tags-container gray-line-pattern'%>">
+				
 				<div class="header">
 					<h4>TAGS</h4>
 				</div>
@@ -66,22 +76,33 @@ var auto_zoom = false;
 					<% tags = get_active_tags(resource) %>
 					
 					<% tag_categories.each do |tc| %>
+					  
 					  <div class="tag-group">
 					  <h4><%= tc.name.upcase %>...</h4>
-					    <% tags.each do |t| %>
+
+				    <% tags.each do |t| %>
 					    <% if t.tag_category_id == tc.id %>
 					      <a class="tag-btn" href="#"><%= t.name.upcase %></a>
 					    <% end %>
-					  <% end %>
+				  	<% end %>
+
 					  </div>
 					<% end %>
 				
 				<a class="see-all-tags" href="#">
 					<h4>SEE ALL TAGS</h4>
 				</a>
-			    <% else %>
-			      <h4>NO TAGS YET</h4>
-			    <% end %>
+
+		    <% else %>
+		      
+			  	<div class="center-absolute">
+				  	<div class="add-msg">
+				  		What is this place good for? Add a tip now!
+				  	</div>
+				  </div>
+
+		    <% end %>
+
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
 
@@ -235,7 +256,7 @@ var auto_zoom = false;
 				</div>
 			</div><!-- End tip header section -->
 
-		<div class="all-tips-container">
+		<div class="all-tips-container <% if(!resource.tips.any?) %> gray-line-pattern<% end %>">
 		<% if resource.tips.any? %>
 		  <% resource.tips.each do |t| %>
 		    <div class="tip-container">
@@ -264,9 +285,21 @@ var auto_zoom = false;
 					</div>
 				</div>	
 			</div>
-	      <% end %>
+		
+		</div><!-- End tips container -->
+		<div class="show-more-tips-container">
+			<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
+		</div>
+
+	    <% end %>
 		<% else %>
-		  <h5>No tips here yet.</h5>
+			<div class="center-absolute">
+		  	
+		  	<div class='cs-logo'></div>
+		  	<div class="add-msg">Be the first to add a photo!</div>
+
+		  </div>
+		</div>
 		<% end %>	
 <!--			<div class="tip-container">
 				<div class="avatar circletag"></div>
@@ -354,11 +387,6 @@ var auto_zoom = false;
 				</div>	
 			</div>
 		-->
-		</div><!-- End tips container -->
-		
-		<div class="show-more-tips-container">
-			<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
-		</div>
 
 
   	</div><!-- End of right rail -->
@@ -573,17 +601,9 @@ GraphAnimation.prototype.drawArc = function() {
       function draw (elem, index, arr) {
 	      elem.drawFullCircle();
 	      elem.drawPartialCircle();
-      }		
+      }		      
       
-      $( document ).ready(function(){
-      	charCounter(document.getElementById('tip-input'));
-      })
-
-    	function charCounter(item){
-    		var len = item.value.length;
-    		$('#rem-char').text(100 - len );
-    	}
-
+    
 
 
     </script>

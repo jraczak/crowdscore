@@ -24,37 +24,6 @@
 	font-weight: 900; 
 	}
 
-
-						 	
-
-html, body{
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	font-family: Museo;
-}
-	
-body{
-	background: #FFF;
-	text-align: center;
-}  
-
-p{
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-
-}
-
-.navbar {
-	position: relative;
-	z-index: 1;
-	min-width: 980px;
-	height: 80px;
-	background-color: #000000;
-	box-shadow: 0 0px 4px #e6e6e6;
-}
-
 .top-block{
 	position: relative;
 	z-index: 0;
@@ -383,11 +352,6 @@ a:visited{
 /********************************/
 /********** End Section *********/
 /********************************/
-
-
-
-
-
 
 /*--------------------------*/
 /* Venue Sub-header Section */
@@ -779,7 +743,16 @@ strong{
 /********** End Component *********/
 /**********************************/
 
+.bottom-shadow{
+  -webkit-box-shadow: 0 1px 2px #CCC;   
+  -moz-box-shadow: 0 1px 2px #CCC;
+  box-shadow: 0 1px 2px #CCC;
+}
 
+.gray-line-pattern{
+	background: url('gray_line_pattern.png');
+	background-repeat: repeat; 
+}
 
 /*--------------------------*/
 /* Tags Container Component */
@@ -787,12 +760,29 @@ strong{
 .tags-container{
 	text-align: left;
 	margin-top: 25px;
+	min-height: 317px;
 	position: relative;
 	width: 300px;
-  -webkit-box-shadow: 0 1px 2px #CCC;   
-  -moz-box-shadow: 0 1px 2px #CCC;
-  box-shadow: 0 1px 2px #CCC;
 	border-radius: 4px;
+	margin-bottom: 100px;
+
+	.center-absolute{
+		position: absolute;
+		left: 50%;
+		top: 0;
+
+
+		.add-msg{
+			position: relative;
+			right: 50%;
+			top: 145px;
+			color: #c5c5c5;
+			font-size: 20px;
+			font-weight: 300;
+			text-align: center;
+			width: 223px;
+		}
+	}
 }
 
 .tags-container .header{
@@ -914,13 +904,43 @@ strong{
 	height: 300px; 
 	max-width: 300px; 
 	min-width: 300px; 
-	background-repeat: no-repeat; 
-	background-color:#FFFFFF; 
+	background: url('gray_line_pattern.png');
+	background-repeat: repeat; 
 	margin-top: 25px;
-	background-size: cover; 
-	background-position:center;
 	border-radius: 4px;
+
+	.center-absolute{
+		position: absolute;
+		left: 50%;
+		top: 0;
+		height: 100%;	
+
+		.empty-camera{
+			top: 100px;
+			position: relative;
+			right: 50%;
+			height: 60px;
+			width: 70px;
+			display: inline-block;
+			background-image: url('camera.png');
+      background-repeat: no-repeat;
+		}
+
+		.add-msg{
+			position: relative;
+			right: 50%;
+			top: 100px;
+			color: #c5c5c5;
+			font-size: 20px;
+			font-weight: 300;
+			text-align: center;
+			width: 223px;
+		}
+	}
+
+
 }
+
 .venue-image img{
 	position: absolute;
 	bottom: 9px;
@@ -1133,6 +1153,43 @@ strong{
 /**********************************/
 
 
+.all-tips-container{
+	min-height: 377px;
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 100px;
+	
+	.center-absolute{
+		position: absolute;
+		left: 50%;
+		top: 0;
+		height: 100%;
+
+		.cs-logo{
+			position: relative;
+			right: 50%;
+			height: 95px;
+			width: 84px;
+			display: inline-block;
+			top: 100px;
+			background-image: url('logo.png');
+      background-repeat: no-repeat;
+		}
+
+		.add-msg{
+			position: relative;
+			right: 50%;
+			top: 110px;
+			color: #c5c5c5;
+			font-size: 20px;
+			font-weight: 300;
+			text-align: center;
+			width: 223px;
+		}
+	}
+}
+
 .tip-container{
 	display: inline-block;
 	position: relative;
@@ -1254,4 +1311,21 @@ strong{
 	background-color: #2d3032;
 	min-height: 300px;
 	width: 100%;
+}
+
+.floater{
+	border: 1px solid #999;
+	left: 5px;
+	border-radius: 20px;
+	height: 150px;
+	width: 200px;
+	position: absolute;
+	background-color: #EEE;
+	top: 5px;
+	z-index: 100;
+	ul{
+		list-style: none;
+		position: absolute;
+		left: 0;
+	}
 }
