@@ -19,6 +19,12 @@ Crowdscore::Application.routes.draw do
       delete :unfollow
     end
   end
+  
+  resources :users do
+    collection do
+      post 'batch_invite'
+    end
+  end
 
   resources :venues do
     collection do

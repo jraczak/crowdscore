@@ -28,4 +28,17 @@ class UsersController < InheritedResources::Base
     flash[:notice] = "You are no longer following #{resource.username}"
     redirect_to "/users/#{resource.username.downcase}"
   end
+  
+  def batch_invite
+    #Validate the user_emails field isn't blank and emails are valid
+    emails = [params[:invitation_email1], params[:invitation_email2], params[:invitation_email3], params[:invitation_email4],params[:invitation_email5]]
+    #params[:invitation_emails].split(",").each do |email|
+    emails.each do |email|
+      User.invite!({:email => email}, current_user)
+    end
+    flash[:notice] = "Your invitations are on the way! Thanks for sharing the love."
+    redirect_to '/dashboard'
+  end
+    
+  
 end
