@@ -71,4 +71,19 @@ module ApplicationHelper
   def paginate(collection)
     will_paginate collection, renderer: WillPaginate::ActionView::TwitterBootstrapLinkRenderer
   end
+  
+  # Support references for supplying Devise forms in application-wide modals
+  
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+  
 end
