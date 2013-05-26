@@ -78,7 +78,7 @@ module ApplicationHelper
     :user
   end
 
-  def resource
+  def devise_resource
     @resource ||= User.new
   end
 
