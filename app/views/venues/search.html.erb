@@ -15,8 +15,8 @@
 	        <h4 data-lat=<%= v.latitude %> data-long=<%= v.longitude %>>
 	        <% unless v.tips.empty? %>
 	          <p>"<%= v.recent_tip.text %>"<br>
+	          <%= link_to v.recent_tip.user.username, v.recent_tip.user %> | <%= time_ago_in_words(v.recent_tip.created_at) %> ago</p>
 	        <% end %>
-	        <%= link_to v.recent_tip.user.username, v.recent_tip.user %> | <%= time_ago_in_words(v.recent_tip.created_at) %> ago</p>
 	    </div>
 	  <% end %>
 <% else %>
