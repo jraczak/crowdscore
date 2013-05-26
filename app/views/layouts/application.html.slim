@@ -55,7 +55,16 @@ html
         .row
           .span16
             p Copyright &copy; 2012 Crowdscore. All rights reserved.
-            
+    
+
+    #auth-modal.auth-modal
+      .modal-mask
+        .modal-content
+          h1 SIGN IN!
+          form
+            input type='text' placeholder="Email"
+            input type='password' placeholder='Password!'
+        
 #sign-in-modal.modal style="display: none;"
   .modal-header
     a.close href='#' x
@@ -174,6 +183,7 @@ javascript:
         if (!scrollSearch){
           $('.searchbar').addClass('search-bar-fixed-negpos');
           scrollSearch = 1; 
+          $('.search-input').blur();
         }
       },50);
     }
@@ -222,3 +232,17 @@ javascript:
           }
       });
     });
+
+    $(document).ready(function() {
+      $( "#register" ).click(function() {
+        $("#auth-modal").addClass("visible"); 
+      });
+    });
+
+    $(document).keyup(function(e) {
+      if (e.keyCode == 27) { 
+        $('#auth-modal').removeClass('visible');
+      }
+    });
+
+

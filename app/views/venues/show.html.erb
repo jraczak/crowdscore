@@ -10,7 +10,7 @@ var auto_zoom = false;
 </script>
 
   <div class="top-block"></div>
-  <div id="gray-bar" class="bottom-block"></div>
+  <div class="gray-bar"></div>
 
   <div class="container">
 
@@ -255,8 +255,8 @@ var auto_zoom = false;
 					<div class="sort-recent-btn">RECENT</div>
 				</div>
 			</div><!-- End tip header section -->
-
-		<div class="all-tips-container <% if(!resource.tips.any?) %> gray-line-pattern<% end %>">
+		<% anyTips = resource.tips.any? ? true : false %>
+		<div class="all-tips-container <% if !anyTips %> gray-line-pattern<% end %>" style=<% if anyTips %>"min-height: 0;"<%end %>>
 		<% if resource.tips.any? %>
 		  <% resource.tips.each do |t| %>
 		    <div class="tip-container">
@@ -265,33 +265,34 @@ var auto_zoom = false;
 					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
 					<div class="body-text"><%= t.text %></div>					
 					<div class="upvotes-and-share">
+						<a href="#">
 						<% if current_user %>
 						  <% if current_user.liked_tips.include?(t) %>
 						    <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
 						  <% else %>
 						    <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
 						  <% end %>
-						  <img src="./assets/images/thumbs-up.png" alt="sign in to vote">
+							<%= image_tag('thumbs_up.png') %>
 							<p><b><%= t.tip_likes.count %></b> upvotes</p>
 						<% else %>
-							<img src="./assets/images/thumbs-up.png" alt="sign in to vote">
+							<%= image_tag('thumbs_up.png') %>
 							<p><b><%= t.tip_likes.count %></b> upvotes</p>
 						</a>
 						<% end %>
 						<a href="#">
-							<img src="./assets/images/share.png" alt="sign in to vote">
+							<%= image_tag('share_venue.png') %>
 							<p><b>SHARE</b></p>
 						</a>
 					</div>
 				</div>	
 			</div>
 		
-		</div><!-- End tips container -->
-		<div class="show-more-tips-container">
-			<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
-		</div>
 
 	    <% end %>
+	  </div>
+			<div class="show-more-tips-container">
+				<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
+			</div>
 		<% else %>
 			<div class="center-absolute">
 		  	
@@ -299,96 +300,7 @@ var auto_zoom = false;
 		  	<div class="add-msg">Be the first to add a photo!</div>
 
 		  </div>
-		</div>
 		<% end %>	
-<!--			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
-					<div class="body-text">This is a really long comment. Im making this comment so long, cause I want to. It is pretty sweeeeet and I like to write annoying tips all the time on every site ever everywhere! </div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
-					<div class="body-text"> Ilike writing the same thing over and over and over again. When a tip gets this long... Someone hacked your shit.</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JUSTIN | 25 minutes ago</h4>	
-					<div class="body-text">Don't let someone hack your shit. K thanks..</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
-					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
-					<div class="upvotes-and-share">
-						<a class="thumbs-up" href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a class="share" href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
-					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-		-->
-
-
   	</div><!-- End of right rail -->
   </div><!-- End floating body container div -->
 	
@@ -463,7 +375,7 @@ GraphAnimation.prototype.drawFullCircle = function (){
   if (this.innerWhite == true){
 	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
 	  this.canvas.lineWidth = 0;
-	  this.canvas.fillStyle ='#FFFFFF';
+	  this.canvas.fillStyle ='#f7f7f7';
 	  this.canvas.fill();
 	  this.canvas.stroke();
 	}
