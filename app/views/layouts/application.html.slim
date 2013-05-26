@@ -9,52 +9,62 @@ html
 
   body
     /yield used to go here
-    
-    .topbar
-      .fill
-        .container
-          = link_to image_tag('crowdscore_logo.png'), root_path, class: "pull-left header-logo"
-          /h3 = link_to "Crowdscore", root_path
-          ul
-            - if params[:controller] =~ /^admin/
-              li = link_to "← Return to site", root_path
-            - else
-             li = link_to "See All Venues", venues_path
-          ul.nav.secondary-nav
-            - if user_signed_in?
-              li.menu
-                = link_to "Account", "#", class: "menu"
-                ul.menu-dropdown
-                    li = link_to "Sign out", destroy_user_session_path, method: "delete"
-                    li = link_to "View My Lists", lists_path
-                    li = link_to "My Profile", user_path(current_user)
-                    li = link_to "My Account", edit_user_registration_path
-                    - if current_user.admin?
-                      li.divider
-                      li = link_to "Administrative Area", admin_root_path
-            - else
-              li = link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
-              li = link_to "Sign up", new_user_registration_path
-            = link_to "Sign out", destroy_user_session_path, method: "delete"
 
+    .navbar
+      .navbar-inner
+        ul
+          li: a id="register" href="#" register
+          li: a href="#" log in
     
-    
-    #masthead
-      .container
-        .row
-          .span16
-            = flash_messages
+    .searchbar-placeholder
+    .searchbar
+      .searchbar-inner
+        a.brand href="#"
+        input type="text" class="search-input" placeholder="search"
+        .search-input-fade
+        input type="text" placeholder="San Francisco, CA 04109" class="location-input"
+        input type="button" id="exit-location" value="x" class="close"
+        input type="button" id="edit-location" class="edit"
+    .floater  
+      ul
+        - if params[:controller] =~ /^admin/
+          li = link_to "← Return to site", root_path
+        - else
+         li = link_to "See All Venues", venues_path
+      ul.nav.secondary-nav
+        - if user_signed_in?
+          li.menu
+            = link_to "Account", "#", class: "menu"
+            ul.menu-dropdown
+                li = link_to "Sign out", destroy_user_session_path, method: "delete"
+                li = link_to "View My Lists", lists_path
+                li = link_to "My Profile", user_path(current_user)
+                li = link_to "My Account", edit_user_registration_path
+                - if current_user.admin?
+                  li.divider
+                  li = link_to "Administrative Area", admin_root_path
+        - else
+          li = link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true"
+          li = link_to "Sign up", new_user_registration_path
+        = link_to "Sign out", destroy_user_session_path, method: "delete"
             
     == yield
-
-    
 
     #footer
       .container
         .row
           .span16
             p Copyright &copy; 2012 Crowdscore. All rights reserved.
-            
+    
+
+    #auth-modal.auth-modal
+      .modal-mask
+        .modal-content
+          h1 SIGN IN!
+          form
+            input type='text' placeholder="Email"
+            input type='password' placeholder='Password!'
+        
 #sign-in-modal.modal style="display: none;"
   .modal-header
     a.close href='#' x
@@ -91,3 +101,148 @@ javascript:
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
       })();
 = yield :scripts
+
+javascript:
+    var locationActive = 0;
+    var searchActive = 0;
+    var scrollSearch = 0;
+
+    // Represents the faded div at the end of the search input
+    // When clicked, focus on the search field
+    $('.search-input-fade').click(function(){
+      $('.search-input').focus();
+    });
+
+    // On focus, trigger animation to place search bar in active state
+    $('.search-input').focus(function() {
+      $('a.brand').addClass('invisible');
+      $('.search-input').addClass('search-input-active');
+      if (!scrollSearch)
+        searchActive = 1;
+      if (!locationActive){
+        $('.edit').click();  
+      }
+    });
+
+    // Place the searchbar into its inactive state
+    $('.close').click(function(){
+
+      // variable animation time for placing location input into active state
+      var timer = searchActive ? 500 : 250;
+      if (searchActive == 3) timer = 0;
+      
+      // Remove classes to place searchbar into inactive state
+      $('a.brand').removeClass('invisible');
+      $('.search-input').removeClass('search-input-active');
+      $('.location-input').fadeTo(timer, 0, function(){
+        var $this = $(this);
+        $this.removeClass('location-input-active');
+        $this.removeClass('location-symbol-active');
+        $this.stop(true, true).fadeTo(timer, 1);
+        locationActive = 0;
+        searchActive = 0;
+      });
+
+      // swap close and edit buttons
+      $('.close').stop(true, true).fadeOut(500, function(){
+      $('.edit').stop(true, true).fadeIn(500);
+      });
+
+    });
+
+    // On location focus, transition into location input active state
+    $('.location-input').focus(function(){
+      $('.edit').click();
+      locationActive = 1;
+    });
+
+    // Place the searchbar into its inactive state
+    $('.edit').click(function(){
+
+      // variable animation time for placing location input into active state
+      var timer = searchActive ? 500 : 250;
+      if (searchActive == 3) timer = 0;
+      
+      // Add classes to place searchbar into active state
+      $('.location-input').fadeTo(timer, 0, function(){
+        var $this = $(this);
+        $this.addClass('location-input-active'); 
+        $this.addClass('location-symbol-active');
+        $this.stop(true, true).fadeTo(timer, 1);  
+        locationActive = 1;
+      });
+
+      $('.edit').stop(true, true).fadeOut(timer, function(){
+      $('.close').stop(true, true).fadeIn(timer);
+      });
+
+    });
+
+    function slideDelay(){
+      setTimeout(function(){
+        if (!scrollSearch){
+          $('.searchbar').addClass('search-bar-fixed-negpos');
+          scrollSearch = 1; 
+          $('.search-input').blur();
+        }
+      },50);
+    }
+
+    $(document).ready(function() {
+
+      // Remove classes to place searchbar into inactive state  
+      var s = $('div.searchbar'); 
+      var pos = s.position();   
+
+      // Handle search bar on scroll listener             
+      $(window).scroll(function() {
+
+          // Get the scroll distance from top of page
+          var windowpos = $(window).scrollTop();
+
+          // If the searchbar is no longer visible, handle the fixed scroll bar animation
+          if (windowpos >= 120) {
+            if (!scrollSearch){
+              $('.searchbar-placeholder').addClass('searchbar-place-holder')
+              $('.brand').addClass('brand-scroll');
+              $('.brand').addClass('brand-zero-transition');              
+              $('.invisible').addClass('brand-zero-transition');
+
+              $('.search-input').addClass('search-input-scroll');
+              $('.search-input').focus();
+              $('.searchbar').addClass('search-bar-top');
+              slideDelay();
+            }
+          windowpos
+          } else {
+            if (windowpos <= 30){
+              if (scrollSearch){
+                $('.searchbar-placeholder').removeClass('searchbar-place-holder')
+                $('.brand').removeClass('brand-scroll');
+                $('.brand').removeClass('brand-zero-transition');              
+                $('.invisible').removeClass('brand-zero-transition');
+
+                $('.search-input').removeClass('search-input-scroll');
+                $('.close').click();
+                $('.searchbar').removeClass('search-bar-fixed-negpos'); 
+                $('.searchbar').removeClass('search-bar-top'); 
+                scrollSearch = 0;
+              }
+            }
+          }
+      });
+    });
+
+    $(document).ready(function() {
+      $( "#register" ).click(function() {
+        $("#auth-modal").addClass("visible"); 
+      });
+    });
+
+    $(document).keyup(function(e) {
+      if (e.keyCode == 27) { 
+        $('#auth-modal').removeClass('visible');
+      }
+    });
+
+
