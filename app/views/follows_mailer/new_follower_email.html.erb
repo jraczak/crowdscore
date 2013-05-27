@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<body>
+			<h2>Congrats, you've got a new follower!</h2>
+		<p>
+			Howdy, <%= @followed.first_name %>. We're dropping you a quick note to let you
+			know that <%= link_to @follower.username, @follower %> started following you on
+			Crowdscore.
+		</p>
+		
+		<p>
+			You can check out their profile <%= link_to "here", @follower %>. If you like what 
+			you see, you can follow them back. 
+		</p>
+		
+		<h4>
+			Happy scoring!
+		</h4>
+		</body>
+	</head>
+</html>
