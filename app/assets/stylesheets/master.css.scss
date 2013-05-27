@@ -44,8 +44,9 @@ p{
   position: relative;;
 }
 
-.navbar{
+nav{
   width: 100%;
+  min-width: 980px;
   height: 30px;
   background-color: #2d3132;
   position: relative;
@@ -102,6 +103,7 @@ form{
 }
 .searchbar-place-holder{
   height: 80px;
+  min-width: 980px;
 }
 .searchbar{
   display: block;
@@ -109,6 +111,7 @@ form{
   height: 80px;
   border-bottom: 1px solid #d3d3d3;
   width: 100%;
+  min-width: 980px;
   top: 0px;
   margin-top: 0px;
   background-color: white;
@@ -125,6 +128,10 @@ form{
     position: relative;
     text-align: left;
     margin-top: -12px;
+
+    form {
+      display: block;
+    }
 
     input[type='button']{
       border: 0;
@@ -160,30 +167,24 @@ form{
     .brand{
       background-image: url('crowdscore_logo.png');
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: right;
       display: inline-block;
-      position: relative;
+      position: absolute;
       z-index: 100;
       width: 205px;
       opacity: 1;
       height: 84px;
-      @include transition(opacity 0.5s, width 0.5s);
-      @include delay(0.5s, 0s);
+      left: 0px;
+      @include transition(left 0.5s, opacity 0.5s ease-in);
+      @include delay(0s, 0s);
     }
 
     .brand-scroll{
-      @include transition(opacity 0s, width 0s);
-    }
-
-
-    .brand-zero-transition{
-      @include transition(all 0s);
-      @include delay(all 0s);
-    }
-
+      @include transition(left 0s, opacity 0s);
+    } 
 
     .search-input-scroll{
-      @include transition(all 0s);
+      @include transition(width 0s, margin 0s);
     }
 
     .search-input{  
@@ -196,7 +197,7 @@ form{
       font-weight: 100;
       line-height: 20px;
       width: 35%;
-      margin: 0 0 0 43px;
+      margin: 0 0 0 248px;
       padding: 0 0 4px 30px;
       outline: none;
       display: inline-block;
@@ -204,7 +205,7 @@ form{
       bottom: 17px;
       vertical-align: middle;
       @include transition(width 0.5s, margin 0.5s);
-      @include delay(0s);
+      @include delay(0s, 0s);
 
       &::-webkit-input-placeholder { /* WebKit browsers */
         color:    #00BAEA;
@@ -231,8 +232,8 @@ form{
 
     .search-input-active{
       width: 60%;
-      margin: 0px;
-      @include delay(0.5s, 0.5s)
+      margin-left: 0px;
+      @include delay(0s, 0s)
     }
 
     .search-input-fade{
@@ -309,9 +310,10 @@ form{
     }
 
     .invisible{
-      width: 0;
       opacity: 0;
-      @include delay(0s, 0.5s);
+      left: -248px;
+      @include transition(left 0.5s, opacity 0.5s ease-out);
+      @include delay(0s, 0s);
     }
   }
 } 
@@ -327,13 +329,21 @@ form{
 }
 
 
+.blurry{
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+}
 
-
-.auth-modal {
+.full-screen-modal{
   visibility: hidden;
   pointer-events: none; 
   position: fixed;
   z-index: 1000;
+  opacity: 0.98;
+  background-color: #666;
+  text-align: left;
 
   .modal-mask {
     position: fixed;
@@ -341,10 +351,30 @@ form{
     bottom: 0;
     left: 0;
     right: 0;
+    width: 100%;
+    height: 100%;
     z-index: 100;
-    background-color: #f7f7f7; 
+    background-color: #666; 
   }
 
+  .modal-body{
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .close-modal{
+    font-family: HelveticaNeue-UltraLight;
+    font-size: 100px;
+    font-weight: 100;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform:  rotate(-45deg);
+    position: relative;
+    line-height: 50px;
+    cursor: pointer;
+  }
   .modal-content, 
   .modal-mask {
     opacity: 0;
@@ -353,34 +383,39 @@ form{
     -ms-transform-origin: 50% 0;
     -o-transform-origin: 50% 0;
     transform-origin: 50% 0;
-    -webkit-transform: scale(1.1) translate3d(0, 0, 0);
-    -moz-transform: scale(1.1) translate3d(0, 0, 0);
-    -ms-transform: scale(1.1) translate3d(0, 0, 0);
-    -o-transform: scale(1.1) translate3d(0, 0, 0);
-    transform: scale(1.1) translate3d(0, 0, 0);
+    -webkit-transform: scale(1.9) translate3d(0, 0, 0);
+    -moz-transform: scale(1.9) translate3d(0, 0, 0);
+    -ms-transform: scale(1.9) translate3d(0, 0, 0);
+    -o-transform: scale(1.9) translate3d(0, 0, 0);
+    transform: scale(1.9) translate3d(0, 0, 0);
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease; 
+
+    a{
+      display: inline-block;
+      width: 740px;
+      text-align: left;
+    }
   }
 
+  text-align: center;
+  vertical-align: middle;
 
   form {
     overflow: hidden;
-    *zoom: 1;
-    width: 740px;
-    margin: 100px auto 200px auto;
-    overflow: hidden;
-    overflow: hidden; 
+    zoom: 1;
+    display: inline-block;
 
     input,
     textarea {
-      margin: 20px 0 0 23px;
       background-color: transparent;
       outline: 0;
       line-height: 1.5;
+      font-weight: 100;
 
-      font-size: 18px;
+      font-size: 40px;
       color: #02b8ea;
       -webkit-transition: border-color 0.4s;
       -moz-transition: border-color 0.4s;
@@ -392,28 +427,31 @@ form{
       &::-webkit-input-placeholder { /* WebKit browsers */
         color:    #00BAEA;
         padding-top: 4px;
+        font-weight: 100;
         
       }
       &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
         color:    #00BAEA;
         padding-top: 4px;
-        
+        font-weight: 100;
       }
       &::-moz-placeholder { /* Mozilla Firefox 19+ */
         color:    #00BAEA;
         padding-top: 4px;
+        font-weight: 100;
         
       }
       &:-ms-input-placeholder { /* Internet Explorer 10+ */
         color:    #00BAEA;
         padding-top: 4px;
+        font-weight: 100;
 
       }
     }
 
     input {
       border: 0;
-      border-bottom: 1px solid #DDD; 
+      border-bottom: 1px solid #2d3132; 
     }
 
   }
@@ -422,7 +460,8 @@ form{
 
 
 }
-.auth-modal.visible {
+.full-screen-modal.visible,
+#auth-modal-mask.visible {
   visibility: visible;
   pointer-events: auto; 
 
@@ -437,10 +476,9 @@ form{
   }
 }
 
-
-
-
-
+svg{
+  height: 0;
+}
 
 
 

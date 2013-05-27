@@ -10,6 +10,7 @@
 //= require jquery.scrollTo-1.4.2-min
 //= require jquery.geolocation
 
+
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
@@ -19,3 +20,4 @@
 //= require_tree ./templates
 //= require crowdscore
 //= require_tree .
+//= require blur

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
+  <head>
+    <title><%= "Crowdscore #{yield(:title)}" %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+    <section class="full-body-container">    
+      <nav>
+        <div class="navbar-inner">
+          <ul>
+            <li><a id="register" href="#">register</a></li>
+            <li><a href="#">log in</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class='searchbar-placeholder'></div>
+      <div class='searchbar'>
+        <div class="searchbar-inner">
+          <a class="brand" href="#"></a>
+          <%= form_tag search_venues_path, method: :get, id: 'search' do |f| %>
+            <%= text_field_tag :q, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
+            <div class='search-input-fade'></div>
+            <%= text_field_tag :zip, '', placeholder: "city & state or zip", class: 'location-input'%>
+            <%= submit_tag "Find it!", style: 'display: none' %>
+            <%= hidden_field_tag :latitude, '' %>
+            <%= hidden_field_tag :longitude, '' %>
+            <input type='button' class="close" id="exit-location">
+            <input type='button' class="edit" id="edit-location">
+          <% end %>
+        </div>
+      </div>
+
+      <div class="floater">
+        <ul>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "Account", "#", class: "menu" %>
+              <ul>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+                  <%= link_to "View My Lists", lists_path %>
+                  <%= link_to "My Profile", user_path(current_user) %>
+                  <%= link_to "My Account", edit_user_registration_path %>
+                </li>
+              </ul>
+            </li>
+          <% else %>  
+            <li><%= link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true" %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+          <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+        </ul>
+      </div>
+
+      <%= yield %>
+
+      <footer>
+        Copyright &copy; 2013 Crowdscore. All rights reserved.
+      </footer>
+    </section>
+    <svg>
+      <filter id="blur">
+        <feGaussianBlur stdDeviation="15"></feGaussianBlur>
+      </filter>
+    </svg>
+
+    <div id="auth-modal" class='full-screen-modal'>
+      <div class='modal-mask'>
+        <div class='modal-content'>
+          <div class='close-modal'>+</div>
+          <p href="#">Sign into Crowdscore!</p>
+          <%= form_for devise_resource, as: resource_name, url: session_path(resource_name) do |f| %>
+            <%= f.text_field :email, placeholder: "Email" %>
+            <%= f.password_field :password, placeholder: "Password" %>
+            <%= f.submit "Sign in" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag "application" %>
+
+    <script>
+      var uvOptions = {};
+      (function() {
+        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/0MsUmqbikVAbKrdEYidA.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+          })();
+    </script>
+    <script>
+      var locationActive = 0;
+      var searchActive = 0;
+      var scrollSearch = 0;
+
+      // Represents the faded div at the end of the search input
+      // When clicked, focus on the search field
+      $('.search-input-fade').click(function(){
+        $('.search-input').focus();
+      });
+
+      // On focus, trigger animation to place search bar in active state
+      $('.search-input').focus(function() {
+        $('a.brand').addClass('invisible');
+        $('.search-input').addClass('search-input-active');
+        if (!scrollSearch)
+          searchActive = 1;
+        if (!locationActive){
+          $('.edit').click();  
+        }
+      });
+
+      // Place the searchbar into its inactive state
+      $('.close').click(function(){
+
+        // variable animation time for placing location input into active state
+        var timer = searchActive ? 250 : 125;
+        if (searchActive == 3) timer = 0;
+        
+        // Remove classes to place searchbar into inactive state
+        $('a.brand').removeClass('invisible');
+        $('.search-input').removeClass('search-input-active');
+        $('.location-input').fadeTo(timer, 0, function(){
+          var $this = $(this);
+          $this.removeClass('location-input-active');
+          $this.removeClass('location-symbol-active');
+          $this.stop(true, true).fadeTo(timer, 1);
+          locationActive = 0;
+          searchActive = 0;
+        });
+
+        // swap close and edit buttons
+        $('.close').stop(true, true).fadeOut(500, function(){
+        $('.edit').stop(true, true).fadeIn(500);
+        });
+
+      });
+
+      // On location focus, transition into location input active state
+      $('.location-input').focus(function(){
+        $('.edit').click();
+        locationActive = 1;
+      });
+
+      // Place the searchbar into its inactive state
+      $('.edit').click(function(){
+
+        // variable animation time for placing location input into active state
+        var timer = searchActive ? 250 : 125;
+        if (searchActive == 3) timer = 0;
+        
+        // Add classes to place searchbar into active state
+        $('.location-input').fadeTo(timer, 0, function(){
+          var $this = $(this);
+          $this.addClass('location-input-active'); 
+          $this.addClass('location-symbol-active');
+          $this.stop(true, true).fadeTo(timer, 1);  
+          locationActive = 1;
+        });
+
+        $('.edit').stop(true, true).fadeOut(timer, function(){
+        $('.close').stop(true, true).fadeIn(timer);
+        });
+
+      });
+
+      function slideDelay(){
+        setTimeout(function(){
+          if (!scrollSearch){
+            $('.searchbar').addClass('search-bar-fixed-negpos');
+            scrollSearch = 1; 
+            $('.search-input').blur();
+          }
+        },50);
+      }
+
+      $(document).ready(function() {
+
+        // Remove classes to place searchbar into inactive state  
+        var s = $('div.searchbar'); 
+        var pos = s.position();   
+
+        // Handle search bar on scroll listener             
+        $(window).scroll(function() {
+
+            // Get the scroll distance from top of page
+            var windowpos = $(window).scrollTop();
+
+            // If the searchbar is no longer visible, handle the fixed scroll bar animation
+            if (windowpos >= 120) {
+              if (!scrollSearch){
+                $('.searchbar-placeholder').addClass('searchbar-place-holder')
+                $('.brand').addClass('brand-scroll').css('width', 0);
+
+                $('.search-input').addClass('search-input-scroll');
+                $('.search-input').focus();
+                $('.searchbar').addClass('search-bar-top');
+                slideDelay();
+              }
+            windowpos
+            } else {
+              if (windowpos <= 30){
+                if (scrollSearch){
+                  $('.searchbar-placeholder').removeClass('searchbar-place-holder')
+                  $('.brand').css('width', '205px').removeClass('brand-scroll');
+                  
+                  $('.search-input').removeClass('search-input-scroll');
+                  $('.close').click();
+                  $('.searchbar').removeClass('search-bar-fixed-negpos'); 
+                  $('.searchbar').removeClass('search-bar-top'); 
+                  scrollSearch = 0;
+                }
+              }
+            }
+        });
+      });
+
+      $(document).ready(function() {
+        $( "#register" ).click(function() {
+          $( '#auth-modal' ).addClass("visible");
+          //$('.full-body-container').addClass('blurry');
+          //$('.full-body-container').css('filter','url("#blur")');
+        });
+
+        $('.close-modal').click(function(){
+          $("#auth-modal").removeClass("visible");
+          //$('.full-body-container').removeClass('blurry');
+          //$('.full-body-container').css('filter','none');
+        });
+      });
+
+      $(document).keyup(function(e) {
+        if (e.keyCode == 27) { 
+          $('.full-screen-modal').removeClass('visible');
+          //$('.full-body-container').removeClass('blurry');
+          //$('.full-body-container').css('filter','none');
+        }
+      });
+
+
+      $('#submit-score-btn').click(function(){
+        $( '#score-modal' ).addClass("visible");
+        //$('.full-body-container').addClass('blurry');
+        //$('.full-body-container').css('filter','url("#blur")');
+      });
+
+
+        $('.close-modal').click(function(){
+          $("#auth-modal").removeClass("visible");
+          //$('.full-body-container').removeClass('blurry');
+          //$('.full-body-container').css('filter','none');
+        });
+    </script>
+
+  </body>
+</html>
