@@ -29,4 +29,9 @@ class ApplicationController < ActionController::Base
   def remember_return_to
     session[:user_return_to] = params[:return_to] if params[:return_to].present?
   end
+  
+  # Define redirect for user to dashboard after signing in
+  def after_sign_in_path_for(devise_resource)
+    dashboard_path
+  end
 end

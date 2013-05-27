@@ -9,7 +9,7 @@ Crowdscore::Application.routes.draw do
 
   get "user_locks/create"
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations" }
 
   resources :venue_tags, only: [:index]
 
