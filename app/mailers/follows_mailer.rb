@@ -1,5 +1,5 @@
 class FollowsMailer < ActionMailer::Base
-  default from: "support@crowdsco.re"
+  default from: "\"Crowdscore Support\" <support@crowdsco.re>"
   
   def new_follower_email(followed, follower)
     @follower = follower
