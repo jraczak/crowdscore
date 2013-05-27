@@ -6,12 +6,12 @@
 			<h2>Congrats, you've got a new follower!</h2>
 		<p>
 			Howdy, <%= @followed.first_name %>. We're dropping you a quick note to let you
-			know that <%= link_to @follower.username, @follower %> started following you on
+			know that <%= link_to @follower.username, url_for(@follower) %> started following you on
 			Crowdscore.
 		</p>
 		
 		<p>
-			You can check out their profile <%= link_to "here", @follower %>. If you like what 
+			You can check out their profile <%= link_to "here", url_for(@follower) %>. If you like what 
 			you see, you can follow them back. 
 		</p>
 		
