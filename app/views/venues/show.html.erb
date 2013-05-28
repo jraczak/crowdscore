@@ -38,7 +38,7 @@ var auto_zoom = false;
 				  </div>
 
 				  <div class="center-absolute">
-						<a class="submit-score-btn" href="#">SUBMIT YOUR SCORE</a>
+						<div id="submit-score-btn" class="submit-score-btn">SUBMIT YOUR SCORE</div>
 					</div>
 
 				</div>
@@ -335,11 +335,30 @@ var auto_zoom = false;
 	</div><!-- End of other Nearby Restaurant Division -->
 	<div class="footer"></div>
 
+  <div class='full-screen-modal' id="score-modal">
+    <div class='modal-mask'>
+      <div class='modal-content'>
+        <div class='close-modal'>+</div>
+        <p href="#">Sign into Crowdscore!</p>
 
+        <%= form_for resource.venue_scores.build, url: venue_score_path(resource) do |f| %>
+          <%= f.label :score1, resource.venue_category.prompt1 %>
+          <%= f.select :score1, (0..10).to_a, include_blank: true %>
 
-
-
-
+          <%= f.label :score2, resource.venue_category.prompt2 %>
+          <%= f.select :score2, (0..10).to_a, include_blank: true %>
+          
+          <%= f.label :score3, resource.venue_category.prompt3 %>
+          <%= f.select :score3, (0..10).to_a, include_blank: true %>
+          
+          <%= f.label :score4, resource.venue_category.prompt4 %>
+          <%= f.select :score4, (0..10).to_a, include_blank: true %>
+          
+          <%= f.submit "Add my score" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 
 <script>  
@@ -505,8 +524,6 @@ GraphAnimation.prototype.drawArc = function() {
     			index++;
     		}
     	}
-
-
 
     	graphs.forEach(draw);
     	otherGraphs.forEach(draw);
