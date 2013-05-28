@@ -8,6 +8,10 @@
   </h1>
 <% end %>
 
+<% if flash[:notice] %>
+  <p class="notice"><b><%= flash[:notice] %></b></p>
+<% end %>
+
 <h4>User profile photo goes up here</h4>
 
 <h4>Update your profile</h4>

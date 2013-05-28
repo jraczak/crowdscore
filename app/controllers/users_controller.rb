@@ -1,4 +1,5 @@
 class UsersController < InheritedResources::Base
+  include ActionView::Helpers::TextHelper
   actions :show
   custom_actions member: [:follow]
 
@@ -35,10 +36,15 @@ class UsersController < InheritedResources::Base
     #Validate the user_emails field isn't blank and emails are valid
     emails = [params[:invitation_email1], params[:invitation_email2], params[:invitation_email3], params[:invitation_email4],params[:invitation_email5]]
     #params[:invitation_emails].split(",").each do |email|
+    non_empty_emails = 0
     emails.each do |email|
-      User.invite!({:email => email}, current_user)
+      unless email.empty?
+        User.invite!({:email => email}, current_user)
+        non_empty_emails += 1
+        current_user.add_points(1, "1 karma point added for inviting user")
+      end
     end
-    flash[:notice] = "Your invitations are on the way! Thanks for sharing the love."
+    flash[:notice] = "Your invitations are on the way! You earned #{ pluralize(non_empty_emails, 'karma point') } for sharing the love."
     redirect_to '/dashboard'
   end
     
