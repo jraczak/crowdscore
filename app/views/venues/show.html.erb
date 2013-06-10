@@ -239,11 +239,13 @@ var auto_zoom = false;
 			<div class="commentbox-container">
 				<div class="avatar circletag"></div>
 				<div class="text-bubble"></div>
-				<textarea id="tip-input" onkeyup="charCounter(this)" class="text-bubble" type="text" rows="2" max="20" placeholder="Add a tip. What's good to know about <%= resource.name.titlecase %>?	"></textarea>	
+				<%= form_for Tip.create, url: venue_tips_path(resource), remote: true do |f| %>
+  				<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
+				  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
+				<% end %> 
 				<div class="rem-char">
 					<strong id="rem-char">100</strong> characters remaining
 				</div>
-				<div class="btn-submit-tip">SUBMIT YOUR TIP</div>
 			</div><!-- End comment box container -->
 
 
@@ -255,39 +257,12 @@ var auto_zoom = false;
 					<div class="sort-recent-btn">RECENT</div>
 				</div>
 			</div><!-- End tip header section -->
+		
 		<% anyTips = resource.tips.any? ? true : false %>
 		<div class="all-tips-container <% if !anyTips %> gray-line-pattern<% end %>" style=<% if anyTips %>"min-height: 0;"<%end %>>
 		<% if resource.tips.any? %>
-		  <% resource.tips.each do |t| %>
-		    <div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
-					<div class="body-text"><%= t.text %></div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-						<% if current_user %>
-						  <% if current_user.liked_tips.include?(t) %>
-						    <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
-						  <% else %>
-						    <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
-						  <% end %>
-							<%= image_tag('thumbs_up.png') %>
-							<p><b><%= t.tip_likes.count %></b> upvotes</p>
-						<% else %>
-							<%= image_tag('thumbs_up.png') %>
-							<p><b><%= t.tip_likes.count %></b> upvotes</p>
-						</a>
-						<% end %>
-						<a href="#">
-							<%= image_tag('share_venue.png') %>
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-		
-
+		  <% resource.tips.by_recent.each do |t| %>
+		    <%= render :partial => "tip", :locals => { :t => t } %>
 	    <% end %>
 	  </div>
 			<div class="show-more-tips-container">
@@ -297,7 +272,7 @@ var auto_zoom = false;
 			<div class="center-absolute">
 		  	
 		  	<div class='cs-logo'></div>
-		  	<div class="add-msg">Be the first to add a photo!</div>
+		  	<div class="add-msg">Be the first to add a Tip!</div>
 
 		  </div>
 		<% end %>	

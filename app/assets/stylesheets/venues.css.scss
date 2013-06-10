@@ -712,9 +712,10 @@ textarea:focus{
 }
 
 .btn-submit-tip{
+	border: none;
 	margin-top: 120px;
 	margin-right:20px;
-	float:right;
+	height: 40px;
 	display: inline-block;
 	font-family: Museo;
 	font-weight: 900;
@@ -728,6 +729,7 @@ textarea:focus{
   text-decoration: none;
   background-color: #FFFFFF;
 	border-radius: 4px;
+	float: right;
 }
 
 strong{
@@ -1240,11 +1242,31 @@ strong{
 }
 
 .tip-container .body 
-.upvotes-and-share img{
+.upvotes-and-share .img{
 	display: inline-block;
 	margin-top: -2px;
 	margin-right: 3px;
-	vertical-align: middle;
+	background-repeat: no-repeat;
+	background-size: 14px 12px;
+	height: 12px;
+	width: 14px;
+
+}
+
+.thumbs_up{
+	background-image: url(thumbs_up.png);
+}
+
+.thumbs_up:hover{
+	background-image: url(thumbs_up_gray.png);
+}
+
+.thumbs_up_gray{
+	background-image: url(thumbs_up_gray.png);
+}
+
+.thumbs_up_gray:hover{
+	background-image: url(thumbs_up.png);
 }
 
 

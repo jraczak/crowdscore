@@ -12,7 +12,14 @@ class TipsController < InheritedResources::Base
 
   def create
     build_resource.user = current_user
-    create! { parent }
+    create! { 
+      respond_to do |format|
+        format.html { parent }
+        format.js { render "create", :locals => {:tip => build_resource} }
+      end 
+      return
+    }
+
   end
 
   def upvote
@@ -21,14 +28,21 @@ class TipsController < InheritedResources::Base
       current_user.save!
     end
 
-    redirect_to resource.venue
+    respond_to do |format|
+      format.html { redirect_to resource.venue }
+      format.js { render "upvote", :locals => {:tip => resource} }
+    end
+    
   end
   
   def remove_vote
     current_user.liked_tips.delete(resource)
     current_user.save!
 
-    redirect_to resource.venue
+    respond_to do |format|
+      format.html { redirect_to resource.venue }
+      format.js { render "remove_vote", :locals => {:tip => resource} }
+    end
   end
   
 end
