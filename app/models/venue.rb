@@ -40,7 +40,7 @@ class Venue < ActiveRecord::Base
     text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
-    text(:tags) { |venue| venue.tags.map(&:full_name) }
+    #text(:tags) { |venue| venue.tags.map(&:full_name) }
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end

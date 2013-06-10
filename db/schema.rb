@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526034207) do
+ActiveRecord::Schema.define(:version => 20130610011225) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -121,12 +121,15 @@ ActiveRecord::Schema.define(:version => 20130526034207) do
   create_table "tags", :force => true do |t|
     t.integer  "tag_category_id"
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "venue_category_tag_set_id"
+    t.integer  "venue_subcategory_tag_set_id"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
-  add_index "tags", ["tag_category_id"], :name => "index_tags_on_tag_category_id"
+  add_index "tags", ["venue_category_tag_set_id"], :name => "index_tags_on_venue_category_tag_set_id"
+  add_index "tags", ["venue_subcategory_tag_set_id"], :name => "index_tags_on_venue_subcategory_tag_set_id"
 
   create_table "tags_venues", :id => false, :force => true do |t|
     t.integer "tag_id"
@@ -220,6 +223,13 @@ ActiveRecord::Schema.define(:version => 20130526034207) do
     t.string   "prompt4"
   end
 
+  create_table "venue_category_tag_sets", :force => true do |t|
+    t.integer  "venue_category_id"
+    t.string   "name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "venue_images", :force => true do |t|
     t.string   "image_file"
     t.string   "caption"
@@ -267,6 +277,13 @@ ActiveRecord::Schema.define(:version => 20130526034207) do
   end
 
   add_index "venue_subcategories", ["venue_category_id"], :name => "index_venue_subcategories_on_venue_category_id"
+
+  create_table "venue_subcategory_tag_sets", :force => true do |t|
+    t.integer  "venue_subcategory_id"
+    t.string   "name"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "venues", :force => true do |t|
     t.string   "name"
