@@ -25,6 +25,7 @@ gem "gmaps4rails"
 gem "merit"
 gem "sunspot_solr"#, "~> 2.0.0.pre"
 gem "devise_invitable", "~> 1.1.0"
+#gem 'rails_admin'
 
 # Gems used only for assets and not required
 # in production environments by default.

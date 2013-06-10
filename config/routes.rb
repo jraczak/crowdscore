@@ -1,4 +1,5 @@
 Crowdscore::Application.routes.draw do
+  
 
   get "user_dashboard/show"
   match "dashboard" => "UserDashboard#show"
