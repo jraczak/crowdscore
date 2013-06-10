@@ -48,7 +48,7 @@
 
 <h4>Average score given</h4>
 <p><%= resource.average_score %><% unless resource.venue_scores.empty? %><br>
-(based on <%= resource.venue_scores.count %> score)
+(based on <%= pluralize(resource.venue_scores.count, "score") %>)
 <% end %></p>
 
 <h4>Highest score given</h4>
