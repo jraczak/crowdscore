@@ -46,20 +46,26 @@ var auto_zoom = false;
 
 
 		 	<!-- Image container -->
+			<% if resource.venue_images.any? %>
+			<div class="venue-image present" style="background-image: url('<%= resource.venue_images.first.image_file %>')">
+				<%= image_tag('photo_zoom.png') %></img>
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% else %>
 			<div class="venue-image">
-
 				<div class="center-absolute">
-			  	
 			  	<div class='empty-camera'>
 			  	</div>
+
 			  	<div class="add-msg">
 			  		Be the first to add a photo!
 			  	</div>
-
 			  </div>
 			  <%= image_tag('photo_zoom.png') %></img>
 			  <div class="add-element-triangle"></div>
-			  <div class="add-element-text"><a href="#">+</a></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% end %>
+
 			</div><!-- End Container -->
 
 
@@ -336,6 +342,21 @@ var auto_zoom = false;
   </div>
 
 
+  <div id="image-upload-modal" class='full-screen-modal'>
+    <div class='modal-mask'>
+      <div class='modal-content'>
+        <div class='close-modal' onclick="closeModal()">+</div>
+        <%= form_for VenueImage.create, url: venue_images_path(resource) do |f| %>
+          <%= f.file_field :image_file %>
+          <%= f.text_field :caption %>
+          <%= f.submit "Upload" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
 <script>  
 function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
 {
@@ -508,6 +529,13 @@ GraphAnimation.prototype.drawArc = function() {
       }		      
       
     
+    	function openImageUploader(){
+    		$( '#image-upload-modal' ).addClass("visible");
+    	}
+
+    	function closeModal(){
+    		$('#image-upload-modal').removeClass('visible');
+    	}
 
 
     </script>

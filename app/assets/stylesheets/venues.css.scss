@@ -913,7 +913,7 @@ strong{
 	height: 300px; 
 	max-width: 300px; 
 	min-width: 300px; 
-	background: url('gray_line_pattern.png');
+	background-image: url('gray_line_pattern.png');
 	background-repeat: repeat; 
 	margin-top: 25px;
 	border-radius: 4px;
@@ -948,6 +948,11 @@ strong{
 	}
 
 
+}
+
+.present{
+	background-size: 100% auto;
+	background-position: center center;
 }
 
 .venue-image img{

@@ -20,4 +20,3 @@
 //= require_tree ./templates
 //= require crowdscore
 //= require_tree .
-//= require blur
