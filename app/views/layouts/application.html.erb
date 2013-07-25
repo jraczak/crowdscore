@@ -4,6 +4,7 @@
     <title><%= "Crowdscore #{yield(:title)}" %></title>
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
+
   </head>
   <script type="text/javascript">
       (function() {
@@ -119,8 +120,9 @@
       </div>
     </div>
 
+    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
     <%= javascript_include_tag "application" %>
-
+    
     <script>
       var uvOptions = {};
       (function() {
