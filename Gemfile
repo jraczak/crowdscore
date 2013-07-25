@@ -41,6 +41,7 @@ group :development do
   gem "rails-erd"
   gem "kumade"
   gem "spin"
+  gem "ruby-graphviz"
 end
 
 group :development, :test do
