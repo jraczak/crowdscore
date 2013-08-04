@@ -1,3 +1,4 @@
+
 <% if current_user.gone_for_a_week? %>
   <h1>
     We've missed you, <%= current_user.first_name %>!
@@ -12,15 +13,26 @@
   <p class="notice"><b><%= flash[:notice] %></b></p>
 <% end %>
 
-<h4>User profile photo goes up here</h4>
-
-<h4>Update your profile</h4>
-
-<%= link_to "Update profile", edit_user_registration_path %>
-
-<h4>Your Karma</h4>
-  <p>Your contributions have earned you <%= pluralize(current_user.points, "karma point") %>.</p>
-
+<div id="dashboard-header">
+  <div id="profile-picture" class="header-section">
+    <h4>User profile photo goes up here</h4>
+  </div>
+  
+  <div id="followers" class="header-section">
+    <p class="header-green"><%= current_user.followers.count %></p><br>
+    <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
+  </div>
+  
+  <div id="following" class="header-section">
+    <p class="header-green"><%= current_user.follows.count %></p><br>
+    <p>FOLLOWING</p>
+  </div>
+   
+  <div id="karma" class="header-section">
+    <p class="header-green"><%= current_user.points %></p><br>
+    <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
+  </div>
+</div>
 
 
 <! -- BEGIN NETWORK ACTIVITY SECTION -->
@@ -32,37 +44,26 @@
 <% else %>
   <% activity.each do |a| %>
     <% if a.class == VenueScore %>
-      <div>
-        <p>-<%= User.find(a.user_id).first_name %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p>
+      <div class="activity-card venue-score-card">
+        <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p>
       </div>
     <% elsif a.class == Tip %>
-      <div>
-      <p>-<%= User.find(a.user_id).first_name %> posted a tip to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
-      "<%= a.text %>"<br>
-       (<%= time_ago_in_words(a.created_at) %> ago)
+      <div class="activity-card tip-card">
+      <p>"<%= a.text %>"<br>
+        <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
+         (<%= time_ago_in_words(a.created_at) %> ago)
        </p>
+      </div>
+    <% elsif a.class == List %>
+      <div class="activity-card list-card">
+      <p><%= link_to a.name, a %></p>
+      <p><%= link_to a.user.first_name, a.user %> created a new list.</p>
       </div>
     <% end %>
   <% end %>
 <% end %>
 
 <!-- END NETWORK ACTIVITY SECTION -->
-
-<h4>People who follow you</h4>
-  <p>You have <%= pluralize(current_user.followers.count, "follower") %>.</p><br>
-  <% unless current_user.followers.empty? %>
-    <% current_user.followers.each do |f| %>
-      <%= link_to f.username, f %><br>
-    <% end %>
-  <% end %>
-
-<h4>People you follow</h4>
-  <p>You are following <%= pluralize(current_user.follows.count, "person") %>.</p><br>
-  <% unless current_user.follows.empty? %>
-    <% current_user.follows.each do |f| %>
-      <%= link_to f.username, f %><br>
-    <% end %>
-  <% end %>
 
 <h4>Your Lists</h4>
   <% if current_user.lists.empty? %>
