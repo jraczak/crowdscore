@@ -32,11 +32,15 @@
     <p class="header-green"><%= current_user.points %></p><br>
     <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
   </div>
+  
+  <div id="invitations-container">
+    <p><%= link_to "Invite your friends to Crowdscore >", new_user_invitation_path %>
+  </div>
 </div>
 
 
 <! -- BEGIN NETWORK ACTIVITY SECTION -->
-<h4>Your network's activity</h4>
+<h4 id="crowdfeed-header">Your Crowdfeed</h4>
 
 <% activity = current_user.network_activity %>
 <% if activity.empty? %>
@@ -58,6 +62,7 @@
       <div class="activity-card list-card">
       <p><%= link_to a.name, a %></p>
       <p><%= link_to a.user.first_name, a.user %> created a new list.</p>
+      <p><%= time_ago_in_words(a.created_at) %> ago
       </div>
     <% end %>
   <% end %>

@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
       end
 
     end
-    @activities
+    @activities.sort_by{|a| a[:created_at]}.reverse
   end
   
   def average_score
