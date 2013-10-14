@@ -71,33 +71,20 @@ var auto_zoom = false;
 				</div>
 				
 				<% if resource.tags.any? %>
-					
-					<% tag_categories = get_active_tag_categories(resource) %>
-					<% tags = get_active_tags(resource) %>
-					
-					<% tag_categories.each do |tc| %>
-					  
-					  <div class="tag-group">
-					  <h4><%= tc.name.upcase %>...</h4>
-
-				    <% tags.each do |t| %>
-					    <% if t.tag_category_id == tc.id %>
-					      <a class="tag-btn" href="#"><%= t.name.upcase %></a>
-					    <% end %>
-				  	<% end %>
-
-					  </div>
-					<% end %>
+				  <% resource.tags.each do |t| %>
+				    <a class="tag-btn" href="#"><%= t.name.upcase %></a>
+				  <% end %>
 				
-				<a class="see-all-tags" href="#">
-					<h4>SEE ALL TAGS</h4>
-				</a>
+				  <a class="see-all-tags" href="#">
+                    <h4>SEE ALL TAGS</h4>
+				  </a>
 
-		    <% else %>
+		      <% else %>
 		      
 			  	<div class="center-absolute">
 				  	<div class="add-msg">
-				  		What is this place good for? Add a tip now!
+				  		<p>No tags here yet.<br>
+				  		Share what you know and add some!</p>
 				  	</div>
 				  </div>
 

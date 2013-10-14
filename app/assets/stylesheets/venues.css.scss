@@ -839,6 +839,22 @@ strong{
 	border-radius: 4px;
 }
 
+.tag-btn{
+	list-style-type: none;
+	margin: 5px 1px 0px 0px;
+	display: inline-block;
+	font-weight: 300;
+	padding: 0 13px;
+  font-size: 12px;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #02B8EA;
+	border-radius: 4px;
+}
 
 .tags-container .see-all-tags{
 	vertical-align: top;
