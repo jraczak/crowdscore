@@ -29,7 +29,6 @@ module Merit
         'venues#create',
         'invitations#create'
       ]
-
     end
   
     #def add_karma_for_score

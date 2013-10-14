@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  
+  merit:
+    flashs:
+      karma_earned: "Your karma score has been increased!"
