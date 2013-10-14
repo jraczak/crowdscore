@@ -49,20 +49,29 @@
   <% activity.each do |a| %>
     <% if a.class == VenueScore %>
       <div class="activity-card venue-score-card">
-        <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>. (<%= time_ago_in_words(a.created_at) %> ago)</p>
+        <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
       </div>
     <% elsif a.class == Tip %>
+
+
       <div class="activity-card tip-card">
-      <p>"<%= a.text %>"<br>
-        <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.<br>
-         (<%= time_ago_in_words(a.created_at) %> ago)
+        <div class="icon-container"><div class="icon"></div></div>
+        <p class="tip-body">"<%= a.text %>"<br>
+        <p class="card-description">
+          <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+        </p>
        </p>
+       <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
       </div>
+
+
     <% elsif a.class == List %>
       <div class="activity-card list-card">
-      <p><%= link_to a.name, a %></p>
-      <p><%= link_to a.user.first_name, a.user %> created a new list.</p>
-      <p><%= time_ago_in_words(a.created_at) %> ago
+        <div class="icon-container"><div class="icon"></div></div>
+        <p class="list-name"><%= link_to a.name, a %></p>
+        <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
+        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
       </div>
     <% end %>
   <% end %>
