@@ -122,6 +122,7 @@ class Venue < ActiveRecord::Base
     "#{self.score} <br> #{self.name} <br> #{self.full_category_name}"
   end
   
+  ## Gets the most recent tip to be used in tooltips and summaries around the application.
   def recent_tip
     self.tips.first
   end
