@@ -113,17 +113,23 @@ class User < ActiveRecord::Base
    
     @follows.each do |f|
       f.venue_scores.each do |a|
-        if DateTime.now.to_i - a.created_at.to_i / (24 * 60 * 60) <= 7
+        if (DateTime.now.to_i / (24 * 60 * 60)) - (a.created_at.to_i / (24 * 60 * 60)) <= 30
           @activities << a
         end
       end
       f.tips.each do |t|
-        if DateTime.now.to_i - t.created_at.to_i / (24 * 60 * 60) <= 7
+        if (DateTime.now.to_i / (24 * 60 * 60)) - (t.created_at.to_i / (24 * 60 * 60)) <= 30
           @activities << t
         end
       end
+      f.lists.each do |l|
+        if (DateTime.now.to_i / (24 * 60 * 60)) - (l.created_at.to_i / (24 * 60 * 60)) <= 30
+          @activities << l
+        end
+      end
+
     end
-    @activities
+    @activities.sort_by{|a| a[:created_at]}.reverse
   end
   
   def average_score

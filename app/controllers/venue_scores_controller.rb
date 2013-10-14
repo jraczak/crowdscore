@@ -6,5 +6,6 @@ class VenueScoresController < InheritedResources::Base
   def create
     build_resource.user = current_user
     create!
+    flash[:success] = "Your karma score has gone up 1 point!"
   end
 end

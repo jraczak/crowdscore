@@ -13,16 +13,7 @@ class VenuesController < InheritedResources::Base
     #@json = Venue.all.to_gmaps4rails
   end
   
-  def get_tag_categories
-    @venue ||= Venue.active.find(params[:id])
-    tag_categories = []
-    @venue.tags.each do |t|
-      unless tag_categories.include?(t.name)
-        tag_categories << t.name
-      end
-    end
-    tag_categories
-  end
+
   
   def show
     @higher_scored_venues = Venue.higher_scored_than(resource, 10)

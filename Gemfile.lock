@@ -382,7 +382,7 @@ DEPENDENCIES
   spin
   spork (~> 0.9.0.rc)
   state_select!
-  sunspot_rails (~> 2.0.0.pre)
+  sunspot_rails
   sunspot_solr
   thin
   timecop

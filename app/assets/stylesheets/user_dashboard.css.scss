@@ -1,3 +1,104 @@
 // Place all the styles related to the user_dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.body-wrapper {
+    width: 960px;
+    dispay: inline-block;
+    text-align: center;
+    font-size: 0;
+}
+
+#dashboard-header {
+    width: 940px;
+    height: 260px;
+    position: relative;
+    border-radius: 3px;
+    border-top: 6px solid #72CA28;
+    display: inline-block;
+    box-shadow: 0px 0px 3px rgba(100,100,100,.4);
+    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.header-section {
+    width: calc(25% - 4px);
+    display: inline-block;
+    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+#invitations-container {
+    width: 100%;
+    height: 57px;
+    background-color: #2D3132;
+    position: absolute;
+    bottom: 0;
+    border-radius: 3px;
+    line-height: 57px;
+    
+    a {
+      color: white;
+      text-decoration: none;
+    }
+}
+
+.header-green {
+    color: #72CA28;
+}
+
+#crowdfeed-header {
+    text-align: center;
+}
+
+.activity-card {
+	width: 300px;
+	height: 360px;
+	
+	display: inline-block;
+	vertical-align: top;
+	margin: 0px 10px 20px 10px;
+	padding: 25px 30px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-radius: 3px;
+	box-shadow: 0px 0px 3px rgba(100,100,100,.4);
+}
+
+.venue-score-card {
+	border-top: 6px solid #02B8EA;
+	
+	a {
+	  color: #02B8EA;
+	  font-weight: normal;
+	  text-decoration: none;
+	}
+}
+
+.tip-card {
+	border-top: 6px solid #FECB00;
+	
+	a {
+	  color: #FECB00;
+	  font-weight: normal;
+	  text-decoration: none;
+	}
+}
+
+.list-card {
+	border-top: 6px solid #2464AD;
+	
+	a {
+	  color: #2464AD;
+	  font-weight: normal;
+	  text-decoration: none;
+	}
+}
+
+

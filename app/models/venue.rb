@@ -35,7 +35,7 @@ class Venue < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode, if: :address_parts_changed?
 
-  searchable(include: [:tips, :venue_category, :venue_subcategory, {:tags => :tag_category}]) do
+  searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
     text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
