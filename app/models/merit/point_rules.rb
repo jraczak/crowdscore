@@ -26,7 +26,7 @@ module Merit
       score 1, on: [
         'venue_scores#create',
         'tips#create',
-        'venues#create'
+        'venues#create',
       ]
 
     end
