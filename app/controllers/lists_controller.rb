@@ -3,7 +3,7 @@ class ListsController < InheritedResources::Base
   custom_actions resource: [:add, :remove]
 
   respond_to :html, :json
-
+  
   def add
     venue = Venue.find(params[:venue_id])
     resource.venues << venue
@@ -17,6 +17,11 @@ class ListsController < InheritedResources::Base
 
     render nothing: true, status: :ok
   end
+  
+  protected
+    def resource
+      @list = List.find(params[:id])
+    end
 
   private
 
