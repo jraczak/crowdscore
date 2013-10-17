@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521205409) do
+ActiveRecord::Schema.define(:version => 20130803234933) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -110,19 +110,13 @@ ActiveRecord::Schema.define(:version => 20130521205409) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tag_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "tag_categories", ["name"], :name => "index_tag_categories_on_name"
-
   create_table "tags", :force => true do |t|
     t.integer  "tag_category_id"
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "venue_category_tag_set_id"
+    t.integer  "venue_subcategory_tag_set_id"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
@@ -220,6 +214,13 @@ ActiveRecord::Schema.define(:version => 20130521205409) do
     t.string   "prompt4"
   end
 
+  create_table "venue_category_tag_sets", :force => true do |t|
+    t.integer  "venue_category_id"
+    t.string   "name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "venue_images", :force => true do |t|
     t.string   "image_file"
     t.string   "caption"
@@ -268,6 +269,13 @@ ActiveRecord::Schema.define(:version => 20130521205409) do
 
   add_index "venue_subcategories", ["venue_category_id"], :name => "index_venue_subcategories_on_venue_category_id"
 
+  create_table "venue_subcategory_tag_sets", :force => true do |t|
+    t.integer  "venue_subcategory_id"
+    t.string   "name"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
   create_table "venues", :force => true do |t|
     t.string   "name"
     t.string   "address1"
@@ -285,6 +293,7 @@ ActiveRecord::Schema.define(:version => 20130521205409) do
     t.integer  "computed_score"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "factual_id"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"

@@ -10,13 +10,14 @@ gem "cancan"
 gem "thin"
 gem "carrierwave"
 gem "rmagick", "~> 2.13.2"
-gem "fog"
+gem "fog", "~> 1.3.1"
+
 gem "will_paginate", "~> 3.0.0"
 gem "state_select", git: "git://github.com/jraczak/state_select.git"
 #git: "git@github.com:heimidal/state_select.git"
 gem "acts_as_audited", "2.0.0"
 gem "airbrake"
-gem "sunspot_rails", "~> 2.0.0.pre"
+gem "sunspot_rails"
 gem "geocoder"
 gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
@@ -25,6 +26,8 @@ gem "gmaps4rails"
 gem "merit"
 gem "sunspot_solr"#, "~> 2.0.0.pre"
 gem "devise_invitable", "~> 1.1.0"
+gem 'aws-sdk'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,6 +43,7 @@ group :development do
   gem "rails-erd"
   gem "kumade"
   gem "spin"
+  gem "ruby-graphviz"
 end
 
 group :development, :test do

@@ -1,3 +1,5 @@
+<!-- MERP -->
+
 <% provide(:title, " | #{resource.name.titlecase}") %>
 <script>
 // set JS variables for controls to be made available for gmaps4rails JS files
@@ -7,9 +9,8 @@ var auto_adjust = false;
 var auto_zoom = false;
 </script>
 
-<div class="navbar"></div>
   <div class="top-block"></div>
-  <div id="gray-bar" class="bottom-block"></div>
+  <div class="gray-bar"></div>
 
   <div class="container">
 
@@ -18,55 +19,83 @@ var auto_zoom = false;
 
 			<!-- Overall score container-->
 		  <div class="overall-score-container">
-			  <div class="inner-color"></div>
 			  <div class="header">OVERALL SCORE</div>
 			  <div class="inner-body">
 					<canvas id="overallScoreCanvas" width="173" height="173"></canvas>
-			  	<div id="overallScorePercentage"><%= resource.score %></div>
-			  	<% unless resource.venue_scores.empty? %>
-			  	<p>based on <%= pluralize(resource.venue_scores.count, "score") %></p>
-			  	<% end %>
-					<a class="submit-score-btn" href="#">SUBMIT YOUR SCORE</a>
+			  	
+			  	<div class="center-absolute">
+				  	<p>
+				  	<% unless resource.venue_scores.empty? %>
+				  		based on <%= pluralize(resource.venue_scores.count, "score") %>
+				  	<% end %>
+				  	</p>
+				  </div>
+
+			  	<div class="center-absolute">
+				  	<div class="overallScorePercentage <% if resource.score.class == String %>no-score<% end %>">
+				  		<%= score = resource.score %>
+				  	</div>
+				  </div>
+
+				  <div class="center-absolute">
+						<div id="submit-score-btn" class="submit-score-btn">SUBMIT YOUR SCORE</div>
+					</div>
+
 				</div>
 		  </div><!-- end overall score container -->
 
 
 		 	<!-- Image container -->
-			<div class="venue-image" style="background-image: url(./assets/images/food.jpg)">
-			  <img src="./assets/images/zoom.png"></img>
+			<% if resource.venue_images.any? %>
+			<div class="venue-image present" style="background-image: url('<%= resource.venue_images.first.image_file %>')">
+				<%= image_tag('photo_zoom.png') %></img>
 			  <div class="add-element-triangle"></div>
-			  <div class="add-element-text"><a href="#">+</a></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% else %>
+			<div class="venue-image">
+				<div class="center-absolute">
+			  	<div class='empty-camera'>
+			  	</div>
+
+			  	<div class="add-msg">
+			  		Be the first to add a photo!
+			  	</div>
+			  </div>
+			  <%= image_tag('photo_zoom.png') %></img>
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% end %>
+
 			</div><!-- End Container -->
 
 
 		 	<!-- Tags container -->
-			<div class="tags-container">
+			<div class="<%= resource.tags.any? ? 'tags-container' : 'tags-container gray-line-pattern'%>">
+				
 				<div class="header">
 					<h4>TAGS</h4>
 				</div>
 				
 				<% if resource.tags.any? %>
-					
-					<% tag_categories = get_active_tag_categories(resource) %>
-					<% tags = get_active_tags(resource) %>
-					
-					<% tag_categories.each do |tc| %>
-					  <div class="tag-group">
-					  <h4><%= tc.name.upcase %>...</h4>
-					    <% tags.each do |t| %>
-					    <% if t.tag_category_id == tc.id %>
-					      <a class="tag-btn" href="#"><%= t.name.upcase %></a>
-					    <% end %>
-					  <% end %>
-					  </div>
-					<% end %>
+				  <% resource.tags.each do |t| %>
+				    <a class="tag-btn" href="#"><%= t.name.upcase %></a>
+				  <% end %>
 				
-				<a class="see-all-tags" href="#">
-					<h4>SEE ALL TAGS</h4>
-				</a>
-			    <% else %>
-			      <h4>NO TAGS YET</h4>
-			    <% end %>
+				  <a class="see-all-tags" href="#">
+                    <h4>SEE ALL TAGS</h4>
+				  </a>
+
+		      <% else %>
+		      
+			  	<div class="center-absolute">
+				  	<div class="add-msg">
+				  		<p>No tags here yet.<br>
+				  		Share what you know and add some!</p>
+				  	</div>
+				  </div>
+
+		    <% end %>
+
 			  <div class="add-element-triangle"></div>
 			  <div class="add-element-text"><a href="#">+</a></div>
 
@@ -96,14 +125,14 @@ var auto_zoom = false;
 						<span class="share-venue">	  			
 							<a href="#">
 								<p>
-									<img src="./assets/images/share.png" alt="">SHARE
+									<%= image_tag('share_venue.png') %>SHARE
 								</p>
 							</a>
 						</span>	
 						<span class="add-venue-to-list">
 							<a href="#">
 								<p>
-									<img src="./assets/images/add-btn.png" alt="">ADD TO LIST
+									<%= image_tag('add_to_list.png') %>ADD TO LIST
 								</p>
 							</a>
 						</span>
@@ -203,11 +232,13 @@ var auto_zoom = false;
 			<div class="commentbox-container">
 				<div class="avatar circletag"></div>
 				<div class="text-bubble"></div>
-				<textarea id="tip-input" onkeyup="charCounter(this)" class="text-bubble" type="text" rows="2" max="20" placeholder="Add a tip. What's good to know about <%= resource.name.titlecase %>?	"></textarea>	
+				<%= form_for Tip.create, url: venue_tips_path(resource), remote: true do |f| %>
+  				<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
+				  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
+				<% end %> 
 				<div class="rem-char">
 					<strong id="rem-char">100</strong> characters remaining
 				</div>
-				<div class="btn-submit-tip">SUBMIT YOUR TIP</div>
 			</div><!-- End comment box container -->
 
 
@@ -219,133 +250,25 @@ var auto_zoom = false;
 					<div class="sort-recent-btn">RECENT</div>
 				</div>
 			</div><!-- End tip header section -->
-
-		<div class="all-tips-container">
-		<% if resource.tips.any? %>
-		  <% resource.tips.each do |t| %>
-		    <div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
-					<div class="body-text"><%= t.text %></div>					
-					<div class="upvotes-and-share">
-						<% if current_user %>
-						  <% if current_user.liked_tips.include?(t) %>
-						    <%= link_to "remove_vote", "/venues/#{resource.id}/tips/#{t.id}/remove_vote" %>
-						  <% else %>
-						    <%= link_to "upvote", "/venues/#{resource.id}/tips/#{t.id}/upvote" %>
-						  <% end %>
-						  <img src="./assets/images/thumbs-up.png" alt="sign in to vote">
-							<p><b><%= t.tip_likes.count %></b> upvotes</p>
-						<% else %>
-							<img src="./assets/images/thumbs-up.png" alt="sign in to vote">
-							<p><b><%= t.tip_likes.count %></b> upvotes</p>
-						</a>
-						<% end %>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="sign in to vote">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-	      <% end %>
-		<% else %>
-		  <h5>No tips here yet.</h5>
-		<% end %>	
-<!--			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
-					<div class="body-text">This is a really long comment. Im making this comment so long, cause I want to. It is pretty sweeeeet and I like to write annoying tips all the time on every site ever everywhere! </div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
-					<div class="body-text"> Ilike writing the same thing over and over and over again. When a tip gets this long... Someone hacked your shit.</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JUSTIN | 25 minutes ago</h4>	
-					<div class="body-text">Don't let someone hack your shit. K thanks..</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">JASON | 25 minutes ago</h4>	
-					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
-					<div class="upvotes-and-share">
-						<a class="thumbs-up" href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a class="share" href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-			<div class="tip-container">
-				<div class="avatar circletag"></div>
-				<div class="body">
-					<h4 class="name-and-time">CRIS | 25 minutes ago</h4>	
-					<div class="body-text">IT IS IMPORTANT TO KNOW THAT MY TIP IS 100 CHARACTERS SO THAT I KNOW THIS IS HOW MUCH SPACE IT NEEDS.</div>					
-					<div class="upvotes-and-share">
-						<a href="#">
-							<img src="./assets/images/thumbs-up.png" alt="">
-							<p><b>1,234</b> upvotes</p>
-						</a>
-						<a href="#">
-							<img src="./assets/images/share.png" alt="">
-							<p><b>SHARE</b></p>
-						</a>
-					</div>
-				</div>	
-			</div>
-		-->
-		</div><!-- End tips container -->
 		
-		<div class="show-more-tips-container">
-			<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
-		</div>
+		<% anyTips = resource.tips.any? ? true : false %>
+		<div class="all-tips-container <% if !anyTips %> gray-line-pattern<% end %>" style=<% if anyTips %>"min-height: 0;"<%end %>>
+		<% if resource.tips.any? %>
+		  <% resource.tips.by_recent.each do |t| %>
+		    <%= render :partial => "tip", :locals => { :t => t } %>
+	    <% end %>
+	  </div>
+			<div class="show-more-tips-container">
+				<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
+			</div>
+		<% else %>
+			<div class="center-absolute">
+		  	
+		  	<div class='cs-logo'></div>
+		  	<div class="add-msg">Be the first to add a Tip!</div>
 
-
+		  </div>
+		<% end %>	
   	</div><!-- End of right rail -->
   </div><!-- End floating body container div -->
 	
@@ -380,16 +303,52 @@ var auto_zoom = false;
 	</div><!-- End of other Nearby Restaurant Division -->
 	<div class="footer"></div>
 
+  <div class='full-screen-modal' id="score-modal">
+    <div class='modal-mask'>
+      <div class='modal-content'>
+        <div class='close-modal'>+</div>
+        <p href="#">Sign into Crowdscore!</p>
+
+        <%= form_for resource.venue_scores.build, url: venue_score_path(resource) do |f| %>
+          <%= f.label :score1, resource.venue_category.prompt1 %>
+          <%= f.select :score1, (0..10).to_a, include_blank: true %>
+
+          <%= f.label :score2, resource.venue_category.prompt2 %>
+          <%= f.select :score2, (0..10).to_a, include_blank: true %>
+          
+          <%= f.label :score3, resource.venue_category.prompt3 %>
+          <%= f.select :score3, (0..10).to_a, include_blank: true %>
+          
+          <%= f.label :score4, resource.venue_category.prompt4 %>
+          <%= f.select :score4, (0..10).to_a, include_blank: true %>
+          
+          <%= f.submit "Add my score" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 
-
-
+  <div id="image-upload-modal" class='full-screen-modal'>
+    <div class='modal-mask'>
+      <div class='modal-content'>
+        <div class='close-modal' onclick="closeModal()">+</div>
+        <%= form_for VenueImage.create, url: venue_images_path(resource) do |f| %>
+          <%= f.file_field :image_file %>
+          <%= f.text_field :caption %>
+          <%= f.submit "Upload" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 
 
 <script>  
-	function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness)
+function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
 {
+
+	this.innerWhite = innerWhite;
 	this.ctx = canvas;
 	this.canvas = canvas.getContext('2d');
 	this.outterColor = outterColor;
@@ -403,6 +362,7 @@ var auto_zoom = false;
 	this.yCenter = canvas.height / 2;
 	this.radius = this.xCenter - this.thickness / 2;
 	this.zeroDegree = zeroDegree;
+
 	this.percent = percent;
 }
 
@@ -414,11 +374,13 @@ GraphAnimation.prototype.drawFullCircle = function (){
   this.canvas.strokeStyle = this.innerColor;
   this.canvas.stroke(); 
 
-  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-  this.canvas.lineWidth = 0;
-  this.canvas.fillStyle ='#FFFFFF';
-  this.canvas.fill();
-  this.canvas.stroke();
+  if (this.innerWhite == true){
+	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+	  this.canvas.lineWidth = 0;
+	  this.canvas.fillStyle ='#f7f7f7';
+	  this.canvas.fill();
+	  this.canvas.stroke();
+	}
 };
 
 GraphAnimation.prototype.drawPartialCircle = function() {
@@ -426,7 +388,7 @@ GraphAnimation.prototype.drawPartialCircle = function() {
   function updateInterval() {
     self.updateShape();
   }
-  this.intervalID = window.setInterval(updateInterval, this.speed)
+  this.intervalID = window.setInterval(updateInterval, this.speed);
 }
 
 GraphAnimation.prototype.stopTimer = function() {
@@ -435,7 +397,6 @@ GraphAnimation.prototype.stopTimer = function() {
 }
 
 GraphAnimation.prototype.updateShape = function() {
-	
 	if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
 		// Draw a piece of the circle on each existing canvas
 		this.canvas.beginPath();
@@ -451,23 +412,10 @@ GraphAnimation.prototype.updateShape = function() {
 	}
 }
 
-GraphAnimation.prototype.drawPercent = function(size){
-	this.canvas.font = size + 'pt Sans-Serif';
-	this.canvas.textAlign = 'center';
-	this.canvas.fillStyle = this.outterColor;
-	this.canvas.fillText(this.percent, this.xCenter, this.yCenter + size / 2);
-}
-
 var count = 1;
 GraphAnimation.prototype.drawLoading = function(){
 	if ( count < 10 ){
-	
-		this.canvas.beginPath();
-	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-	  this.canvas.lineWidth = this.thickness + 1;
-	  this.canvas.strokeStyle = "#FFFFFF";
-	  this.canvas.stroke(); 
-	  
+
 		this.canvas.beginPath();
 	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
 	  this.canvas.lineWidth = this.thickness;
@@ -494,22 +442,44 @@ GraphAnimation.prototype.drawArc = function() {
   }
   this.intervalID = window.setInterval(draw, this.speed)
 }
+
 </script>
 	
 	<script>
     	
-    	var overallVenueScore = <%= resource.score %> // Overall Score Container score.
-			var venueScoreCategories = [<%= resource.score_breakdown1 %>, <%= resource.score_breakdown2 %>, <%= resource.score_breakdown3 %>, <%= resource.score_breakdown4 %>]; //Venue Score Categories at the top of the page
-			var otherVenueScores = [90, 80, 70, 60]; // Other venue scores at the bottom of the page
+    	// Overall Score Container score.
+    	var overallVenueScore = "<%= resource.score %>";
 
+    	//Venue Score Categories at the top of the page
+			var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
+																	"<%= resource.score_breakdown2 %>", 
+																	"<%= resource.score_breakdown3 %>", 
+																	"<%= resource.score_breakdown4 %>"]; 
 
-			var zeroLoc = Math.PI*3/2; 
+			for ( var i = 0; i < venueScoreCategories.length; i++){
+				if ( venueScoreCategories[i].match("N/A") )
+					venueScoreCategories[i] = 0;
+			}
+			
+			// Other venue scores at the bottom of the page
+			var otherVenueScores = [90, 80, 70, 60]; 
 
     	var overallScoreGraph = document.getElementById("overallScoreCanvas");
-    	var overallScoreAnimation = new GraphAnimation(overallScoreGraph, "#78E1FF", "#00B5E9", overallVenueScore, zeroLoc, 13, 50);
+    	
+
+    	if (overallVenueScore.match('No')){
+    		var white = false
+    		var ringColor = '#f4f4f4';
+    	} else {
+    		var white = true;
+    		var ringColor = "#78E1FF";
+    	}
+    	var overallScoreAnimation = 
+    		new GraphAnimation(overallScoreGraph, ringColor, "#00B5E9", 
+    											 overallVenueScore, Math.PI*3/2, 13, white);
+
 			overallScoreAnimation.drawFullCircle();
 			overallScoreAnimation.drawPartialCircle();
-			document.getElementById('overallScorePercentage').innerHTML = overallVenueScore;	
 			
 			var circleColors = ["#78E1FF", "#00B5E9"];	
 		
@@ -522,40 +492,37 @@ GraphAnimation.prototype.drawArc = function() {
     	var arr = document.getElementsByTagName('canvas');
     	for ( var i = 0; i < arr.length; i++ ) {
     		if ( arr[i].id.indexOf( identifier ) !== -1 ){
-    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], zeroLoc, 5));
+    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], Math.PI*3/2, 5, true));
+
     			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
     			index++;
-    			
     		}
     	}
     	
     	index = 0;
     	for ( var i = 0; i < arr.length; i++ ) {
     		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
-    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], zeroLoc, 4));
+    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], Math.PI*3/2, 4, true));
     			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
     			index++;
     		}
     	}
-
-
 
     	graphs.forEach(draw);
     	otherGraphs.forEach(draw);
       function draw (elem, index, arr) {
 	      elem.drawFullCircle();
 	      elem.drawPartialCircle();
-      }		
+      }		      
       
-      $( document ).ready(function(){
-      	charCounter(document.getElementById('tip-input'));
-      })
-
-    	function charCounter(item){
-    		var len = item.value.length;
-    		$('#rem-char').text(100 - len );
+    
+    	function openImageUploader(){
+    		$( '#image-upload-modal' ).addClass("visible");
     	}
 
+    	function closeModal(){
+    		$('#image-upload-modal').removeClass('visible');
+    	}
 
 
     </script>

@@ -35,12 +35,12 @@ class Venue < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode, if: :address_parts_changed?
 
-  searchable(include: [:tips, :venue_category, :venue_subcategory, {:tags => :tag_category}]) do
+  searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
     text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
-    text(:tags) { |venue| venue.tags.map(&:full_name) }
+    #text(:tags) { |venue| venue.tags.map(&:full_name) }
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
@@ -63,7 +63,7 @@ class Venue < ActiveRecord::Base
   end
 
   def score
-    computed_score? ? computed_score : "No score yet"
+    computed_score? ? computed_score : "No scores here yet. Be the first!"
   end
 
   def score_breakdown1
@@ -122,6 +122,7 @@ class Venue < ActiveRecord::Base
     "#{self.score} <br> #{self.name} <br> #{self.full_category_name}"
   end
   
+  ## Gets the most recent tip to be used in tooltips and summaries around the application.
   def recent_tip
     self.tips.first
   end

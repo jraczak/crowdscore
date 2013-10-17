@@ -10,3 +10,14 @@
 
   <p><%= f.submit t("devise.invitations.new.submit_button") %></p>
 <% end %>
+
+<h2>Invite multiple friends!</h2>
+
+<%= form_tag batch_invite_users_path, :method => :post do %>
+  <%= text_area_tag :invitation_email1 %><br>
+  <%= text_area_tag :invitation_email2 %><br>
+  <%= text_area_tag :invitation_email3 %><br>
+  <%= text_area_tag :invitation_email4 %><br>
+  <%= text_area_tag :invitation_email5 %><br>
+  <%= submit_tag "Send invitations" %>
+<% end %>

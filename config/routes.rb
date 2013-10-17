@@ -1,4 +1,6 @@
 Crowdscore::Application.routes.draw do
+  
+
   get "user_dashboard/show"
   match "dashboard" => "UserDashboard#show"
   match "sign_in" => redirect("/users/sign_in")
@@ -9,7 +11,7 @@ Crowdscore::Application.routes.draw do
 
   get "user_locks/create"
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations" }
 
   resources :venue_tags, only: [:index]
 
@@ -17,6 +19,12 @@ Crowdscore::Application.routes.draw do
     member do
       post :follow
       delete :unfollow
+    end
+  end
+  
+  resources :users do
+    collection do
+      post 'batch_invite'
     end
   end
 

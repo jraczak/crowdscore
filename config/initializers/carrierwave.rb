@@ -1,10 +1,10 @@
 require 'carrierwave/orm/activerecord'
-Fog.credentials_path = Rails.root.join('config/fog_credentials.yml')
 
 CarrierWave.configure do |config|
-  config.cache_dir = Rails.root.join('tmp', 'uploads')
   config.fog_credentials = {
-    :provider => "AWS"
+    :provider               => 'AWS',                        # required
+    :aws_access_key_id      => 'AKIAJZTKQSL62KW4T2JQ',                        # required
+    :aws_secret_access_key  => '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',                        # required
   }
-  config.fog_directory = "crowdscore-#{Rails.env}"
+  config.fog_directory  = "crowdscore-media-#{Rails.env}"                     # required
 end

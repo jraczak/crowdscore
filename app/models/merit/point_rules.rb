@@ -27,8 +27,11 @@ module Merit
         'venue_scores#create',
         'tips#create',
         'venues#create',
+<<<<<<< HEAD
+=======
+        'invitations#create'
+>>>>>>> master
       ]
-
     end
   
     #def add_karma_for_score
