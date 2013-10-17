@@ -26,11 +26,10 @@ module Merit
       score 1, on: [
         'venue_scores#create',
         'tips#create',
-        'venues#create',
-<<<<<<< HEAD
-=======
-        'invitations#create'
->>>>>>> master
+        'venues#create'
+      ]
+      score 2, on: [
+      'invitations#create'
       ]
     end
   
