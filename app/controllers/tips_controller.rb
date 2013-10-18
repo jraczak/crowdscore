@@ -19,7 +19,7 @@ class TipsController < InheritedResources::Base
       end 
       return
     }
-
+    flash[:notice] = "You've earned 1 Karma point for submitting your tip!"
   end
 
   def upvote
