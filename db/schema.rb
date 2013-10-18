@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803234933) do
+ActiveRecord::Schema.define(:version => 20131018213830) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130803234933) do
     t.integer  "action_id"
     t.string   "related_change_type"
     t.integer  "related_change_id"
-    t.string   "descrption"
+    t.string   "description"
     t.datetime "created_at"
   end
 

@@ -13,7 +13,10 @@ class VenuesController < InheritedResources::Base
     #@json = Venue.all.to_gmaps4rails
   end
   
-
+  def create
+    create!
+    flash[:notice] = "You've earned 1 Karma point for creating a new venue!"
+  end
   
   def show
     @higher_scored_venues = Venue.higher_scored_than(resource, 10)
