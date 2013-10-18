@@ -1,1 +1,42 @@
-<%= resource.name %>
+<h2 id="list-name"><%= resource.name %></h2>
+
+<div id="list-description-container">
+  <p id="list-description">
+    <%= resource.description %>
+  </p>
+</div>
+
+<% unless resource.venues.empty? %>
+  <table>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Category
+      </th>
+      <th>
+        Crowdscore
+      </th>
+    </tr>
+    <% resource.venues.each do |venue| %>
+      <tr>
+        <td>
+          <%= link_to(venue.name, venue) %>
+        </td>
+        <td>
+          <%= venue.full_category_name %>
+        </td>
+        <td>
+          <%= venue.score %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h4>This list doesn't have any venues yet!</h4>
+<% end %>
+
+<% if resource.user == current_user %>
+  <%= link_to "&laquo; Back to my Lists".html_safe, lists_path %>
+<% end %>
