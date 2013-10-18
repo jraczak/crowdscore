@@ -71,6 +71,12 @@
         </span>
       </span>
       </div>
+      
+      <!-- BEGIN FLASH MESSAGES SECTION -->
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: name %>
+        <% end %>
+      <!-- END FLASH MESSAGES SECTION -->
 
       <div class="floater">
         <ul>
