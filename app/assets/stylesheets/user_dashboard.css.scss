@@ -3,13 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $text-main: #2d3132;
 .body-wrapper {
-    width: 960px;
-    dispay: inline-block;
-    text-align: center;
-    font-size: 0;
+  width: 960px;
+  dispay: inline-block;
+  text-align: center;
+  font-size: 0;
 }
 
 #dashboard_page {
+	width: 960px;
+	display: block;
+	margin: 0 auto;
+
 	& > h1 {
 		font-size: 58px;
 		font-weight: 100;
@@ -19,7 +23,7 @@ $text-main: #2d3132;
 	}
 
 	#dashboard-header {
-	  width: 940px;
+	  width: 940px;;
 	  height: 260px;
 	  position: relative;
 	  overflow: hidden;
@@ -70,167 +74,185 @@ $text-main: #2d3132;
 		height: 111px;
 		border-radius: 50%;
 	}
+
+	#invitations-container {
+	  width: 100%;
+	  height: 57px;
+	  background-color: $text-main;
+	  position: absolute;
+	  bottom: 0;
+	  border-radius: 0 0 2px 2px;;
+	  line-height: 57px;
+	  
+	  a {
+	    color: white;
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    text-decoration: none;
+	  }
+
+	  p {
+	  	display: inline-block;
+	  	font-size: 20px;
+	  	font-weight: 300;
+	  	color: #ffffff;
+	  }
+
+	  .angle-right {
+	  	width: 20px;
+	  	height: 20px;
+	  	display: inline-block;
+	  	border-radius: 10px;
+	  	background-color: #ffffff;
+	  	margin-left: 12px;
+	  	i {
+	  		line-height: 20px;
+	  		display: block;
+	  	}
+	  }
+	}
+
+
+	#crowdfeed-header {
+    display: block;
+    text-align: left;
+    color: $text-main;
+    font-size: 25px;
+    font-weight: 300;
+	}
+
+	.activity-card {
+		width: 300px;
+		height: 360px;
+		
+		display: block;
+		float: left;
+		vertical-align: top;
+		margin: 0px 10px 20px 10px;
+		padding: 0px 30px;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		border-radius: 2px;
+		box-shadow: 0px 0px 3px rgba(100,100,100,.4);
+		position: relative;
+
+		.time-stamp {
+			position: absolute;
+			width: 100%; 
+			text-align: center;
+			bottom: 25px;
+			left: 0px;
+			font-size: 12px; 
+			font-weight: 700;
+		}
+
+		.icon-container{
+			display: block;
+			width: 100%;
+			height: 27px;
+			margin-bottom: 27px;
+			border-bottom: 1px solid #e9e9e9;
+			text-align: center;
+
+			.icon {
+				height: 57px;
+				width: 57px;
+				border-radius: 50%;
+				display: inline-block;
+
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	.venue-score-card {
+		border-top: 6px solid #02B8EA;
+		
+		a {
+		  color: #02B8EA;
+		  font-weight: normal;
+		  text-decoration: none;
+		}
+	}
+
+	.tip-card {
+		border-top: 6px solid #FECB00;
+		
+		.icon-container {
+			margin-top: 80px;
+
+			.icon {
+				background-color: #fecb00;
+				background-image: url(dashboard_quotes.png);
+			}
+		}
+
+		.tip-body {
+			font-size: 14px;
+			font-weight: 300;
+			margin-top: 10px;
+			color: #6b6e70;
+		}
+
+		.card-description {
+			font-weight: 300;
+			color: #6b6e70;
+			font-size: 14px;
+			position: absolute;
+			left: 0;
+			text-align: center;
+			bottom: 60px;
+			width: 100%;
+		}
+
+		a {
+		  color: #FECB00;
+		  font-weight: normal;
+		  text-decoration: none;
+		}
+	}
+
+	.list-card {
+		border-top: 6px solid #2464AD;
+
+
+		.icon-container {
+			margin-top: 100px;
+			.icon {
+				background-color: #2464ad;
+				background-image: url(dashboard_list.png);
+			}
+		}
+
+		.list-name {
+			font-size: 25px;
+			font-weight: 300;
+			color: #2464ad;
+			margin-top: 10px;
+		}
+
+		.info {
+			color: #6b6e70;
+			font-size: 14px;
+			font-weight: 300;
+		}
+
+		a {
+		  color: #2464AD;
+		  font-weight: normal;
+		  text-decoration: none;
+		}
+	}
+
+	.clear {
+		clear: both;
+		display: block;
+	}
+
 } 
-
-#invitations-container {
-    width: 100%;
-    height: 57px;
-    background-color: $text-main;
-    position: absolute;
-    bottom: 0;
-    border-radius: 0 0 2px 2px;;
-    line-height: 57px;
-    
-    a {
-      color: white;
-      text-decoration: none;
-    }
-
-    p {
-    	display: inline-block;
-    	font-size: 20px;
-    	font-weight: 300;
-    }
-
-    .angle-right {
-    	width: 20px;
-    	height: 20px;
-    	display: inline-block;
-    	border-radius: 10px;
-    	background-color: #ffffff;
-    	margin-left: 12px;
-    	i {
-    		line-height: 20px;
-    		display: block;
-    	}
-    }
-}
-
-#crowdfeed-header {
-    text-align: center;
-}
-
-.activity-card {
-	width: 300px;
-	height: 360px;
-	
-	display: inline-block;
-	vertical-align: top;
-	margin: 0px 10px 20px 10px;
-	padding: 0px 30px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	border-radius: 2px;
-	box-shadow: 0px 0px 3px rgba(100,100,100,.4);
-	position: relative;
-
-	.time-stamp {
-		position: absolute;
-		width: 100%; 
-		text-align: center;
-		bottom: 25px;
-		left: 0px;
-		font-size: 12px; 
-		font-weight: 700;
-	}
-
-	.icon-container{
-		width: 100%;
-		height: 27px;
-		margin-bottom: 27px;
-		border-bottom: 1px solid #e9e9e9;
-		text-align: center;
-
-		.icon {
-			height: 57px;
-			width: 57px;
-			border-radius: 50%;
-			display: inline-block;
-
-			background-position: center center;
-			background-repeat: no-repeat;
-		}
-	}
-}
-
-.venue-score-card {
-	border-top: 6px solid #02B8EA;
-	
-	a {
-	  color: #02B8EA;
-	  font-weight: normal;
-	  text-decoration: none;
-	}
-}
-
-.tip-card {
-	border-top: 6px solid #FECB00;
-	
-	.icon-container {
-		margin-top: 80px;
-		.icon {
-			background-color: #fecb00;
-			background-image: url(dashboard_quotes.png);
-		}
-	}
-
-	.tip-body {
-		font-size: 14px;
-		font-weight: 300;
-		margin-top: 10px;
-		color: #6b6e70;
-	}
-
-	.card-description {
-		font-weight: 300;
-		color: #6b6e70;
-		font-size: 14px;
-		position: absolute;
-		left: 0;
-		text-align: center;
-		bottom: 60px;
-		width: 100%;
-	}
-
-	a {
-	  color: #FECB00;
-	  font-weight: normal;
-	  text-decoration: none;
-	}
-}
-
-.list-card {
-	border-top: 6px solid #2464AD;
-
-
-	.icon-container {
-		margin-top: 100px;
-		.icon {
-			background-color: #2464ad;
-			background-image: url(dashboard_list.png);
-		}
-	}
-
-	.list-name {
-		font-size: 25px;
-		font-weight: 300;
-		color: #2464ad;
-		margin-top: 10px;
-	}
-
-	.info {
-		color: #6b6e70;
-		font-size: 14px;
-		font-weight: 300;
-	}
-
-	a {
-	  color: #2464AD;
-	  font-weight: normal;
-	  text-decoration: none;
-	}
-}
-
-

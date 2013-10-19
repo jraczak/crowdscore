@@ -35,9 +35,10 @@
     </div>
     
     <div id="invitations-container">
-      <p><%= link_to "Invite your friends to Crowdscore", new_user_invitation_path %>
+      <p>Invite your friends to Crowdscore
       </p>
       <span class="angle-right"><i class="icon-angle-right"></i></span>
+      <%= link_to "", new_user_invitation_path %>
     </div>
   </div>
 
@@ -47,7 +48,7 @@
 
   <% activity = current_user.network_activity %>
   <% if activity.empty? %>
-    <p>No recent activity by your crowd.</p>
+    <p id="no-activity-msg" class="activity-card list-card">No recent activity by your crowd.</p>
   <% else %>
     <% activity.each do |a| %>
       <% if a.class == VenueScore %>
@@ -79,27 +80,17 @@
       <% end %>
     <% end %>
   <% end %>
-
+<span class="clear"></span>
   <!-- END NETWORK ACTIVITY SECTION -->
 
-  <h4>Your Lists</h4>
-    <% if current_user.lists.empty? %>
-      <p>You haven't created any lists yet.</p>
-    <% else %>
-      <% current_user.lists.each do |l| %>
-        <%= link_to l.name, l %><br>
-      <% end %>
+<!--   <h4>Your Lists</h4>
+  <% if current_user.lists.empty? %>
+    <p>You haven't created any lists yet.</p>
+  <% else %>
+    <% current_user.lists.each do |l| %>
+      <%= link_to l.name, l %><br>
     <% end %>
-
-
-  <h4>Invite people to Crowdscore</h4>
-
-  <a href="#">Link to Invitations page goes here</a>
-
-
-  <h2>Invitation </h2>
-
-  <%= link_to "Invite someone to Crowdscore!", new_user_invitation_path %>
+  <% end %> -->
 
 </div>
         
