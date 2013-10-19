@@ -1,103 +1,105 @@
+<div id='dashboard_page'>
 
-<% if current_user.gone_for_a_week? %>
-  <h1>
-    We've missed you, <%= current_user.first_name %>!
-  </h1>  
-<% else %>
-  <h1>
-    Welcome back, <%= current_user.first_name %>!
-  </h1>
-<% end %>
-
-<% if flash[:notice] %>
-  <p class="notice"><b><%= flash[:notice] %></b></p>
-<% end %>
-
-<div id="dashboard-header">
-  <div id="profile-picture" class="header-section">
-    <h4>User profile photo goes up here</h4>
-  </div>
-  
-  <div id="followers" class="header-section">
-    <p class="header-green"><%= current_user.followers.count %></p><br>
-    <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
-  </div>
-  
-  <div id="following" class="header-section">
-    <p class="header-green"><%= current_user.follows.count %></p><br>
-    <p>FOLLOWING</p>
-  </div>
-   
-  <div id="karma" class="header-section">
-    <p class="header-green"><%= current_user.points %></p><br>
-    <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
-  </div>
-  
-  <div id="invitations-container">
-    <p><%= link_to "Invite your friends to Crowdscore >", new_user_invitation_path %>
-  </div>
-</div>
-
-
-<! -- BEGIN NETWORK ACTIVITY SECTION -->
-<h4 id="crowdfeed-header">Your Crowdfeed</h4>
-
-<% activity = current_user.network_activity %>
-<% if activity.empty? %>
-  <p>No recent activity by your crowd.</p>
-<% else %>
-  <% activity.each do |a| %>
-    <% if a.class == VenueScore %>
-      <div class="activity-card venue-score-card">
-        <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
-    <% elsif a.class == Tip %>
-
-
-      <div class="activity-card tip-card">
-        <div class="icon-container"><div class="icon"></div></div>
-        <p class="tip-body">"<%= a.text %>"<br>
-        <p class="card-description">
-          <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-        </p>
-       </p>
-       <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
-
-
-    <% elsif a.class == List %>
-      <div class="activity-card list-card">
-        <div class="icon-container"><div class="icon"></div></div>
-        <p class="list-name"><%= link_to a.name, a %></p>
-        <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
-        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
-
-<!-- END NETWORK ACTIVITY SECTION -->
-
-<h4>Your Lists</h4>
-  <% if current_user.lists.empty? %>
-    <p>You haven't created any lists yet.</p>
+  <% if current_user.gone_for_a_week? %>
+    <h1>
+      We've missed you, <%= current_user.first_name %>!
+    </h1>  
   <% else %>
-    <% current_user.lists.each do |l| %>
-      <%= link_to l.name, l %><br>
+    <h1>
+      Welcome back, <%= current_user.first_name %>!
+    </h1>
+  <% end %>
+
+  <% if flash[:notice] %>
+    <p class="notice"><b><%= flash[:notice] %></b></p>
+  <% end %>
+
+  <div id="dashboard-header">
+    <div id="profile-picture" class="header-section">
+      <img src="http://i853.photobucket.com/albums/ab94/AutumnInsanity/Splatt/Yearbook/Mowgli.jpg">
+    </div>
+    
+    <div id="followers" class="header-section">
+      <p class="header-green"><%= current_user.followers.count %></p><br>
+      <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
+    </div>
+    
+    <div id="following" class="header-section">
+      <p class="header-green"><%= current_user.follows.count %></p><br>
+      <p>FOLLOWING</p>
+    </div>
+     
+    <div id="karma" class="header-section">
+      <p class="header-green"><%= current_user.points %></p><br>
+      <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
+    </div>
+    
+    <div id="invitations-container">
+      <p><%= link_to "Invite your friends to Crowdscore", new_user_invitation_path %>
+      </p>
+      <span class="angle-right"><i class="icon-angle-right"></i></span>
+    </div>
+  </div>
+
+
+  <! -- BEGIN NETWORK ACTIVITY SECTION -->
+  <h4 id="crowdfeed-header">Your Crowdfeed</h4>
+
+  <% activity = current_user.network_activity %>
+  <% if activity.empty? %>
+    <p>No recent activity by your crowd.</p>
+  <% else %>
+    <% activity.each do |a| %>
+      <% if a.class == VenueScore %>
+        <div class="activity-card venue-score-card">
+          <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+      <% elsif a.class == Tip %>
+
+
+        <div class="activity-card tip-card">
+          <div class="icon-container"><div class="icon"></div></div>
+          <p class="tip-body">"<%= a.text %>"<br>
+          <p class="card-description">
+            <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+          </p>
+         </p>
+         <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+
+
+      <% elsif a.class == List %>
+        <div class="activity-card list-card">
+          <div class="icon-container"><div class="icon"></div></div>
+          <p class="list-name"><%= link_to a.name, a %></p>
+          <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
+          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
+  <!-- END NETWORK ACTIVITY SECTION -->
 
-<h4>Invite people to Crowdscore</h4>
+  <h4>Your Lists</h4>
+    <% if current_user.lists.empty? %>
+      <p>You haven't created any lists yet.</p>
+    <% else %>
+      <% current_user.lists.each do |l| %>
+        <%= link_to l.name, l %><br>
+      <% end %>
+    <% end %>
 
-<a href="#">Link to Invitations page goes here</a>
+
+  <h4>Invite people to Crowdscore</h4>
+
+  <a href="#">Link to Invitations page goes here</a>
 
 
-<h2>Invitation </h2>
+  <h2>Invitation </h2>
 
-<%= link_to "Invite someone to Crowdscore!", new_user_invitation_path %>
+  <%= link_to "Invite someone to Crowdscore!", new_user_invitation_path %>
 
-
-
+</div>
         
