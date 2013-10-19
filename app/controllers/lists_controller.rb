@@ -18,6 +18,29 @@ class ListsController < InheritedResources::Base
     render nothing: true, status: :ok
   end
   
+  def upvote
+    unless current_user.liked_lists.include?(resource)
+    current_user.liked_lists << resource
+    current_user.save!
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to resource }
+      format.js { render "upvote", :locals => {:list => resource} }
+    end
+  end
+  
+  def remove_vote
+    current_user.liked_lists.delete(resource)
+    current_user.save!
+    List.decrement_counter(:list_likes_count, resource.id)
+    
+    respond_to do |format|
+      format.html { redirect_to resource }
+      format.js { render "remove_vote", :locals => {:list => resource} }
+    end
+  end
+  
   protected
     def resource
       @list = List.find(params[:id])

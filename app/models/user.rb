@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   has_many :tip_likes, dependent: :destroy
   has_many :liked_tips, through: :tip_likes, source: :tip
   has_many :lists
+  has_many :list_likes, dependent: :destroy
+  has_many :liked_lists, through: :list_likes, source: :list
 
   has_many :my_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
   has_many :follows, through: :my_follows, source: :followed
