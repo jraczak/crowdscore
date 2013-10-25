@@ -8,13 +8,18 @@ class List < ActiveRecord::Base
   
   validates :name, :user, presence: true
 
-  after_save :reindex_list
+  # after_save :reindex_list
   before_destroy :decrement_counter
   
   def as_json(options = {})
     super({ methods: :venue_ids }.merge(options))
   end
   
+  private
+  
+  #def reindex_list
+  #  index!
+  #end  
   
   
 end
