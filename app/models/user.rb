@@ -318,9 +318,10 @@ class User < ActiveRecord::Base
         user.email = data["email"]
         user.first_name = data["first_name"]
         user.last_name = data["last_name"]
-        user.username = data["username"]
+        #user.username = data["username"]
         user.gender = data["gender"].capitalize
         user.facebook_id = data["id"]
+        user.skip_confirmation!
       end
     end
   end
