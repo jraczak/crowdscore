@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   has_merit
 
   # Include default devise modules. Others available are:
@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   before_save :create_permalink
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable,
+         :omniauth_providers => [:facebook]
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,

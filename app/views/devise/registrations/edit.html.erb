@@ -1,0 +1,31 @@
+<div id="inner-page-container">
+
+  <%= devise_error_messages! %>
+  
+  <h1>Manage my account</h1>
+  
+  <% if resource.facebook_id? %>
+    <p id="facebook-connected">Your Facebook account is connected to your Crowdscore account.</p>
+  <% else %>
+    <p id="facebook-not-connected">For easier logins, you can connect your Facebook account to your Crowdscore account by <%= link_to "clicking here", user_omniauth_authorize_path(:facebook) %>.</p>
+  <% end %>
+  
+  <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-stacked' } do |f| %>
+    <%= render partial: 'form', locals: { f: f } %>
+    
+    <fieldset id="password-confirmation">
+      <%= f.label :current_password, class: "user-form-label" %><br>
+      <%= f.password_field :current_password, class: "standard-blue-text-field", size: "30" %><br>
+      <span class="help-block">Enter your current password to confirm your changes</span><br>
+      
+      <button class="btn-main btn-main-fixed">save updates</button><br>
+    </fieldset>
+    
+  <% end %>
+  
+  <h3>Cancel my account</h3>
+  
+  <p>If you've decided it's time to part ways, you can cancel your account through the link below. Make sure you mean it, we won't be able to recover your account aftewards.</p>
+  <%= link_to "cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+
+</div>
