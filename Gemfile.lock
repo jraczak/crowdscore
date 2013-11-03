@@ -124,6 +124,8 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
+    font-awesome-rails (3.2.1.3)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     geocoder (1.1.8)
     gherkin (2.12.2)
@@ -356,6 +358,7 @@ DEPENDENCIES
   ephemeral_response
   factory_girl
   fog (~> 1.3.1)
+  font-awesome-rails
   geocoder
   gmaps4rails
   guard-spin

@@ -59,7 +59,7 @@
           <% end %>
         </div>
       </div>
-      <div id="gplus">
+     <!--  <div id="gplus">
       <span id="signinButton">
         <span
           class="g-signin"
@@ -70,14 +70,13 @@
           data-scope="https://www.googleapis.com/auth/plus.login">
         </span>
       </span>
-      </div>
+      </div> -->
       
       <!-- BEGIN FLASH MESSAGES SECTION -->
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, class: name %>
         <% end %>
       <!-- END FLASH MESSAGES SECTION -->
-
       <div class="floater">
         <ul>
           <% if user_signed_in? %>
@@ -102,15 +101,16 @@
 
       <%= yield %>
 
+      <svg>
+        <filter id="blur">
+          <feGaussianBlur stdDeviation="15"></feGaussianBlur>
+        </filter>
+      </svg>
+      
       <footer>
         Copyright &copy; 2013 Crowdscore. All rights reserved.
       </footer>
     </section>
-    <svg>
-      <filter id="blur">
-        <feGaussianBlur stdDeviation="15"></feGaussianBlur>
-      </filter>
-    </svg>
 
     <div id="auth-modal" class='full-screen-modal'>
       <div class='modal-mask'>

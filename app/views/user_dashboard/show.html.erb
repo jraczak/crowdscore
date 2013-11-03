@@ -1,103 +1,222 @@
+<div id='dashboard_page'>
 
-<% if current_user.gone_for_a_week? %>
-  <h1>
-    We've missed you, <%= current_user.first_name %>!
-  </h1>  
-<% else %>
-  <h1>
-    Welcome back, <%= current_user.first_name %>!
-  </h1>
-<% end %>
+  <% if current_user.gone_for_a_week? %>
+    <h1>
+      We've missed you, <%= current_user.first_name %>!
+    </h1>  
+  <% else %>
+    <h1>
+      Welcome back, <%= current_user.first_name %>!
+    </h1>
+  <% end %>
 
-<% if flash[:notice] %>
-  <p class="notice"><b><%= flash[:notice] %></b></p>
-<% end %>
-
-<div id="dashboard-header">
-  <div id="profile-picture" class="header-section">
-    <h4>User profile photo goes up here</h4>
+  <div id="dashboard-header">
+    <div id="profile-picture" class="header-section">
+      <img src="http://i853.photobucket.com/albums/ab94/AutumnInsanity/Splatt/Yearbook/Mowgli.jpg">
+    </div>
+    
+    <div id="followers" class="header-section">
+      <p class="header-green"><%= current_user.followers.count %></p><br>
+      <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
+    </div>
+    
+    <div id="following" class="header-section">
+      <p class="header-green"><%= current_user.follows.count %></p><br>
+      <p>FOLLOWING</p>
+    </div>
+     
+    <div id="karma" class="header-section">
+      <p class="header-green"><%= current_user.points %></p><br>
+      <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
+    </div>
+    
+    <div id="invitations-container">
+      <p>Invite your friends to Crowdscore
+      </p>
+      <span class="angle-right"><i class="icon-angle-right"></i></span>
+      <%= link_to "", new_user_invitation_path %>
+    </div>
   </div>
-  
-  <div id="followers" class="header-section">
-    <p class="header-green"><%= current_user.followers.count %></p><br>
-    <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
-  </div>
-  
-  <div id="following" class="header-section">
-    <p class="header-green"><%= current_user.follows.count %></p><br>
-    <p>FOLLOWING</p>
-  </div>
-   
-  <div id="karma" class="header-section">
-    <p class="header-green"><%= current_user.points %></p><br>
-    <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
-  </div>
-  
-  <div id="invitations-container">
-    <p><%= link_to "Invite your friends to Crowdscore >", new_user_invitation_path %>
-  </div>
-</div>
 
 
-<! -- BEGIN NETWORK ACTIVITY SECTION -->
-<h4 id="crowdfeed-header">Your Crowdfeed</h4>
+  <! -- BEGIN NETWORK ACTIVITY SECTION -->
+  <h4 id="crowdfeed-header">Your Crowdfeed</h4>
 
-<% activity = current_user.network_activity %>
-<% if activity.empty? %>
-  <p>No recent activity by your crowd.</p>
-<% else %>
-  <% activity.each do |a| %>
-    <% if a.class == VenueScore %>
-      <div class="activity-card venue-score-card">
-        <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
-    <% elsif a.class == Tip %>
-
-
-      <div class="activity-card tip-card">
-        <div class="icon-container"><div class="icon"></div></div>
-        <p class="tip-body">"<%= a.text %>"<br>
-        <p class="card-description">
-          <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-        </p>
-       </p>
-       <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
+  <% activity = current_user.network_activity %>
+  <% if activity.empty? %>
+    <div id="empty-dashboard-state">
+      No recent activity by your crowd.
+    </div><!-- End Conta
+  <% else %>
+    <% activity.each do |a| %>
+      <% if a.class == VenueScore %>
+        <div class="activity-card venue-score-card">
+          <figure class="canvas-container">
+            <canvas width="88" height="88" data-score="<%= a.computed_score %>"></canvas>
+            <span class="venue-score"><%= a.computed_score %></span>
+          </figure>
+          <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+      <% elsif a.class == Tip %>
 
 
-    <% elsif a.class == List %>
-      <div class="activity-card list-card">
-        <div class="icon-container"><div class="icon"></div></div>
-        <p class="list-name"><%= link_to a.name, a %></p>
-        <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
-        <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-      </div>
+        <div class="activity-card tip-card">
+          <div class="icon-container"><div class="icon"></div></div>
+          <p class="tip-body">"<%= a.text %>"<br>
+          <p class="card-description">
+            <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
+          </p>
+         </p>
+         <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+
+
+      <% elsif a.class == List %>
+        <div class="activity-card list-card">
+          <div class="icon-container"><div class="icon"></div></div>
+          <p class="list-name"><%= link_to a.name, a %></p>
+          <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
+          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+<span class="clear"></span>
+  <!-- END NETWORK ACTIVITY SECTION -->
 
-<!-- END NETWORK ACTIVITY SECTION -->
-
-<h4>Your Lists</h4>
+<!--   <h4>Your Lists</h4>
   <% if current_user.lists.empty? %>
     <p>You haven't created any lists yet.</p>
   <% else %>
     <% current_user.lists.each do |l| %>
       <%= link_to l.name, l %><br>
     <% end %>
-  <% end %>
+  <% end %> -->
 
-
-<h4>Invite people to Crowdscore</h4>
-
-<a href="#">Link to Invitations page goes here</a>
-
-
-<h2>Invitation </h2>
-
-<%= link_to "Invite someone to Crowdscore!", new_user_invitation_path %>
-
-
-
+</div>
         
+
+
+<script>  
+
+  function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
+  {
+
+    this.innerWhite = innerWhite;
+    this.ctx = canvas;
+    this.canvas = canvas.getContext('2d');
+    this.outterColor = outterColor;
+    this.innerColor = innerColor;
+    this.intervalID;
+    this.thickness = thickness;
+    this.startAngle = zeroDegree;
+    this.endAngle = zeroDegree;
+    this.speed = 10; // speed * 100 = total time in ms
+    this.xCenter = canvas.width / 2;
+    this.yCenter = canvas.height / 2;
+    this.radius = this.xCenter - this.thickness / 2;
+    this.zeroDegree = zeroDegree;
+
+    this.percent = percent;
+  }
+
+  GraphAnimation.prototype.drawFullCircle = function (){
+    // Draw the solid circle 
+    this.canvas.beginPath();
+    this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+    this.canvas.lineWidth = this.thickness;
+    this.canvas.strokeStyle = this.innerColor;
+    this.canvas.stroke(); 
+
+    if (this.innerWhite == true){
+      this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+      this.canvas.lineWidth = 0;
+      this.canvas.fillStyle ='#f7f7f7';
+      this.canvas.fill();
+      this.canvas.stroke();
+    }
+  };
+
+  GraphAnimation.prototype.drawPartialCircle = function() {
+    var self = this;
+    function updateInterval() {
+      self.updateShape();
+    }
+    this.intervalID = window.setInterval(updateInterval, this.speed);
+  }
+
+  GraphAnimation.prototype.stopTimer = function() {
+    if (this.intervalID != null) window.clearInterval(this.intervalID)
+    this.intervalID = null;
+  }
+
+  GraphAnimation.prototype.updateShape = function() {
+    if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
+      // Draw a piece of the circle on each existing canvas
+      this.canvas.beginPath();
+      this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.endAngle, false);
+      this.canvas.lineWidth = this.thickness;
+      this.canvas.strokeStyle = this.outterColor;
+      this.canvas.stroke();
+      this.startAngle = this.endAngle - Math.PI/(4*180);
+      this.endAngle = this.endAngle + (2 * Math.PI/100);
+    }
+    else {
+      this.stopTimer();
+    }
+  }
+
+  var count = 1;
+  GraphAnimation.prototype.drawLoading = function(){
+    if ( count < 10 ){
+
+      this.canvas.beginPath();
+      this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
+      this.canvas.lineWidth = this.thickness;
+      this.canvas.strokeStyle = this.innerColor;
+      this.canvas.stroke(); 
+      
+      // Draw a piece of the circle on each existing canvas
+      this.canvas.beginPath();
+      this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.startAngle + Math.PI/2, false);
+      this.canvas.lineWidth = this.thickness;
+      this.canvas.strokeStyle = this.outterColor;
+      this.canvas.stroke();
+      this.startAngle = this.startAngle + Math.PI/180;
+    }
+    else {
+      this.stopTimer();
+    }
+  }
+
+  GraphAnimation.prototype.drawArc = function() {
+    var self = this;
+    function draw() {
+      self.drawLoading();
+    }
+    this.intervalID = window.setInterval(draw, this.speed)
+  }
+</script>
+  
+<script>
+  
+  var circleColors = ["#78E1FF", "#00B5E9"];  
+
+  var graphs = new Array;
+  
+  var index = 0;
+  var arr = document.getElementsByTagName('canvas');
+  for ( var i = 0; i < arr.length; i++ ) {
+    graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], arr[i].getAttribute('data-score'), Math.PI*3/2, 8, true));
+    index++;
+  }
+  graphs.forEach(draw);
+  function draw (elem, index, arr) {
+    elem.drawFullCircle();
+    elem.drawPartialCircle();
+  }         
+
+
+
+</script>

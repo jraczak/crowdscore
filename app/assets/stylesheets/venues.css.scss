@@ -1364,21 +1364,28 @@ strong{
 
 .floater{
 	border: 1px solid #999;
-	left: 5px;
+	left: 20px;
 	border-radius: 20px;
-	height: 150px;
-	width: 200px;
-	position: absolute;
+	position: fixed;
 	background-color: #EEE;
-	top: 400px;
+	top: 20px;
+	opacity: 0.5;
 	z-index: 100;
+	padding: 20px;
+
 	ul{
+		margin: 0;
+		padding: 0;
 		list-style: none;
-		position: absolute;
-		left: 0;
+		text-align: left;
 
-		li{
+		li {
+			display: block;
+			float: none;
 
+			a {
+				display: block;
+			}
 		}
 	}
 }
