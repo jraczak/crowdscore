@@ -16,6 +16,13 @@
   transition-delay: $delays;
 }
 
+@mixin box-sizing(){
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 html, body{
   height: 100%;
   margin: 0;
@@ -454,10 +461,6 @@ nav{
     }
 
   }
-
-
-
-
 }
 .full-screen-modal.visible,
 #auth-modal-mask.visible {
@@ -481,5 +484,85 @@ svg{
 
 
 
+// Application modals
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  
+  text-align: center;
+  
+  z-index: 100;
+  pointer-events: none;
+  overflow-y: scroll;
+  opacity: 0;
+  background-color: rgba(255,255,255,0.97);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000, endColorstr=#cc000000)";
+  @include transition(all 0.2s);
 
+  & > .modal-mask {
+    position: static;
+    height: 100%;
+    width: 100%;
+    border: 10px solid black;
+    display: inline-block;
+    position: relative;
+    @include box-sizing();
 
+    .modal-vertical-center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
+  .modal-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .modal-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+  }
+
+  .close-modal {
+    width: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    color: #999999;
+    line-height: 25px;
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 100;
+
+    cursor: pointer;
+    border-radius: 12px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=6);
+  }
+}
+
+.modal.visible {
+  opacity:1;
+  pointer-events: auto;
+}
+
+#register-modal {
+  & > .modal-mask {
+    min-width: 945px;
+    min-height: 363px;
+  }
+}

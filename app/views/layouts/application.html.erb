@@ -38,7 +38,7 @@
         <div class="navbar-inner">
           <ul>
             <li><a id="register" href="#">register</a></li>
-            <li><a href="#">log in</a></li>
+            <li><a href="#" id="login-button">log in</a></li>
           </ul>
         </div>
       </nav>
@@ -125,6 +125,19 @@
         </div>
       </div>
     </div>
+
+
+<div id="register-modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-mask">
+    <div class="modal-content download-app">
+      <div class="close-modal">+</div>
+      <div class="modal-vertical-center">
+      Content
+      </div>
+    </div>
+  </div>
+</div>
 
     <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
     <%= javascript_include_tag "application" %>
@@ -265,7 +278,7 @@
       });
 
       $(document).ready(function() {
-        $( "#register" ).click(function() {
+        $( "#login-button" ).click(function() {
           $( '#auth-modal' ).addClass("visible");
           //$('.full-body-container').addClass('blurry');
           //$('.full-body-container').css('filter','url("#blur")');

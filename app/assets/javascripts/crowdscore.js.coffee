@@ -27,3 +27,10 @@ window.CS =
 
 $ ->
   CS.initialize()
+
+
+$('body').on "click", ".modal-background, .close-modal", ->
+    $('.modal').removeClass "visible"
+    
+$('#register').click ->
+  $('#register-modal').addClass('visible')
