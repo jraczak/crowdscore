@@ -10,7 +10,7 @@ $text-main: #2d3132;
 }
 
 #dashboard_page {
-	width: 960px;
+	width: 940px;
 	display: block;
 	margin: 0 auto;
 
@@ -119,9 +119,12 @@ $text-main: #2d3132;
 	#crowdfeed-header {
     display: block;
     text-align: left;
-    color: $text-main;
+    color: #2d3132;
     font-size: 25px;
     font-weight: 300;
+    padding: 0 5px;
+    margin-top: 40px;
+    margin-bottom: 25px;
 	}
 
 	.activity-card {
@@ -171,13 +174,45 @@ $text-main: #2d3132;
 		}
 	}
 
+	#empty-dashboard-state {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		background-image: url('gray_line_pattern.png');
+   	background-repeat: repeat; 
+   	width: 100%;
+   	color: #c5c5c5;
+		font-size: 20px;
+		font-weight: 300;
+		text-align: center;
+   	padding: 150px;
+	}
+
 	.venue-score-card {
 		border-top: 6px solid #02B8EA;
+		font-size: 25px;
+		font-weight: 100;
 		
 		a {
 		  color: #02B8EA;
-		  font-weight: normal;
 		  text-decoration: none;
+		}
+
+		figure {
+			position: relative;
+			margin-top: 56px;
+			margin-bottom: 28px;
+		}
+		.venue-score {
+			position: absolute;
+			width: 100%;
+			top: 27px;
+			text-align: center;
+			left: 0;
+			font-size: 30px;
+			color: #02b8ea;
+			font-weight: 900;
 		}
 	}
 
