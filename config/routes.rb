@@ -55,6 +55,8 @@ Crowdscore::Application.routes.draw do
     member do
       put :add
       put :remove
+      get :upvote
+      get :remove_vote
     end
   end
 

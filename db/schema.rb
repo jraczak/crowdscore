@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131018213830) do
+ActiveRecord::Schema.define(:version => 20131022222437) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -55,12 +55,20 @@ ActiveRecord::Schema.define(:version => 20131018213830) do
   add_index "follows", ["followed_id"], :name => "index_follows_on_followed_id"
   add_index "follows", ["follower_id"], :name => "index_follows_on_follower_id"
 
+  create_table "list_likes", :force => true do |t|
+    t.integer  "list_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "lists", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.text     "description"
+    t.integer  "list_likes_count", :default => 0
   end
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
