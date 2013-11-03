@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   #before_filter :authenticate_on_production
   before_filter :remember_return_to
+  #before_filter :configure_permitted_parameters, if: :devise_controller?
 
   
   ## Some helpers for redirecting users to their previous location after sign in.
@@ -27,7 +28,19 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-
+  
+  #def devise_parameter_sanitizer
+  #  if resource_class == User
+  #    User::ParameterSanitizer.new(User, :user, params)
+  #  else
+  #    super # Use the default one
+  #  end
+  #end
+  
+  #def configure_permitted_parameters
+  #  devise_parameter_sanitizer.for(:sign_up) << :username
+  #end
+  
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end

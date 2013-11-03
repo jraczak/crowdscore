@@ -1,0 +1,52 @@
+  
+  <fieldset id="required-user-form-fields">
+  <h2 class="user-form-header">These we need.</h2><br>
+  
+    <%= f.label :first_name, class: "user-form-label" %><br>
+    <%= f.text_field :first_name, size: "30", class: "standard-blue-text-field" %><br>
+    
+    <%= f.label :email, class: "user-form-label" %><br>
+    <%= f.text_field :email, class: "standard-blue-text-field", size: "30" %><br>
+    
+    <%= f.label :username, class: "user-form-label" %><br>
+    <%= f.text_field :username, class: "standard-blue-text-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted? %><br>
+      <% if f.object.persisted? %>
+        <span class="help-block">Username cannot be changed.</span><br>
+      <% end %>
+  
+    <%= f.label :password, class: "user-form-label" %><br>
+    <%= f.password_field :password, class: "standard-blue-text-field ", size: "30" %><br>
+      <% if f.object.persisted? %>
+        <span class="help-block">Leave this blank if you don't want your password to change.</span><br>
+      <% else %>
+        <span class="help-block">Hint: this should be at least 6 characters long.</span><br>
+      <% end %>
+    <%= f.label :password_confirmation, "confirm your password", class: "user-form-label" %><br>
+    <%= f.password_field :password_confirmation, class: "standard-blue-text-field", size: "30" %><br>
+  
+  </fieldset>
+  
+  <fieldset id="optional-user-form-fields">
+  <h2 class="user-form-header">These are optional.</h2><br>
+  
+    <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
+    <%= f.text_field :zip_code, size: "10", class: "standard-blue-text-field" %><br>
+    
+    <%= f.label :last_name, class: "user-form-label" %><br>
+    <%= f.text_field :last_name, class: "standard-blue-text-field", size: "30" %><br>
+    
+    <%= f.label :gender, class: "user-form-label" %><br>
+    <%= f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender" %><br>
+    
+    <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
+    <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'side-by-side' %>
+    <%= f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side' %><br>
+    
+    <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label" %><br>
+    <%= f.text_field :twitter_username, class: "standard-blue-text-field", size: "30" %><br>
+    
+    <%= f.label :bio, "Share your cliff note biography in 250 characters or less.", class: "user-form-label" %><br>
+    <%= f.text_area :bio, class: "standard-blue-text-field", size: "250" %><br>
+  
+  </fieldset>
+
