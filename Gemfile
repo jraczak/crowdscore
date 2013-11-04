@@ -25,7 +25,7 @@ gem "ejs"
 gem "omniauth-facebook"
 #gem "gmaps4rails"
 gem "merit"
-gem "sunspot_solr", "~> 2.0.0.pre"
+gem "sunspot_solr", "~> 2.1.0"
 gem "devise_invitable", "~> 1.1.0"
 gem 'aws-sdk'
 
@@ -56,7 +56,7 @@ group :development, :test do
   gem "pickle"
   gem "rails3-generators"
   gem "spork", "~> 0.9.0.rc"
-  gem "sunspot_solr", "~> 2.0.0.pre"
+  gem "sunspot_solr", "~> 2.1.0"
   gem 'guard-spin'
 end
 
