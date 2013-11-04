@@ -29,8 +29,21 @@ $ ->
   CS.initialize()
 
 
-$('body').on "click", ".modal-background, .close-modal", ->
+  $('body').on "click", ".modal-background, .close-modal", ->
     $('.modal').removeClass "visible"
+    $('.tmp-modal').removeClass('visible')
+      
+  $('#register').click ->
+    $('#register-modal').addClass('visible')
+
+  $('#login-button').click ->
+    $('#login-modal').addClass('visible')
+
+  $('[class*=button-show-]').click (e) ->
+    $('.tmp-modal').addClass("visible")
+    $('.modal').removeClass "visible"
+
+    setTimeout -> 
+      $("##{$(e.currentTarget).attr('class').replace('button-show-', '')}").addClass('visible')
+    , 250
     
-$('#register').click ->
-  $('#register-modal').addClass('visible')

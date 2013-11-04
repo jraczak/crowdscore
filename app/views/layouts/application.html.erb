@@ -111,31 +111,27 @@
         <feGaussianBlur stdDeviation="15"></feGaussianBlur>
       </filter>
     </svg>
-
+<!-- 
     <div id="auth-modal" class='full-screen-modal'>
       <div class='modal-mask'>
         <div class='modal-content'>
           <div class='close-modal'>+</div>
-          <p href="#">Sign into Crowdscore!</p>
-          <%= form_for devise_resource, as: resource_name, url: session_path(resource_name) do |f| %>
-            <%= f.text_field :email, placeholder: "Email" %>
-            <%= f.password_field :password, placeholder: "Password" %>
-            <%= f.submit "Sign in" %>
-          <% end %>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
-<div id="register-modal" class="modal visible">
-  <div class="modal-background"></div>
+<div id="placeholder-modal" class="tmp-modal">
+</div>
+
+<div id="register-modal" class="modal">
   <div class="modal-mask">
     <div class="modal-content download-app">
       <div class="close-modal">+</div>
       <div class="modal-vertical-center">
         <div class="left-rail">
           <h1>Register</h1>
-          <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", new_user_registration_path %></p>
+          <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
           <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
             <i class="icon-facebook"></i><div>REGISTER WITH FACEBOOK</div>
           <% end %>
@@ -162,13 +158,44 @@
               <%= f.label :password_confirmation, "confirm password", class: "" %>
               <%= f.password_field :password_confirmation, class: "", size: "30" %>
             </div>
-            <%= f.submit "CREATE YOUR ACCOUNT", id: "registration-modal-submit-button" %>
+            <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button" %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<div id="login-modal" class="modal">
+  <div class="modal-mask">
+    <div class="modal-content download-app">
+      <div class="close-modal">+</div>
+      <div class="modal-vertical-center">
+        <div class="modal-centered-body">
+          <h1>Sign in</h1>
+          <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
+            <i class="icon-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
+          <% end %><br>
+          <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
+            <div class="registration-modal-form-field">
+              <%= f.label :email, "email address", class: "" %>
+              <%= f.text_field :email, class: "" %>
+            </div>
+            <div class="registration-modal-form-field password">
+              <%= f.label :password, class: "" %>
+              <%= f.password_field :password, placeholder: "Password" %>
+            </div>
+            <%= f.submit "Sign in", class: "registration-modal-submit-button" %>
+          <% end %>
+
+          <p> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
     <%= javascript_include_tag "application" %>
