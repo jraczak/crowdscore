@@ -137,7 +137,7 @@
           <% end %>
         </div>
         <div class="right-rail">
-          <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
+          <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
             <div class="registration-modal-form-field full">
               <%= f.label :email, "email address", class: "" %>
               <%= f.text_field :email, class: "", size: "30" %>

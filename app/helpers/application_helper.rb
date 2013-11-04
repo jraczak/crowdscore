@@ -86,8 +86,8 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-  def resource
-    @resource ||= User.new
-  end
+  #def resource
+  #  @resource ||= User.new
+  #end
   
 end
