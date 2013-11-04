@@ -59,18 +59,6 @@
           <% end %>
         </div>
       </div>
-      <div id="gplus">
-      <span id="signinButton">
-        <span
-          class="g-signin"
-          data-callback="signinCallback"
-          data-clientid="799863645886.apps.googleusercontent.com"
-          data-cookiepolicy="single_host_origin"
-          data-requestvisibleactions="http://schemas.google.com/AddActivity"
-          data-scope="https://www.googleapis.com/auth/plus.login">
-        </span>
-      </span>
-      </div>
       
       <!-- BEGIN FLASH MESSAGES SECTION -->
         <% flash.each do |name, msg| %>
@@ -137,7 +125,7 @@
           <% end %>
         </div>
         <div class="right-rail">
-          <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
+          <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
             <div class="registration-modal-form-field full">
               <%= f.label :email, "email address", class: "" %>
               <%= f.text_field :email, class: "", size: "30" %>
