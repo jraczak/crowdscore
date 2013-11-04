@@ -314,7 +314,7 @@ GEM
       nokogiri
       rails (>= 3)
       sunspot (= 2.1.0)
-    sunspot_solr (2.1.0)
+    sunspot_solr (2.0.0)
     temple (0.6.7)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -385,7 +385,7 @@ DEPENDENCIES
   spork (~> 0.9.0.rc)
   state_select!
   sunspot_rails
-  sunspot_solr
+  sunspot_solr (~> 2.0.0.pre)
   thin
   timecop
   uglifier (>= 1.0.3)
