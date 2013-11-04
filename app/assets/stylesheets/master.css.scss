@@ -514,7 +514,6 @@ svg{
     position: static;
     height: 100%;
     width: 100%;
-    border: 10px solid black;
     display: inline-block;
     position: relative;
     @include box-sizing();
@@ -563,6 +562,9 @@ svg{
   }
 }
 
+* {
+  @include box-sizing();
+}
 .modal.visible {
   opacity:1;
   pointer-events: auto;
@@ -570,7 +572,132 @@ svg{
 
 #register-modal {
   & > .modal-mask {
-    min-width: 945px;
-    min-height: 363px;
+    text-align: left;
+    min-width: 1050px;
   }
+
+  h1 {
+    font-size: 58px;
+    font-weight: 100;
+    color: #2d3132;
+    margin: 0;
+    text-align: left;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6b6e70;
+    text-align: left;
+    font-weight: 300;
+
+    a {
+      text-decoration: none;
+      color: #02b8ea;
+    }
+  }
+
+  .modal-facebook-signup-button {
+    color: #ffffff;
+    display: inline-block;
+    margin: 25px 0;
+    line-height: 44px;
+    background-color: #3b5998;
+    text-align: left;
+    border-radius: 24px;
+    text-decoration: none;
+
+    i, & > div {
+      display: inline-block;
+    }
+
+    i {
+      width: 53px;
+      font-size: 26px;
+      line-height: 44px;
+      vertical-align: top;
+      border-right: 1px solid #536da5;
+      text-align: center;
+    }
+    & > div {
+      border-left: 1px solid #344e86;
+      font-size: 12px;
+      vertical-align: top; 
+      text-align: center;
+      width: 230px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+
+  .left-rail {
+    width: 440px;
+    padding: 70px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid #dadada;
+  }
+
+  .right-rail {
+    vertical-align: top;
+    display: inline-block;
+    padding: 40px 20px;
+
+    .registration-modal-form {
+      width: 540px;
+
+      .registration-modal-form-field {
+        text-align: left;
+        margin-left: 3%;
+        position: relative;
+        display: block;
+        float: left;
+        margin-top: 10px;
+
+
+        label {
+          display: block;
+          font-size: 11px;
+          font-weight: 300;
+          color: #2d3132;
+          line-height: 22px;
+          text-transform: uppercase;
+        }
+
+        input {
+          background-color: #e5f8fd;
+          outline: none;
+          height: 44px;
+          border: 0;
+          padding: 0 20px;
+          width: 100%;
+        }
+      }
+
+      #registration-modal-submit-button {
+        line-height: 44px;
+        border-radius: 23px;
+        border: 0px;
+        padding: 0;
+        background-color: #02b8ea;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        margin-top: 25px;
+        text-align: center;
+        width: 256px;
+        margin-left: 3%;
+      }
+      .half {
+        width: 47%;
+      }
+
+      .full {
+        width: 97%;
+      }
+    }
+  }
+
 }

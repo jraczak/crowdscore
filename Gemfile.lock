@@ -348,7 +348,7 @@ DEPENDENCIES
   cancan
   capybara!
   carrierwave
-  coffee-rails
+  coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
   devise
@@ -380,7 +380,7 @@ DEPENDENCIES
   rmagick (~> 2.13.2)
   rspec-rails (~> 2.8.0)
   ruby-graphviz
-  sass-rails
+  sass-rails (~> 3.2.3)
   shoulda (~> 3.0.0.beta2)
   slim-rails
   spin
@@ -390,5 +390,5 @@ DEPENDENCIES
   sunspot_solr
   thin
   timecop
-  uglifier
+  uglifier (>= 1.0.3)
   will_paginate (~> 3.0.0)
