@@ -49,6 +49,9 @@ p{
   display: inline-block;
 }
 
+* {
+  @include box-sizing();
+}
 
 .wrapper{
   width: 100%;
@@ -350,148 +353,6 @@ nav{
   -ms-filter: blur(15px);
 }
 
-.full-screen-modal{
-  visibility: hidden;
-  pointer-events: none; 
-  position: fixed;
-  z-index: 1000;
-  opacity: 0.98;
-  background-color: #FFF;
-  text-align: left;
-
-  .modal-mask {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    background-color: #FFF; 
-  }
-
-  .modal-body{
-    top: 0;
-    right: 0;
-    position: absolute;
-    display: inline-block;
-    text-align: left;
-  }
-
-  .close-modal{
-    font-family: HelveticaNeue-UltraLight;
-    font-size: 100px;
-    font-weight: 100;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform:  rotate(-45deg);
-    position: relative;
-    line-height: 50px;
-    cursor: pointer;
-  }
-  .modal-content, 
-  .modal-mask {
-    opacity: 0;
-    -webkit-transform-origin: 50% 0;
-    -moz-transform-origin: 50% 0;
-    -ms-transform-origin: 50% 0;
-    -o-transform-origin: 50% 0;
-    transform-origin: 50% 0;
-    -webkit-transform: scale(1.9) translate3d(0, 0, 0);
-    -moz-transform: scale(1.9) translate3d(0, 0, 0);
-    -ms-transform: scale(1.9) translate3d(0, 0, 0);
-    -o-transform: scale(1.9) translate3d(0, 0, 0);
-    transform: scale(1.9) translate3d(0, 0, 0);
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease; 
-
-    a{
-      display: inline-block;
-      width: 740px;
-      text-align: left;
-    }
-  }
-
-  text-align: center;
-  vertical-align: middle;
-
-  form {
-    overflow: hidden;
-    zoom: 1;
-    display: inline-block;
-
-    input,
-    textarea {
-      background-color: transparent;
-      outline: 0;
-      line-height: 1.5;
-      font-weight: 100;
-
-      font-size: 40px;
-      color: #02b8ea;
-      -webkit-transition: border-color 0.4s;
-      -moz-transition: border-color 0.4s;
-      -o-transition: border-color 0.4s;
-      transition: border-color 0.4s;
-      display: inline-block; 
-
-
-      &::-webkit-input-placeholder { /* WebKit browsers */
-        color:    #00BAEA;
-        padding-top: 4px;
-        font-weight: 100;
-        
-      }
-      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color:    #00BAEA;
-        padding-top: 4px;
-        font-weight: 100;
-      }
-      &::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color:    #00BAEA;
-        padding-top: 4px;
-        font-weight: 100;
-        
-      }
-      &:-ms-input-placeholder { /* Internet Explorer 10+ */
-        color:    #00BAEA;
-        padding-top: 4px;
-        font-weight: 100;
-
-      }
-    }
-
-    input {
-      border: 0;
-      border-bottom: 1px solid #2d3132; 
-    }
-
-  }
-}
-.full-screen-modal.visible,
-#auth-modal-mask.visible {
-  visibility: visible;
-  pointer-events: auto; 
-
-  .modal-mask, 
-  .modal-content {
-    opacity: 1;
-    -webkit-transform: scale(1) translate3d(0, 0, 0);
-    -moz-transform: scale(1) translate3d(0, 0, 0);
-    -ms-transform: scale(1) translate3d(0, 0, 0);
-    -o-transform: scale(1) translate3d(0, 0, 0);
-    transform: scale(1) translate3d(0, 0, 0); 
-  }
-}
-
-svg{
-  height: 0;
-}
-
-
-
 // Application modals
 .modal {
   position: fixed;
@@ -514,7 +375,6 @@ svg{
     position: static;
     height: 100%;
     width: 100%;
-    border: 10px solid black;
     display: inline-block;
     position: relative;
     @include box-sizing();
@@ -526,13 +386,6 @@ svg{
     }
   }
 
-  .modal-background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
   .modal-content {
     position: absolute;
     width: 100%;
@@ -563,14 +416,206 @@ svg{
   }
 }
 
-.modal.visible {
+.modal.visible,
+.tmp-modal.visible {
   opacity:1;
   pointer-events: auto;
 }
 
-#register-modal {
+#register-modal, 
+#login-modal {
   & > .modal-mask {
-    min-width: 945px;
-    min-height: 363px;
+    text-align: left;
+    min-width: 1050px;
+  }
+
+  h1 {
+    font-size: 58px;
+    font-weight: 100;
+    color: #2d3132;
+    margin: 0;
+    text-align: left;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #6b6e70;
+    text-align: left;
+    line-height: 1.5em;
+    font-weight: 300;
+
+    a {
+      text-decoration: none;
+      color: #02b8ea;
+    }
+  }
+
+  .modal-facebook-signup-button,
+  .modal-facebook-signin-button {
+    color: #ffffff;
+    display: inline-block;
+    margin: 25px 0;
+    line-height: 44px;
+    background-color: #3b5998;
+    text-align: left;
+    border-radius: 24px;
+    text-decoration: none;
+
+    i, & > div {
+      display: inline-block;
+    }
+
+    i {
+      width: 53px;
+      font-size: 26px;
+      line-height: 44px;
+      vertical-align: top;
+      border-right: 1px solid #536da5;
+      text-align: center;
+    }
+    & > div {
+      border-left: 1px solid #344e86;
+      font-size: 12px;
+      vertical-align: top; 
+      text-align: center;
+      width: 230px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+  .registration-modal-form-field {
+    text-align: left;
+    margin-left: 3%;
+    position: relative;
+    display: block;
+    float: left;
+    margin-top: 10px;
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 300;
+      color: #2d3132;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+
+    input {
+      background-color: #e5f8fd;
+      outline: none;
+      height: 44px;
+      border: 0;
+      padding: 0 20px;
+      width: 100%;
+      font-size: 12px;
+    }
+  }
+
+  .left-rail {
+    width: 440px;
+    padding: 60px 70px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid #dadada;
+  }
+
+  .registration-modal-submit-button {
+    line-height: 44px;
+    border-radius: 23px;
+    border: 0px;
+    padding: 0;
+    background-color: #02b8ea;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-top: 25px;
+    text-align: center;
+    width: 256px;
+    margin-left: 3%;
+    text-transform: uppercase;
+  }
+  .right-rail {
+    vertical-align: top;
+    display: inline-block;
+    padding: 40px 20px;
+
+    .registration-modal-form {
+      width: 540px;
+
+      .half {
+        width: 47%;
+      }
+
+      .full {
+        width: 97%;
+      }
+    }
+  }
+
+}
+
+#login-modal {
+  & > .modal-mask {
+    min-width: 960px;
+  }
+
+  p {
+    margin: 30px 10px;
+  }
+
+  h1 {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .modal-facebook-signin-button {
+    display: inline-block;
+    vertical-align: top;
+    margin: 12px;
+  }
+
+  
+  input[type="text"], 
+  input[type="password"] {
+    width: 345px;
+  }
+
+  input[type="submit"] {
+    display: inline-block;
+    margin: 0;
+    width: 200px;
+    vertical-align: top;
+    margin-top: 34px;
+    margin-left: 24px;
+  }
+
+  .modal-centered-body {
+    display: inline-block;
+    text-align: left;
+    width: 960px;
+  }
+
+  .registration-modal-form-field {
+    margin-left: 5px;
+  }
+
+  .password {
+    margin-left: 20px;
   }
 }
+.tmp-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  background-color: rgba(255,255,255,0.97);
+}
+
