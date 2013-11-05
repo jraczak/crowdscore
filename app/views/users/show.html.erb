@@ -7,13 +7,16 @@
     </div>
     <div id="inner-user-stats-container">
       <div class="stat-row">
-        <div class="stat-wrap"><span class="stat-count">90</span><span class="stat-label">FOLLOWERS</span></div>
+        <div class="stat-wrap"><span class="stat-count"><%= resource.points %></span><span class="stat-label">KARMA</span></div>
       </div>
       <div class="stat-row">
-        <div class="stat-wrap"><span class="stat-count">50</span><span class="stat-label">SCORES SUBMITTED</span></div>
+        <div class="stat-wrap"><span class="stat-count"><%= resource.followers.count %></span><span class="stat-label">FOLLOWERS</span></div>
       </div>
       <div class="stat-row">
-        <div class="last-stat-wrap"><span class="stat-count">200</span><span class="stat-label">TIPS POSTED</span></div>
+        <div class="stat-wrap"><span class="stat-count"><%= resource.venue_scores.count %></span><span class="stat-label">SCORES SUBMITTED</span></div>
+      </div>
+      <div class="stat-row">
+        <div class="last-stat-wrap"><span class="stat-count"><%= resource.tips.count %></span><span class="stat-label">TIPS POSTED</span></div>
       </div>
     </div>
   </div>
@@ -23,13 +26,13 @@
   <div id="outter-user-scores-container">
     <div id="inner-user-scores-container">
       <div class="score-row">
-        <div class="score-wrap"><span class="stat-count">100</span><span class="stat-label">HIGHEST SCORE GIVEN</span></div>
+        <div class="score-wrap"><span class="score-number"><%= resource.highest_score %></span><span class="stat-label">HIGHEST SCORE GIVEN</span></div>
       </div>
       <div class="score-row">
-        <div class="score-wrap"><span class="stat-count">50</span><span class="stat-label">AVERAGE SCORE GIVEN</span></div>
+        <div class="score-wrap"><span class="score-number"><%= resource.average_score %></span><span class="stat-label">AVERAGE SCORE GIVEN</span></div>
       </div>
       <div class="score-row">
-        <div class="last-score-wrap"><span class="stat-count">10</span><span class="stat-label">LOWEST SCORE GIVEN</span></div>
+        <div class="last-score-wrap"><span class="score-number"><%= resource.lowest_score %></span><span class="stat-label">LOWEST SCORE GIVEN</span></div>
       </div>
     </div>
   </div>
@@ -40,24 +43,35 @@
 
 <div id="outter-user-detail-container">
   <div id="user-name-container">
-    <h1><%= resource.first_name %></h1>
+    <h1><%= resource.first_name.titleize %></h1>
   </div>
   <div id="user-profile-details-container">
-      <p><span class="user-profile-detail-label">Known in the crowd as:</span>
+      <p><span class="user-profile-detail-label">Known as:</span>
       <span class="user-profile-detail-data"><%= resource.username %></span></p><br>
       <p><span class="user-profile-detail-label">Joined the crowd in:</span>
       <span class="user-profile-detail-data"><%= resource.created_at.strftime("%B %Y") %></span></p><br>
-      <% unless resource.twitter_username.nil? %>
+      <% if !resource.home_city.blank? || !resource.home_state.blank? %>
+        <p><span class="user-profile-detail-label">From:</span>
+        <span class="user-profile-detail-data">
+          <% unless resource.home_city.blank? %>
+            <%= resource.home_city %><% if resource.home_city.present? && resource.home_state.present? %>,<% end %> 
+          <% end %>
+          <% unless resource.home_state.blank? %>
+            <%= resource.home_state %>
+          <% end %>
+        </span></p><br>
+      <% end %>
+      <% unless resource.twitter_username.nil? || resource.twitter_username.empty? %>
         <p><span class="user-profile-detail-label">Tweets from:</span>
         <span class="user-profile-detail-data"><%= link_to resource.twitter_username, resource.twitter_link %></span></p><br>
       <% end %>
-      <% if resource.bio %>
+      <% unless resource.bio.nil? || resource.bio.empty? %>
         <p><span class="user-profile-detail-label">Bio:</span>
         <span class="user-profile-detail-data"><%= resource.bio %></span></p><br>
       <% end %>
       <div id="follow-user-button">
         <% if user_signed_in? && current_user == resource %>
-          <p>THIS IS YOU!</p>
+          <p class="follow-button-text">THIS IS YOU!</p>
         <% elsif user_signed_in? && current_user.follows?(resource) %>
           <%= link_to "&#x2713; FOLLOWING".html_safe, "/users/#{resource.id}/unfollow", method: :delete %>
         <% else %>
@@ -68,60 +82,6 @@
 </div>
 
 </div>
-
-
-
-
-
-
-
-<h1>User Profile</h1>
-
-<h4><%= resource.first_name.titleize %></h4>
-
-<h4>Also known as <%= resource.username %></h4>
-
-<h4>Joined the crowd in <%= resource.created_at.strftime("%b '%y") %>
-
-<% if !resource.home_city.blank? || !resource.home_state.blank? %>
-<h4>From 
-	<% unless !resource.home_city.nil? %>
-	  <%= resource.home_city %>, 
-	<% end %>
-	<% unless !resource.home_state.nil? %>
-	  <%= resource.home_state %>
-	<% end %>
-</h4>
-<% end %>
-
-<% if resource.twitter_username %>
-  <h4>
-    <%= link_to resource.twitter_username, "http://twitter.com/#{resource.twitter_username}", target: "_blank" %>
-  </h4>
-<% end %>
-
-
-<% if user_signed_in? && current_user == resource %>
-  <p><%= link_to "this is you", "#" %></p>
-<% elsif user_signed_in? && current_user.follows?(resource) %>
-  <!-- storing original route helper for reference "unfollow_user_path(resource)" -->
-  <p><%= link_to "&#x2713; following".html_safe, "/users/#{resource.id}/unfollow", method: :delete %></p>
-<% else %>
-  <!-- storing original route helper for reference "follow_user_path(resource)" -->
-  <p><%= link_to "follow", "/users/#{resource.id}/follow", method: :post %></p>
-<% end %>
-
-<h4>Karma</h4>
-<%= resource.points %>
-
-<h4>Followers</h4>
-<%= resource.followers.count %>
-
-<h4>Scores submitted</h4>
-<%= resource.venue_scores.count %>
-
-<h4>Tips posted</h4>
-<%= resource.tips.count %>
 
 <h4>Average score given</h4>
 <p><%= resource.average_score %><% unless resource.venue_scores.empty? %><br>
@@ -147,4 +107,14 @@
       "<%= a.text %>"</p>
     <% end %>
   <% end %>
+<% end %>
+
+<% if user_signed_in? && current_user == resource %>
+  <p><%= link_to "this is you", "#" %></p>
+<% elsif user_signed_in? && current_user.follows?(resource) %>
+  <!-- storing original route helper for reference "unfollow_user_path(resource)" -->
+  <p><%= link_to "&#x2713; following".html_safe, "/users/#{resource.id}/unfollow", method: :delete %></p>
+<% else %>
+  <!-- storing original route helper for reference "follow_user_path(resource)" -->
+  <p><%= link_to "follow", "/users/#{resource.id}/follow", method: :post %></p>
 <% end %>

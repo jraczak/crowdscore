@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state
   has_merit
 
   # Include default devise modules. Others available are:
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
                                :remember_me, :username, :zip_code, :gender, :confirmed_at,
-                               :bio, :twitter_username, :permalink] #, :permalink
+                               :bio, :twitter_username, :permalink, :home_city, :home_state] #, :permalink
   admin_only_fields = [:admin]
 
   attr_accessible *default_accessible_fields

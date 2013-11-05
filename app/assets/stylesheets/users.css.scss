@@ -1,6 +1,6 @@
 #outter-user-stats-container {
     width: 344px;
-    height: 499px;
+    
     border: 7px solid white;
     background-color: #f7f7f7;
     box-shadow: 0px 1px 0px 2px #eeeeee;
@@ -15,7 +15,6 @@
 
 #inner-user-stats-container {
     width: 100%;
-    height: 250px;
 }
 
 .stat-row {
@@ -29,6 +28,12 @@
     border-bottom: 1px solid #e6e6e6;
 }
 
+.last-stat-wrap {
+    width: 285px;
+    height: 80px;
+    border: none;
+}
+
 .stat-count {
     float: left;
     font-family: Museo;
@@ -37,6 +42,7 @@
     line-height: 40px;
     color: #72ca28;
 }
+
 
 .stat-label {
     float: right;
@@ -59,6 +65,13 @@
 #inner-user-scores-container {
     width: 100%;
     height: 250px;
+}
+
+.score-number {
+    font-family: Museo;
+    font-weight: 900;
+    font-size: 24px;
+    color: #02b8ea;
 }
 
 .score-row {
@@ -89,6 +102,7 @@
 #user-name-container {
     text-align: left;
     border-bottom: 4px solid #dadada;
+    margin-bottom: 40px;
     
     h1 {
         font-family: Museo;
@@ -105,7 +119,7 @@
     font-family: Museo;
     font-weight: 700;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 24px;
     letter-spacing: .05em;
     color: #000000;
 }
@@ -114,7 +128,7 @@
     font-family: Museo;
     font-weight: 300;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 24px;
     letter-spacing: .05em;
     color: #6b6e70;
 }
@@ -122,6 +136,7 @@
 #follow-user-button {
     width: 140px;
     height: 45px;
+    margin-top: 20px;
     background-color: #72ca28;
     font-family: Museo;
     font-weight: 900;
@@ -133,7 +148,7 @@
     border-radius: 20px;
 }
 
-#follow-user-button a, p {
+#follow-user-button a, {
     color: white;
     text-decoration: none;
     line-height: 45px;
@@ -144,7 +159,9 @@
     text-decoration: none;
 }
 
-
+p.follow-button-text {
+    line-height: 45px;
+}
 
 
 

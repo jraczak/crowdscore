@@ -29,6 +29,12 @@
   <fieldset id="optional-user-form-fields">
   <h2 class="user-form-header">These are optional.</h2><br>
   
+    <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
+    <%= f.text_field :home_city, size: "30", class: "standard-blue-text-field" %><br>
+    
+    <%= f.label :home_state, "Home state", class: "user-form-label" %><br>
+    <%= f.text_field :home_state, size: "10", class: "standard-blue-text-field" %><br>
+    
     <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
     <%= f.text_field :zip_code, size: "10", class: "standard-blue-text-field" %><br>
     
