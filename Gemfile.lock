@@ -58,6 +58,9 @@ GEM
       nokogiri (>= 1.4.4, < 1.6.0)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.0.4)
     cancan (1.6.10)
     carrierwave (0.9.0)
@@ -161,6 +164,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -344,6 +349,7 @@ DEPENDENCIES
   acts_as_audited (= 2.0.0)
   airbrake
   aws-sdk
+  bourbon
   cancan
   capybara!
   carrierwave
@@ -363,6 +369,7 @@ DEPENDENCIES
   heroku
   inherited_resources
   jquery-rails
+  jquery-ui-rails
   kumade
   launchy
   merit
