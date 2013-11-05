@@ -1,3 +1,80 @@
+<!-- BEGIN LEFT RAIL -->
+
+<div id="inner-page-container">
+  <div id="outter-user-stats-container">
+    <div id="user-photo-container">
+      photo will go here
+    </div>
+    <div id="inner-user-stats-container">
+      <div class="stat-row">
+        <div class="stat-wrap"><span class="stat-count">90</span><span class="stat-label">FOLLOWERS</span></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-wrap"><span class="stat-count">50</span><span class="stat-label">SCORES SUBMITTED</span></div>
+      </div>
+      <div class="stat-row">
+        <div class="last-stat-wrap"><span class="stat-count">200</span><span class="stat-label">TIPS POSTED</span></div>
+      </div>
+    </div>
+  </div>
+
+<br>
+
+  <div id="outter-user-scores-container">
+    <div id="inner-user-scores-container">
+      <div class="score-row">
+        <div class="score-wrap"><span class="stat-count">100</span><span class="stat-label">HIGHEST SCORE GIVEN</span></div>
+      </div>
+      <div class="score-row">
+        <div class="score-wrap"><span class="stat-count">50</span><span class="stat-label">AVERAGE SCORE GIVEN</span></div>
+      </div>
+      <div class="score-row">
+        <div class="last-score-wrap"><span class="stat-count">10</span><span class="stat-label">LOWEST SCORE GIVEN</span></div>
+      </div>
+    </div>
+  </div>
+  
+<!-- END LEFT RAIL -->
+
+<!-- BEGIN RIGHT RAIL -->
+
+<div id="outter-user-detail-container">
+  <div id="user-name-container">
+    <h1><%= resource.first_name %></h1>
+  </div>
+  <div id="user-profile-details-container">
+      <p><span class="user-profile-detail-label">Known in the crowd as:</span>
+      <span class="user-profile-detail-data"><%= resource.username %></span></p><br>
+      <p><span class="user-profile-detail-label">Joined the crowd in:</span>
+      <span class="user-profile-detail-data"><%= resource.created_at.strftime("%B %Y") %></span></p><br>
+      <% unless resource.twitter_username.nil? %>
+        <p><span class="user-profile-detail-label">Tweets from:</span>
+        <span class="user-profile-detail-data"><%= link_to resource.twitter_username, resource.twitter_link %></span></p><br>
+      <% end %>
+      <% if resource.bio %>
+        <p><span class="user-profile-detail-label">Bio:</span>
+        <span class="user-profile-detail-data"><%= resource.bio %></span></p><br>
+      <% end %>
+      <div id="follow-user-button">
+        <% if user_signed_in? && current_user == resource %>
+          <p>THIS IS YOU!</p>
+        <% elsif user_signed_in? && current_user.follows?(resource) %>
+          <%= link_to "&#x2713; FOLLOWING".html_safe, "/users/#{resource.id}/unfollow", method: :delete %>
+        <% else %>
+          <%= link_to "FOLLOW", "/users/#{resource.id}/follow", method: :post %>
+        <% end %>
+      </div> 
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
 <h1>User Profile</h1>
 
 <h4><%= resource.first_name.titleize %></h4>

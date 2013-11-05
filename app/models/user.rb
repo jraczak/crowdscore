@@ -197,6 +197,11 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+  
+  # Creates a URL to user's twitter profile based on the twitter_username field
+  def twitter_link
+    "http://twitter.com/#{self.twitter_username}"
+  end
 
   # NEED TO CHANGE THIS BACK TO FRIENDLY URLS AFTER FOLLOWING
   def to_param

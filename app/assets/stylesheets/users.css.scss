@@ -1,4 +1,152 @@
-/* USER STATS MODULE */
+#outter-user-stats-container {
+    width: 344px;
+    height: 499px;
+    border: 7px solid white;
+    background-color: #f7f7f7;
+    box-shadow: 0px 1px 0px 2px #eeeeee;
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+
+#user-photo-container {
+    width: 100%;
+    height: 250px;
+}
+
+#inner-user-stats-container {
+    width: 100%;
+    height: 250px;
+}
+
+.stat-row {
+    height: 80px;
+    padding: 25px 30px 25px 30px;
+}
+
+.stat-wrap {
+    width: 285px;
+    height: 80px; 
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.stat-count {
+    float: left;
+    font-family: Museo;
+    font-weight: 100;
+    font-size: 40px;
+    line-height: 40px;
+    color: #72ca28;
+}
+
+.stat-label {
+    float: right;
+    font-family: Museo;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 40px;
+    color: #2d3132;
+}
+
+#outter-user-scores-container {
+    width: 344px;
+    height: 372px;
+    padding-top: 40px;
+    border: 7px solid white;
+    background-color: #f7f7f7;
+    box-shadow: 0px 1px 0px 2px #eeeeee;
+}
+
+#inner-user-scores-container {
+    width: 100%;
+    height: 250px;
+}
+
+.score-row {
+    height: 118px;
+    padding: 0px 30px 25px 30px;
+}
+
+.score-wrap {
+    width: 100%;
+    height: 80px; 
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.last-score-wrap {
+    width: 100%;
+    height: 80px;
+}
+
+/** RIGHT RAIL STYLES **/
+
+#outter-user-detail-container {
+    width: 520px;
+    float: right;
+    margin-left: 30px;
+    display: inline-block;
+}
+
+#user-name-container {
+    text-align: left;
+    border-bottom: 4px solid #dadada;
+    
+    h1 {
+        font-family: Museo;
+        font-weight: 100;
+        font-size: 58px;
+    }
+}
+
+#user-profile-details-container {
+    text-align: left;
+}
+
+.user-profile-detail-label {
+    font-family: Museo;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: .05em;
+    color: #000000;
+}
+
+.user-profile-detail-data {
+    font-family: Museo;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: .05em;
+    color: #6b6e70;
+}
+
+#follow-user-button {
+    width: 140px;
+    height: 45px;
+    background-color: #72ca28;
+    font-family: Museo;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#follow-user-button a, p {
+    color: white;
+    text-decoration: none;
+    line-height: 45px;
+}
+
+#follow-user-button a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
 
 #user-name {
 
