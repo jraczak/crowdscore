@@ -107,7 +107,14 @@ class User < ActiveRecord::Base
     tips.each do |t|
       @activities << t
     end
-    @activities.first(10)
+    lists.each do |l|
+      @activities << l
+    end
+    # Define later how to make follows display in activity stream
+    #follows.each do |f|
+    #  @activities << f
+    #end
+    @activities.first(10).reverse
   end
   
   def network_activity

@@ -113,6 +113,7 @@
 
 #user-profile-details-container {
     text-align: left;
+    margin-bottom: 40px;
 }
 
 .user-profile-detail-label {
@@ -164,6 +165,56 @@ p.follow-button-text {
 }
 
 
+/** RECENT ACTIVITY MODULE STYLES **/
+
+#user-profile-recent-activity-container {
+    width: 520px;
+}
+
+#recent-activity-header-container {
+    text-align: left;
+    padding-bottom: 20px;
+    border-bottom: 4px solid #dadada;
+    
+    h3 {
+        font-family: Museo;
+        font-weight: 300;
+        font-size: 25px;
+        color: #34373f;
+    }
+}
+
+.recent-activity-stream-row {
+    width: 100%;
+    border-bottom: 1px solid #dadada;
+    padding: 20px 18px 20px 18px;
+}
+
+.activity-stream-inner-container {
+    height: 40px;
+}
+
+.activity-content {
+    font-family: Museo;
+    text-align: left;
+}
+
+.activity-copy {
+    font-weight: 300;
+    font-size: 14px;
+    color: #6b6e70;
+}
+
+.activity-copy a, a:visited {
+    color: #12bceb;
+    text-decoration: none;
+}
+
+.activity-timestamp {
+    font-weight: 700;
+    font-size: 12px;
+    color: #000000;
+}
 
 #user-name {
 

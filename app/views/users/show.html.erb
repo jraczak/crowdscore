@@ -81,6 +81,33 @@
   </div>
 </div>
 
+<div id="user-profile-recent-activity-container">
+  <div id="recent-activity-header-container">
+    <h3>Recent Activity</h3>
+  </div>
+  <div id="user-profile-activity-stream-container">
+    <% resource.recent_activity.each do |a| %>
+      <div class="recent-activity-stream-row">
+        <div class="activity-stream-inner-container">
+          <p class="activity-content">
+            <% if a.class == VenueScore %>
+              <span class="activity-copy">Gave a score of <%= a.computed_score %> to <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %></span><br>
+              <span class="activity-timestamp"><%= time_ago_in_words(a.created_at) %> ago</span>
+            <% end %>
+            <% if a.class == List %>
+              <span class="activity-copy">Created a list called <%= a.name %> to <%= link_to List.find(a.id).name, List.find(a.id) %></span><br>
+              <span class="activity-timestamp"><%= time_ago_in_words(a.created_at) %> ago</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<!-- END OF PAGE CONTAINER -->
 </div>
 
 <h4>Average score given</h4>
