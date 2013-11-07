@@ -301,30 +301,6 @@ var auto_zoom = false;
 	</div><!-- End of other Nearby Restaurant Division -->
 	<div class="footer"></div>
 
-  <div class='full-screen-modal' id="score-modal">
-    <div class='modal-mask'>
-      <div class='modal-content'>
-        <div class='close-modal'>+</div>
-        <p href="#">Sign into Crowdscore!</p>
-
-        <%= form_for resource.venue_scores.build, url: venue_score_path(resource) do |f| %>
-          <%= f.label :score1, resource.venue_category.prompt1 %>
-          <%= f.select :score1, (0..10).to_a, include_blank: true %>
-
-          <%= f.label :score2, resource.venue_category.prompt2 %>
-          <%= f.select :score2, (0..10).to_a, include_blank: true %>
-          
-          <%= f.label :score3, resource.venue_category.prompt3 %>
-          <%= f.select :score3, (0..10).to_a, include_blank: true %>
-          
-          <%= f.label :score4, resource.venue_category.prompt4 %>
-          <%= f.select :score4, (0..10).to_a, include_blank: true %>
-          
-          <%= f.submit "Add my score" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 
 
   <div id="image-upload-modal" class='full-screen-modal'>
@@ -342,76 +318,330 @@ var auto_zoom = false;
 
 
 
-<div id="submit-score-modal" class="modal visible">
+<div id="submit-score-modal" class="modal">
   <div class="modal-mask">
     <div class="modal-content download-app">
       <div class="close-modal">+</div>
       <div class="modal-vertical-center">
       	<div class="modal-centered-body" >
-	      	<!-- <form id="reservation">
-					  <label for="minbeds"></label>
-					  <select name="minbeds" id="minbeds" style="display: none">
-					    <option>1</option>
-					    <option>2</option>
-					    <option>3</option>
-					    <option>4</option>
-					    <option>5</option>
-					    <option>6</option>
-					    <option>7</option>
-					    <option>8</option>
-					    <option>9</option>
-					    <option>10</option>
-					  </select>
-					</form>
-        	<div id="slider-bar-widget-container">
-        		<div class="ui-slider">
-	        		<div class="ui-slider-handle" id="draggable-marker">
-	        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-	        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-	        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-	        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-	        			<div id="marker-value">1</div>
-	        		</div>
-	        	</div>
-        		<div class="slider-bar-main-background"></div>
-        		<div id="slider-bar-gradient"></div>
-	        	<div class="slider-bar-widget">
-	        		<span class="slider-bar"></span>
-	        		<span class="slider-bar-mask"></span>
-	        		<div class="tick-marks">
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        	<span class="slider-tic-mark">
-			        		<span></span>
-			        	</span>
-			        </div>
-		        </div>
-		      </div> -->
+	      	<%= form_for resource.venue_scores.build, url: venue_score_path(resource)  do |f| %>
+	      		<ul id="submit-score-flow">
+	      			<li>
+	      				<h1>What did you think?</h1>
+	      				<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      				<div id="informational-steps-widget">
+	      					<span id='crossbar'></span>
+	      					<span class="widget-ball">
+	      						<h3>1</h3>
+	      						<p>food</p>
+	      					</span>
+	      					<span class="widget-ball">
+	      						<h3>2</h3>
+	      						<p>service</p>
+	      					</span>
+	      					<span class="widget-ball">
+	      						<h3>3</h3>
+	      						<p>atmosphere</p>
+	      					</span>
+	      					<span class="widget-ball">
+	      						<h3>4</h3>
+	      						<p>value</p>
+	      					</span>
+	      				</div>
+	      				<div class="submit-score-continue first" data-slide-set="1" data-slide="1">Continue</div>
+	      			</li>
+
+
+	      			<li>
+	      				<ul id="submit-score-form-carousel">
+
+
+
+
+	      					<li>
+	      						<h1>How was the food?</h1>
+	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      						<%= f.select :score1, (1..10).to_a %>
+		      					<div class="slider-bar-widget-container">
+					        		<div class="ui-slider" data-field="1">
+						        		<div class="ui-slider-handle" id="draggable-marker">
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<div class="marker-value">1</div>
+						        		</div>
+						        	</div>
+					        		<div class="slider-bar-main-background" data-field="1"></div>
+					        		<div id="slider-bar-gradient"></div>
+						        	<div class="slider-bar-widget">
+						        		<span class="slider-bar"></span>
+						        		<span class="slider-bar-mask"></span>
+						        		<div class="tick-marks">
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        </div>
+							        </div>
+							      </div>
+	      						
+	      					</li>
+
+
+
+	      					<li>
+	      						<h1>How was the service?</h1>
+	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      						<%= f.select :score2, (1..10).to_a %>
+		      					<div class="slider-bar-widget-container">
+					        		<div class="ui-slider" data-field="2">
+						        		<div class="ui-slider-handle" id="draggable-marker">
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<div class="marker-value">1</div>
+						        		</div>
+						        	</div>
+					        		<div class="slider-bar-main-background" data-field="2"></div>
+					        		<div id="slider-bar-gradient"></div>
+						        	<div class="slider-bar-widget">
+						        		<span class="slider-bar"></span>
+						        		<span class="slider-bar-mask"></span>
+						        		<div class="tick-marks">
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        </div>
+							        </div>
+							      </div>
+	      					</li>
+
+
+	      					<li>
+	      						<h1>What did you think?</h1>
+	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      						<%= f.select :score3, (1..10).to_a %>
+		      					<div class="slider-bar-widget-container">
+					        		<div class="ui-slider" data-field="3">
+						        		<div class="ui-slider-handle" id="draggable-marker">
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<div class="marker-value">1</div>
+						        		</div>
+						        	</div>
+					        		<div class="slider-bar-main-background" data-field="3"></div>
+					        		<div id="slider-bar-gradient"></div>
+						        	<div class="slider-bar-widget">
+						        		<span class="slider-bar"></span>
+						        		<span class="slider-bar-mask"></span>
+						        		<div class="tick-marks">
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        </div>
+							        </div>
+							      </div>
+	      						
+	      					</li>
+
+
+
+
+
+	      					<li>
+	      						<h1>What did you think?</h1>
+	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      						<%= f.select :score4, (1..10).to_a %>
+		      					<div class="slider-bar-widget-container">
+					        		<div class="ui-slider" data-field="4">
+						        		<div class="ui-slider-handle" id="draggable-marker">
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+						        			<div class="marker-value">1</div>
+						        		</div>
+						        	</div>
+					        		<div class="slider-bar-main-background" data-field="4"></div>
+					        		<div id="slider-bar-gradient"></div>
+						        	<div class="slider-bar-widget">
+						        		<span class="slider-bar"></span>
+						        		<span class="slider-bar-mask"></span>
+						        		<div class="tick-marks">
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        	<span class="slider-tic-mark">
+								        		<span></span>
+								        	</span>
+								        </div>
+							        </div>
+							      </div>
+	      					</li>
+	      				</ul>
+
+	      				<ul id="submit-score-form-carousel-buttons">
+	      					<li class="active" data-button-slide="0">
+	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="1">Continue</div>
+	      					</li>
+	      					<li data-button-slide="1">
+	      						<div class="submit-score-back" data-slide-set="2" data-slide="0">Back</div>
+	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="2">Continue</div>
+	      					</li>
+	      					<li data-button-slide="2">
+	      						<div class="submit-score-back" data-slide-set="2" data-slide="1">Back</div>
+	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="3">Continue</div>
+	      					</li>
+	      					<li data-button-slide="3">
+	      						<div class="submit-score-back" data-slide-set="2" data-slide="2">Back</div>
+	      						 <%= f.submit "Submit Score", class: "submit-form-score" %>
+	      					</li>
+	      				</ul>
+
+	      				<div id="score-form-progress-bar">
+	      					<span class='crossbar'></span><br>
+	      					<span class="widget-ball">
+	      						<h3>1</h3>
+	      					</span>
+	      					<span class="widget-ball">
+	      						<h3>2</h3>
+	      					</span>
+	      					<span class="widget-ball">
+	      						<h3>3</h3>
+	      					</span>
+	      					<span class="widget-ball" style="margin-right: 0">
+	      						<h3>4</h3>
+	      					</span>
+
+	      					<div class="progress-bar-overlay-wrapper">
+		      					<div class="progress-bar-overlay">
+		      						<span class='crossbar'></span>
+			      					<span class="widget-ball">
+			      						<h3>1</h3>
+			      					</span>
+			      					<span class="widget-ball">
+			      						<h3>2</h3>
+			      					</span>
+			      					<span class="widget-ball">
+			      						<h3>3</h3>
+			      					</span>
+			      					<span class="widget-ball" style="margin-right: 0">
+			      						<h3>4</h3>
+			      					</span>
+		      					</div>
+		      				</div>
+	      				</div>
+	      			</li>
+	      		</ul>
+	      	<% end %>
         </div>
       </div>
     </div>

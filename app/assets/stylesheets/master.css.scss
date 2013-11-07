@@ -353,6 +353,148 @@ nav{
   -ms-filter: blur(15px);
 }
 
+.full-screen-modal{
+  visibility: hidden;
+  pointer-events: none; 
+  position: fixed;
+  z-index: 1000;
+  opacity: 0.98;
+  background-color: #FFF;
+  text-align: left;
+
+  .modal-mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: #FFF; 
+  }
+
+  .modal-body{
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .close-modal{
+    font-family: HelveticaNeue-UltraLight;
+    font-size: 100px;
+    font-weight: 100;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform:  rotate(-45deg);
+    position: relative;
+    line-height: 50px;
+    cursor: pointer;
+  }
+  .modal-content, 
+  .modal-mask {
+    opacity: 0;
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: scale(1.9) translate3d(0, 0, 0);
+    -moz-transform: scale(1.9) translate3d(0, 0, 0);
+    -ms-transform: scale(1.9) translate3d(0, 0, 0);
+    -o-transform: scale(1.9) translate3d(0, 0, 0);
+    transform: scale(1.9) translate3d(0, 0, 0);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease; 
+
+    a{
+      display: inline-block;
+      width: 740px;
+      text-align: left;
+    }
+  }
+
+  text-align: center;
+  vertical-align: middle;
+
+  form {
+    overflow: hidden;
+    zoom: 1;
+    display: inline-block;
+
+    input,
+    textarea {
+      background-color: transparent;
+      outline: 0;
+      line-height: 1.5;
+      font-weight: 100;
+
+      font-size: 40px;
+      color: #02b8ea;
+      -webkit-transition: border-color 0.4s;
+      -moz-transition: border-color 0.4s;
+      -o-transition: border-color 0.4s;
+      transition: border-color 0.4s;
+      display: inline-block; 
+
+
+      &::-webkit-input-placeholder { /* WebKit browsers */
+        color:    #00BAEA;
+        padding-top: 4px;
+        font-weight: 100;
+        
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #00BAEA;
+        padding-top: 4px;
+        font-weight: 100;
+      }
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    #00BAEA;
+        padding-top: 4px;
+        font-weight: 100;
+        
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color:    #00BAEA;
+        padding-top: 4px;
+        font-weight: 100;
+
+      }
+    }
+
+    input {
+      border: 0;
+      border-bottom: 1px solid #2d3132; 
+    }
+
+  }
+
+
+
+
+}
+.full-screen-modal.visible,
+#auth-modal-mask.visible {
+  visibility: visible;
+  pointer-events: auto; 
+
+  .modal-mask, 
+  .modal-content {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+    -moz-transform: scale(1) translate3d(0, 0, 0);
+    -ms-transform: scale(1) translate3d(0, 0, 0);
+    -o-transform: scale(1) translate3d(0, 0, 0);
+    transform: scale(1) translate3d(0, 0, 0); 
+  }
+}
+
+
+
 // Application modals
 .modal {
   position: fixed;
