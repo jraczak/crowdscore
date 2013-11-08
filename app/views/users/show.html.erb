@@ -87,7 +87,7 @@
       <% resource.recent_activity.each do |a| %>
         <div class="recent-activity-stream-row">
           <div class="activity-stream-inner-container">
-            <div class="activity-icon-container">
+            <div class="activity-icon-container <%= a.class %>-icon">
             </div>
             <p class="activity-content">
               <% if a.class == VenueScore %>

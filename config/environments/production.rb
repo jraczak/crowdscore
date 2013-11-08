@@ -61,6 +61,7 @@ Crowdscore::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  #Set up SendGrid as mailer service
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'crowdsco.re' }
   config.action_mailer.smtp_settings = {
@@ -71,4 +72,8 @@ Crowdscore::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => ENV['SENDGRID_DOMAIN']
   }
+  
+  #Set up WEBSOLR_URL for solr search
+  #NOTE: This can be set in the console and this may not be necessary
+  #Sunspot.config.solr.url = ENV['WEBSOLR_URL']
 end

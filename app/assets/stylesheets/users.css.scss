@@ -211,6 +211,24 @@ p.follow-button-text {
 .activity-icon-container {
     height: 40px;
     width: 40px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.List-icon {
+    background-image: url('activity-icon.png');
+}
+
+.Tip-icon {
+    background-image: url('activity-icon.png');
+}
+
+.VenueScore-icon {
+    background-image: url('activity-icon.png');
+}
+
+.photo-icon {
+    background-image: url('activity-icon.png');
 }
 
 .activity-copy {
