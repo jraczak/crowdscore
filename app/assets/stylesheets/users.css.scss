@@ -117,11 +117,15 @@
     text-align: left;
     border-bottom: 4px solid #dadada;
     margin-bottom: 40px;
+    padding-top: 0px;
     
     h1 {
         font-family: Museo;
         font-weight: 100;
         font-size: 58px;
+        line-height: 58px;
+        margin-top: 0px;
+        padding-top: 0px;
     }
 }
 
