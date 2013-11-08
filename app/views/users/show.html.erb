@@ -19,7 +19,7 @@
         <div class="stat-row">
           <div class="stat-wrap"><span class="stat-count"><%= resource.venue_scores.count %></span><span class="stat-label">SCORES SUBMITTED</span></div>
         </div>
-        <div class="stat-row">
+        <div class="last-stat-row">
           <div class="last-stat-wrap"><span class="stat-count"><%= resource.tips.count %></span><span class="stat-label">TIPS POSTED</span></div>
         </div>
       </div>
@@ -28,13 +28,19 @@
     <div id="outter-user-scores-container">
       <div id="inner-user-scores-container">
         <div class="score-row">
-          <div class="score-wrap"><span class="score-number"><%= resource.highest_score %></span><span class="stat-label">HIGHEST SCORE GIVEN</span></div>
+          <div class="score-wrap">
+          <span class="<%= highest_score_class(resource) %>"><%= resource.highest_score %></span><span class="stat-label">HIGHEST SCORE GIVEN</span>
+          </div>
         </div>
         <div class="score-row">
-          <div class="score-wrap"><span class="score-number"><%= resource.average_score %></span><span class="stat-label">AVERAGE SCORE GIVEN</span></div>
+          <div class="score-wrap">
+          <span class="<%= average_score_class(resource) %>"><%= resource.average_score %></span><span class="stat-label">AVERAGE SCORE GIVEN</span>
+          </div>
         </div>
         <div class="score-row">
-          <div class="last-score-wrap"><span class="score-number"><%= resource.lowest_score %></span><span class="stat-label">LOWEST SCORE GIVEN</span></div>
+          <div class="last-score-wrap">
+          <span class="<%= lowest_score_class(resource) %>"><%= resource.lowest_score %></span><span class="stat-label">LOWEST SCORE GIVEN</span>
+          </div>
         </div>
       </div>
     </div>
@@ -116,6 +122,23 @@
           </div>
         <% end %>
       </div>
+    </div>
+  
+  </div>
+  <!-- END RIGHT RAIL -->
+  
+  <span style="clear: both"></span>
+  
+  <div id="user-profile-lists-container">
+    
+    <h2 id="user-profile-lists-header"><%= resource.first_name %>'s Lists</h2>
+    
+    <div id="user-profile-lists-carousel-container">
+    
+      <div class="list-preview-card">
+        Sushi Places
+      </div>
+    
     </div>
   
   </div>

@@ -114,7 +114,8 @@ class User < ActiveRecord::Base
     #follows.each do |f|
     #  @activities << f
     #end
-    @activities.first(10).reverse
+    @activities = @activities.first(10)
+    @activities.sort_by {|a| a[:created_at]} #reverse
   end
   
   def network_activity
@@ -161,6 +162,7 @@ class User < ActiveRecord::Base
       @scores.sort_by {|score| score.computed_score}.last.computed_score
     else
       "No scores yet"
+      
     end 
   end
   
