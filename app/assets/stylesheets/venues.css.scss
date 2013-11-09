@@ -1398,13 +1398,14 @@ strong{
 	background-color: #d5d5d5;;
 	border-radius: 2px;
 	position: relative;
-	margin-top: 40px;
+	margin-top: 33px;
 }
+
 .slider-bar-widget {
 	opacity: 0.25;
 	display: inline-block;
 	position: relative;
-	margin-top: 24px;
+	margin-top: 23px;
 	margin-left: 9px;
 }
 
@@ -1433,7 +1434,7 @@ strong{
 		content: "";
 		position: absolute;
 		bottom: 20px;
-		height: 10px;
+		height: 8px;
 		left: 9px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #ffffff;
@@ -1443,7 +1444,7 @@ strong{
 		content: "";
 		position: absolute;
 		top: 20px;
-		height: 10px;
+		height: 8px;
 		left: 9px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #ffffff;
@@ -1610,7 +1611,7 @@ strong{
 #new_venue_score {
 	// Hard coded size of all slides
 	width: 830px;
-	height: 400px;
+	height: 415px;
 	overflow: hidden;
 	position: relative;
 	display: inline-block;
@@ -1681,13 +1682,13 @@ ul#submit-score-flow {
 			margin: 0;
 			padding: 0;
 			position: absolute;
-			bottom: 20px;
+			bottom: 57px;
 			right: 0px;
 			vertical-align: top;
 			display: inline-block;
 			font-size: 0;
 			width: 100%;
-			height: 100px;
+			height: 45px;
 			list-style: none;
 			white-space: nowrap;
 			@include transition(left 0.2s);
@@ -1695,7 +1696,7 @@ ul#submit-score-flow {
 
 			.submit-score-continue,
 			.submit-form-score{
-				padding: 15px 65px;
+				padding: 14px 65px;
 				cursor: pointer;
 				height: 49px;
 				margin-top: 45px;
@@ -1703,12 +1704,67 @@ ul#submit-score-flow {
 				color: #ffffff;
 				text-align: center;
 				display: inline-block;
+				vertical-align: top;
 				border-radius: 24px;
 				border: 0;
+				height: auto;
+			}
+
+			.right {
+				margin-left: 15px;
+				padding: 15px 52px;
+				margin-top: 0;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 12px;
+			}
+
+			p.next-slide-description {
+				font-size: 14px;
+				display: inline-block;
+				width: auto;
+				vertical-align: top;
+				color: #6b6e70;
+				vertical-align: top;
+				line-height: 45px;
+				margin: 0;;
+				padding: 0;
+
+			}
+
+			.vertical-bar {
+				vertical-align: top;
+				height: 45px; 
+				border-right: 1px solid #dadada;
+				display: inline-block;
+				margin: 0 25px;
 			}
 
 			.submit-score-back {
+				vertical-align: top;
 				display: inline-block;
+				line-height: 45px;
+				font-size: 11px;
+				cursor: pointer;
+				color: #02b8ea;
+				text-transform: uppercase;
+
+				span {
+					height: 19px;
+					width: 19px;
+					display: block;
+					display: inline-block;
+					text-align: center;
+					border-radius: 50%;
+					margin-right: 8px;
+					background-color: #02b8ea;
+
+					i {
+						display: block;
+						line-height: 19px;
+						color: #ffffff;
+					}
+				}
 
 			}
 			& > li {
@@ -1746,10 +1802,11 @@ ul#submit-score-flow {
 	p {
 
 		margin: 0;
-		margin: 10px;
-		padding: 0;
+		margin: 10px 0px;
+		padding: 0 20px;
 		font-weight: 300;
 		width: 415px;
+		line-height: 1.4;
 		font-size: 14px;
 		display: inline-block;
 		color: #6b6e70;
@@ -1757,6 +1814,7 @@ ul#submit-score-flow {
 
 	#informational-steps-widget {
 		width: 820px;
+		margin-top: 12px;
 		text-align: center;
 		display: inline-block;
 
@@ -1776,7 +1834,7 @@ ul#submit-score-flow {
 			margin-right: 65px;
 			display: block;
 			float: left;
-			margin-top: -84px;
+			margin-top: -86px;
 			position: relative;
 
 			&:last-child {
@@ -1794,6 +1852,7 @@ ul#submit-score-flow {
 			}
 
 			p {
+				letter-spacing: 0.5px;
 				text-transform: uppercase;
 				color: #12bceb;
 				display: block;
@@ -1806,21 +1865,25 @@ ul#submit-score-flow {
 
 		}
 	}
+
 	.submit-score-continue.first{
-		padding: 15px 65px;
+		padding: 15px 68px;
 		cursor: pointer;
-		margin-top: 45px;
+		margin-top: 47px;
+		font-size: 12px;
+		letter-spacing: 1px;
 		background-color: #02b8ea;
 		color: #ffffff;
 		text-align: center;
 		display: inline-block;
 		border-radius: 24px;
+		text-transform: uppercase;
 	}
 
 	#score-form-progress-bar {
-		bottom: 25px;
+		bottom: 57px;
 		position: absolute;
-		left: 0;
+		left: 3px;;
 		height: 40px;
 		text-align: center;
 		display: inline-block;
@@ -1832,7 +1895,7 @@ ul#submit-score-flow {
 			font-size: 13px;
 			font-weight: 900;
 			color: #02b8ea;
-			margin-top: 13px;
+			margin-top: 11px;
 		}
 
 		span.crossbar {
@@ -1840,7 +1903,7 @@ ul#submit-score-flow {
 			width: 90%;
 			display: inline-block;
 			background-color: #e5f8fd;
-			margin-top: 20px;
+			margin-top: 18px;
 		}
 
 		span.widget-ball {
@@ -1850,7 +1913,7 @@ ul#submit-score-flow {
 			border-radius: 50%;
 			margin-right: 28px;
 			display: block;
-			margin-top: -25px;
+			margin-top: -24px;
 			float: left;
 			position: relative;
 
