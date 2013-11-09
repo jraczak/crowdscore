@@ -404,6 +404,10 @@ h2#user-profile-lists-header {
         text-align: left;
         margin-bottom: 40px;
         text-transform: uppercase;
+        
+        a {
+            text-decoration: none;
+        }
     }
     
     .list-preview-card-timestamp-likes {

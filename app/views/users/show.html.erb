@@ -163,7 +163,7 @@
           <% end %>
         </div>
        
-        <p class="see-all-venues-link">SEE ALL <%= pluralize(l.venues.count, "VENUE") %></p>
+        <p class="see-all-venues-link">SEE ALL <%= link_to pluralize(l.venues.count, "VENUE"), l %></p>
         <div class="list-preview-card-timestamp-likes">
           <span class="list-preview-card-timestamp"><%= time_ago_in_words(l.updated_at) %> ago</span>
           <span class="list-preview-card-likes"><%= l.list_likes_count %></span>
