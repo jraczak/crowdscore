@@ -311,7 +311,91 @@ h2#user-profile-lists-header {
 
 .list-preview-card {
     width: 300px;
+    height: 450px;
     margin: auto;
+    margin-right: 20px;
+    background-color: #ffffff;
+    border-top: 5px solid #2464ad;
+    border-radius: 3px;
+    padding-top: 50px;
+    display: inline-block;
+    
+    h3.list-preview-card-list-name {
+        color: #2464ad;
+        font-weight: 300;
+        font-size: 25px;
+        line-height: 25px;
+        margin-bottom: 20px;
+        margin-top: 0px;
+    }
+    
+    p.list-preview-card-list-description {
+        width: 215px;
+        height: 50px;
+        font-weight: 300;
+        color: #6b6e70;
+        font-size: 14px;
+        margin-bottom: 40px;
+    }
+    
+    ol.list-preview-card-venue-list {
+        list-style-type: none; 
+    }
+    
+    div.list-preview-card-venue-list {
+        
+        margin-bottom: 20px;
+    }
+    
+    div.list-preview-card-venue {
+        width: 240px;
+        height: 50px;
+        margin: auto;
+        border-bottom: 1px solid #dadada;
+    }
+    
+    .list-preview-card-venue-number {
+        float: left;
+        line-height: 50px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    
+    .list-preview-card-venue-name {
+        float: right;
+        line-height: 50px;
+        font-weight: 300;
+        font-size: 14px;
+        color: #6b6e70;
+    }
+    
+    .see-all-venues-link {
+        font-weight: 900;
+        font-size: 11px;
+        color: #02b8ea;
+        width: 240px;
+        text-align: left;
+        margin-bottom: 40px;
+    }
+    
+    .list-preview-card-timestamp-likes {
+        width: 240px;
+        margin: auto;
+    }
+    
+    .list-preview-card-timestamp {
+        font-weight: 700;
+        font-size: 12px;
+        color: #000000;
+        float: left;
+    }
+    
+    .list-preview-card-likes {
+        font-weight: 900;
+        font-size: 11px;
+        color: #02b8ea;
+        float: right;
+    }
 }
 
 
