@@ -294,6 +294,7 @@ p.follow-button-text {
     border-bottom: 1px solid #e6e6e6;
     background-color: #f7f7f7;
     font-family: Museo;
+    font-size: 0px;
 
 }
 
@@ -306,20 +307,28 @@ h2#user-profile-lists-header {
 }
 
 #user-profile-lists-carousel-container {
-    width: 100%;
-    vertical-align: top;
+    width: 960px;
+    margin: auto;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .list-preview-card {
     width: 300px;
     height: 480px;
     margin: auto;
-    margin-right: 20px;
     background-color: #ffffff;
     border-top: 5px solid #2464ad;
     border-radius: 3px;
     padding-top: 50px;
     display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-left: 10px;
+    position: relative;
+    white-space: normal;
+    padding-right: 20px;
+    padding-left: 20px;
     
     h3.list-preview-card-list-name {
         color: #2464ad;
@@ -376,6 +385,14 @@ h2#user-profile-lists-header {
         font-weight: 300;
         font-size: 14px;
         color: #6b6e70;
+        
+        a {
+            line-height: 50px;
+            font-weight: 300;
+            font-size: 14px;
+            color: #6b6e70;
+            text-decoration: none;
+        }
     }
     
     .see-all-venues-link {
@@ -385,6 +402,7 @@ h2#user-profile-lists-header {
         width: 240px;
         text-align: left;
         margin-bottom: 40px;
+        text-transform: uppercase;
     }
     
     .list-preview-card-timestamp-likes {

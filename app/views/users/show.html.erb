@@ -129,52 +129,62 @@
   
   <span style="clear: both"></span>
   
-  <div id="user-profile-lists-container">
+
+</div>
+<!-- BEGIN USER LISTS MODULE -->
+<div id="user-profile-lists-container">
     
     <h2 id="user-profile-lists-header"><%= resource.first_name %>'s Lists</h2>
     
     <div id="user-profile-lists-carousel-container">
+    
     <% if resource.lists.empty? %>
       <p>Empty list state</p>
     <% else %>
-      <% resource.lists.each do |l| %>
+      <% resource.lists.by_recent.each do |l| %>
       
+      
+      <!-- BEGIN LIST CARD CODE -->
       <div class="list-preview-card <% if resource.lists.count < 2%>no-margin-card<%end%>">
         <h3 class="list-preview-card-list-name"><%= link_to l.name, l %></h3>
         <p class="list-preview-card-list-description">
           <%= l.description %>
         </p>
+        
         <div class="list-preview-card-venue-list">
-          <div class="list-preview-card-venue">
-              <span class="list-preview-card-venue-number">01</span>
-              <span class="list-preview-card-venue-name">Sushi Zone</span>
-          </div>
-          <div class="list-preview-card-venue">
-              <span class="list-preview-card-venue-number">02</span>
-              <span class="list-preview-card-venue-name">Sushi Zone</span>
-          </div>
-          <div class="list-preview-card-venue">
-              <span class="list-preview-card-venue-number">03</span>
-              <span class="list-preview-card-venue-name">Sushi Zone</span>
-          </div>
-          
-          </div>
-          <p class="see-all-venues-link">SEE ALL 25 VENUES</p>
-          <div class="list-preview-card-timestamp-likes">
-              <span class="list-preview-card-timestamp">updated 5 hours ago</span>
-              <span class="list-preview-card-likes">1,245</span>
-          </div>
+          <% if l.venues.empty? %>
+            <p>No venues in this list yet.</p>
+          <% else %>
+            <!-- BEGIN LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->
+            <% preview_card_venues(l).each_with_index do |v, i| %>
+              <div class="list-preview-card-venue">
+                <span class="list-preview-card-venue-number"><%= i+1 %></span>
+                <span class="list-preview-card-venue-name">
+                  <%= link_to truncate(v.name, length: 28, separator: ' ', omission: '...'), v %>
+                </span>
+              </div>
+            <% end %>
+            <!-- END LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->            
+          <% end %>
         </div>
-    <% end %>
+       
+        <p class="see-all-venues-link">SEE ALL <%= pluralize(l.venues.count, "VENUE") %></p>
+        <div class="list-preview-card-timestamp-likes">
+          <span class="list-preview-card-timestamp"><%= time_ago_in_words(l.updated_at) %> ago</span>
+          <span class="list-preview-card-likes"><%= l.list_likes_count %></span>
+        </div>
+       
+        </div>
+      <% end %>
+    <!-- END LIST CARD CODE -->
       
             
 
-      
-      <% end %>
-      </div>
-      
+    </div>
+      <% end %>  
   </div>
-</div>
+  <!-- END USER LISTS MODULE -->
+
 
 
 
