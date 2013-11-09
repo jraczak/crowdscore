@@ -1,6 +1,8 @@
 module UserProfileHelper
 
 
+## Determine if user score stat data is a number or a string to 
+## dynamically assign a class in the view
 def highest_score_class(user)
   if user.highest_score.class == String
     "no-score-text"
@@ -25,6 +27,9 @@ def lowest_score_class(user)
   end
 end
 
+
+## Determine what information location is available for the user and
+## format the text appropriately for the views
 def user_full_location(user)
   if user.home_city.present? && user.home_state.present?
     "#{user.home_city.titleize}, #{user.home_state.capitalize}"
@@ -35,6 +40,7 @@ def user_full_location(user)
   end
 end
 
+## Determine if the user has not provided state and city information
 def no_location(user)
   user.home_city.blank? && user.home_state.blank?
 end
