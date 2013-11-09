@@ -62,15 +62,10 @@
           <span class="user-profile-detail-data"><%= resource.username %></span></p><br>
           <p><span class="user-profile-detail-label">Joined the crowd in:</span>
           <span class="user-profile-detail-data"><%= resource.created_at.strftime("%B %Y") %></span></p><br>
-          <% if !resource.home_city.blank? || !resource.home_state.blank? %>
+          <% unless no_location(resource) %>
             <p><span class="user-profile-detail-label">From:</span>
             <span class="user-profile-detail-data">
-              <% unless resource.home_city.blank? %>
-                <%= resource.home_city %><% if resource.home_city.present? && resource.home_state.present? %>,<% end %> 
-              <% end %>
-              <% unless resource.home_state.blank? %>
-                <%= resource.home_state %>
-              <% end %>
+              <%= user_full_location(resource) %>
             </span></p><br>
           <% end %>
           <% unless resource.twitter_username.nil? || resource.twitter_username.empty? %>

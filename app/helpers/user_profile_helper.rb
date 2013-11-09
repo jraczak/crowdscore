@@ -25,5 +25,18 @@ def lowest_score_class(user)
   end
 end
 
+def user_full_location(user)
+  if user.home_city.present? && user.home_state.present?
+    "#{user.home_city.titleize}, #{user.home_state.capitalize}"
+  elsif user.home_state.present? && user.home_city.blank?
+    "#{user.home_state.capitalize}"
+  elsif user.home_city.present? && user.home_state.blank?
+    "#{user.home_city.titleize}"
+  end
+end
+
+def no_location(user)
+  user.home_city.blank? && user.home_state.blank?
+end
 
 end
