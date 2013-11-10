@@ -42,6 +42,10 @@ module Crowdscore
     
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf )
+    
+    # Prevent initializing on precompile as found in Heroku Dev Center instructions
+    # after a failure to execute assets:precompile during staging push.
+    config.assets.initialize_on_precompile = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
