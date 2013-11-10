@@ -27,6 +27,14 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def after_confirmation_path_for(resource_name, resource)
+    if signed_in?
+      dashboard_path
+    else
+      new_session_path(resource_name)
+    end
+  end
+  
   protected
   
   #def devise_parameter_sanitizer
