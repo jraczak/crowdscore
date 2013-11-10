@@ -5,8 +5,15 @@ var disable_default_ui = true;
 var page_zoom_level = 14;
 var auto_adjust = false;
 var auto_zoom = false;
+    	
+// Overall Score Container score.
+alert('<%= resource.score_breakdown1 %>')
+var overallVenueScore = "<%= resource.score %>";			
+var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
+														"<%= resource.score_breakdown2 %>", 
+														"<%= resource.score_breakdown3 %>", 
+														"<%= resource.score_breakdown4 %>"]; 
 </script>
-
   <div class="top-block"></div>
   <div class="gray-bar"></div>
 
@@ -320,6 +327,8 @@ var auto_zoom = false;
 
 
 <script>  
+    	
+// Overall Score Container score.
 function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
 {
 
@@ -421,23 +430,11 @@ GraphAnimation.prototype.drawArc = function() {
 </script>
 	
 	<script>
-    	
-    	// Overall Score Container score.
-    	var overallVenueScore = "<%= resource.score %>";
-
-    	//Venue Score Categories at the top of the page
-			var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
-																	"<%= resource.score_breakdown2 %>", 
-																	"<%= resource.score_breakdown3 %>", 
-																	"<%= resource.score_breakdown4 %>"]; 
 
 			for ( var i = 0; i < venueScoreCategories.length; i++){
 				if ( venueScoreCategories[i].match("N/A") )
 					venueScoreCategories[i] = 0;
 			}
-			
-			// Other venue scores at the bottom of the page
-			var otherVenueScores = [90, 80, 70, 60]; 
 
     	var overallScoreGraph = document.getElementById("overallScoreCanvas");
     	
