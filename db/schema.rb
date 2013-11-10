@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109211118) do
+ActiveRecord::Schema.define(:version => 20131110215952) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -128,8 +128,7 @@ ActiveRecord::Schema.define(:version => 20131109211118) do
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
-  add_index "tags", ["venue_category_tag_set_id"], :name => "index_tags_on_venue_category_tag_set_id"
-  add_index "tags", ["venue_subcategory_tag_set_id"], :name => "index_tags_on_venue_subcategory_tag_set_id"
+  add_index "tags", ["tag_category_id"], :name => "index_tags_on_tag_category_id"
 
   create_table "tags_venues", :id => false, :force => true do |t|
     t.integer "tag_id"
@@ -212,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20131109211118) do
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "venue_categories", :force => true do |t|
     t.string   "name"
