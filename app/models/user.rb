@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   # and :omniauthable
   
   before_save :create_permalink
+  before_save { |user| user.username = user.username.downcase }
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable,
