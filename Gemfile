@@ -37,9 +37,11 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', ">= 1.0.3"
   gem "font-awesome-rails"
+  gem 'bourbon'
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem "rails-erd"

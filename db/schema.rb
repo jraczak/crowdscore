@@ -128,7 +128,8 @@ ActiveRecord::Schema.define(:version => 20131109211118) do
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
-  add_index "tags", ["tag_category_id"], :name => "index_tags_on_tag_category_id"
+  add_index "tags", ["venue_category_tag_set_id"], :name => "index_tags_on_venue_category_tag_set_id"
+  add_index "tags", ["venue_subcategory_tag_set_id"], :name => "index_tags_on_venue_subcategory_tag_set_id"
 
   create_table "tags_venues", :id => false, :force => true do |t|
     t.integer "tag_id"

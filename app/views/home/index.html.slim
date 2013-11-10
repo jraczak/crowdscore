@@ -12,7 +12,7 @@ h1 id='hero'
       .search-fields.span16
         p = text_field_tag :q, '', placeholder: "Search for coffee, hotel, etc", class: 'span7 search-field'
         p = text_field_tag :zip, '', placeholder: "Zip code or city name", class: 'span4 search-field'
-        p = submit_tag "Find it!", class: "btn-main span4"
+        p = submit_tag "Find it", class: "btn-main span4"
         br
         = hidden_field_tag :latitude, ''
         = hidden_field_tag :longitude, ''
