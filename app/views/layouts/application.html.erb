@@ -3,8 +3,8 @@
   <head>
     <title><%= "Crowdscore #{yield(:title)}" %></title>
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag 'gmaps4rails' %>
     <%= csrf_meta_tags %>
-
   </head>
   <script type="text/javascript">
       (function() {
@@ -191,10 +191,8 @@
 </div>
 
 
-    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false' %>
     <%= javascript_include_tag "application" %>
-    
-    
+    <%= yield :scripts %>
     <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)
 UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();

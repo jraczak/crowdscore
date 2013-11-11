@@ -6,7 +6,6 @@ var page_zoom_level = 14;
 var auto_adjust = false;
 var auto_zoom = false;
 </script>
-
   <div class="top-block"></div>
   <div class="gray-bar"></div>
 
@@ -141,10 +140,19 @@ var auto_zoom = false;
 				<!-- Venue details section (with google map) -->
 				<div class="venue-details">
 					<div class="map-container">
-						<div id="map_canvas" class="map" style="">
-							
-						</div>
-						<!--<div id="map_canvas" class="map" style="background-image: url(https://www.google.com/maps/vt/data=Ay5GWBeob_WIPLDYoIWcfVXxvZu9XwJ55OX7Ag,vhh4At2l71MGYYtVxfBqIC_CRGSZyg-GRrwtqNhZJ-t4HcGuMeZueJA5IiX3T1FONpIFj1Swu0W30z3xZ49FfJrLe_As5c6T4I3M_LGx);"></div> -->
+						<div class="map" id="map">
+							<%= gmaps(
+										:map_options => { 
+											:disableDefaultUI => true,
+											:zoom => 15,
+											:auto_zoom => false, 
+											maxZoom: 15,
+											minZoom: 15
+										},
+        						:markers => { :data => @json },
+        					)
+        			%>
+        		</div>
 					</div>
 					<div class="body">
 						<div class="address-contact-container">
@@ -176,7 +184,7 @@ var auto_zoom = false;
 										<% if resource.venue_subcategory.blank? %>
 										  <%= link_to "add subcategory", edit_venue_path(resource) %>
 										<% else %>
-										  <img src="./assets/images/platter.png" alt=""><%= resource.venue_subcategory.name %>
+										  <img src="" alt=""><%= resource.venue_subcategory.name %>
 										<% end %>
 									</li>
 									<% if resource.tags.include?("credit cards") %>
@@ -318,6 +326,9 @@ var auto_zoom = false;
 
 <%= render "submit_score" %>
 
+<script type="text/javascript">
+	
+</script>
 
 <script>  
 function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
@@ -498,6 +509,5 @@ GraphAnimation.prototype.drawArc = function() {
     	function closeModal(){
     		$('#image-upload-modal').removeClass('visible');
     	}
-
 
     </script>

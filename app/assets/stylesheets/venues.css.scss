@@ -378,17 +378,14 @@ a:visited{
 	height: 98px;
 	margin-bottom: 4px;
 	width: 98px;
+	overflow: hidden;
 }
 
 
 .venue-details .map-container 
 .map {
-	height: inherit;
+	height: 120px;
 	width: inherit;
-	background-repeat: no-repeat; 
-	background-color: #FFFFFF; 
-	background-size: cover; 
-	background-position:center;
 }
 
 .gmaps4rails_map {

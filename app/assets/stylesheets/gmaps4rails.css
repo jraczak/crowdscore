@@ -1,8 +1,6 @@
-
-/* MUTING THESE STYLES TO OVERWRITE IN LOCAL CSS FILES
 .map_container {
   padding: 6px;
-  border-width: 1px;
+  border: 0;
   border-style: solid;
   border-color: #ccc #ccc #999 #ccc;
   -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
@@ -10,14 +8,11 @@
   box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
   width: 800px;
 }
-*/
 
-/* MUTING THESE STYLES TO OVERWRITE IN LOCAL CSS FILES 
 .gmaps4rails_map {
   width: 800px;
   height: 400px;
 }
-*/
 
 .bing_map {
    position: absolute;

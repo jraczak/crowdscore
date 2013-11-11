@@ -10,8 +10,6 @@
 //= require jquery.scrollTo-1.4.2-min
 //= require jquery.geolocation
 //= require jquery.ui.all
-
-
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
