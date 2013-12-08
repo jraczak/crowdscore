@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131208222807) do
+ActiveRecord::Schema.define(:version => 20131208224647) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -126,14 +126,20 @@ ActiveRecord::Schema.define(:version => 20131208222807) do
   end
 
   create_table "score_categories_venue_categories", :id => false, :force => true do |t|
-    t.integer "score_cateogry_id"
+    t.integer "score_category_id"
     t.integer "venue_category_id"
   end
+
+  add_index "score_categories_venue_categories", ["score_category_id"], :name => "index_score_categories_venue_categories_on_score_category_id"
+  add_index "score_categories_venue_categories", ["venue_category_id"], :name => "index_score_categories_venue_categories_on_venue_category_id"
 
   create_table "score_categories_venue_subcategories", :id => false, :force => true do |t|
     t.integer "score_category_id"
     t.integer "venue_subcategory_id"
   end
+
+  add_index "score_categories_venue_subcategories", ["score_category_id"], :name => "index_score_categories_venue_subcategories_on_score_category_id"
+  add_index "score_categories_venue_subcategories", ["venue_subcategory_id"], :name => "index_score_cats_venue_subcats_on_venue_subcategory_id"
 
   create_table "scores", :force => true do |t|
     t.integer  "score_category_id"
