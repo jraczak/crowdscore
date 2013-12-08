@@ -45,64 +45,64 @@ end
 
 puts "Adding default venue tag categories..."
 
-tag_categories = {
-  "Has" => [
-    "Outdoor Seating",
-    "Live Music",
-    "Full Bar",
-    "Bright Lighting",
-    "Low Lighting",
-    "Happy Hour Specials",
-    "Delivery",
-    "Take-out",
-    "Extensive Menu",
-    "Small Menu",
-    "Extensive Wine List",
-    "Extensive Beer List",
-    "Wi-Fi"
-  ],
-  "Good For" => [
-    "Families",
-    "Dates",
-    "Parties",
-    "Large Parties",
-    "Girl's Night Out",
-    "Guy's Night Out"
-  ],
-  "Not So Good For" => [
-    "Families",
-    "Dates",
-    "Large Parties"
-  ],
-  "Serves" => [
-    "Liquor",
-    "Appetizers",
-    "Breakfast",
-    "Brunch",
-    "Lunch",
-    "Dinner",
-    "Dessert",
-    "Tapas",
-    "Bar Food",
-    "Beer",
-    "Wine"
-  ],
-  "Accepts" => [
-    "Visa",
-    "Mastercard",
-    "AMEX",
-    "Discover",
-    "Diner's Club",
-    "Cash",
-    "Reservations"
-  ]
-}
+#tag_categories = {
+#  "Has" => [
+#    "Outdoor Seating",
+#    "Live Music",
+#    "Full Bar",
+#    "Bright Lighting",
+#    "Low Lighting",
+#    "Happy Hour Specials",
+#    "Delivery",
+#    "Take-out",
+#    "Extensive Menu",
+#    "Small Menu",
+#    "Extensive Wine List",
+#    "Extensive Beer List",
+#    "Wi-Fi"
+#  ],
+#  "Good For" => [
+#    "Families",
+#    "Dates",
+#    "Parties",
+#    "Large Parties",
+#    "Girl's Night Out",
+#    "Guy's Night Out"
+#  ],
+#  "Not So Good For" => [
+#    "Families",
+#    "Dates",
+#    "Large Parties"
+#  ],
+#  "Serves" => [
+#    "Liquor",
+#    "Appetizers",
+#    "Breakfast",
+#    "Brunch",
+#    "Lunch",
+#    "Dinner",
+#    "Dessert",
+#    "Tapas",
+#    "Bar Food",
+#    "Beer",
+#    "Wine"
+#  ],
+#  "Accepts" => [
+#    "Visa",
+#    "Mastercard",
+#    "AMEX",
+#    "Discover",
+#    "Diner's Club",
+#    "Cash",
+#    "Reservations"
+#  ]
+#}
 
-tag_categories.each do |cat, tags|
-  category = TagCategory.find_or_create_by_name(cat)
-  tags.each do |tag_name|
-    Tag.find_or_create_by_name_and_tag_category_id(tag_name, category.id)
-  end
-end
+#tag_categories.each do |cat, tags|
+#  category = TagCategory.find_or_create_by_name(cat)
+#  tags.each do |tag_name|
+#    Tag.find_or_create_by_name_and_tag_category_id(tag_name, category.id)
+#  end
+#end
 
 puts "Done!"
