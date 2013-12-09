@@ -20,7 +20,7 @@ class VenuesController < InheritedResources::Base
   
   def show
     @higher_scored_venues = Venue.higher_scored_than(resource, 10)
-    # @json = resource.to_gmaps4rails
+    @json = resource.to_gmaps4rails
   end
   
   def create_snapshot

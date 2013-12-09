@@ -23,7 +23,7 @@ gem "geocoder"
 gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
 gem "omniauth-facebook"
-#gem "gmaps4rails"
+gem "gmaps4rails", "~> 1.5.6"
 gem "merit"
 gem "sunspot_solr", "~> 2.1.0"
 gem "devise_invitable", "~> 1.1.0"
@@ -48,6 +48,10 @@ group :development do
   gem "kumade"
   gem "spin"
   gem "ruby-graphviz"
+  
+  # Better errors gem set
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do
