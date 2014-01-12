@@ -6,6 +6,7 @@ class VenueScoresController < InheritedResources::Base
   
   def create(score_data)
     @venue_score = VenueScore.new
+    @venue_score.user = current_user
     @venue_score.save!
     
     scores = []
@@ -18,7 +19,6 @@ class VenueScoresController < InheritedResources::Base
     end
     
     @venue_score.scores << scores
-    @venue_score.user = current_user
     @venue_score.computed_score = computed_score / scores.count
     @venue_score.save!
     
