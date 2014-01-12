@@ -15,10 +15,10 @@ class VenueScore < ActiveRecord::Base
   private
 
   def compute_score
-    self.computed_score = [score1, score2, score3, score4].map! { |score| score * 2.5 }.inject(&:+).ceil
+    #self.computed_score = [score1, score2, score3, score4].map! { |score| score * 2.5 }.inject(&:+).ceil
   end
 
   def trigger_venue_recomputation
-    venue.recompute_score!
+    #venue.recompute_score!
   end
 end
