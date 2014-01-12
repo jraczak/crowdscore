@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131110215952) do
+ActiveRecord::Schema.define(:version => 20131209194916) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -118,6 +118,37 @@ ActiveRecord::Schema.define(:version => 20131110215952) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "score_categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "score_categories_venue_categories", :id => false, :force => true do |t|
+    t.integer "score_category_id"
+    t.integer "venue_category_id"
+  end
+
+  add_index "score_categories_venue_categories", ["score_category_id"], :name => "index_score_categories_venue_categories_on_score_category_id"
+  add_index "score_categories_venue_categories", ["venue_category_id"], :name => "index_score_categories_venue_categories_on_venue_category_id"
+
+  create_table "score_categories_venue_subcategories", :id => false, :force => true do |t|
+    t.integer "score_category_id"
+    t.integer "venue_subcategory_id"
+  end
+
+  add_index "score_categories_venue_subcategories", ["score_category_id"], :name => "index_score_categories_venue_subcategories_on_score_category_id"
+  add_index "score_categories_venue_subcategories", ["venue_subcategory_id"], :name => "index_score_cats_venue_subcats_on_venue_subcategory_id"
+
+  create_table "scores", :force => true do |t|
+    t.integer  "score_category_id"
+    t.integer  "value"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "venue_score_id"
+  end
+
   create_table "tags", :force => true do |t|
     t.integer  "tag_category_id"
     t.string   "name"
@@ -221,6 +252,16 @@ ActiveRecord::Schema.define(:version => 20131110215952) do
     t.string   "prompt2"
     t.string   "prompt3"
     t.string   "prompt4"
+  end
+
+  create_table "venue_categories_score_categories", :id => false, :force => true do |t|
+    t.integer "venue_category_id"
+    t.integer "score_category_id"
+  end
+
+  create_table "venue_categories_venue_subcategories", :id => false, :force => true do |t|
+    t.integer "venue_category_id"
+    t.integer "score_category_id"
   end
 
   create_table "venue_category_tag_sets", :force => true do |t|

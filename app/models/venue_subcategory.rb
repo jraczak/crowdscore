@@ -3,6 +3,7 @@ class VenueSubcategory < ActiveRecord::Base
 
   belongs_to :venue_category
   has_many :venues
+  has_and_belongs_to_many :score_categories
   
   ## VenueSubcategoryTagSets contain additional tags
   ## that a venue_subcategory may have in addition to 
