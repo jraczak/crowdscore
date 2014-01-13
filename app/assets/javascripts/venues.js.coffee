@@ -1,5 +1,23 @@
 
 $(document).ready ->
+
+  $('body').on 'click', '#gangster-daddy', ->
+  	venueId = $(this).data('venue-id')
+  	scoreData = [
+  		[1,10],
+  		[2,10],
+  		[3,10],
+  		[4,10]
+  	]
+  	scoreData = JSON.stringify(scoreData)
+  	console.log scoreData
+  	$.ajax(
+  	  type: "POST"
+  	  url: "/venues/#{venueId}/score"
+  	  dataType: "script"
+  	  data: { score_data: scoreData }
+  	)
+  	  	
   $('.submit-score-continue, .submit-score-back').click ->
     progressPositions = 
     switch $(this).data('slide-set')

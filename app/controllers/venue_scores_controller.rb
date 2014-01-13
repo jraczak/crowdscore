@@ -1,11 +1,15 @@
 class VenueScoresController < InheritedResources::Base
   belongs_to :venue
-  actions :new, #:create
+  actions :new #:create
   before_filter :authenticate_user!
 
   
-  def create(score_data)
+  def create
+  	score_data = eval(params[:score_data])
+
+  	venue = Venue.find(params[:venue_id])
     @venue_score = VenueScore.new
+    @venue_score.venue = venue
     @venue_score.user = current_user
     @venue_score.save!
     
