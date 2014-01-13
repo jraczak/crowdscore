@@ -7,9 +7,8 @@ class VenueScoresController < InheritedResources::Base
   def create
   	score_data = eval(params[:score_data])
 
-  	venue = Venue.find(params[:venue_id])
     @venue_score = VenueScore.new
-    @venue_score.venue = venue
+    @venue_score.venue = Venue.find(params[:venue_id])
     @venue_score.user = current_user
     @venue_score.save!
     
