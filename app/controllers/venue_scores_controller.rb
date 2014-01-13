@@ -30,6 +30,8 @@ class VenueScoresController < InheritedResources::Base
       s.venue_score_id = @venue_score.id
       s.save!
     end
+    
+    flash[:notice] = "You've earned 1 Karma point for submitting your score!"
   end
   
   
