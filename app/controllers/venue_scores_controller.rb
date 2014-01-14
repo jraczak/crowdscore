@@ -16,6 +16,7 @@ class VenueScoresController < InheritedResources::Base
     computed_score = 0
     score_data.each do |sc, sv|
       s = Score.new(score_category_id: sc, value: (sv*10))
+      s.user = current_user
       s.save!
       computed_score = computed_score + s.value
       scores << s
