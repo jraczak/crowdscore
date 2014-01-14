@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   attr_accessible *(default_accessible_fields + admin_only_fields), :as => :admin
 
   has_many :venue_scores
+  has_many :scores
   
   has_many :tips
   has_many :tip_likes, dependent: :destroy
