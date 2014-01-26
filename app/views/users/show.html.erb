@@ -1,5 +1,13 @@
 <!-- BEGIN LEFT RAIL -->
 
+<% if user_signed_in? && current_user == resource %>
+  <% @buttonColor = "green-button" %>
+<% elsif user_signed_in? && current_user.follows?(resource) %>
+  <% @buttonColor = "green-button" %>
+<% else %>
+  <% @buttonColor = "blue-button" %>
+<% end %>
+
 
 <div id="inner-page-container">
   
@@ -76,9 +84,9 @@
             <p><span class="user-profile-detail-label">Bio:</span>
             <span class="user-profile-detail-data"><%= resource.bio %></span></p><br>
           <% end %>
-          <div id="follow-user-button">
+          <div id="follow-user-button" class="<%= @buttonColor %>">
             <% if user_signed_in? && current_user == resource %>
-              <p class="follow-button-text">THIS IS YOU!</p>
+              <p class="follow-button-text"><%= link_to "UPDATE ACCOUNT", edit_user_registration_path %></p>
             <% elsif user_signed_in? && current_user.follows?(resource) %>
               <%= link_to "&#x2713; FOLLOWING".html_safe, "/users/#{resource.id}/unfollow", method: :delete %>
             <% else %>
