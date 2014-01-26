@@ -7,7 +7,6 @@
       clear: both;
     }
   }
-
   form div, form button, #new_list {
     float: left;
   }
@@ -17,4 +16,371 @@
   form div, form button, #new_tag, .modal-footer p {
     float: left;
   }
+}
+
+
+/* Styles for list detail page */
+
+#list-header-outter-container {
+	width: 100%;
+	background-color: #f7f7f7;
+}
+
+#list-header-container {
+	width: 960px;
+	margin: auto;
+	padding-top: 82px;
+	background-color: #f7f7f7;
+	
+	  #user-image {
+		  height: 36px;
+		  width: 36px;
+		  margin: auto;
+		  margin-bottom: 12px;
+		  background-image: url('6df1b47ff48b7258264ec5fe9daf8e7e.jpeg');
+		  
+	  }
+	  #list-creator {
+		  font-family: Museo;
+		  font-weight: 700;
+		  font-size: 11px;
+		  letter-spacing: 1px;
+		  margin-bottom: 24px;
+		  color: #2d3132;
+	  }
+	  .list-hr {
+		  height: 4px;
+		  width: 80px;
+		  margin: auto;
+		  background-color: #2d3132;
+	  }
+	  #list-name {
+		  font-family: Museo;
+		  font-weight: 100;
+		  font-size: 58px;
+		  color: #2d3132;
+		  margin-bottom: 20px;
+	  }
+	  #list-description {
+		  font-weight: 300;
+		  font-size: 14px;
+		  line-height: 20px;
+		  letter-spacing: .25px;
+		  color: #6b6e70;
+		  margin-bottom: 20px;
+	  }
+	  
+	  #list-dates {
+	    width: 100%;
+	    overflow: hidden;
+	    font-weight: 700;
+	    font-size: 11px;
+	    letter-spacing: 1px;
+	    color: #2d3132;
+	    padding-top: 20px;
+	    padding-bottom: 80px;
+	    border-top: 1px solid #dadada;
+	    
+		#list-created-at {
+		    width: 50%;
+		    display: block;
+		    float: left;
+		    text-align: left;
+	    }
+	    #list-updated-at {
+		    width: 50%;
+		    display: block;
+		    float: right;
+		    text-align: right;
+	    }
+	  
+	  }
+	  
+	  #like-list-button-container {
+		  margin-bottom: 30px;
+	  }
+	  
+	  .blue-like-list-button {
+		  height: 40px;
+		  width: 160px;
+		  border-radius: 3px;
+		  display: inline-block;
+          padding-bottom: 12px;
+          line-height: 40px;
+		  background-color: #02b8ea;
+		  color: #ffffff;
+		  font-weight: 700;
+		  font-size: 12px;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		  letter-spacing: 1px;
+		  
+		  a {
+		      color: #fff;
+		      text-decoration: none;
+		  }
+		  
+		  a:visited {
+			  color: #fff;
+			  text-decoration: none;
+		  }
+	  }
+	  .green-like-list-button {
+		  height: 40px;
+		  width: 160px;
+		  border-radius: 3px;
+		  display: inline-block;
+          padding-bottom: 12px;
+          line-height: 40px;
+		  background-color: #72ca28;
+		  color: #ffffff;
+		  font-weight: 700;
+		  font-size: 12px;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		  letter-spacing: 1px;
+		  
+		  a {
+		      color: #fff;
+		      text-decoration: none;
+		  }
+		  
+		  a:visited {
+			  color: #fff;
+			  text-decoration: none;
+		  }
+	  }
+	  	 
+}
+
+
+#list-venues-container {
+	width: 580px;
+	margin: auto;
+	padding-top: 72px;
+	white-space: nowrap;
+	overflow: hidden;
+	
+	h3 {
+		font-weight: 300;
+		font-size: 25px;
+		color: #34373f;
+		text-transform: capitalize;
+	}
+	.list-venue-container {
+	    height: 120px;
+	    border-bottom: 1px solid #dadada;
+	    text-align: left;
+	    vertical-align: middle;
+		
+		.venue-index-container {
+			width: 27px;
+			height: 29px;
+			display: inline-block;
+			background-color: #2464ad;
+			margin-right: 13px;
+			text-align: center;
+		}
+		
+		.venue-index {
+			color: #fff;
+			font-weight: 700;
+			font-size: 12px;
+			line-height: 29px;
+			text-align: center;
+		}
+		.venue-name {
+			font-weight: 500;
+			font-size: 14px;
+			color: #000;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			display: inline-block;
+			
+			a {
+			    text-decoration: none;
+			    color: #000;
+			}
+			
+			a:visited {
+				text-decoration: none;
+				color: #000;
+			}
+		}
+		.venue-categories {
+			font-weight: 100;
+			font-size: 12px;
+			color: #6b6e70;
+			display: inline-block;
+		}
+	}
+}
+
+#list-map-container {
+	width: 100%;
+	height: 600px;
+}
+
+#more-lists-by-user-outter-container {
+	width: 100%;
+    background-color: #f7f7f7;
+}
+
+#more-lists-by-user-container {
+	width: 960px;
+	margin: auto;
+	background-color: #f7f7f7;
+	padding-top: 60px;
+	padding-bottom: 80px;
+	
+	h3 {
+		font-weight: 100;
+		font-size: 25px;
+		color: #34373f;
+	}
+	
+	#more-lists-by-user-carousel-container {
+		padding-top: 60px;
+	}
+	
+	.list-preview-card {
+        width: 300px;
+        height: 480px;
+        margin: auto;
+        background-color: #ffffff;
+        border-top: 5px solid #2464ad;
+        border-radius: 3px;
+        padding-top: 50px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px;
+        margin-left: 10px;
+        position: relative;
+        white-space: normal;
+        padding-right: 20px;
+        padding-left: 20px;
+        
+        h3.list-preview-card-list-name {
+            color: #2464ad;
+            font-weight: 300;
+            font-size: 25px;
+            line-height: 30px;
+            margin-bottom: 20px;
+            margin-top: 0px;
+            
+            a { 
+              color: #2464ad;
+              font-weight: 300;
+              font-size: 25px;
+              line-height: 25px;
+              text-decoration: none;
+            }
+        }
+        
+        p.list-preview-card-list-description {
+            width: 215px;
+            height: 50px;
+            font-weight: 300;
+            color: #6b6e70;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        
+        ol.list-preview-card-venue-list {
+            list-style-type: none; 
+        }
+        
+        div.list-preview-card-venue-list {
+            
+            margin-bottom: 20px;
+        }
+        
+        div.list-preview-card-venue {
+            width: 240px;
+            height: 50px;
+            margin: auto;
+            border-bottom: 1px solid #dadada;
+        }
+        
+        .list-preview-card-venue-number {
+            float: left;
+            line-height: 50px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .list-preview-card-venue-name {
+            float: right;
+            line-height: 50px;
+            font-weight: 300;
+            font-size: 14px;
+            color: #6b6e70;
+            
+            a {
+                line-height: 50px;
+                font-weight: 300;
+                font-size: 14px;
+                color: #6b6e70;
+                text-decoration: none;
+            }
+        }
+        
+        .see-all-venues-link {
+            font-weight: 900;
+            font-size: 11px;
+            color: #02b8ea;
+            width: 240px;
+            text-align: left;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            
+            a {
+                text-decoration: none;
+            }
+        }
+        
+        .list-preview-card-timestamp-likes {
+            width: 260px;
+            margin: auto;
+            overflow: hidden;
+            position: absolute;
+            bottom: 20px;
+        }
+        
+        .list-preview-card-timestamp {
+            font-weight: 700;
+            font-size: 12px;
+            color: #000000;
+            float: left;
+        }
+        
+        .list-preview-card-likes {
+            font-weight: 900;
+            font-size: 11px;
+            color: #02b8ea;
+            float: right;
+        }
+        .no-margin-card {
+            margin-right: 0px;
+        }
+    }
+}
+
+
+
+
+#list-creator {
+	text-transform: uppercase;
+}
+
+#list-name {
+	text-transform: capitalize;
+}
+
+#list-created-at {
+	text-transform: uppercase;
+}
+
+#list-updated-at {
+	text-transform: uppercase;
 }
