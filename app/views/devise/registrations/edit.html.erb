@@ -2,12 +2,12 @@
 
   <%= devise_error_messages! %>
   
-  <h1>Manage my account</h1>
+  <h2 id="edit-user-form-header">Manage my account</h2>
   
   <% if resource.facebook_id? %>
-    <p id="facebook-connected">Your Facebook account is connected to your Crowdscore account.</p>
+    <p class="facebook-connected">Your Facebook account is connected to your Crowdscore account.</p>
   <% else %>
-    <p id="facebook-not-connected">For easier logins, you can connect your Facebook account to your Crowdscore account by <%= link_to "clicking here", user_omniauth_authorize_path(:facebook) %>.</p>
+    <p class="facebook-not-connected">For easier logins, you can connect your Facebook account to your Crowdscore account by <%= link_to "clicking here", user_omniauth_authorize_path(:facebook) %>.</p>
   <% end %>
   
   <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-stacked' } do |f| %>

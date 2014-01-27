@@ -1,6 +1,8 @@
 /** AGGREGATED STYLES FOR FORMS ACROSS THE APPLICATION **/
 
-/** EDIT USER PAGE **/
+/******************/
+/* EDIT USER PAGE */
+/******************/
 
 #inner-page-container {
     width: 960px;
@@ -9,26 +11,6 @@
     margin-top: 80px;
     display: block;
     position: relative;
-}
-
-h1, h2 {
-    font-family: Museo;
-    font-weight: 100;
-}
-
-p#facebook-not-connected {
-    font-family: Museo;
-    font-weight: 100;
-    
-    a {
-        color: #02b8ea;
-        text-decoration: none;
-    }
-}
-
-
-p#facebook-connected {
-    font-family: Museo;
 }
 
 form#edit_user {
@@ -47,12 +29,19 @@ fieldset {
     margin: 0;
 }
 
-#required-user-form-fields {
+.required {
+	float: left;
+	color: #f15a23;
+	font-weight: 100;
+	font-size: 11px;
+}
+
+#left-user-form-fields {
     width: 50%;
     float: left;
 }
 
-#optional-user-form-fields {
+#right-user-form-fields {
     width: 50%;
     float: right;
     margin-bottom: 10px;
@@ -61,6 +50,22 @@ fieldset {
 #password-confirmation {
     width: 50%;
     float: left;
+}
+
+.half-width-form-field {
+	width: 420px;
+	height: 45px;
+	background-color: #e5f8fd;
+	border: none;
+	border-radius: 3px;
+}
+
+.disabled-half-width-form-field {
+	width: 420px;
+	height: 45px;
+	border: none;
+	border-radius: 3px;
+	background-color: #f2f2f2;
 }
 
 .standard-blue-text-field {
@@ -84,6 +89,7 @@ label.user-form-label {
     font-weight: 300;
     font-size: 11px;
     line-height: 32px;
+    letter-spacing: 1px;
 }
 
 .help-block {

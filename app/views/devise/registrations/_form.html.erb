@@ -1,33 +1,29 @@
   
-  <fieldset id="required-user-form-fields">
-  <h2 class="user-form-header">These we need.</h2><br>
+  <p class="required">* REQUIRED FIELDS</p><br>
+  <fieldset id="left-user-form-fields">
   
+    <%= f.label :username, class: "user-form-label" %><br>
+    <%= f.text_field :username, class: "disabled-half-width-form-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?, title: "Username cannot be changed" if f.object.persisted? %><br>
+      
     <%= f.label :first_name, class: "user-form-label" %><br>
-    <%= f.text_field :first_name, size: "30", class: "standard-blue-text-field" %><br>
+    <%= f.text_field :first_name, size: "30", class: "half-width-form-field" %><br>
     
     <%= f.label :email, class: "user-form-label" %><br>
-    <%= f.text_field :email, class: "standard-blue-text-field", size: "30" %><br>
-    
-    <%= f.label :username, class: "user-form-label" %><br>
-    <%= f.text_field :username, class: "standard-blue-text-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted? %><br>
-      <% if f.object.persisted? %>
-        <span class="help-block">Username cannot be changed.</span><br>
-      <% end %>
+    <%= f.text_field :email, class: "half-width-form-field", size: "30" %><br>
   
     <%= f.label :password, class: "user-form-label" %><br>
-    <%= f.password_field :password, class: "standard-blue-text-field ", size: "30" %><br>
+    <%= f.password_field :password, class: "half-width-form-field ", size: "30" %><br>
       <% if f.object.persisted? %>
         <span class="help-block">Leave this blank if you don't want your password to change.</span><br>
       <% else %>
         <span class="help-block">Hint: this should be at least 6 characters long.</span><br>
       <% end %>
     <%= f.label :password_confirmation, "confirm your password", class: "user-form-label" %><br>
-    <%= f.password_field :password_confirmation, class: "standard-blue-text-field", size: "30" %><br>
+    <%= f.password_field :password_confirmation, class: "half-width-form-field", size: "30" %><br>
   
   </fieldset>
   
-  <fieldset id="optional-user-form-fields">
-  <h2 class="user-form-header">These are optional.</h2><br>
+  <fieldset id="right-user-form-fields">
   
     <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
     <%= f.text_field :home_city, size: "30", class: "standard-blue-text-field" %><br>

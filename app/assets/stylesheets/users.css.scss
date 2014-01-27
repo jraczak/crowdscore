@@ -444,8 +444,33 @@ h2#user-profile-lists-header {
     margin-right: 0px;
 }
 
+/************************/
+/* EDIT USER FORM STYLES*/
+/************************/
 
-/** LEGACY STYLES
+#edit-user-form-header {
+	font-weight: 100;
+	font-size: 58px;
+	color: #2d3132;
+	margin-bottom: 10px;
+}
+
+.facebook-connected,
+.facebook-not-connected {
+	width: 420px;
+	font-weight: 100;
+	font-size: 14px;
+	color: #6b6e70;
+	margin-bottom: 40px;
+	a {
+        color: #02b8ea;
+        text-decoration: none;
+    }
+
+}
+
+
+/** LEGACY STYLES 
 
 #user-name {
 
