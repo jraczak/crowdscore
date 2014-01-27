@@ -1,5 +1,5 @@
   
-  <p class="required">* REQUIRED FIELDS</p><br>
+  <span id="required-field-key"><p class="required">* REQUIRED FIELDS</p></span><br>
   <fieldset id="left-user-form-fields">
   
     <%= f.label :username, class: "user-form-label" %><br>
@@ -26,16 +26,16 @@
   <fieldset id="right-user-form-fields">
   
     <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
-    <%= f.text_field :home_city, size: "30", class: "standard-blue-text-field" %><br>
+    <%= f.text_field :home_city, size: "30", class: "half-width-form-field" %><br>
     
     <%= f.label :home_state, "Home state", class: "user-form-label" %><br>
-    <%= f.text_field :home_state, size: "10", class: "standard-blue-text-field" %><br>
+    <%= f.text_field :home_state, size: "10", class: "half-width-form-field" %><br>
     
     <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
-    <%= f.text_field :zip_code, size: "10", class: "standard-blue-text-field" %><br>
+    <%= f.text_field :zip_code, size: "10", class: "half-width-form-field" %><br>
     
     <%= f.label :last_name, class: "user-form-label" %><br>
-    <%= f.text_field :last_name, class: "standard-blue-text-field", size: "30" %><br>
+    <%= f.text_field :last_name, class: "half-width-form-field", size: "30" %><br>
     
     <%= f.label :gender, class: "user-form-label" %><br>
     <%= f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender" %><br>
@@ -45,10 +45,10 @@
     <%= f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side' %><br>
     
     <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label" %><br>
-    <%= f.text_field :twitter_username, class: "standard-blue-text-field", size: "30" %><br>
+    <%= f.text_field :twitter_username, class: "half-width-form-field", size: "30" %><br>
     
     <%= f.label :bio, "Share your cliff note biography in 250 characters or less.", class: "user-form-label" %><br>
-    <%= f.text_area :bio, class: "standard-blue-text-field", size: "250" %><br>
+    <%= f.text_area :bio, class: "half-width-form-field", size: "250" %><br>
   
   </fieldset>
 
