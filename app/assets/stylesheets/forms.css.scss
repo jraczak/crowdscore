@@ -31,14 +31,18 @@ fieldset {
 
 #required-field-key {
 	float: left;
+	/* border-left: 2px solid #f15a23; */
 	
 }
 
 .required {
-	float: left;
 	color: #f15a23;
 	font-weight: 100;
 	font-size: 11px;
+}
+
+#user-form-fields-upper-container {
+	overflow: hidden;
 }
 
 #left-user-form-fields {
@@ -95,6 +99,32 @@ fieldset {
 input.standard-blue-text-field,
 textarea.standard-blue-text-field {
     width: 85%;
+}
+
+.big-text-area {
+	width: 100%;
+	height: 128px;
+	padding: 10px 20px 0px 20px;
+}
+
+/*
+.required-form-field {
+	border-left: 2px solid #f15a23;
+}
+*/
+
+#user-form-fields-lower-container {
+	overflow: hidden;
+}
+
+#user-form-update-password-instructions {
+	width: 50%;
+	float: left;
+}
+
+#user-form-password-reset-container {
+	width: 50%;
+	float: right;
 }
 
 label.user-form-label {
