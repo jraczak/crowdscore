@@ -43,6 +43,7 @@ fieldset {
 
 #user-form-fields-upper-container {
 	overflow: hidden;
+	margin-bottom: 60px;
 }
 
 #left-user-form-fields {
@@ -115,16 +116,40 @@ textarea.standard-blue-text-field {
 
 #user-form-fields-lower-container {
 	overflow: hidden;
+	border-top: 1px solid #dadada;
+	padding-top: 60px;
+	margin-bottom: 60px;
 }
 
 #user-form-update-password-instructions {
 	width: 50%;
 	float: left;
+	
+	h3 {
+		font-size: 25px;
+		font-weight: 100;
+		color: #2d3132;
+	}
+	p {
+		width: 80%;
+		font-size: 14px;
+		font-weight: 100;
+		color: #6b6e70;
+	}
 }
 
 #user-form-password-reset-container {
 	width: 50%;
 	float: right;
+	
+	.password-no-margin {
+		margin-bottom: 0px;
+	}
+	
+	.help-block {
+		margin-bottom: 20px;
+		display: inline-block;
+	}
 }
 
 label.user-form-label {
@@ -143,4 +168,36 @@ label.user-form-label {
     font-weight: 100;
     font-size: 12px;
     color: #acacac;
+}
+
+#user-form-save-updates-container {
+	width: 100%;
+	padding-top: 60px;
+	text-align: center;
+	border-top: 1px solid #dadada;
+	margin-bottom: 20px;
+	
+	button {
+		background-color: #02b8ea;
+		border-radius: 30px;
+		border: none;
+		padding: 20px 44px;
+		color: #fff;
+		font-weight: 700;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+}
+
+#user-form-cancel-account-container {
+	width: 100%;
+	
+	p {
+	    width: 70%;
+	    font-weight: 100;
+	    font-size: 14px;
+	    line-height: 18px;
+	    color: #6b6e70;
+	}
 }

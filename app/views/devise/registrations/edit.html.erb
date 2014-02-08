@@ -13,19 +13,18 @@
   <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-stacked' } do |f| %>
     <%= render partial: 'form', locals: { f: f } %>
     
-    <fieldset id="password-confirmation">
-      <%= f.label :current_password, class: "user-form-label" %><br>
-      <%= f.password_field :current_password, class: "standard-blue-text-field", size: "30" %><br>
-      <span class="help-block">Enter your current password to confirm your changes</span><br>
-      
-      <button class="btn-main btn-main-fixed">save updates</button><br>
-    </fieldset>
+    
+      <div id="user-form-save-updates-container">
+        <button class="btn-main btn-main-fixed">save account updates</button><br>
+      </div>
     
   <% end %>
   
-  <h3>Cancel my account</h3>
-  
-  <p>If you've decided it's time to part ways, you can cancel your account through the link below. Make sure you mean it, we won't be able to recover your account aftewards.</p>
-  <%= link_to "cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+  <div id="user-form-cancel-account-container">
+    
+    <p>If you've decided it's time to part ways, we'll be sad to see you go, but you can cancel your account through the link below. Make sure you mean it, we won't be able to recover your account aftewards.
+    <%= link_to "I've decided, cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>
+    </p>
+  </div>
 
 </div>

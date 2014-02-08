@@ -53,19 +53,29 @@
   
   <div id="user-form-fields-lower-container">
     <div id="user-form-update-password-instructions">
-    Here are the instructions.
+      <h3>
+        Update your password
+      </h3>
+      
+      <p>
+        If you want to update your password, provide your new password and confirm your current password.
+        </p>
     </div>
     
     <fieldset id="user-form-password-reset-container">
-    <%= f.label :password, class: "user-form-label" %><br>
-      <%= f.password_field :password, class: "half-width-form-field ", size: "30" %><br>
+    <%= f.label :password, "your new password", class: "user-form-label" %><br>
+      <%= f.password_field :password, class: "half-width-form-field password-no-margin", size: "30" %><br>
         <% if f.object.persisted? %>
           <span class="help-block">Leave this blank if you don't want your password to change.</span><br>
         <% else %>
           <span class="help-block">Hint: this should be at least 6 characters long.</span><br>
         <% end %>
-      <%= f.label :password_confirmation, "confirm your password", class: "user-form-label" %><br>
+      <%= f.label :password_confirmation, "confirm your new password", class: "user-form-label" %><br>
       <%= f.password_field :password_confirmation, class: "half-width-form-field", size: "30" %><br>
+      
+      <%= f.label :current_password, class: "user-form-label" %><br>
+      <%= f.password_field :current_password, class: "half-width-form-field password-no-margin", size: "30" %><br>
+      <span class="help-block">Enter your current password to authorize your password update</span><br>
     </fieldset>
   </div>
 
