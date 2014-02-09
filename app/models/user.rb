@@ -56,7 +56,10 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true 
+  validates :email, presence: true, uniqueness: true
+  # Add a conditional validation on email that allows users who were invited
+  # to sign up using an email "already taken", which occurs during the invitation process
+  #validates :email, uniqueness: true, unless: :was_invited?
   validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
@@ -69,6 +72,10 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     email = conditions.delete(:email)
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
+  end
+  
+  def was_invited?
+    self.invitation_sent_at
   end
   
   def just_invited?
