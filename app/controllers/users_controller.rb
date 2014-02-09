@@ -5,6 +5,11 @@ class UsersController < InheritedResources::Base
 
   before_filter :authenticate_user!, only: [:follow]
 
+  def create
+    @user.username = @user.username.downase
+    create!
+  end
+  
   def show
     #@user = User.find_by_permalink(params[:id])
     @user = User.find_by_permalink(params[:id])

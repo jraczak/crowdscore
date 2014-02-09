@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   
   before_save :create_permalink
   
-  before_save :downcase_username, unless: :just_invited?
+  # Removing for now because of complications with the invitation process.
+  # Downcasing of username has been moved to the controller.
+  #before_save :downcase_username, unless: :just_invited?
   
   # MOVING METHOD TO PRIVATE METHOD BELOW TO REMOVE BLOCK
   # before_save { |user| user.username = user.username.downcase }, unless: :just_invited?
