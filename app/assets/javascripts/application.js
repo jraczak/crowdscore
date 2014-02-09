@@ -17,5 +17,7 @@
 
 //= require utils
 //= require_tree ./templates
+//= require_tree ./gmaps4rails
 //= require crowdscore
+//= require graph
 //= require_tree .

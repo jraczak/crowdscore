@@ -56,14 +56,18 @@ class Venue < ActiveRecord::Base
     slug += "#{name} #{city} #{state}".downcase.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
   end
 
-  def full_category_name
+  def full_category_name separator='|'
     full_name = venue_category.name
-    full_name += " | #{venue_subcategory.name}" if venue_subcategory.present?
-    full_name
+    full_name += " #{separator} #{venue_subcategory.name}" if venue_subcategory.present?
+    full_name.html_safe
   end
 
   def score
     computed_score? ? computed_score : "No scores here yet. Be the first!"
+  end
+
+  def graph_score
+    computed_score? ? computed_score : 0
   end
 
   def score_breakdown1
@@ -119,7 +123,11 @@ class Venue < ActiveRecord::Base
   end
   
   def gmaps4rails_infowindow
-    "#{self.score} <br> #{self.name} <br> #{self.full_category_name}"
+    str = "<div class='infowindow-canvas-graph'>"
+    str += "<canvas data-percent='#{self.graph_score}' data-innercolor='#{self.graph_score != 0 ? '#78E1FF' : '#e6e6e6'}' data-outtercolor='#00B5E9' data-thickness='5' data-innerwhite='false' width='55' height='55'></canvas>"
+    str += "</div>"
+    str.html_safe
+    #{}"#{self.score} <br> #{self.name} <br> #{self.full_category_name('<span></span>')}"
   end
   
   ## Gets the most recent tip to be used in tooltips and summaries around the application.

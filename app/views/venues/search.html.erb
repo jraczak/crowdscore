@@ -1,3 +1,75 @@
+<script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
+
+<!-- Search results google map, place google map within this -->
+<div id="search-results-map" class="search-results-map">
+</div>
+<div class="search-results-bank">
+	<div class="results-header">
+		<p class="result-count"><%= pluralize(collection.results.count, "Result") %></p>
+		<span class="results-filter-dropdown">
+			<span class="filter-dropdown-value">Sort By</span>
+			<span class="filter-dropdown-arrow"><i class="fa fa-angle-down"></i></span>
+		</span>
+	</div>
+	<% collection.results.each_with_index do |v, i| %>
+		<div class="search-result">
+			<div class="result-body">
+				<span class="result-count"><%= i + 1 %></span>
+				<span class="result-description">
+					<p class="venue-name"><%= v.name %></p>
+					<p class="venue-category"><%= v.full_category_name('<span></span>') %></p>
+					<p class="venue-distance">0.1 mi away</p>
+				</span>
+			</div>
+			<span class="venue-score-graph">
+				<canvas class="graph-animations" data-percent="<%= v.graph_score %>" data-innercolor="<%= v.graph_score != 0 ? '#78E1FF' : "#e6e6e6" %>" data-outtercolor="#00B5E9" data-thickness="5" data-innerwhite="false" width="55" height="55"></canvas>
+				<p class="<%= v.graph_score != 0 ? '' : 'inactive' %>"><%= v.graph_score %></p>
+			</span>
+		</div>
+	<% end %>
+
+	<div class="pie-container map">
+	  <div class="pie-graph-loader" data-percent="75">
+	    <div class="pie-graph-masks"></div>
+	    <span class="pie-graph-left-block"></span>
+	    <span class="pie-graph-right-block"></span>
+	    <div class="pie-graph-mask-color-white"></div>
+	  </div>
+	</div>
+	<div class="pie-container">
+	  <div class="pie-graph-loader" data-percent="25">
+	    <div class="pie-graph-masks"></div>
+	    <span class="pie-graph-left-block"></span>
+	    <span class="pie-graph-right-block"></span>
+	    <div class="pie-graph-mask-color-white"></div>
+	  </div>
+	</div>
+	<div class="pie-container">
+	  <div class="pie-graph-loader" data-percent="100">
+	    <div class="pie-graph-masks"></div>
+	    <span class="pie-graph-left-block"></span>
+	    <span class="pie-graph-right-block"></span>
+	    <div class="pie-graph-mask-color-white"></div>
+	  </div>
+	</div>
+	<div class="pie-container">
+	  <div class="pie-graph-loader" data-percent="1">
+	    <div class="pie-graph-masks"></div>
+	    <span class="pie-graph-left-block"></span>
+	    <span class="pie-graph-right-block"></span>
+	    <div class="pie-graph-mask-color-white"></div>
+	  </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		google.maps.event.addDomListener(window, 'load', function(){
+			map = new Gmap(<%= raw @json %>);
+		});
+	})
+</script>
+<!-- 
 <% if collection.hits.any? %>
   <div>
     <h4>We found <%= pluralize(collection.results.count, "result") %> for <%= params[:q] %> near <%= params[:id] %></h4>
