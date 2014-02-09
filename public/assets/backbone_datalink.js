@@ -1,0 +1,1 @@
+!function(n){return n.extend(n.fn,{backboneLink:function(t){return n(this).find(":input").each(function(){var e,r;return e=n(this),r=e.attr("name"),t.bind("change:"+r,function(){return e.val(t.get(r))}),n(this).bind("change",function(){var r;return e=n(this),r={},r[e.attr("name")]=e.val(),t.set(r)})})}})}(jQuery);
