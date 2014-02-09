@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
   # and :omniauthable
   
   before_save :create_permalink
-  before_save { |user| user.username = user.username.downcase }
+  
+  before_save :downcase_username, unless: :just_invited?
+  
+  # MOVING METHOD TO PRIVATE METHOD BELOW TO REMOVE BLOCK
+  # before_save { |user| user.username = user.username.downcase }, unless: :just_invited?
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable,
@@ -63,6 +67,10 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     email = conditions.delete(:email)
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
+  end
+  
+  def just_invited?
+    self.invitation_sent_at.to_date == Date.today
   end
   
   def has_zip_code?
@@ -264,6 +272,10 @@ class User < ActiveRecord::Base
 
   private
 
+  def downcase_username
+    self.username = self.username.downcase
+  end
+  
   # Create permalink using provided username for user-friendly URLs
   #
   #def create_permalink
