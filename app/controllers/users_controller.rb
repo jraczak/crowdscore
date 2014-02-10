@@ -12,6 +12,7 @@ class UsersController < InheritedResources::Base
     else
       @user.username = @user.username.downase
       create!
+    end
   end
   
   def show
