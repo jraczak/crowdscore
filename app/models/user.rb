@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
   
   def was_invited?
-    self.invitation_sent_at
+    true if self.invitation_sent_at
   end
   
   def just_invited?
