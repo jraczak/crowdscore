@@ -58,8 +58,10 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :email, presence: true #, uniqueness: true
+  ###
   # Add a conditional validation on email that allows users who were invited
   # to sign up using an email "already taken", which occurs during the invitation process
+  ###
   validates :email, uniqueness: true, unless: :was_invited?
   validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
@@ -75,8 +77,9 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
   end
   
+  #Check to see if a user has been invited via Devise  
+  #by checking invitation date values and sign in count
   def was_invited?
-    #if User.find_by_email(params[:email]).persisted?
     if self.invitation_sent_at.present? && self.sign_in_count == 0
       true
     else
