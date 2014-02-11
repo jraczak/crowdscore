@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable#, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state
@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   # before_save { |user| user.username = user.username.downcase }, unless: :just_invited?
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable,
-         :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :omniauthable, :invitable,
+         :omniauth_providers => [:facebook]#, :validatable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
+  validates :password, length: { in: 6..20 }
   validates :email, presence: true #, uniqueness: true
   # Add a conditional validation on email that allows users who were invited
   # to sign up using an email "already taken", which occurs during the invitation process
@@ -75,7 +76,12 @@ class User < ActiveRecord::Base
   end
   
   def was_invited?
-    true if self.invitation_sent_at
+    #if User.find_by_email(params[:email]).persisted?
+    if self.invitation_sent_at.present? && self.sign_in_count == 0
+      true
+    else
+      false
+    end
   end
   
   def just_invited?
