@@ -5,6 +5,16 @@ class UsersController < InheritedResources::Base
 
   before_filter :authenticate_user!, only: [:follow]
 
+  #def create
+  #  if @user.was_invited?
+  #    @user = User.find_by_email(params[:email])
+  #    redirect_to accept_user_invitation_path(:invitation_token => @user.invitation_token)
+  #  else
+  #    @user.username = @user.username.downase
+  #    create!
+  #  end
+  #end
+    
   def show
     #@user = User.find_by_permalink(params[:id])
     @user = User.find_by_permalink(params[:id])

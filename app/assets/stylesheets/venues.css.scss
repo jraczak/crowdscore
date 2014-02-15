@@ -1,3 +1,5 @@
+@import 'bourbon';
+
 @font-face { 	
 	font-family: Museo; 
 	src: url('MuseoSansRounded-100.otf');
@@ -347,7 +349,9 @@ a:visited{
 	color: white;
 	letter-spacing: 1.5px;
 	margin-left: 0;
+	/* SUPPRESS BUSINESS HOURS SYTLE
 	border-bottom: 1px solid #f7f7f7;
+	*/
 	float: right;
 	margin-top: 11px;
 	margin-right: 18px;

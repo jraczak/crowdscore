@@ -1,0 +1,1 @@
+(function(){this.JST||(this.JST={}),this.JST["templates/no_tags"]=function(obj){var __p=[];with(obj||{})__p.push("<p>This venue doesn't have any tags. Why don't you go ahead and add one?</p>\n");return __p.join("")}}).call(this);
