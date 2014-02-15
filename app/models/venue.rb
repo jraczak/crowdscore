@@ -67,7 +67,7 @@ class Venue < ActiveRecord::Base
   end
 
   def graph_score
-    computed_score? ? computed_score : 0
+    computed_score? ? computed_score : Random.rand(100)
   end
 
   def score_breakdown1
@@ -123,8 +123,23 @@ class Venue < ActiveRecord::Base
   end
   
   def gmaps4rails_infowindow
-    str = "<div class='infowindow-canvas-graph'>"
-    str += "<canvas data-percent='#{self.graph_score}' data-innercolor='#{self.graph_score != 0 ? '#78E1FF' : '#e6e6e6'}' data-outtercolor='#00B5E9' data-thickness='5' data-innerwhite='false' width='55' height='55'></canvas>"
+    percent = self.graph_score
+    str = ""
+    str += "<div class='cs-iw'>"
+    str += '<div class="cs-iw-p"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
+    str += "<div class='pie-container map'>"
+    str +="<div class='pie-graph-loader' data-percent=#{percent} data-venue-id='#{self.id}'>"
+    str +="<div class='pie-graph-masks'></div>"
+    str +="<span class='pie-graph-left-block'></span>"
+    str +="<span class='pie-graph-right-block'></span>"
+    str +="<div class='pie-graph-mask-color-white'>#{percent}</div>"
+    str +="</div>"
+    str +="</div>"
+    str +="<a class='venue-name' href='/venues/#{self.id}'>#{self.name}</a>"
+    str += "<div class='cs-iw-cid'>"
+    str += "<span class='category'>#{self.venue_subcategory}</span>"
+    str += "<span class='distance'>0.1 mi away</span>"
+    str += "</div>"
     str += "</div>"
     str.html_safe
     #{}"#{self.score} <br> #{self.name} <br> #{self.full_category_name('<span></span>')}"

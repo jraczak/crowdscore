@@ -17,6 +17,11 @@ $pie-fore-color: #02b8ea;
       width: 46px;
       top: 4px;
       left: 4px;
+
+      line-height: 46px;
+      font-weight: 900;
+      font-size: 18px;
+      color: #02b8ea;
     }
   }
 }
@@ -45,7 +50,7 @@ div[class*='pie-graph-loader'] {
       width: 50%;
       height: 100%;
       left : 50%;
-      border-radius: 0px 100px 100px 0px;
+      border-radius: 0px 1000px 1000px 0px;
       background-color: $pie-base-color;
       z-index: 200;
     }
@@ -56,7 +61,7 @@ div[class*='pie-graph-loader'] {
       display: block;
       width: 50%;
       height: 100%;
-      border-radius: 100px 0px 0px 100px;
+      border-radius: 1000px 0px 0px 1000px;
       right : 50%;
       background-color: $pie-base-color;
       z-index: 300;
@@ -84,7 +89,7 @@ div[class*='pie-graph-loader'] {
   right : 50%;
   background-color: $pie-fore-color;
   z-index: 250;
-  border-radius: 50% 0px 0px 50%;
+  border-radius: 1000px 0px 0px 1000px;
   @include transform-origin(100% 50%);
   @include transform(rotate(0deg));
 }
@@ -99,7 +104,7 @@ div[class*='pie-graph-loader'] {
   width: 50%;
   height: 100%;
   left : 50%;
-  border-radius: 0px 50% 50% 0px;
+  border-radius: 0px 1000px 1000px 0px;
   background-color: $pie-fore-color;
   @include transform-origin(0% 50%);
   @include transform(rotate(0deg));
@@ -107,7 +112,7 @@ div[class*='pie-graph-loader'] {
 }
 
 // Define animation time for 100% pie chart
-$animation-time: 2;
+$animation-time: 1;
 
 // Define an animation for each percentage from 1 to 100
 @for $i from 1 through 100 {

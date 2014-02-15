@@ -209,6 +209,10 @@
     width: 100%;
     display: table;
     padding: 0 30px;
+    cursor: pointer;
+    &.active {
+      background-color: #f4fcfe;
+    }
     div.result-body {
       display: table-cell;
       vertical-align: middle;
@@ -229,10 +233,11 @@
         float: left;
         width: 185px;
         text-align: left;
-        p.venue-name {
+        a.venue-name {
           width: 100%;
           text-transform: uppercase;
           font-weight: 700;
+          text-decoration: none;
           vertical-align: top;
           font-size: 14px; 
           color: #000;
@@ -299,3 +304,96 @@
   }
 }
 
+.cs-iw {
+  background-color: #ffffff;
+  width: 220px;
+  padding-top: 30px;
+  position: relative;
+  border-radius: 3px;
+  border-bottom: 1px solid #fafafa;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 6px;
+  a.venue-name {
+    text-decoration: none;
+    display: block;
+    line-height: 50px;
+    margin-top: 15px;
+    line-height: 18px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #000000;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .cs-iw-cid {
+    width: 100%; 
+    background-color: #eeeeee;
+    height: 50px;
+    border-top: 1px solid #e3e3e3;
+    line-height: 48px;
+    padding: 0 10px;
+    span {
+      font-weight: 300;
+      font-size: 12px;
+      color: #6b6e70;
+    }
+    .category {
+      display: block;
+      float: left;
+    }
+    .distance {
+      display: block;
+      float: right;
+    }
+  }
+}
+
+.cs-iw-p {
+  border-top-width: 24px;
+  position: absolute;
+  left: 100%;
+  @include transform(rotate(-90deg));
+  top: 75px;
+  .cs-iw-pt {
+    position: absolute;
+    overflow: hidden;
+    left: -6px;
+    top: -1px;
+    width: 16px;
+    height: 25px;
+    & > div {
+      position: absolute;
+      left: 6px;
+      background-color: rgb(255, 255, 255);
+      -webkit-transform: skewX(45deg);
+      -webkit-transform-origin: 0px 0px;
+      height: 19px;
+      width: 11px;
+      box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 6px;
+    }
+  }
+  .cs-iw-pb {
+    position: absolute;
+    overflow: hidden;
+    top: -1px;
+    left: 10px;
+    width: 16px;
+    height: 25px;
+    & > div {
+      position: absolute;
+      left: -1px;
+      background-color: rgb(255, 255, 255);
+      -webkit-transform: skewX(-45deg);
+      -webkit-transform-origin: 10px 0px;
+      height: 19px;
+      width: 11px;
+      box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 6px;
+    }
+  }
+}
+
+.gm-style-iw {
+  overflow: visible !important;
+  & >div {
+    overflow: visible !important;
+  }
+}

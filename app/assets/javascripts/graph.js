@@ -114,12 +114,4 @@ ScoreGraph.prototype.drawArc = function() {
   }
   this.intervalID = window.setInterval(draw, this.speed)
 }
-
-$(document).ready(function(){
-  $('.pie-graph-loader').click(function(){
-    var percent = $(this).data('percent');
-    $(this).toggleClass('animate-to-' + percent);
-
-  });
-});
  

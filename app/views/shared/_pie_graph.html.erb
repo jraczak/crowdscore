@@ -1,0 +1,8 @@
+<div class="pie-container <%= type %>">
+	<div class='pie-graph-loader <%= "animate-to-#{score}" if animate %>' data-percent="<%= score %>" >
+		<div class="pie-graph-masks"></div>
+		<span class="pie-graph-left-block"></span>
+		<span class="pie-graph-right-block"></span>
+		<div class="pie-graph-mask-color-white"><%= score %></div>
+	</div>
+</div>

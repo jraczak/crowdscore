@@ -11,55 +11,9 @@
 			<span class="filter-dropdown-arrow"><i class="fa fa-angle-down"></i></span>
 		</span>
 	</div>
-	<% collection.results.each_with_index do |v, i| %>
-		<div class="search-result">
-			<div class="result-body">
-				<span class="result-count"><%= i + 1 %></span>
-				<span class="result-description">
-					<p class="venue-name"><%= v.name %></p>
-					<p class="venue-category"><%= v.full_category_name('<span></span>') %></p>
-					<p class="venue-distance">0.1 mi away</p>
-				</span>
-			</div>
-			<span class="venue-score-graph">
-				<canvas class="graph-animations" data-percent="<%= v.graph_score %>" data-innercolor="<%= v.graph_score != 0 ? '#78E1FF' : "#e6e6e6" %>" data-outtercolor="#00B5E9" data-thickness="5" data-innerwhite="false" width="55" height="55"></canvas>
-				<p class="<%= v.graph_score != 0 ? '' : 'inactive' %>"><%= v.graph_score %></p>
-			</span>
-		</div>
+	<% collection.results.each_with_index do |venue, index| %>
+		<%= render 'search_result', venue: venue, index: index %>
 	<% end %>
-
-	<div class="pie-container map">
-	  <div class="pie-graph-loader" data-percent="75">
-	    <div class="pie-graph-masks"></div>
-	    <span class="pie-graph-left-block"></span>
-	    <span class="pie-graph-right-block"></span>
-	    <div class="pie-graph-mask-color-white"></div>
-	  </div>
-	</div>
-	<div class="pie-container">
-	  <div class="pie-graph-loader" data-percent="25">
-	    <div class="pie-graph-masks"></div>
-	    <span class="pie-graph-left-block"></span>
-	    <span class="pie-graph-right-block"></span>
-	    <div class="pie-graph-mask-color-white"></div>
-	  </div>
-	</div>
-	<div class="pie-container">
-	  <div class="pie-graph-loader" data-percent="100">
-	    <div class="pie-graph-masks"></div>
-	    <span class="pie-graph-left-block"></span>
-	    <span class="pie-graph-right-block"></span>
-	    <div class="pie-graph-mask-color-white"></div>
-	  </div>
-	</div>
-	<div class="pie-container">
-	  <div class="pie-graph-loader" data-percent="1">
-	    <div class="pie-graph-masks"></div>
-	    <span class="pie-graph-left-block"></span>
-	    <span class="pie-graph-right-block"></span>
-	    <div class="pie-graph-mask-color-white"></div>
-	  </div>
-	</div>
 </div>
 
 <script type="text/javascript">

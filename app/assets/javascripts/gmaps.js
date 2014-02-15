@@ -1,9 +1,11 @@
-window.graphs = []
-gangster = window.graphs;
+
 function Gmap(data){
 	this.data = data;
+	this.markers = new Array();
 	this.bounds = new google.maps.LatLngBounds();
 	this.initialize();
+	this.currentInfoWindow = null;
+	this.setupSearchResultClickEvent();
 };
 
 Gmap.prototype.addMapMarkers = function(){
@@ -18,7 +20,7 @@ Gmap.prototype.addMapMarkers = function(){
 };
 
 Gmap.prototype.createMarkerandInfoWindow = function(i){
-	var position, marker, infoWindowContent;
+	var position, marker, infoWindowContent, percent, content, venueId, infoWindow;
 	var self = this;
 
 	position = new google.maps.LatLng(this.data[i].lat, this.data[i].lng);
@@ -31,41 +33,66 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 	});
 
 	infoWindow = new google.maps.InfoWindow({
-		content: this.data[i].description
+		content: this.data[i].description,
+		pixelOffset: new google.maps.Size(-125, 180)
+	});
+
+	content = $(infoWindow.content).find('.pie-graph-loader');
+	percent = content.data('percent');
+	venueId = content.data('venue-id');
+
+	self.markers.push({
+		marker: marker,
+		venueId: venueId,
+		infoWindow: infoWindow,
+		percent: percent
 	});
 
 	google.maps.event.addListener(marker, 'click', function(){
-		infoWindow.open(this.map, marker);
-		var graph = self.createMarkerScoreGraph(infoWindow);
-		gangster.push(graph)
-	
+		self.openMapMarker(venueId)
 	});
 }
 
-Gmap.prototype.createMarkerScoreGraph = function(infoWindow){
-	var elem = $(infoWindow.content).find('canvas');
+Gmap.prototype.openMapMarker = function(venueId){
+	var elem = this.markers.filter(function(obj){return obj.venueId == venueId})
+	elem = elem[0];
 
-	var canvas = elem.get(0);
-	var innerColor = elem.data('innercolor');
-	var thickness = elem.data('thickness');
-	var percent = elem.data('percent');
-	var innerWhite = elem.data('innerwhite');
-	var outterColor = elem.data('outtercolor');
-	var graph = new ScoreGraph(canvas, innerColor, outterColor, percent, thickness, innerWhite);
+	if (this.currentInfoWindow)
+		this.currentInfoWindow.close();
 
-	return graph
+	this.currentInfoWindow = elem.infoWindow;
+	elem.infoWindow.open(this.map, elem.marker);
+	this.animateVenueInfoWindowGraph(elem.venueId, elem.percent);
+	this.clearGoogleMarkup();
+	this.updateSearchResultsBank(elem.venueId);
+}
+Gmap.prototype.clearGoogleMarkup = function() {
+	var all = $('.gm-style .gm-style-iw');
+	all.prev().remove();
+	all.next().remove();
 }
 
-Gmap.prototype.animateMarkerScoreGraph = function(graph){
-	graph.drawFullCircle();
-	graph.drawPartialCircle();
+Gmap.prototype.animateVenueInfoWindowGraph = function(venueId, percent) {
+	$("[data-venue-id=" + venueId + "][data-percent=" + percent + "]").addClass('animate-to-' + percent);
+}
+
+Gmap.prototype.updateSearchResultsBank = function(venueId) {
+	$(".search-result").removeClass('active');
+	$(".search-result[data-venue-id=" + venueId + "]").addClass('active');
+}
+
+Gmap.prototype.setupSearchResultClickEvent = function() {
+	var self = this;
+	$('body').on('click', '.search-result', function(){
+		var venueId = $(this).data('venue-id');
+		self.openMapMarker(venueId)
+	});
 }
 
 Gmap.prototype.initialize = function(){
 	var map_canvas = document.getElementById('search-results-map');
 
 	var map_options = {
-		center: new google.maps.LatLng(44.5403, -0.5463),
 		zoom: 8,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
