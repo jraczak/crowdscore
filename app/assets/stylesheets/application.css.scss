@@ -7,10 +7,15 @@
  *= require jquery.ui.all
 */
 
+.full-body-container {
+	height: 100%;
+	min-width: 980px;
+
+}
+
 @import "bourbon";
 @import "businesses";
 @import "forms";
-@import "gmaps4rails";
 @import "home";
 @import "invitations";
 @import "lists";
@@ -22,3 +27,4 @@
 @import "venue_snapshots";
 @import "venues";
 @import "users";
+@import "score_graphs";

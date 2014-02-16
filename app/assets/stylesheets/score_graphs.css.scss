@@ -1,0 +1,161 @@
+$pie-front-color: #fff;
+$pie-base-color: #79e0ff;
+$pie-fore-color: #02b8ea;
+
+.pie-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto; 
+  display: block;
+  position: relative;
+
+  &.map {
+    height: 54px;
+    width: 54px;
+    .pie-graph-mask-color-white { 
+      height: 46px;
+      width: 46px;
+      top: 4px;
+      left: 4px;
+
+      line-height: 46px;
+      font-weight: 900;
+      font-size: 18px;
+      color: #02b8ea;
+    }
+  }
+}
+
+div[class*='pie-graph-loader'] {   
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+
+  .pie-graph-masks {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    
+    // LEFT
+    &:before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 50%;
+      height: 100%;
+      left : 50%;
+      border-radius: 0px 1000px 1000px 0px;
+      background-color: $pie-base-color;
+      z-index: 200;
+    }
+    // RIGHT
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 50%;
+      height: 100%;
+      border-radius: 1000px 0px 0px 1000px;
+      right : 50%;
+      background-color: $pie-base-color;
+      z-index: 300;
+    }
+  }
+  .pie-graph-mask-color-white {
+    background-color: #fff;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    z-index: 400;
+    border-radius: 50%;
+  }
+}
+
+//INITIAL
+.pie-graph-left-block {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50%;
+  height: 100%;
+  right : 50%;
+  background-color: $pie-fore-color;
+  z-index: 250;
+  border-radius: 1000px 0px 0px 1000px;
+  @include transform-origin(100% 50%);
+  @include transform(rotate(0deg));
+}
+
+// FINAL
+// Does not spin, jumps to a higher z-index at 50% 
+//   if the angle is greater than 180deg
+.pie-graph-right-block {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50%;
+  height: 100%;
+  left : 50%;
+  border-radius: 0px 1000px 1000px 0px;
+  background-color: $pie-fore-color;
+  @include transform-origin(0% 50%);
+  @include transform(rotate(0deg));
+  z-index: 100;
+}
+
+// Define animation time for 100% pie chart
+$animation-time: 1;
+
+// Define an animation for each percentage from 1 to 100
+@for $i from 1 through 100 {
+  // Animation angle : 100% / 360deg = $i / aa == 3.6 * $i
+  $aa: $i * 3.6; 
+
+  // First angle : left block spins the entire percentage
+  $fa: $aa; 
+
+  // Check for any angle over 180 degrees and initialize the Second angle
+  $hs: $aa > 180; 
+  $sa: 0;
+
+  // If the angle is over 180deg, set the second angle accordingly
+  @if $hs { $sa: 180 - ($aa % 180); }
+
+  .animate-to-#{$i} {
+    .pie-graph-left-block {
+      @include transform(rotate(#{$fa}deg));
+      @include animation(animate-to-#{$i}-left #{$animation-time}s linear);
+      @if $hs { z-index: 400; }
+    } 
+
+    @if $hs {
+      .pie-graph-right-block {
+        @include animation(animate-to-#{$i}-right #{$animation-time}s linear);
+        z-index: 350; 
+      }
+    }
+  } 
+
+  @include keyframes(animate-to-#{$i}-left) {
+    0% { @include transform(rotate(0deg)); z-index: 250; }
+    49% { z-index: 250; }
+    @if $hs { 50% { z-index: 400; } }
+    #{$i * 1%} { @include transform(rotate(#{$fa}deg)); } 
+    100% { @include transform(rotate(#{$fa}deg)); }
+  }
+
+  @include keyframes(animate-to-#{$i}-right) {
+    0% { z-index: 100; }
+    49% { z-index: 100; }
+    50% { z-index: 350; }
+    100% { z-index: 350; }
+  }
+}

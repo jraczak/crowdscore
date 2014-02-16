@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable#, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails
   has_merit
 
   # Include default devise modules. Others available are:
@@ -14,11 +14,17 @@ class User < ActiveRecord::Base
   # and :omniauthable
   
   before_save :create_permalink
-  before_save { |user| user.username = user.username.downcase }
+  
+  # Removing for now because of complications with the invitation process.
+  # Downcasing of username has been moved to the controller.
+  #before_save :downcase_username, unless: :just_invited?
+  
+  # MOVING METHOD TO PRIVATE METHOD BELOW TO REMOVE BLOCK
+  # before_save { |user| user.username = user.username.downcase }, unless: :just_invited?
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable,
-         :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :omniauthable, :invitable,
+         :omniauth_providers => [:facebook]#, :validatable
 
   default_accessible_fields = [:email, :first_name, :last_name, :birth_month,
                                :birth_day, :password, :password_confirmation,
@@ -50,7 +56,13 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true 
+  validates :password, length: { in: 6..20 }
+  validates :email, presence: true #, uniqueness: true
+  ###
+  # Add a conditional validation on email that allows users who were invited
+  # to sign up using an email "already taken", which occurs during the invitation process
+  ###
+  validates :email, uniqueness: true, unless: :was_invited?
   validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
@@ -63,6 +75,20 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     email = conditions.delete(:email)
     where(conditions).where(["lower(email) = :value OR lower(username) = :value", { :value => email.strip.downcase }]).first
+  end
+  
+  #Check to see if a user has been invited via Devise  
+  #by checking invitation date values and sign in count
+  def was_invited?
+    if self.invitation_sent_at.present? && self.sign_in_count == 0
+      true
+    else
+      false
+    end
+  end
+  
+  def just_invited?
+    self.invitation_sent_at.to_date == Date.today
   end
   
   def has_zip_code?
@@ -264,6 +290,10 @@ class User < ActiveRecord::Base
 
   private
 
+  def downcase_username
+    self.username = self.username.downcase
+  end
+  
   # Create permalink using provided username for user-friendly URLs
   #
   #def create_permalink

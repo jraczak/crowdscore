@@ -56,14 +56,18 @@ class Venue < ActiveRecord::Base
     slug += "#{name} #{city} #{state}".downcase.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
   end
 
-  def full_category_name
+  def full_category_name separator='|'
     full_name = venue_category.name
-    full_name += " | #{venue_subcategory.name}" if venue_subcategory.present?
-    full_name
+    full_name += " #{separator} #{venue_subcategory.name}" if venue_subcategory.present?
+    full_name.html_safe
   end
 
   def score
     computed_score? ? computed_score : "No scores here yet. Be the first!"
+  end
+
+  def graph_score
+    computed_score? ? computed_score : Random.rand(100)
   end
 
   def score_breakdown1
@@ -119,7 +123,26 @@ class Venue < ActiveRecord::Base
   end
   
   def gmaps4rails_infowindow
-    "#{self.score} <br> #{self.name} <br> #{self.full_category_name}"
+    percent = self.graph_score
+    str = ""
+    str += "<div class='cs-iw'>"
+    str += '<div class="cs-iw-p"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
+    str += "<div class='pie-container map'>"
+    str +="<div class='pie-graph-loader' data-percent=#{percent} data-venue-id='#{self.id}'>"
+    str +="<div class='pie-graph-masks'></div>"
+    str +="<span class='pie-graph-left-block'></span>"
+    str +="<span class='pie-graph-right-block'></span>"
+    str +="<div class='pie-graph-mask-color-white'>#{percent}</div>"
+    str +="</div>"
+    str +="</div>"
+    str +="<a class='venue-name' href='/venues/#{self.id}'>#{self.name}</a>"
+    str += "<div class='cs-iw-cid'>"
+    str += "<span class='category'>#{self.venue_subcategory}</span>"
+    str += "<span class='distance'>0.1 mi away</span>"
+    str += "</div>"
+    str += "</div>"
+    str.html_safe
+    #{}"#{self.score} <br> #{self.name} <br> #{self.full_category_name('<span></span>')}"
   end
   
   ## Gets the most recent tip to be used in tooltips and summaries around the application.

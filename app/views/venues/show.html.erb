@@ -7,12 +7,7 @@ var auto_adjust = false;
 var auto_zoom = false;
     	
 // Overall Score Container score.
-alert('<%= resource.score_breakdown1 %>')
-var overallVenueScore = "<%= resource.score %>";			
-var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
-														"<%= resource.score_breakdown2 %>", 
-														"<%= resource.score_breakdown3 %>", 
-														"<%= resource.score_breakdown4 %>"]; 
+
 </script>
   <div class="top-block"></div>
   <div class="gray-bar"></div>
@@ -443,71 +438,71 @@ GraphAnimation.prototype.drawArc = function() {
 
 </script>
 	
-	<script>
+<script>
 
-			for ( var i = 0; i < venueScoreCategories.length; i++){
-				if ( venueScoreCategories[i].match("N/A") )
-					venueScoreCategories[i] = 0;
-			}
+	for ( var i = 0; i < venueScoreCategories.length; i++){
+		if ( venueScoreCategories[i].match("N/A") )
+			venueScoreCategories[i] = 0;
+	}
 
-    	var overallScoreGraph = document.getElementById("overallScoreCanvas");
-    	
+	var overallScoreGraph = document.getElementById("overallScoreCanvas");
+	
 
-    	if (overallVenueScore.match('No')){
-    		var white = false
-    		var ringColor = '#f4f4f4';
-    	} else {
-    		var white = true;
-    		var ringColor = "#78E1FF";
-    	}
-    	var overallScoreAnimation = 
-    		new GraphAnimation(overallScoreGraph, ringColor, "#00B5E9", 
-    											 overallVenueScore, Math.PI*3/2, 13, white);
+	if (overallVenueScore.match('No')){
+		var white = false
+		var ringColor = '#f4f4f4';
+	} else {
+		var white = true;
+		var ringColor = "#78E1FF";
+	}
+	var overallScoreAnimation = 
+		new GraphAnimation(overallScoreGraph, ringColor, "#00B5E9", 
+											 overallVenueScore, Math.PI*3/2, 13, white);
 
-			overallScoreAnimation.drawFullCircle();
-			overallScoreAnimation.drawPartialCircle();
-			
-			var circleColors = ["#78E1FF", "#00B5E9"];	
+		overallScoreAnimation.drawFullCircle();
+		overallScoreAnimation.drawPartialCircle();
 		
+		var circleColors = ["#78E1FF", "#00B5E9"];	
+	
 
-    	var graphs = new Array;
-    	var otherGraphs = new Array;
-    	var identifier = "graph";
-    	
-    	var index = 0;
-    	var arr = document.getElementsByTagName('canvas');
-    	for ( var i = 0; i < arr.length; i++ ) {
-    		if ( arr[i].id.indexOf( identifier ) !== -1 ){
-    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], Math.PI*3/2, 5, true));
+	var graphs = new Array;
+	var otherGraphs = new Array;
+	var identifier = "graph";
+	
+	var index = 0;
+	var arr = document.getElementsByTagName('canvas');
+	for ( var i = 0; i < arr.length; i++ ) {
+		if ( arr[i].id.indexOf( identifier ) !== -1 ){
+			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], Math.PI*3/2, 5, true));
 
-    			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
-    			index++;
-    		}
-    	}
-    	
-    	index = 0;
-    	for ( var i = 0; i < arr.length; i++ ) {
-    		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
-    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], Math.PI*3/2, 4, true));
-    			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
-    			index++;
-    		}
-    	}
+			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
+			index++;
+		}
+	}
+	
+	index = 0;
+	for ( var i = 0; i < arr.length; i++ ) {
+		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
+			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], Math.PI*3/2, 4, true));
+			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
+			index++;
+		}
+	}
 
-    	graphs.forEach(draw);
-    	otherGraphs.forEach(draw);
-      function draw (elem, index, arr) {
-	      elem.drawFullCircle();
-	      elem.drawPartialCircle();
-      }		      
-      
-    
-    	function openImageUploader(){
-    		$( '#image-upload-modal' ).addClass("visible");
-    	}
+	graphs.forEach(draw);
+	otherGraphs.forEach(draw);
+  function draw (elem, index, arr) {
+      elem.drawFullCircle();
+      elem.drawPartialCircle();
+  }		      
+  
 
-    	function closeModal(){
-    		$('#image-upload-modal').removeClass('visible');
-    	}
+	function openImageUploader(){
+		$( '#image-upload-modal' ).addClass("visible");
+	}
 
-    </script>
+	function closeModal(){
+		$('#image-upload-modal').removeClass('visible');
+	}
+
+</script>

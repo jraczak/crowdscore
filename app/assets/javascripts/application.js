@@ -18,4 +18,5 @@
 //= require utils
 //= require_tree ./templates
 //= require crowdscore
+//= require graph
 //= require_tree .
