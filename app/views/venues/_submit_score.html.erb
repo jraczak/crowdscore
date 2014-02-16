@@ -5,7 +5,7 @@
       <div class="close-modal">+</div>
       <div class="modal-vertical-center">
       	<div class="modal-centered-body" >
-	      	<%= form_for resource.venue_scores.build, url: venue_score_path(resource)  do |f| %>
+	      	<form id="new_venue_score" class="new_venue_score" data-venue-id="<%= resource.id %>">
 	      		<ul id="submit-score-flow">
 	      			<li>
 	      				<h1>What did you think?</h1>
@@ -35,14 +35,10 @@
 
 	      			<li>
 	      				<ul id="submit-score-form-carousel">
-
-
-
-
 	      					<li>
 	      						<h1>How was the food?</h1>
 	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
-	      						<%= f.select :score1, (1..10).to_a %>
+	      						<%= select_tag "venue_score_2", options_for_select((1..10).to_a), :"data-scid" => "1" %>
 		      					<div class="slider-bar-widget-container">
 					        		<div class="ui-slider" data-field="1">
 						        		<div class="ui-slider-handle" id="draggable-marker">
@@ -92,7 +88,6 @@
 								        </div>
 							        </div>
 							      </div>
-	      						
 	      					</li>
 
 
@@ -100,7 +95,7 @@
 	      					<li>
 	      						<h1>How was the service?</h1>
 	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
-	      						<%= f.select :score2, (1..10).to_a %>
+	      						<%= select_tag "venue_score_4", options_for_select((1..10).to_a), :"data-scid" => "2" %>
 		      					<div class="slider-bar-widget-container">
 					        		<div class="ui-slider" data-field="2">
 						        		<div class="ui-slider-handle" id="draggable-marker">
@@ -156,7 +151,7 @@
 	      					<li>
 	      						<h1>What did you think?</h1>
 	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
-	      						<%= f.select :score3, (1..10).to_a %>
+	      						<%= select_tag "venue_score_2", options_for_select((1..10).to_a), :"data-scid" => "3"%>
 		      					<div class="slider-bar-widget-container">
 					        		<div class="ui-slider" data-field="3">
 						        		<div class="ui-slider-handle" id="draggable-marker">
@@ -209,14 +204,10 @@
 	      						
 	      					</li>
 
-
-
-
-
 	      					<li>
 	      						<h1>What did you think?</h1>
 	      						<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
-	      						<%= f.select :score4, (1..10).to_a %>
+	      						<%= select_tag "venue_score_1", options_for_select((1..10).to_a), :"data-scid" => "4" %>
 		      					<div class="slider-bar-widget-container">
 					        		<div class="ui-slider" data-field="4">
 						        		<div class="ui-slider-handle" id="draggable-marker">
@@ -310,7 +301,7 @@
 	      							</span>
 	      							Back
 	      						</div>
-	      						<%= f.submit "Submit Score", class: "submit-form-score right" %>
+	      						<%= submit_tag "Submit Score", class: "submit-form-score right" %>
 	      					</li>
 	      				</ul>
 
@@ -349,7 +340,7 @@
 	      				</div>
 	      			</li>
 	      		</ul>
-	      	<% end %>
+	      	</form>
         </div>
       </div>
     </div>

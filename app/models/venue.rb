@@ -63,7 +63,7 @@ class Venue < ActiveRecord::Base
   end
 
   def score
-    computed_score? ? computed_score : "No scores here yet. Be the first!"
+    computed_score? ? computed_score : 0
   end
 
   def graph_score

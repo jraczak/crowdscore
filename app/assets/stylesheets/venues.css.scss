@@ -68,6 +68,78 @@
 	vertical-align: top;
 	text-align: left;
 	margin-left: 36px;
+	.pie-container {
+		display: inline-block;
+		margin-top: 21px;
+	}
+
+
+	/*---------------------------*/
+	/* Venue Score Graph Section */
+	/*---------------------------*/
+
+	.venue-score{
+		margin-left: -4px;
+		height: 133px;
+		display: inline-block;
+		width: 156px;
+		font-size: 11px;	
+		letter-spacing: 1px;
+		position: relative;
+		text-align: center;
+		border-right: 1px solid #e0e0e0;
+		border-left: 1px solid #f7f7f7;
+
+	}
+
+	.venue-score:first-child{
+		border-left: none;
+		width: 140px;
+	}
+
+	.venue-score:last-child{
+		border-right: none;
+		width: 140px;
+	}
+
+	.venue-score .score-percentage {
+		width: 100%;
+		position: absolute;
+		font-weight: 900;
+		font-size: 24px;
+		letter-spacing: -1px;
+		top: 45px;
+		line-height: 20px;
+		color: #02b8ea;
+	}
+
+
+	.venue-score p {
+		width: 100%;
+		font-weight: 700;
+		vertical-align: top;
+		line-height: 10px;
+		margin-top: 7px;
+		color: #02b8ea;
+	}
+
+	.venue-score .left-offset{
+		width: 110px;
+		position: relative;
+	}
+
+
+
+	.venue-score .right-offset{
+		width: 114px;
+		position: relative;
+		text-align: center;
+		display: inline-block;
+	}
+
+	/********************************/
+	/********** End Section *********/
+	/********************************/
 }
 
 .right-rail-header{
@@ -114,11 +186,6 @@
 		margin: 7px;
 		background-color: #f7f7f7;
 		position: relative;
-	
-		canvas{
-			right: 0;
-			margin-top: 85px;
-		}
 		
 		p {
 			font-size: 13.4px;
@@ -127,10 +194,8 @@
 			letter-spacing: .8px;
 			width: 100%;
 			padding: 0;
-			line-height: 11px;
+			line-height: 51px;
 			position: relative;
-			right: 50%;
-			top: 278px;
 		}
 
 		.center-absolute{
@@ -157,27 +222,22 @@
 			top: 342px;
 		}
 
-		.overallScorePercentage {
-			width: 180px;
-			letter-spacing	: -2px;
-			font-weight: 900;
-			color: #02B8EA;
-			font-size: 65px;
-			line-height: 70px;
-			height: 0;
-			position: relative;
-			right: 50%;
-			top: 140px;
+		.venue-score {
+			margin-top: 87px;
+			display: inline-block;
 		}
 
-		.no-score{
-			top: 150px;
+		.no-overall-score {
+			position: absolute;
+			top: 170px;
 			font-size: 20px;
 			font-weight: 300;
 			letter-spacing: 0px;
 			color: #c5c5c5;
-			width: 180px;
-			line-height:22px;
+			width: 100%;
+			padding: 0 50px;
+			z-index: 7;
+			line-height: 22px;
 		}
 	}
 }
@@ -529,84 +589,6 @@ a:visited{
 /********** End Component *********/
 /**********************************/
 
-/*---------------------------*/
-/* Venue Score Graph Section */
-/*---------------------------*/
-.venue-scores {
-	width: 600px;
-	position: absolute;
-	display: inline-block;
-	text-align: center;
-	top: 292px;
-	left: 341px;
-}
-
-.venue-scores span{
-	margin-left: -4px;
-	height: 133px;
-	display: inline-block;
-	width: 156px;
-	font-size: 11px;	
-	letter-spacing: 1px;
-	position: relative;
-	border-right: 1px solid #e0e0e0;
-	border-left: 1px solid #f7f7f7;
-}
-
-.venue-scores span:first-child{
-	border-left: none;
-	width: 140px;
-}
-
-.venue-scores span:last-child{
-	border-right: none;
-	text-align: right;
-	width: 140px;
-}
-
-.venue-scores span .score-percentage {
-	width: 100%;
-	position: absolute;
-	font-weight: 900;
-	font-size: 24px;
-	letter-spacing: -1px;
-	top: 45px;
-	line-height: 20px;
-	color: #02b8ea;
-
-}
-
-.venue-scores span canvas {
-	margin-top: 21px;
-	display: inline-block;
-}
-
-.venue-scores span p {
-	width: 100%;
-	font-weight: 700;
-	vertical-align: top;
-	line-height: 10px;
-	margin-top: 7px;
-	color: #02b8ea;
-}
-
-.venue-scores .left-offset{
-	width: 110px;
-	position: relative;
-}
-
-
-
-.venue-scores .right-offset{
-	width: 114px;
-	position: relative;
-	text-align: center;
-	display: inline-block;
-}
-
-/********************************/
-/********** End Section *********/
-/********************************/
 
 /*--------------------------*/
 /* Submit new tip comp  */
