@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140114203444) do
+ActiveRecord::Schema.define(:version => 20140216001506) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -194,12 +194,12 @@ ActiveRecord::Schema.define(:version => 20140114203444) do
   add_index "tips", ["venue_id"], :name => "index_tips_on_venue_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                :default => "",    :null => false
-    t.string   "encrypted_password",                   :default => ""
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",                    :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -208,16 +208,16 @@ ActiveRecord::Schema.define(:version => 20140114203444) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "birth_month"
     t.integer  "birth_day"
-    t.boolean  "admin",                                :default => false
+    t.boolean  "admin",                                 :default => false
     t.string   "username"
     t.string   "zip_code"
-    t.integer  "failed_attempts",                      :default => 0
+    t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "lock_reason"
@@ -227,8 +227,8 @@ ActiveRecord::Schema.define(:version => 20140114203444) do
     t.string   "twitter_username"
     t.string   "permalink"
     t.integer  "sash_id"
-    t.integer  "level",                                :default => 0
-    t.string   "invitation_token",       :limit => 60
+    t.integer  "level",                                 :default => 0
+    t.string   "invitation_token",        :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
@@ -236,6 +236,8 @@ ActiveRecord::Schema.define(:version => 20140114203444) do
     t.string   "invited_by_type"
     t.string   "home_state"
     t.string   "home_city"
+    t.boolean  "receive_follower_emails",               :default => true
+    t.boolean  "receive_product_emails",                :default => true
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
