@@ -16,6 +16,8 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to after_update_path_for(@user)
     else
       render "edit"
+    end
+  end
 
   def create
     #Check to see if a user with provided email address exists
