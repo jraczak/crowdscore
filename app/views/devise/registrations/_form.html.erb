@@ -51,10 +51,30 @@
   </div>
   
   
-  <div id="user-form-fields-lower-container">
+    <div id="user-form-fields-email-container">
+      <div id="user-form-email-preferences-instructions">
+        <h3>
+          My email preferences
+        </h3>
+        
+        <p>
+          Let us know which emails you want to receive from us using the options to the right.
+        </p>
+      </div>
+      
+      <fieldset id="user-form-update-email-preferences-container">
+        <%= f.check_box :receive_follower_emails, class: "email-checkbox" %><%= f.label :receive_follower_emails, "Send me an email when someone follows me", class: "user-form-label" %><br>
+        <%= f.check_box :receive_product_emails, class: "email-checkbox" %><%= f.label :receive_product_emails, "Send me updates about Crowdscore features", class: "user-form-label" %><br>
+        
+        <span class="help-block">We try to send these only when we have something newsworthy</span><br>
+      </fieldset>
+    </div>
+
+  
+  <div id="user-form-fields-lower-container">    
     <div id="user-form-update-password-instructions">
       <h3>
-        Update your password
+        Update my password
       </h3>
       
       <p>

@@ -56,7 +56,8 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :password, length: { in: 6..20 }
+  validates :password, length: { in: 6..20 }, on: :create
+  validates :password, length: { in: 6..20 }, on: :update, allow_blank: true
   validates :email, presence: true #, uniqueness: true
   ###
   # Add a conditional validation on email that allows users who were invited

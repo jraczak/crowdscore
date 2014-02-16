@@ -121,6 +121,49 @@ textarea.standard-blue-text-field {
 	margin-bottom: 60px;
 }
 
+#user-form-fields-email-container {
+	overflow: hidden;
+	border-top: 1px solid #dadada;
+	padding-top: 60px;
+	margin-bottom: 60px;
+}
+
+#user-form-email-preferences-instructions {
+	width: 50%;
+	float: left;
+	
+	h3 {
+		font-size: 25px;
+		font-weight: 100;
+		color: #2d3132;
+	}
+	p {
+		width: 80%;
+		font-size: 14px;
+		font-weight: 100;
+		color: #6b6e70;
+	}
+}
+
+#user-form-update-email-preferences-container {
+	width: 50%;
+	float: right;
+	
+	.password-no-margin {
+		margin-bottom: 0px;
+	}
+	
+	.help-block {
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+	
+	.email-checkbox {
+		margin-right: 10px;
+		margin-bottom: 30px;
+	}
+}
+
 #user-form-update-password-instructions {
 	width: 50%;
 	float: left;
