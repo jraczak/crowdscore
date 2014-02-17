@@ -28,6 +28,7 @@ class VenueScoresController < InheritedResources::Base
     
     scores.each do |s|
       s.venue_score_id = @venue_score.id
+      s.venue_id = Venue.find(params[:venue_id])
       s.save!
     end
     
