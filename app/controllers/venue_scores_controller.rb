@@ -15,8 +15,7 @@ class VenueScoresController < InheritedResources::Base
     scores = []
     computed_score = 0
     score_data.each do |sc, sv|
-      s = Score.new(score_category_id: sc, value: (sv*10))
-      s.user = current_user
+      s = Score.new(score_category_id: sc, value: (sv*10), user_id: current_user.id, venue_id: params[:venue_id])
       s.save!
       computed_score = computed_score + s.value
       scores << s
@@ -25,12 +24,6 @@ class VenueScoresController < InheritedResources::Base
     @venue_score.scores << scores
     @venue_score.computed_score = computed_score / scores.count
     @venue_score.save!
-    
-    scores.each do |s|
-      s.venue_score_id = @venue_score.id
-      s.venue_id = Venue.find(params[:venue_id])
-      s.save!
-    end
     
     flash[:notice] = "You've earned 1 Karma point for submitting your score!"
   end

@@ -13,6 +13,7 @@ class Venue < ActiveRecord::Base
   has_many :tips
   has_many :venue_images
   has_many :venue_snapshots
+  has_many :scores
 
   has_and_belongs_to_many :lists
   has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
