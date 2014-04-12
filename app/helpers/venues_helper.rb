@@ -1,4 +1,24 @@
 module VenuesHelper
+  
+  def get_score_categories
+    @score_categories = []
+    if resource.venue_subcategory.score_categories.any?
+      resource.venue_subcategory.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    else
+      resource.venue_category.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    end
+  end
+  
+  def get_score_summaries
+    get_score_categories
+    @scores = []
+     
+  end
+  
   def inline_address(venue)
     parts = [venue.address1, venue.address2, "#{venue.city}, #{venue.state} #{venue.zip}"].reject(&:blank?)
 

@@ -70,7 +70,7 @@ class Venue < ActiveRecord::Base
   def graph_score
     computed_score? ? computed_score : Random.rand(100)
   end
-
+  
   def score_breakdown1
     scores = venue_scores.map { |s| s.score1.to_f }
     ((scores.inject(&:+) / scores.length) * 10).ceil
@@ -100,10 +100,16 @@ class Venue < ActiveRecord::Base
   end
 
   def recompute_score!
-    scores = venue_scores.map { |s| s.computed_score.to_f }
+    scores = venue_scores.map(&:computed_score)
     self.computed_score = (scores.inject(&:+) / scores.length).ceil
-    save!
   end
+  
+  # OLD RECOMPUTE METHOD, DEPRECATED WITH NO SCORE STRUCTURES
+  #def recompute_score!
+  #  scores = venue_scores.map { |s| s.computed_score.to_f }
+  #  self.computed_score = (scores.inject(&:+) / scores.length).ceil
+  #  save!
+  #end
 
   def full_address
     [address1, address2, city, state, zip].compact.join(", ")

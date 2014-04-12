@@ -1,9 +1,17 @@
 digraph Crowdscore {
-  rankdir = "LR"; ranksep = "0.5"; nodesep = "0.4"; pad = "0.4,0.4"; margin = "0,0"; concentrate = "true"; labelloc = "t"; fontsize = "13"; fontname = "Arial Bold";
-  node [shape = "Mrecord", fontsize = "10", fontname = "Arial", margin = "0.07,0.05", penwidth = "1.0"];
-  edge [fontname = "Arial", fontsize = "7", dir = "both", arrowsize = "0.9", penwidth = "1.0", labelangle = "32", labeldistance = "1.8"];
-  label = "Crowdscore domain model\n\n";
-  m_Audit [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+rankdir = "LR";
+ranksep = "0.5";
+nodesep = "0.4";
+pad = "0.4,0.4";
+margin = "0,0";
+concentrate = "true";
+labelloc = "t";
+fontsize = "13";
+fontname = "Arial Bold";
+node[ shape  =  "Mrecord" , fontsize  =  "10" , fontname  =  "Arial" , margin  =  "0.07,0.05" , penwidth  =  "1.0"];
+edge[ fontname  =  "Arial" , fontsize  =  "7" , dir  =  "both" , arrowsize  =  "0.9" , penwidth  =  "1.0" , labelangle  =  "32" , labeldistance  =  "1.8"];
+label = "ERD_041214\n\n";
+m_Audit [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Audit</font></td></tr>
 </table>
 |
@@ -20,20 +28,25 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="version">version <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_Follow [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_Follow [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Follow</font></td></tr>
 </table>
 >];
-  m_List [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_List [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">List</font></td></tr>
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
-  <tr><td align="left" width="130" port="description">description <font face="Arial Italic" color="grey60">text</font></td></tr>
+  <tr><td align="left" width="130" port="description">description <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="list_likes_count">list_likes_count <font face="Arial Italic" color="grey60">integer</font></td></tr>
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 >];
-  "m_Merit::Action" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_ListLike [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ListLike</font></td></tr>
+</table>
+>];
+"m_Merit::Action" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::Action</font></td></tr>
 </table>
 |
@@ -47,16 +60,16 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="user_id">user_id <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  "m_Merit::ActivityLog" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+"m_Merit::ActivityLog" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::ActivityLog</font></td></tr>
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
-  <tr><td align="left" width="130" port="descrption">descrption <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="description">description <font face="Arial Italic" color="grey60">string</font></td></tr>
   <tr><td align="left" width="130" port="related_change_type">related_change_type <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  "m_Merit::BadgesSash" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+"m_Merit::BadgesSash" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::BadgesSash</font></td></tr>
 </table>
 |
@@ -65,11 +78,11 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="notified_user">notified_user <font face="Arial Italic" color="grey60">boolean</font></td></tr>
 </table>
 >];
-  "m_Merit::Sash" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+"m_Merit::Sash" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::Sash</font></td></tr>
 </table>
 >];
-  "m_Merit::Score" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+"m_Merit::Score" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::Score</font></td></tr>
 </table>
 |
@@ -77,7 +90,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="category">category <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  "m_Merit::Score::Point" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+"m_Merit::Score::Point" [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Merit::Score::Point</font></td></tr>
 </table>
 |
@@ -86,23 +99,33 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="num_points">num_points <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_Tag [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_Score [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Score</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="value">value <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+</table>
+>];
+m_ScoreCategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ScoreCategory</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="description">description <font face="Arial Italic" color="grey60">text</font></td></tr>
+  <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_Tag [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Tag</font></td></tr>
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tag_category_id">tag_category_id <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_TagCategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
-  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">TagCategory</font></td></tr>
-</table>
-|
-<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
-  <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
-</table>
->];
-  m_Tip [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_Tip [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Tip</font></td></tr>
 </table>
 |
@@ -111,11 +134,11 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="tip_likes_count">tip_likes_count <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_TipLike [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_TipLike [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">TipLike</font></td></tr>
 </table>
 >];
-  m_User [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_User [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">User</font></td></tr>
 </table>
 |
@@ -131,7 +154,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="current_sign_in_ip">current_sign_in_ip <font face="Arial Italic" color="grey60">string</font></td></tr>
   <tr><td align="left" width="130" port="email">email <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
   <tr><td align="left" width="130" port="encrypted_password">encrypted_password <font face="Arial Italic" color="grey60">string</font></td></tr>
-  <tr><td align="left" width="130" port="facebook_id">facebook_id <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="facebook_id">facebook_id <font face="Arial Italic" color="grey60">string</font></td></tr>
   <tr><td align="left" width="130" port="failed_attempts">failed_attempts <font face="Arial Italic" color="grey60">integer</font></td></tr>
   <tr><td align="left" width="130" port="first_name">first_name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
   <tr><td align="left" width="130" port="gender">gender <font face="Arial Italic" color="grey60">string</font></td></tr>
@@ -149,6 +172,8 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="lock_reason">lock_reason <font face="Arial Italic" color="grey60">string</font></td></tr>
   <tr><td align="left" width="130" port="locked_at">locked_at <font face="Arial Italic" color="grey60">datetime</font></td></tr>
   <tr><td align="left" width="130" port="permalink">permalink <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="receive_follower_emails">receive_follower_emails <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="receive_product_emails">receive_product_emails <font face="Arial Italic" color="grey60">boolean</font></td></tr>
   <tr><td align="left" width="130" port="remember_created_at">remember_created_at <font face="Arial Italic" color="grey60">datetime</font></td></tr>
   <tr><td align="left" width="130" port="reset_password_sent_at">reset_password_sent_at <font face="Arial Italic" color="grey60">datetime</font></td></tr>
   <tr><td align="left" width="130" port="reset_password_token">reset_password_token <font face="Arial Italic" color="grey60">string</font></td></tr>
@@ -160,7 +185,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="zip_code">zip_code <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  m_Venue [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_Venue [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Venue</font></td></tr>
 </table>
 |
@@ -180,7 +205,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="zip">zip <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 >];
-  m_VenueCategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueCategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueCategory</font></td></tr>
 </table>
 |
@@ -192,7 +217,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="prompt4">prompt4 <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  m_VenueCategoryTagSet [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueCategoryTagSet [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueCategoryTagSet</font></td></tr>
 </table>
 |
@@ -200,7 +225,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  m_VenueImage [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueImage [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueImage</font></td></tr>
 </table>
 |
@@ -209,7 +234,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="image_file">image_file <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 >];
-  m_VenueScore [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueScore [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueScore</font></td></tr>
 </table>
 |
@@ -221,7 +246,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="score4">score4 <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_VenueSnapshot [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueSnapshot [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueSnapshot</font></td></tr>
 </table>
 |
@@ -235,7 +260,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="venue_score_count">venue_score_count <font face="Arial Italic" color="grey60">integer</font></td></tr>
 </table>
 >];
-  m_VenueSubcategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueSubcategory [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueSubcategory</font></td></tr>
 </table>
 |
@@ -243,7 +268,7 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 >];
-  m_VenueSubcategoryTagSet [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+m_VenueSubcategoryTagSet [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">VenueSubcategoryTagSet</font></td></tr>
 </table>
 |
@@ -251,39 +276,47 @@ digraph Crowdscore {
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 >];
-  m_Venue -> m_Audit [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  m_User -> m_Audit [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  "m_Merit::Action" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  "m_Merit::BadgesSash" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  "m_Merit::Score::Point" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  "m_Merit::Sash" -> "m_Merit::BadgesSash" [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  "m_Merit::Sash" -> "m_Merit::Score" [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  "m_Merit::Score" -> "m_Merit::Score::Point" [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  "m_Merit::Sash" -> m_User [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  m_User -> m_User [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  m_User -> m_VenueScore [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_Tip [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_TipLike [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_Tip [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "2", constraint = "false"]
-  m_User -> m_List [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_Follow [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"]
-  m_User -> m_Follow [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"]
-  m_VenueCategory -> m_Venue [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_VenueSubcategory -> m_Venue [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_Venue -> m_VenueScore [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_Venue -> m_Tip [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_Venue -> m_VenueImage [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_Venue -> m_VenueSnapshot [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_List -> m_Venue [arrowhead = "normal", arrowtail = "normal", weight = "2"]
-  m_Tag -> m_Venue [arrowhead = "normal", arrowtail = "normal", weight = "2"]
-  m_Tip -> m_TipLike [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_User -> m_VenueImage [arrowhead = "normal", arrowtail = "none", weight = "1"]
-  m_VenueCategory -> m_VenueSubcategory [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_VenueSubcategory -> m_VenueSubcategoryTagSet [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_VenueCategory -> m_VenueCategoryTagSet [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_VenueCategoryTagSet -> m_Tag [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_VenueSubcategoryTagSet -> m_Tag [arrowhead = "normal", arrowtail = "none", weight = "2"]
-  m_TagCategory -> m_Tag [arrowhead = "normal", arrowtail = "none", weight = "1"]
+  m_Venue -> m_Audit [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_User -> m_Audit [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  "m_Merit::Action" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  "m_Merit::BadgesSash" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  "m_Merit::Score::Point" -> "m_Merit::ActivityLog" [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  "m_Merit::Sash" -> "m_Merit::BadgesSash" [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  "m_Merit::Sash" -> "m_Merit::Score" [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  "m_Merit::Score" -> "m_Merit::Score::Point" [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  "m_Merit::Sash" -> m_User [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_User -> m_User [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_User -> m_VenueScore [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_Score [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_Tip [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_TipLike [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_Tip [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "2", constraint = "false"];
+  m_User -> m_List [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_ListLike [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_List [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "2", constraint = "false"];
+  m_User -> m_Follow [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_User -> m_Follow [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_VenueCategory -> m_Venue [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_VenueSubcategory -> m_Venue [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Venue -> m_VenueScore [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Venue -> m_Tip [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Venue -> m_VenueImage [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Venue -> m_VenueSnapshot [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Venue -> m_Score [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_List -> m_Venue [arrowhead = "normal", arrowtail = "normal", weight = "2"];
+  m_Tag -> m_Venue [arrowhead = "normal", arrowtail = "normal", weight = "2"];
+  m_List -> m_ListLike [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Tip -> m_TipLike [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_VenueImage [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_VenueScore -> m_Score [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_VenueCategory -> m_VenueSubcategory [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_ScoreCategory -> m_VenueSubcategory [arrowhead = "normal", arrowtail = "normal", weight = "2"];
+  m_VenueSubcategory -> m_VenueSubcategoryTagSet [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_ScoreCategory -> m_VenueCategory [arrowhead = "normal", arrowtail = "normal", weight = "2"];
+  m_VenueCategory -> m_VenueCategoryTagSet [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_ScoreCategory -> m_Score [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_VenueCategoryTagSet -> m_Tag [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_VenueSubcategoryTagSet -> m_Tag [arrowhead = "normal", arrowtail = "none", weight = "2"];
 }
