@@ -24,6 +24,7 @@ class VenueScoresController < InheritedResources::Base
     @venue_score.scores << scores
     @venue_score.computed_score = computed_score / scores.count
     @venue_score.save!
+    @venue_score.venue.recompute_score!
     
     flash[:notice] = "You've earned 1 Karma point for submitting your score!"
   end
