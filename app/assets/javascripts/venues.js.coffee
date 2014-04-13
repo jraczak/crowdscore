@@ -1,6 +1,202 @@
+# SimpleDomObject is used for organizing event handlers
+class SimpleDomObject
+  
+  constructor: ->
+    # Bind event listeners
+    @listen()
+
+  listen: ->
+    events = @events()
+
+    for key of events
+      try 
+        f = @[key.split(/#(.+)?/)[0]] # event
+        e = key.split(/#(.+)?/)[1] # target
+        t = events[key] # function
+
+        $('body').on e, t, f
+
+      catch
+        console.log "Unable to bind " + e + " event to " + t
+
+### ** DOCUMENTATION **
+
+  Class: CustomDropdownMenu
+  Purpose: Create a custom dropdown menu from an existing select menu
+  Parameters: 
+    wrapper (required) : jQuery selector of dropdown wrapper
+    defaultMsg (optional) : default message to be displayed 
+    selectedIndex (optional) : which index is selected on page load
+
+  HTML Markup
+    <div class="cs-obj-dd">
+      <select class="cs-obj-dd-sel">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <div class="cs-obj-dd-val dd-toggle"></div>
+      <ul class="cs-obj-dd-opts"></ul>
+    </div>
+###
+class CustomDropdownMenu extends SimpleDomObject
+  
+  constructor: (wrapper, defaultMsg, selectedIndex) ->
+    
+    # Change these values for defaults
+    dm = "Choose one" # Default message
+    si = -1 # Selected Index
+
+    # initialize default values
+    if typeof(selectedIndex) == 'undefined'
+      @selectedIndex = si
+    else 
+      @selectedIndex = selectedIndex
+
+    if typeof(defaultMsg) == 'undefined'
+      @defaultMsg = dm
+    else 
+      @defaultMsg = defaultMsg
+
+    @wrapper = wrapper 
+    @dropdown = $(@wrapper).find('select')[0]
+    @valContent = $(@wrapper + " .cs-obj-dd-val").children()
+    @wrapperDOM = $(@wrapper)
+    @initialize()
+
+    super()
+
+  events: =>
+    'open#click' : @wrapper + ' .dd-toggle'
+    'update#click' : @wrapper + ' .cs-obj-dd-opts .cs-obj-dd-opt'
+
+  # Replicates the Select dropdown into the custom dropdown
+  initialize: =>
+    for option in @dropdown.options
+      $(@wrapper + " .cs-obj-dd-opts").append(@_listItemMarkup(option.value, option.text))
+
+    $(@wrapper + " .cs-obj-dd-val").text(@defaultMsg).append(@valContent)
+    
+  open: =>
+    @wrapperDOM.toggleClass('open')
+
+  # Update hidden select value, update visible selected value
+  update: (e) =>
+    li = $(e.currentTarget)
+    @dropdown.selectedIndex = li.index() - 1
+    $(@wrapper + " .cs-obj-dd-val").text(li.text()).append(@valContent)
+    @wrapperDOM.removeClass('open')
+
+  # Markup for list items
+  _listItemMarkup: (val, text) ->
+    return  [ "<li class='cs-obj-dd-opt' data-val='", val, "'>", text, "</li>"].join('')
+
+  val: =>
+    return @valContent
+
+class AddToListDropdownMenu extends CustomDropdownMenu
+
+  constructor: (wrapper, defaultMsg, selectedIndex) ->
+    super(wrapper, defaultMsg, selectedIndex)
+
+  events: ->
+    $.extend super(), 
+      # '_revertCreateField#blur' : ' #list-create input'
+      '_keyupCreateField#keyup' : ' #list-create input'
+      '_keyupCreateField#keyup' : ' #list-create input'
+      'createList#submit' : '#create-new-list-form' 
+      'createList#click' : '.add2' 
+      'resetDropdown#click' : ' #cta-addtolist'
+
+  initialize: =>
+    super()
+    # @wrapperDOM.find('.cs-obj-dd-opts').css('height', '0px')
+
+  createList: (e) =>
+    listName = $('#list-create').find('input').val()
+    if listName != ""
+      
+      $.ajax(
+        type: "POST"
+        url: "/lists"
+        dataType: "json"
+        data: { list: { name: listName } }
+      )
+        .done (response) =>
+          id = response.id
+          name = response.name
+          $(@wrapper).find('select').prepend('<option value="' + id + '">' + name + '</option>')
+          $(@wrapper + " #list-create").after([ "<li class='cs-obj-dd-opt' data-val='", id, "'>", name, "</li>"].join(''))
+          @_revertCreateField()
+          $('.cs-obj-dd-opt[data-val="' + id + '"').click()
+          $('.add-spinner').removeClass('visible')
+
+
+    return false
+         
+  resetDropdown: =>
+    $(@wrapper + " .cs-obj-dd-val").text(@defaultMsg).append(@valContent)
+
+
+  open: =>
+
+    if @wrapperDOM.hasClass('open')
+      @wrapperDOM.css('height', '47px')
+    else
+      @wrapperDOM.css('height', 276 + "px")
+
+    super()
+
+  update: (e) =>
+    if $(e.currentTarget).is $('#list-create')
+      @_setCreateField()
+    else
+      if @wrapperDOM.hasClass('open')
+        @wrapperDOM.css('height', '47px')
+      super(e)
+
+  _setCreateField: =>
+    $('#list-create').addClass('focus').find('input').show().focus()
+    @_keyupCreateField()
+
+  _revertCreateField: (e) =>
+    $('#list-create').removeClass('focus')
+    $('#list-create').find('input').val('')
+
+  _keyupCreateField: ->
+    if $('#list-create').find('input').val() == ""
+      $('#list-create').find('.add2').addClass('disabled')
+    else
+      $('#list-create').find('.add2').removeClass('disabled')
+
+class AddToListModal extends SimpleDomObject
+  constructor: (selector) ->
+    @ddSelector = selector
+    super()
+
+  events: =>
+    'addToList#click' : ' #cta-addtolist'
+
+  addToList: =>
+    
+    listId = $(@ddSelector).get(0).value
+    venueId = $(@ddSelector).data('venue-id')
+
+    $.ajax(
+      type: "PUT"
+      url: "/lists/" + listId + "/add"
+      data: { venue_id: 1 }
+    )
+      .done( ->
+        # TODO: PRESENT TOAST
+      )
+
+    window.location.href = "#"
 
 $(document).ready ->
-
+  new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
+  new AddToListModal('#list-select')
   $('body').on 'click', '#gangster-daddy', ->
   	venueId = $(this).data('venue-id')
   	scoreData = [
@@ -83,4 +279,6 @@ $(document).ready ->
   #     if this.selectedIndex + 1 is 10
   #       $('.slider-bar-main-background').css("width", "100%")
   #     $('.marker-value').html( this.selectedIndex + 1 )
+
+
 
