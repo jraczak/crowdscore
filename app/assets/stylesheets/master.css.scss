@@ -581,16 +581,21 @@ nav{
 
   p {
     margin-top: 10px;
+    margin-left: 0px;
     font-size: 14px;
     color: #6b6e70;
     text-align: left;
     line-height: 1.5em;
     font-weight: 300;
+    display: block;
 
     a {
       text-decoration: none;
       color: #02b8ea;
     }
+  }
+  p#join-crowdscore-link, p#forgot-password-link {
+	  margin-left: 0px;
   }
 
   .modal-facebook-signup-button,

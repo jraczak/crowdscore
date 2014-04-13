@@ -169,17 +169,17 @@
           <% end %><br>
           <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
             <div class="registration-modal-form-field">
-              <%= f.label :email, "email address", class: "" %>
-              <%= f.text_field :email, class: "" %>
+              <%= f.label :email, "email or username", class: "" %>
+              <%= f.text_field :email, class: "", tabindex: "1" %>
+              <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
             </div>
             <div class="registration-modal-form-field password">
               <%= f.label :password, class: "" %>
-              <%= f.password_field :password, placeholder: "Password" %>
+              <%= f.password_field :password, tabindex: "2" %>
+              <p id="forgot-password-link"> Forget your password? <%= link_to "Request a reset", new_user_password_path %></p>
             </div>
-            <%= f.submit "Sign in", class: "registration-modal-submit-button" %>
+            <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: "3" %>
           <% end %>
-
-          <p> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
         </div>
       </div>
     </div>
