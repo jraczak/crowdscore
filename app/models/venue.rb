@@ -71,6 +71,7 @@ class Venue < ActiveRecord::Base
     computed_score? ? computed_score : Random.rand(100)
   end
   
+  #TO-DO: DETERMINE IF THIS IS NECESSARY OR CAN BE CALCULATED FROM THE OBJECTS
   def score_category_count
     if self.venue_subcategory.score_categories.any?
       self.venue_subcategory.score_categories.count
@@ -79,33 +80,34 @@ class Venue < ActiveRecord::Base
     end
   end
   
-  def score_summaries
-    score_count = self.score_category_count
+  def score_details
     categories = get_score_categories(venue)
     category_ids = categories.map(&:id)
-    category_counter = 0
-    scores = {}
+    score_buckets = {}
+    calculated_scores = {}
+    all_scores = []
     
-    #categories.each do |c|
-    #  scores["score#{category_counter}"] = {}
-    #  category_counter += 1
-    #end
-      
     categories.each do |c|
-      scores["#{c.name}"] = {:id => c.id, :name => c.name, :value => 0}
+      calculated_scores[c.id] = {:id => c.id, :name => c.name, :value => 0}
     end
     
-    
-    
-    
-    score_categories = {}
-    
-    while score_count > 0 do
-      scores["score#{score_count}"] 
+    self.venue_scores.each do |vs|
+      vs.scores.each do |s|
+        all_scores << s
+      end
     end
     
-    score1 = math
-    score2 = math
+    all_scores.each do |score|
+      if !score_buckets[score.score_category_id].present?
+        score_buckets[score.score_category.id] = []
+      end
+      score_buckets[score.score_category_id] << score.value
+    end
+
+    score_buckets.each do |key, array|
+      averaged_scores = score_buckets[key].reduce(:+) / score_buckets[key].length
+      calculated_scores[key][:value] = averaged_scores
+    end
   end
   
   def score_breakdown1

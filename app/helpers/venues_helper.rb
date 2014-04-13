@@ -13,14 +13,6 @@ module VenuesHelper
     end
   end
   
-  def get_score_summaries(venue)
-    get_score_categories
-    @scores = []
-    venue.venue_scores.each do |vs|
-    # NOT DONE HERE
-    end
-  end
-  
   def inline_address(venue)
     parts = [venue.address1, venue.address2, "#{venue.city}, #{venue.state} #{venue.zip}"].reject(&:blank?)
 
