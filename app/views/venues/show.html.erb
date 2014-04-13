@@ -130,7 +130,7 @@ var auto_zoom = false;
 							</a>
 						</span>	
 						<span class="add-venue-to-list">
-							<a href="#">
+							<a href="#add_to_list">
 								<p>
 									<%= image_tag('add_to_list.png') %>ADD TO LIST
 								</p>
@@ -319,6 +319,7 @@ var auto_zoom = false;
   </div>
 
 <%= render "submit_score" %>
+<%= render "lists/add_venue", :venue_id => resource.id %>
 
 <script>
 
@@ -329,5 +330,4 @@ var auto_zoom = false;
 	function closeModal(){
 		$('#image-upload-modal').removeClass('visible');
 	}
-
 </script>

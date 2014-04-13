@@ -189,7 +189,7 @@ class Venue < ActiveRecord::Base
     percent = self.graph_score
     str = ""
     str += "<div class='cs-iw'>"
-    str += '<div class="cs-iw-p"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
+    str += '<div class="cs-iw-p-m"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
     str += "<div class='pie-container map'>"
     str +="<div class='pie-graph-loader' data-percent=#{percent} data-venue-id='#{self.id}'>"
     str +="<div class='pie-graph-masks'></div>"
