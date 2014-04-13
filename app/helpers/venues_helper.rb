@@ -1,22 +1,24 @@
 module VenuesHelper
   
-  def get_score_categories
+  def get_score_categories(venue)
     @score_categories = []
-    if resource.venue_subcategory.score_categories.any?
-      resource.venue_subcategory.score_categories.each do |sc|
+    if venue.venue_subcategory.score_categories.any?
+      venue.venue_subcategory.score_categories.each do |sc|
         @score_categories << sc
       end
     else
-      resource.venue_category.score_categories.each do |sc|
+      venue.venue_category.score_categories.each do |sc|
         @score_categories << sc
       end
     end
   end
   
-  def get_score_summaries
+  def get_score_summaries(venue)
     get_score_categories
     @scores = []
-     
+    venue.venue_scores.each do |vs|
+    # NOT DONE HERE
+    end
   end
   
   def inline_address(venue)

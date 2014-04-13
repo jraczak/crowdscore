@@ -71,6 +71,43 @@ class Venue < ActiveRecord::Base
     computed_score? ? computed_score : Random.rand(100)
   end
   
+  def score_category_count
+    if self.venue_subcategory.score_categories.any?
+      self.venue_subcategory.score_categories.count
+    else
+      self.venue_category.score_categories.count
+    end
+  end
+  
+  def score_summaries
+    score_count = self.score_category_count
+    categories = get_score_categories(venue)
+    category_ids = categories.map(&:id)
+    category_counter = 0
+    scores = {}
+    
+    #categories.each do |c|
+    #  scores["score#{category_counter}"] = {}
+    #  category_counter += 1
+    #end
+      
+    categories.each do |c|
+      scores["#{c.name}"] = {:id => c.id, :name => c.name, :value => 0}
+    end
+    
+    
+    
+    
+    score_categories = {}
+    
+    while score_count > 0 do
+      scores["score#{score_count}"] 
+    end
+    
+    score1 = math
+    score2 = math
+  end
+  
   def score_breakdown1
     scores = venue_scores.map { |s| s.score1.to_f }
     ((scores.inject(&:+) / scores.length) * 10).ceil
