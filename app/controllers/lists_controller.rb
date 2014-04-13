@@ -25,7 +25,9 @@ class ListsController < InheritedResources::Base
    
   def add
     venue = Venue.find(params[:venue_id])
-    resource.venues << venue
+    unless resource.venues.include?(venue)
+      resource.venues << venue
+    end
    
     render nothing: true, status: :ok
   end
