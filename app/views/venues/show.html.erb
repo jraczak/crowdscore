@@ -6,41 +6,34 @@ var page_zoom_level = 14;
 var auto_adjust = false;
 var auto_zoom = false;
     	
-// Overall Score Container score.
-alert('<%= resource.score_breakdown1 %>')
-var overallVenueScore = "<%= resource.score %>";			
-var venueScoreCategories = ["<%= resource.score_breakdown1 %>", 
-														"<%= resource.score_breakdown2 %>", 
-														"<%= resource.score_breakdown3 %>", 
-														"<%= resource.score_breakdown4 %>"]; 
 </script>
   <div class="top-block"></div>
   <div class="gray-bar"></div>
 
   <div class="container">
+  
 
   	<!-- Start of left rail -->
   	<div class="left-rail-container">
 
 			<!-- Overall score container-->
+		  
 		  <div class="overall-score-container">
 			  <div class="header">OVERALL SCORE</div>
 			  <div class="inner-body">
-					<canvas id="overallScoreCanvas" width="173" height="173"></canvas>
+					<%= render 'shared/pie_graph', type: "venue-score", score: resource.score, animate: true  %>
 			  	
-			  	<div class="center-absolute">
-				  	<p>
+				  <p>
 				  	<% unless resource.venue_scores.empty? %>
 				  		based on <%= pluralize(resource.venue_scores.count, "score") %>
 				  	<% end %>
-				  	</p>
-				  </div>
+			  	</p>
 
-			  	<div class="center-absolute">
-				  	<div class="overallScorePercentage <% if resource.score.class == String %>no-score<% end %>">
-				  		<%= score = resource.score %>
+				  <% if resource.venue_scores.empty? %>
+				  	<div class="no-overall-score">
+				  		No scores here yet. Be the first!
 				  	</div>
-				  </div>
+				  <% end %>
 
 				  <div class="center-absolute">
 						<div id="submit-score-btn" class="submit-score-btn">SUBMIT YOUR SCORE</div>
@@ -123,9 +116,11 @@ var venueScoreCategories = ["<%= resource.score_breakdown1 %>",
 						<span class="venue-type">
 							<p><%= resource.venue_category.name %></p>
 						</span>
+						
+						<!-- HOURS SUPPRESSED UNTIL DATA IS AVAILABLE -->
 						<span class="venue-hours">
-							<p class="hours">12:30AM - 11:30PM</p>
-							<div class="operation-status-open">OPEN</div>
+							<p class="hours"> </p>
+							<div class="operation-status-open"> </div>
 						</span>
 						<span class="share-venue">	  			
 							<a href="#">
@@ -135,7 +130,7 @@ var venueScoreCategories = ["<%= resource.score_breakdown1 %>",
 							</a>
 						</span>	
 						<span class="add-venue-to-list">
-							<a href="#">
+							<a href="#add_to_list">
 								<p>
 									<%= image_tag('add_to_list.png') %>ADD TO LIST
 								</p>
@@ -212,33 +207,24 @@ var venueScoreCategories = ["<%= resource.score_breakdown1 %>",
 				</div><!-- end of venue details section -->
 
 
-				<!-- Venue score section with graphs -->
-				<div class="venue-scores">
-					<span>
-						<div class="left-offset">
-							<canvas id="graph<%= resource.venue_category.prompt1 %>" width="68" height="68"></canvas>
-							<p><%= resource.venue_category.prompt1.upcase %></p>
-							<div class="score-percentage"></div>
-						</div>
-					</span>
-					<span>	
-						<canvas id="graph<%= resource.venue_category.prompt2 %>" width="68" height="68"></canvas>
-						<p><%= resource.venue_category.prompt2.upcase %></p>
-						<div class="score-percentage"></div>
-					</span>
-					<span>
-						<canvas id="graph<%= resource.venue_category.prompt3 %>" width="68" height="68"></canvas>
-						<p><%= resource.venue_category.prompt3.upcase %></p>
-						<div class="score-percentage"></div>
-					</span>
-					<span>
-						<div class="right-offset">
-							<canvas id="graph<%= resource.venue_category.prompt4 %>" width="68" height="68"></canvas>
-							<p><%= resource.venue_category.prompt4.upcase %></p>
-							<div class="score-percentage"></div>
-						</div>
-					</span>
-				</div><!-- End venue score section -->
+				<% if resource.venue_scores.empty? %>
+					<div class='venue-scores'>
+						<% resource.get_score_categories.each do |sc| %>
+						  <div class="venue-score">
+						  	<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
+						  	<p><%= sc.name.upcase %></p>
+						  </div>
+						<% end %>  
+					</div>
+				<% else %>
+					<div class='venue-scores'>
+					  <% resource.get_score_categories.each do |sc| %>
+					    <div class="venue-score">
+					      <%= render 'shared/pie_graph', type: "category-score", score: resource.score_details[sc.id][:value], animate: true %>
+					      <p><%= sc.name.upcase %></p>
+					    </div>
+					  <% end %>
+				<% end %>
 			</div><!-- End Venue right rail header -->
 
 
@@ -333,179 +319,15 @@ var venueScoreCategories = ["<%= resource.score_breakdown1 %>",
   </div>
 
 <%= render "submit_score" %>
+<%= render "lists/add_venue", :venue_id => resource.id %>
 
-<script type="text/javascript">
-	
+<script>
+
+	function openImageUploader(){
+		$( '#image-upload-modal' ).addClass("visible");
+	}
+
+	function closeModal(){
+		$('#image-upload-modal').removeClass('visible');
+	}
 </script>
-
-<script>  
-    	
-// Overall Score Container score.
-function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
-{
-
-	this.innerWhite = innerWhite;
-	this.ctx = canvas;
-	this.canvas = canvas.getContext('2d');
-	this.outterColor = outterColor;
-	this.innerColor = innerColor;
-	this.intervalID;
-	this.thickness = thickness;
-	this.startAngle = zeroDegree;
-	this.endAngle = zeroDegree;
-	this.speed = 10; // speed * 100 = total time in ms
-	this.xCenter = canvas.width / 2;
-	this.yCenter = canvas.height / 2;
-	this.radius = this.xCenter - this.thickness / 2;
-	this.zeroDegree = zeroDegree;
-
-	this.percent = percent;
-}
-
-GraphAnimation.prototype.drawFullCircle = function (){
-	// Draw the solid circle 
-  this.canvas.beginPath();
-  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-  this.canvas.lineWidth = this.thickness;
-  this.canvas.strokeStyle = this.innerColor;
-  this.canvas.stroke(); 
-
-  if (this.innerWhite == true){
-	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-	  this.canvas.lineWidth = 0;
-	  this.canvas.fillStyle ='#f7f7f7';
-	  this.canvas.fill();
-	  this.canvas.stroke();
-	}
-};
-
-GraphAnimation.prototype.drawPartialCircle = function() {
-  var self = this;
-  function updateInterval() {
-    self.updateShape();
-  }
-  this.intervalID = window.setInterval(updateInterval, this.speed);
-}
-
-GraphAnimation.prototype.stopTimer = function() {
-  if (this.intervalID != null) window.clearInterval(this.intervalID)
-  this.intervalID = null;
-}
-
-GraphAnimation.prototype.updateShape = function() {
-	if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
-		// Draw a piece of the circle on each existing canvas
-		this.canvas.beginPath();
-		this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.endAngle, false);
-		this.canvas.lineWidth = this.thickness;
-		this.canvas.strokeStyle = this.outterColor;
-		this.canvas.stroke();
-		this.startAngle = this.endAngle - Math.PI/(4*180);
-		this.endAngle = this.endAngle + (2 * Math.PI/100);
-	}
-	else {
-		this.stopTimer();
-	}
-}
-
-var count = 1;
-GraphAnimation.prototype.drawLoading = function(){
-	if ( count < 10 ){
-
-		this.canvas.beginPath();
-	  this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-	  this.canvas.lineWidth = this.thickness;
-	  this.canvas.strokeStyle = this.innerColor;
-	  this.canvas.stroke(); 
-	  
-		// Draw a piece of the circle on each existing canvas
-		this.canvas.beginPath();
-		this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.startAngle + Math.PI/2, false);
-		this.canvas.lineWidth = this.thickness;
-		this.canvas.strokeStyle = this.outterColor;
-		this.canvas.stroke();
-		this.startAngle = this.startAngle + Math.PI/180;
-	}
-	else {
-		this.stopTimer();
-	}
-}
-
-GraphAnimation.prototype.drawArc = function() {
-  var self = this;
-  function draw() {
-    self.drawLoading();
-  }
-  this.intervalID = window.setInterval(draw, this.speed)
-}
-
-</script>
-	
-	<script>
-
-			for ( var i = 0; i < venueScoreCategories.length; i++){
-				if ( venueScoreCategories[i].match("N/A") )
-					venueScoreCategories[i] = 0;
-			}
-
-    	var overallScoreGraph = document.getElementById("overallScoreCanvas");
-    	
-
-    	if (overallVenueScore.match('No')){
-    		var white = false
-    		var ringColor = '#f4f4f4';
-    	} else {
-    		var white = true;
-    		var ringColor = "#78E1FF";
-    	}
-    	var overallScoreAnimation = 
-    		new GraphAnimation(overallScoreGraph, ringColor, "#00B5E9", 
-    											 overallVenueScore, Math.PI*3/2, 13, white);
-
-			overallScoreAnimation.drawFullCircle();
-			overallScoreAnimation.drawPartialCircle();
-			
-			var circleColors = ["#78E1FF", "#00B5E9"];	
-		
-
-    	var graphs = new Array;
-    	var otherGraphs = new Array;
-    	var identifier = "graph";
-    	
-    	var index = 0;
-    	var arr = document.getElementsByTagName('canvas');
-    	for ( var i = 0; i < arr.length; i++ ) {
-    		if ( arr[i].id.indexOf( identifier ) !== -1 ){
-    			graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], venueScoreCategories[index], Math.PI*3/2, 5, true));
-
-    			arr[i].parentNode.childNodes[5].innerHTML = venueScoreCategories[index];
-    			index++;
-    		}
-    	}
-    	
-    	index = 0;
-    	for ( var i = 0; i < arr.length; i++ ) {
-    		if ( arr[i].id.indexOf( 'other' ) !== -1 ){
-    			otherGraphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], otherVenueScores[index], Math.PI*3/2, 4, true));
-    			arr[i].parentNode.childNodes[5].innerHTML = otherVenueScores[index];
-    			index++;
-    		}
-    	}
-
-    	graphs.forEach(draw);
-    	otherGraphs.forEach(draw);
-      function draw (elem, index, arr) {
-	      elem.drawFullCircle();
-	      elem.drawPartialCircle();
-      }		      
-      
-    
-    	function openImageUploader(){
-    		$( '#image-upload-modal' ).addClass("visible");
-    	}
-
-    	function closeModal(){
-    		$('#image-upload-modal').removeClass('visible');
-    	}
-
-    </script>

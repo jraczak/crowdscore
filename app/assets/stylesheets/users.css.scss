@@ -174,11 +174,11 @@
     color: #6b6e70;
 }
 
-#follow-user-button {
-    width: 140px;
+#follow-user-button {   
+    padding-left: 30px;
+    padding-right: 30px;
     height: 45px;
     margin-top: 20px;
-    background-color: #72ca28;
     font-family: Museo;
     font-weight: 900;
     font-size: 12px;
@@ -187,6 +187,15 @@
     text-decoration: none;
     text-align: center;
     border-radius: 20px;
+    display: inline-block;
+}
+
+.blue-button {
+	background-color: #02b8ea;
+}
+
+.green-button {
+	background-color: #72ca28;
 }
 
 #follow-user-button a, {
@@ -270,11 +279,6 @@ p.follow-button-text {
     font-size: 14px;
     line-height: 20px;
     color: #6b6e70;
-}
-
-.activity-copy a, a:visited {
-    color: #12bceb;
-    text-decoration: none;
 }
 
 .activity-timestamp {

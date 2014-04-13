@@ -1,4 +1,4 @@
-Crowdscore::Application.configure do
+ Crowdscore::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -27,6 +27,9 @@ Crowdscore::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Trying to avoid duplicate assets locally in development
+  config.serve_static_assets = false
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

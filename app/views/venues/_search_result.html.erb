@@ -1,0 +1,14 @@
+<div class="search-result" data-venue-id="<%= venue.id %>">
+	<div class="result-body">
+		<span class="result-count"><%= index + 1 %></span>
+		<span class="result-description">
+			
+			<%= link_to venue.name, venue, class: 'venue-name' %>
+			<p class="venue-category"><%= venue.full_category_name('<span></span>') %></p>
+			<p class="venue-distance">0.1 mi away</p>
+		</span>
+	</div>
+	<span class="venue-score-graph">
+		<%= render 'shared/pie_graph', type: "map", score: venue.graph_score, animate: true %>
+	</span>
+</div>

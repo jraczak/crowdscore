@@ -1,4 +1,5 @@
 module VenuesHelper
+  
   def inline_address(venue)
     parts = [venue.address1, venue.address2, "#{venue.city}, #{venue.state} #{venue.zip}"].reject(&:blank?)
 

@@ -13,7 +13,7 @@ class List < ActiveRecord::Base
   validates :description, length: { maximum: 100 }
 
   # after_save :reindex_list
-  before_destroy :decrement_counter
+  # before_destroy :decrement_counter
   
   def as_json(options = {})
     super({ methods: :venue_ids }.merge(options))
