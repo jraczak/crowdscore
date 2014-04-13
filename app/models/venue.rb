@@ -13,6 +13,7 @@ class Venue < ActiveRecord::Base
   has_many :tips
   has_many :venue_images
   has_many :venue_snapshots
+  has_many :scores
 
   has_and_belongs_to_many :lists
   has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
@@ -63,13 +64,68 @@ class Venue < ActiveRecord::Base
   end
 
   def score
-    computed_score? ? computed_score : "No scores here yet. Be the first!"
+    computed_score? ? computed_score : 0
   end
 
   def graph_score
     computed_score? ? computed_score : Random.rand(100)
   end
+  
+  #TO-DO: DETERMINE IF THIS IS NECESSARY OR CAN BE CALCULATED FROM THE OBJECTS
+  def score_category_count
+    if self.venue_subcategory.score_categories.any?
+      self.venue_subcategory.score_categories.count
+    else
+      self.venue_category.score_categories.count
+    end
+  end
+  
+  def get_score_categories
+    @score_categories = []
+    if venue_subcategory.score_categories.any?
+      venue_subcategory.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    else
+      venue_category.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    end
+  end
+  
+  def score_details
+    categories = get_score_categories
+    score_buckets = {}
+    calculated_scores = {}
+    all_scores = []
+    
+    categories.each do |c|
+      calculated_scores[c.id] = {:id => c.id, :name => c.name, :value => 0}
+    end
+    
+    self.venue_scores.each do |vs|
+      vs.scores.each do |s|
+        all_scores << s
+      end
+    end
+    
+    all_scores.each do |score|
+      if !score_buckets[score.score_category_id].present?
+        score_buckets[score.score_category.id] = []
+      end
+      score_buckets[score.score_category_id] << score.value
+    end
 
+    score_buckets.each do |key, array|
+      averaged_scores = score_buckets[key].reduce(:+) / score_buckets[key].length
+      calculated_scores[key][:value] = averaged_scores
+    end
+    
+    return calculated_scores
+  end
+  
+
+  
   def score_breakdown1
     scores = venue_scores.map { |s| s.score1.to_f }
     ((scores.inject(&:+) / scores.length) * 10).ceil
@@ -99,10 +155,17 @@ class Venue < ActiveRecord::Base
   end
 
   def recompute_score!
-    scores = venue_scores.map { |s| s.computed_score.to_f }
+    scores = venue_scores.map(&:computed_score)
     self.computed_score = (scores.inject(&:+) / scores.length).ceil
     save!
   end
+  
+  # OLD RECOMPUTE METHOD, DEPRECATED WITH NO SCORE STRUCTURES
+  #def recompute_score!
+  #  scores = venue_scores.map { |s| s.computed_score.to_f }
+  #  self.computed_score = (scores.inject(&:+) / scores.length).ceil
+  #  save!
+  #end
 
   def full_address
     [address1, address2, city, state, zip].compact.join(", ")
