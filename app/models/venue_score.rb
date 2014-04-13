@@ -1,7 +1,7 @@
 class VenueScore < ActiveRecord::Base
   belongs_to :venue
   belongs_to :user
-  has_many :scores
+  has_many :scores, dependent: :destroy
 
   validates :user, :venue, presence: true
   

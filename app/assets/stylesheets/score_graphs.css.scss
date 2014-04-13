@@ -24,6 +24,64 @@ $pie-fore-color: #02b8ea;
       color: #02b8ea;
     }
   }
+
+  &.category-score {
+    height: 68px;
+    width: 68px;
+
+    .pie-graph-mask-color-white { 
+      height: 58px;
+      width: 58px;
+      top: 5px;
+      left: 5px;
+
+      line-height: 58px;
+      font-weight: 900;
+      font-size: 24px;
+      color: #02b8ea;
+    }
+  }
+  &.venue-score {
+    height: 173px;
+    width: 173px;
+
+    .pie-graph-mask-color-white { 
+      height: 149px;
+      width: 149px;
+      top: 12px;
+      left: 12px;
+
+      line-height: 149px;
+      font-weight: 900;
+      font-size: 65px;
+      color: #02b8ea;
+    }
+
+    &.empty {
+      margin-top: 110px;
+      .pie-graph-mask-color-white {
+        background-color: #f8f8f8;
+        color: #f4f4f4;
+      }
+
+      .pie-graph-masks {
+
+        &:before {
+          background-color: #f4f4f4;
+        }
+
+        &:after {
+          background-color: #f4f4f4;
+        }
+      }
+      .pie-graph-left-block {
+        background-color: #f4f4f4;
+      }
+      .pie-graph-right-block {
+        background-color: #f4f4f4;
+      }
+    }
+  }
 }
 
 div[class*='pie-graph-loader'] {   

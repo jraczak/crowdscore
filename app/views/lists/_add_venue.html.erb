@@ -1,0 +1,48 @@
+<div id="add_to_list" class="md-modal white centered">
+	<div class="md-overlay"></div>
+	<div class="md-mask">
+		<div class="md-content">
+			<p class="msg">Add venue to a list</p>
+		  <div class='cs-iw'>
+		  	<div class="cs-iw-p-bc"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>
+			  <div class='pie-container map'>
+				  <div class='pie-graph-loader' data-percent=#{percent} data-venue-id='<%= resource.id %>'>
+					  <div class='pie-graph-masks'></div>
+						  <span class='pie-graph-left-block'></span>
+						  <span class='pie-graph-right-block'></span>
+						  <div class='pie-graph-mask-color-white'><%= resource.graph_score %></div>
+					  </div>
+				  </div>
+			    <a class='venue-name' href='/venues/<%= resource.id %>'><%= resource.name %></a>
+			    <div class='cs-iw-cid'>
+			    <span class='category'><%= resource.venue_subcategory.name %></span>
+			    <span class='distance'>0.1 mi away</span>
+			  </div>
+			</div>
+
+			<div class="list-dropdown-wrapper">
+				<div class="cs-obj-dd dd-addtolist" id="list-dropdown" data-venue-id="<%= :venue_id %>">
+					<select class="cs-obj-dd-sel" id="list-select">
+						<% current_user.lists.each do |list| %>
+							<option value="<%= list.id %>"><%= list.name %></option>
+						<% end %>
+					</select>
+					<div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+					<ul class="cs-obj-dd-opts">
+						<li class="cs-obj-dd-opt" id="list-create">
+							<span class="add1"></span>
+							<span class="add2"></span>
+							<span class="add-spinner"></span>
+							<form id="create-new-list-form">
+								<input type="text" placeholder="Create new list">
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<button class="cs-cta-lg" id="cta-addtolist">Add to list</button>
+
+		</div>
+	</div>
+</div>

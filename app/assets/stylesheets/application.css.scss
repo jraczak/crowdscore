@@ -10,10 +10,10 @@
 .full-body-container {
 	height: 100%;
 	min-width: 980px;
-
 }
 
 @import "bourbon";
+@import "custom_dropdown";
 @import "businesses";
 @import "forms";
 @import "home";
@@ -28,3 +28,4 @@
 @import "venues";
 @import "users";
 @import "score_graphs";
+@import "modals";

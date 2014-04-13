@@ -1,0 +1,236 @@
+$cs-c-blue: #02b8ea
+$cs-c-ddgray: #6b6e70
+
+// Custom Dropdown CSS
+.cs-obj-dd
+  border: 1px solid #e6e6e6 
+  cursor: pointer
+  text-align: left
+  background-color: #fff
+  +user-select(none)
+
+  &.open
+
+    .cs-obj-dd-opts
+      display: block
+
+.cs-obj-dd-sel
+  display: none
+
+.cs-obj-dd-val
+
+.cs-obj-dd-opts
+  display: block
+  position: absolute
+  bottom: 0
+
+  list-style: none
+  padding: 0
+  margin: 0
+  
+.cs-obj-dd-opt
+
+.cs-obj-dd-btn
+  height: 100%
+  width: 20px
+  background-color: black
+
+
+// Add-to-list Dropdown
+.dd-addtolist
+
+  &.cs-obj-dd
+    position: absolute
+    overflow: hidden
+    width: 100%
+    bottom: 0
+    border: 1px solid $cs-c-blue
+    border-radius: 2px
+    z-index: 400
+    min-height: 45px
+    height: 45px
+    +transition(height 0.1s)
+
+  .cs-obj-dd-sel
+  
+  .cs-obj-dd-val
+    line-height: 45px
+    padding: 0 15px
+    color: $cs-c-blue
+    position: relative
+    padding-right: 60px
+    z-index: 2
+    background-color: #fff
+    border-bottom: 1px solid $cs-c-blue
+
+    .cs-obj-dd-btn
+      width: 44px
+      height: 46px
+      top: -1px
+      right: 0
+      background-color: $cs-c-blue
+      position: absolute
+      color: #fff
+      text-align: center
+
+  .cs-obj-dd-opts
+    min-height: calc(5*46px)
+    height: calc(5*46px)
+    overflow: auto
+    width: 100%
+    display: block
+    z-index: 1
+    
+  .cs-obj-dd-opt
+    position: relative
+    padding: 0 15px
+    line-height: 45px
+    font-size: 11px
+    font-weight: 900
+    background-color: #f4fcfe
+    color: $cs-c-ddgray
+    border-top: 1px solid $cs-c-blue
+    text-transform: uppercase
+    letter-spacing: 0.7px
+    
+    &:last-child
+      border-bottom: 1px solid $cs-c-blue
+
+.list-dropdown-wrapper
+  position: relative
+  width: 100%
+  display: block
+  margin-top: 65px
+
+#list-create
+
+  input
+    width: 100%
+    height: 46px
+    outline: none
+    border: 0
+    font-size: 11px
+    font-weight: 900
+    background-color: #f4fcfe
+    color: $cs-c-ddgray
+    text-transform: uppercase
+    letter-spacing: 0.7px
+    font-family: Museo
+    padding-left: 25px
+    +transition(padding-left 0.25s)
+    +placeholder
+      color: $cs-c-ddgray
+      +transition(all 0.25s)
+
+
+  .placeholder
+    position: absolute
+    line-height: 47px
+    top: 0
+
+
+  &.focus
+    input 
+      padding-left: 0
+      +placeholder
+        color: #e3e3e3
+    .add1
+      left: -18px
+      +transform(rotate(0deg))
+
+    .add2
+      +transform(scale(1) rotate(0deg))
+
+    .placeholder
+      display: none
+
+  .add1, .add2
+    width: 18px 
+    height: 18px
+    border-radius: 50%
+    background-color: $cs-c-blue
+    display: inline-block
+    position: absolute
+    top: 14px
+    left: 15px
+    +transition(all 0.25s)
+
+    &:before
+      content: ""
+      width: 10px
+      height: 2px
+      position: absolute
+      top: 8px
+      left: 4px
+      background-color: #fff
+
+    &:after
+      content: ""
+      width: 2px
+      height: 10px
+      position: absolute
+      top: 4px
+      left: 8px
+      background-color: #fff
+
+    &.disabled
+      background-color: #e3e3e3
+
+  .add1
+    +transform(rotate(180deg))
+
+  .add2
+    right: 15px
+    left: auto
+    +transform(scale(0) rotate(360deg))
+
+.add-spinner
+  width: 18px 
+  height: 18px
+  border-radius: 50%
+  background-color: $cs-c-blue
+  display: inline-block
+  position: absolute
+  overflow: hidden
+  top: 14px
+  right: 15px
+  +transform(scale(0))
+  +transition(all 0.25s)
+
+  &:before
+    content: ""
+    width: 9px
+    height: 9px
+    position: absolute
+    top: 9px
+    left: 9px
+    background-color: #79e9ff
+    border-radius: 0 0px 500px 0px
+    z-index: 1
+    +animation(turn 1s linear infinite)
+    +transform-origin(0 0)
+
+  &:after
+    content: ""
+    width: 14px
+    height: 14px
+    position: absolute
+    top: 2px
+    left: 2px
+    border-radius: 50%
+    background-color: #fff
+    z-index: 2
+
+  &.visible
+    +transform(scale(1))
+    
+    // +animation-delay(0.25s)
+
++keyframes(turn)
+  from
+    +transform(rotate(0deg))
+
+  to
+    +transform(rotate(360deg))
+
+

@@ -5,11 +5,12 @@ h1 My Lists
     tr
       th Name
       th # of Venues
-
+      th 
     - @lists.each do |list|
       tr
         td= link_to list.name, list
         td= list.venues.count
+        td= link_to "remove", list_path(list), :method => :delete
 - else
   p You don't have any lists yet.
 
