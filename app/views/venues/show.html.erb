@@ -11,6 +11,7 @@ var auto_zoom = false;
   <div class="gray-bar"></div>
 
   <div class="container">
+  
 
   	<!-- Start of left rail -->
   	<div class="left-rail-container">
@@ -20,7 +21,7 @@ var auto_zoom = false;
 		  <div class="overall-score-container">
 			  <div class="header">OVERALL SCORE</div>
 			  <div class="inner-body">
-					<%= render 'shared/pie_graph', type: "venue-score", score: 0, animate: true  %>
+					<%= render 'shared/pie_graph', type: "venue-score", score: resource.score, animate: true  %>
 			  	
 				  <p>
 				  	<% unless resource.venue_scores.empty? %>
@@ -208,42 +209,21 @@ var auto_zoom = false;
 
 				<% if resource.venue_scores.empty? %>
 					<div class='venue-scores'>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[0].name.upcase %></p>
-						</div>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[1].name.upcase %></p>
-						</div>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[2].name.upcase %></p>
-						</div>		
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[3].name.upcase %></p>
-						</div>
+						<% resource.get_score_categories.each do |sc| %>
+						  <div class="venue-score">
+						  	<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
+						  	<p><%= sc.name.upcase %></p>
+						  </div>
+						<% end %>  
 					</div>
 				<% else %>
 					<div class='venue-scores'>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[0].name.upcase %></p>
-						</div>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[1].name.upcase %></p>
-						</div>
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[2].name.upcase %></p>
-						</div>		
-						<div class="venue-score">
-							<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
-							<p><%= resource.venue_subcategory.score_categories[3].name.upcase %></p>
-						</div>
-					</div>
+					  <% resource.get_score_categories.each do |sc| %>
+					    <div class="venue-score">
+					      <%= render 'shared/pie_graph', type: "category-score", score: resource.score_details[sc.id][:value], animate: true %>
+					      <p><%= sc.name.upcase %></p>
+					    </div>
+					  <% end %>
 				<% end %>
 			</div><!-- End Venue right rail header -->
 

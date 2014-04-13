@@ -80,9 +80,21 @@ class Venue < ActiveRecord::Base
     end
   end
   
+  def get_score_categories
+    @score_categories = []
+    if venue_subcategory.score_categories.any?
+      venue_subcategory.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    else
+      venue_category.score_categories.each do |sc|
+        @score_categories << sc
+      end
+    end
+  end
+  
   def score_details
-    categories = get_score_categories(venue)
-    category_ids = categories.map(&:id)
+    categories = get_score_categories
     score_buckets = {}
     calculated_scores = {}
     all_scores = []
@@ -108,7 +120,11 @@ class Venue < ActiveRecord::Base
       averaged_scores = score_buckets[key].reduce(:+) / score_buckets[key].length
       calculated_scores[key][:value] = averaged_scores
     end
+    
+    return calculated_scores
   end
+  
+
   
   def score_breakdown1
     scores = venue_scores.map { |s| s.score1.to_f }
@@ -141,6 +157,7 @@ class Venue < ActiveRecord::Base
   def recompute_score!
     scores = venue_scores.map(&:computed_score)
     self.computed_score = (scores.inject(&:+) / scores.length).ceil
+    save!
   end
   
   # OLD RECOMPUTE METHOD, DEPRECATED WITH NO SCORE STRUCTURES
