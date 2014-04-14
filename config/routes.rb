@@ -11,7 +11,7 @@ Crowdscore::Application.routes.draw do
 
   get "user_locks/create"
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations", }
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations", :passwords => "passwords" }
   
   devise_scope :user do 
     get "users/edit" => "devise/registrations#edit", :as => :edit_user_registration
