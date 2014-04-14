@@ -279,6 +279,10 @@
 	    text-align: left;
 	    padding: 27px 0;
 	    overflow: hidden;
+
+	    &:last-child {
+	    	border-bottom: 0;
+	    }
 	
 		.venue-index-container {
 			width: 27px;
@@ -296,6 +300,7 @@
 		.venue-info{
 			display: inline-block;
 			margin-top: 10px;
+			margin-left: 10px;
 		}
 
 		.venue-name {
@@ -323,7 +328,7 @@
 	}
 }
 
-#list-map-container {
+.list-map-container {
 	width: 100%;
 	height: 600px;
 }
@@ -367,6 +372,7 @@
         white-space: normal;
         padding-right: 20px;
         padding-left: 20px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
         
         h3.list-preview-card-list-name {
             color: #2464ad;

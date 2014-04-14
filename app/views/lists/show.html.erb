@@ -1,3 +1,4 @@
+<script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 <div id="list-header-outter-container">
   <div id="list-header-container">
   
@@ -65,16 +66,13 @@
 
 <!-- BEGIN MAP MODULE -->
 
-<div id="list-map-container">
+<div class="list-map-container" id="search-results-map">
 
 </div>
 
-<!-- END MAP MODULE -->
-<br>
-
 <!-- BEGIN MORE LISTS BY USER MODULE -->
 
-<% unless resource.user.lists.empty? || resource.user.lists.count < 2 %>
+<% unless resource.user.lists.empty? %>
   <div id="more-lists-by-user-outter-container">
     <div id="more-lists-by-user-container">
       
@@ -83,7 +81,7 @@
       <div id="more-lists-by-user-carousel-container">
       
       
-        <% resource.user.lists.by_recent.each do |l| %>
+        <% resource.user.lists.by_recent.take(3).each do |l| %>
         
           <!-- BEGIN LIST CARD CODE -->
           <% unless resource == l %>
@@ -129,6 +127,14 @@
   </div>
 <% end %>  
 <!-- END MORE LISTS BY USER MODULE -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    google.maps.event.addDomListener(window, 'load', function(){
+      map = new Gmap(<%= raw @json %>);
+    });
+  })
+</script>
 
 <% if resource.user == current_user %>
   <%= link_to "&laquo; Back to my Lists".html_safe, lists_path %>

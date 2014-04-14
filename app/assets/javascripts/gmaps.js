@@ -16,6 +16,20 @@ Gmap.prototype.addMapMarkers = function(){
 		this.createMarkerandInfoWindow(i);
 	}
 
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+    zoomChangeBoundsListener = 
+      google.maps.event.addListener(map, 'bounds_changed', function(event) {
+        if (this.getZoom() > 15 && this.initialZoom == true) {
+          // Change max/min zoom here
+          this.setZoom(15);
+          this.initialZoom = false;
+        }
+      google.maps.event.removeListener(zoomChangeBoundsListener);
+    });
+	});
+	
+	map.initialZoom = true;
+
 	map.fitBounds(this.bounds);
 };
 
@@ -94,6 +108,7 @@ Gmap.prototype.initialize = function(){
 
 	var map_options = {
 		zoom: 8,
+		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 
