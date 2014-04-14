@@ -186,7 +186,7 @@ class AddToListModal extends SimpleDomObject
     $.ajax(
       type: "PUT"
       url: "/lists/" + listId + "/add"
-      data: { venue_id: 1 }
+      data: { venue_id: venueId }
     )
       .done( ->
         # TODO: PRESENT TOAST

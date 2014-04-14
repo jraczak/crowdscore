@@ -21,8 +21,8 @@
 			</div>
 
 			<div class="list-dropdown-wrapper">
-				<div class="cs-obj-dd dd-addtolist" id="list-dropdown" data-venue-id="<%= :venue_id %>">
-					<select class="cs-obj-dd-sel" id="list-select">
+				<div class="cs-obj-dd dd-addtolist" id="list-dropdown">
+					<select class="cs-obj-dd-sel" id="list-select" data-venue-id="<%= resource.id %>">
 						<% current_user.lists.each do |list| %>
 							<option value="<%= list.id %>"><%= list.name %></option>
 						<% end %>
