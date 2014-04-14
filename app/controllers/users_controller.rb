@@ -29,7 +29,9 @@ class UsersController < InheritedResources::Base
       current_user.follows << resource
       flash[:notice] = "You are now following #{resource.username}!"
       # Send a notification email to the user saying they were followed.
-      FollowsMailer.new_follower_email(resource, current_user).deliver
+      unless !resource.receive_follower_emails
+        FollowsMailer.new_follower_email(resource, current_user).deliver
+      end
     end
 
     redirect_to "/users/#{resource.username.downcase}"
