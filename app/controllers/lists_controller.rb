@@ -27,7 +27,9 @@ class ListsController < InheritedResources::Base
     venue = Venue.find(params[:venue_id])
     resource.venues << venue
    
-    render nothing: true, status: :ok
+    respond_to do |format|
+      format.json { render json: {notice: "Successfully added #{venue.name} to #{resource.name}", status: :ok} }
+    end
   end
    
   def remove

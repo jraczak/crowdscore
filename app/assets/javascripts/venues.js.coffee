@@ -188,8 +188,8 @@ class AddToListModal extends SimpleDomObject
       url: "/lists/" + listId + "/add"
       data: { venue_id: venueId }
     )
-      .done( ->
-        # TODO: PRESENT TOAST
+      .done( (response) ->
+        $("#flash-container").append("<div class='notice'>" + response.notice + "</div>")
       )
 
     window.location.href = "#"

@@ -62,9 +62,11 @@
       </div>
       
       <!-- BEGIN FLASH MESSAGES SECTION -->
+      <div id="flash-container">  
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, class: name %>
         <% end %>
+      </div>
       <!-- END FLASH MESSAGES SECTION -->
 
       <div class="floater">
