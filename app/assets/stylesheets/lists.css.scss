@@ -27,7 +27,7 @@
 }
 
 #list-header-container {
-	width: 960px;
+	width: 582px;
 	margin: auto;
 	padding-top: 76px;
 	background-color: #f7f7f7;
@@ -46,6 +46,7 @@
         border-radius: 50%;
       }
 	  }
+
 	  #list-creator {
 		  font-family: Museo;
 		  font-weight: 700;
@@ -54,26 +55,32 @@
 		  margin-bottom: 24px;
 		  color: #2d3132;
 	  }
+
 	  .list-hr {
 		  height: 4px;
 		  width: 80px;
 		  margin: auto;
+		  font-weight: 100;
 		  background-color: #2d3132;
 	  }
+
 	  #list-name {
 		  font-family: Museo;
 		  font-weight: 100;
 		  font-size: 58px;
+		  line-height: 1em;
 		  color: #2d3132;
-		  margin-bottom: 20px;
+		  margin-bottom: 0;
 	  }
 	  #list-description {
 		  font-weight: 300;
 		  font-size: 14px;
 		  line-height: 20px;
 		  letter-spacing: .25px;
+		  margin-top: 10px;
+		  margin-bottom: 10px;
 		  color: #6b6e70;
-		  margin-bottom: 20px;
+		  display: inline-block;
 	  }
 	  
 	  #list-dates {
@@ -81,7 +88,6 @@
 	    overflow: hidden;
 	    font-weight: 700;
 	    font-size: 11px;
-	    letter-spacing: 1px;
 	    color: #2d3132;
 	    padding-top: 20px;
 	    padding-bottom: 80px;
@@ -99,31 +105,106 @@
 		    float: right;
 		    text-align: right;
 	    }
-	  
 	  }
 	  
 	  #like-list-button-container {
 		  margin-bottom: 30px;
 	  }
+
+	  .social-container {
+	  	border-radius: 2px;
+	  	box-shadow: 0px 1px 0px #fff;
+	  	margin-top: 15px;
+	  	margin-bottom: 44px;
+	  	display: inline-block;
+
+	  	.action {
+	  		font-size: 11px;
+				font-weight: 900;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				display: inline-block;
+				float: left;
+				text-decoration: none;
+	  	}
+
+	  	.like-button {
+	  		width: 154px;
+	  		line-height: 44px;
+				color: #fff;
+				border-radius: 2px 0 0 2px;
+
+				span {
+					padding-left: 25px;
+	  			background-size: 12px 16px;
+      		background-image: url('list-social-thumbs-up.png');
+      		background-position: left center;
+      		background-repeat: no-repeat;
+      		display: inline-block;
+				}
+
+	  		&.blue {
+	  			background-color: $cs-c-blue;
+	  		}
+
+	  		&.green {
+	  			background-color: #72ca28;
+	  		}
+	  	}
+
+	  	.like-count {
+	  		line-height: 42px;
+	  		border-top: 1px solid #e6e6e6;
+	  		border-bottom: 1px solid #e6e6e6;
+	  		width: 112px;
+	  		background-color: #eee;
+	  		color: #02b8ea;
+	  	}
+
+	  	.share-button {
+	  		width: 136px;
+	  		line-height: 42px;
+	  		border: 1px solid #e6e6e6;
+	  		border-radius: 0px 2px 2px 0px;
+	  		background-color: #eee;
+	  		color: #02b8ea;
+	  		position: relative;
+
+	  		&:before {
+	  			content: "";
+	  			height: 42px;
+	  			width: 1px;
+	  			background-color: #f7f7f7;
+	  			position: absolute;
+	  			left: 0;
+	  			bottom: 0;
+	  		}
+
+	  		span{
+	  			padding-left: 25px;
+	  			background-size: 20px 15px;
+      		background-image: url('list-share-social.png');
+      		background-position: left center;
+      		background-repeat: no-repeat;
+      		display: inline-block;
+	  		}
+	  	}
+	  }
 	  
 	  .blue-like-list-button {
 		  height: 40px;
 		  width: 160px;
-		  border-radius: 3px;
-		  display: inline-block;
-          padding-bottom: 12px;
-          line-height: 40px;
+		  
+      line-height: 40px;
 		  background-color: #02b8ea;
 		  color: #ffffff;
 		  font-weight: 700;
 		  font-size: 12px;
 		  text-decoration: none;
-		  text-transform: uppercase;
-		  letter-spacing: 1px;
 		  
 		  a {
-		      color: #fff;
-		      text-decoration: none;
+	      color: #fff;
+	      text-decoration: none;
 		  }
 		  
 		  a:visited {
@@ -161,7 +242,7 @@
 
 
 #list-venues-container {
-	width: 580px;
+	width: 582px;
 	margin: auto;
 	padding-top: 72px;
 	white-space: nowrap;
@@ -172,52 +253,72 @@
 		font-size: 25px;
 		color: #34373f;
 		text-transform: capitalize;
+		position: relative;
+		margin: 0;
+
+		span{
+			line-height: 30px;
+			background-color: #fff;
+			position: relative;
+			padding: 0px 18px;
+		}
+
+		&:before {
+			content: "";
+			height: 4px;
+			width: 100%;
+			background-color: #dadada;
+			position: absolute;
+			left: 0;
+			top: 13px;
+		}
 	}
+
 	.list-venue-container {
-	    height: 120px;
 	    border-bottom: 1px solid #dadada;
 	    text-align: left;
-	    vertical-align: middle;
-		
+	    padding: 27px 0;
+	    overflow: hidden;
+	
 		.venue-index-container {
 			width: 27px;
-			height: 29px;
+			color: #fff;
+			line-height: 29px;
 			display: inline-block;
 			background-color: #2464ad;
-			margin-right: 13px;
 			text-align: center;
-		}
-		
-		.venue-index {
-			color: #fff;
-			font-weight: 700;
 			font-size: 12px;
-			line-height: 29px;
-			text-align: center;
+			font-weight: 900;
+			vertical-align: top;
+			margin-top: 10px;
 		}
+
+		.venue-info{
+			display: inline-block;
+			margin-top: 10px;
+		}
+
 		.venue-name {
-			font-weight: 500;
+			font-weight: 700;
 			font-size: 14px;
 			color: #000;
 			letter-spacing: 0.5px;
 			text-transform: uppercase;
-			display: inline-block;
-			
-			a {
-			    text-decoration: none;
-			    color: #000;
-			}
-			
-			a:visited {
-				text-decoration: none;
-				color: #000;
-			}
+	    text-decoration: none;
+	    color: #000;
+	    display: block;
 		}
+
 		.venue-categories {
 			font-weight: 100;
 			font-size: 12px;
 			color: #6b6e70;
-			display: inline-block;
+			display: block;
+		}
+
+		.pie-container {
+			float: right;
+			text-align: center;
 		}
 	}
 }
@@ -247,6 +348,7 @@
 	
 	#more-lists-by-user-carousel-container {
 		padding-top: 60px;
+		white-space: nowrap;
 	}
 	
 	.list-preview-card {

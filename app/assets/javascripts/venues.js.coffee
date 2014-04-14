@@ -195,8 +195,10 @@ class AddToListModal extends SimpleDomObject
     window.location.href = "#"
 
 $(document).ready ->
-  new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
-  new AddToListModal('#list-select')
+  if $('#list-dropdown').length > 0
+    new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
+    new AddToListModal('#list-select')
+    
   $('body').on 'click', '#gangster-daddy', ->
   	venueId = $(this).data('venue-id')
   	scoreData = [

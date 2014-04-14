@@ -17,16 +17,22 @@
       </p>
     </div>
     
-    <div id="like-list-button-container">
-      <span id="like-list-button" 
-      class="<% if current_user.liked_lists.include?(resource)%>green-like-list-button<%else%>
-      blue-like-list-button<%end%>">
-        <% if current_user.liked_lists.include?(resource) %>
-          <%= link_to "liked (#{resource.list_likes.count})", remove_vote_list_path %>
-        <% else %>
-          <%= link_to "like this list", upvote_list_path %>
+    <div class="social-container">
+
+      <% if current_user.liked_lists.include?(resource) %>
+        <%= link_to remove_vote_list_path, class: "action like-button green" do %>
+          <span>liked</span>
         <% end %>
-      </span> 
+      <% else %>
+        <%= link_to upvote_list_path, class: "action like-button blue" do %>
+          <span>like this list</span>
+        <% end %>
+      <% end %>
+
+      <div class="action like-count"><%= pluralize(resource.list_likes.count, "like") %></div>
+
+      <div class="action share-button"><span>share</span></div>
+      <!-- "liked (#{resource.list_likes.count})" -->
     </div>
     
     <p id="list-dates">
@@ -37,26 +43,21 @@
   </div>
 </div>
 
-<br>
-
 <div id="list-venues-container">
-  <h3><%= pluralize(resource.venues.count, "place") %></h3>
-  
+  <h3><span><%= pluralize(resource.venues.count, "place") %></span></h3>
   <% unless resource.venues.empty? %>
-      
-      <% resource.venues.each_with_index do |venue, i| %>
-  
-            <div class="list-venue-container">
-              <div class="venue-index-container">
-                <p class="venue-index"><%= i+1 %></p>
-              </div>
-              <p class="venue-name"><%= link_to(venue.name, venue) %></p>
-              <br>
-              <p class="venue-categories"><%= venue.venue_category.name %>  &#903;  <%= venue.venue_subcategory.name %></p>
-              <br>
-              <p><%= venue.score %></p>
-            </div>
-      <% end %>
+    <% resource.venues.each_with_index do |venue, i| %>
+      <div class="list-venue-container">
+          <div class="venue-index-container"><%= i+1 %></div>
+          <div class="venue-info">
+            <%= link_to venue.name, venue, class: "venue-name" %>
+            <p class="venue-categories"><%= venue.venue_category.name %>  &#903;  <%= venue.venue_subcategory.name %></p>
+          </div>
+
+        <%= render 'shared/pie_graph', type: "map", score: venue.graph_score, animate: true  %>
+
+      </div>
+    <% end %>
   <% else %>
     <h4>This list doesn't have any venues yet!</h4>
   <% end %>
@@ -74,60 +75,59 @@
 <!-- BEGIN MORE LISTS BY USER MODULE -->
 
 <% unless resource.user.lists.empty? || resource.user.lists.count < 2 %>
-<div id="more-lists-by-user-outter-container">
-  <div id="more-lists-by-user-container">
-    
-    <h3 id="more-lists-by-user-header">More Lists From <%= resource.user.first_name %></h3>
-    
-    <div id="more-lists-by-user-carousel-container">
-    
-    
-      <% resource.user.lists.by_recent.each do |l| %>
+  <div id="more-lists-by-user-outter-container">
+    <div id="more-lists-by-user-container">
       
-      <!-- BEGIN LIST CARD CODE -->
-      <% unless resource == l %>
+      <h3 id="more-lists-by-user-header">More Lists From <%= resource.user.first_name %></h3>
       
-      <div class="list-preview-card <% if resource.user.lists.count < 2%>no-margin-card<%end%>">
-        <h3 class="list-preview-card-list-name"><%= link_to l.name, l %></h3>
-        <p class="list-preview-card-list-description">
-          <%= l.description %>
-        </p>
+      <div id="more-lists-by-user-carousel-container">
+      
+      
+        <% resource.user.lists.by_recent.each do |l| %>
         
-        <div class="list-preview-card-venue-list">
-          <% if l.venues.empty? %>
-            <p>No venues in this list yet.</p>
-          <% else %>
-            <!-- BEGIN LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->
-            <% preview_card_venues(l).each_with_index do |v, i| %>
-              <div class="list-preview-card-venue">
-                <span class="list-preview-card-venue-number"><%= i+1 %></span>
-                <span class="list-preview-card-venue-name">
-                  <%= link_to truncate(v.name, length: 28, separator: ' ', omission: '...'), v %>
-                </span>
+          <!-- BEGIN LIST CARD CODE -->
+          <% unless resource == l %>
+          
+            <div class="list-preview-card <% if resource.user.lists.count < 2%>no-margin-card<%end%>">
+              <h3 class="list-preview-card-list-name"><%= link_to l.name, l %></h3>
+              <p class="list-preview-card-list-description">
+                <%= l.description %>
+              </p>
+              
+              <div class="list-preview-card-venue-list">
+                <% if l.venues.empty? %>
+                  <p>No venues in this list yet.</p>
+                <% else %>
+                  <!-- BEGIN LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->
+                  <% preview_card_venues(l).each_with_index do |v, i| %>
+                    <div class="list-preview-card-venue">
+                      <span class="list-preview-card-venue-number"><%= i+1 %></span>
+                      <span class="list-preview-card-venue-name">
+                        <%= link_to truncate(v.name, length: 28, separator: ' ', omission: '...'), v %>
+                      </span>
+                    </div>
+                  <% end %>
+                  <!-- END LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->            
+                <% end %>
+
               </div>
-            <% end %>
-            <!-- END LOOP TO DISPLAY PREVIEW VENUES FOR LIST -->            
-
-        </div>
-       
-        <p class="see-all-venues-link"><%= link_to "SEE ALL #{pluralize(l.venues.count, "VENUE")}", l %></p>
-        <div class="list-preview-card-timestamp-likes">
-          <span class="list-preview-card-timestamp"><%= time_ago_in_words(l.updated_at) %> ago</span>
-          <span class="list-preview-card-likes"><%= l.list_likes_count %></span>
-        </div>
-       
-        </div>
-      <% end %>
-      <% end %>
-    <!-- END LIST CARD CODE -->
-      
-            
-
+             
+              <p class="see-all-venues-link"><%= link_to "SEE ALL #{pluralize(l.venues.count, "VENUE")}", l %></p>
+              <div class="list-preview-card-timestamp-likes">
+                <span class="list-preview-card-timestamp"><%= time_ago_in_words(l.updated_at) %> ago</span>
+                <span class="list-preview-card-likes"><%= l.list_likes_count %></span>
+              </div>
+             
+            </div>
+          <% end %>
+        <% end %>
+        <!-- END LIST CARD CODE -->
+        
+              
+      </div>
     </div>
-      <% end %>  
   </div>
-</div>
-<% end %>
+<% end %>  
 <!-- END MORE LISTS BY USER MODULE -->
 
 <% if resource.user == current_user %>
