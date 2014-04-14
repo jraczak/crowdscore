@@ -25,7 +25,9 @@ class ListsController < InheritedResources::Base
    
   def add
     venue = Venue.find(params[:venue_id])
-    resource.venues << venue
+    unless resource.venues.include?(venue)
+      resource.venues << venue
+    end
    
     respond_to do |format|
       format.json { render json: {notice: "Successfully added #{venue.name} to #{resource.name}", status: :ok} }
