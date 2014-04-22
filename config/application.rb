@@ -41,7 +41,7 @@ module Crowdscore
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     
     # Precompile additional assets
-    config.assets.precompile += %w( .svg .eot .woff .ttf *.js *.css )
+    config.assets.precompile += %w( .svg .eot .woff .ttf *.js *.css *.scss )
     
     # Prevent initializing on precompile as found in Heroku Dev Center instructions
     # after a failure to execute assets:precompile during staging push.
