@@ -1,1 +1,0 @@
-(function(){this.JST||(this.JST={}),this.JST["templates/modal_signup_note"]=function(obj){var __p=[];with(obj||{})__p.push('<p>\n  Please <a href="/users/sign_in?return_to=',location,'">sign in</a> or \n  <a href="/users/sign_up?return_to=',location,'">create an account</a> to use lists.\n</p>\n');return __p.join("")}}).call(this);

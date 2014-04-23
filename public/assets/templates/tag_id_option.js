@@ -1,1 +1,0 @@
-(function(){this.JST||(this.JST={}),this.JST["templates/tag_id_option"]=function(obj){var __p=[];with(obj||{})__p.push(""),_.each(tags,function(t){__p.push('\n  <option value="',t.id,'">',t.get("name"),"</option>\n")}),__p.push("\n");return __p.join("")}}).call(this);
