@@ -1,16 +1,11 @@
-
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
-*/
 @import "bourbon";
+
 .full-body-container {
 	height: 100%;
 	min-width: 980px;
 }
 
-
+/*
 @import "custom_dropdown";
 @import "businesses";
 @import "forms";
@@ -28,3 +23,4 @@
 @import "score_graphs";
 @import "modals";
 @import "font-awesome"
+*/
