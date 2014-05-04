@@ -23,7 +23,11 @@ class ApplicationController < ActionController::Base
     if session[:previous_url] == root_path
       dashboard_path
     else
-      session[:previous_url] #|| root_path
+      if params[:user][:page_action]
+      	"#{session[:previous_url]}?page_action=#{params[:user][:page_action]}"
+      else
+	    session[:previous_url] #|| root_path
+      end
     end
   end
   

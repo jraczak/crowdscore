@@ -62,16 +62,18 @@
       </div>
       
       <!-- BEGIN FLASH MESSAGES SECTION -->
+      <div id="flash-container">  
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, class: name %>
         <% end %>
+      </div>
       <!-- END FLASH MESSAGES SECTION -->
 
       <div class="floater">
         <ul>
           <% if user_signed_in? %>
             <li>
-              <%= link_to "Account", "#", class: "menu" %>
+              <%= link_to "Account", dashboard_path, class: "menu" %>
               <ul>
                 <li>
                   <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
@@ -169,17 +171,18 @@
           <% end %><br>
           <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
             <div class="registration-modal-form-field">
-              <%= f.label :email, "email address", class: "" %>
-              <%= f.text_field :email, class: "" %>
+              <%= f.label :email, "email or username", class: "" %>
+              <%= f.text_field :email, class: "", tabindex: "1" %>
+              <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
             </div>
             <div class="registration-modal-form-field password">
               <%= f.label :password, class: "" %>
-              <%= f.password_field :password, placeholder: "Password" %>
+              <%= f.password_field :password, tabindex: "2" %>
+              <%= f.hidden_field :page_action, value: "" %>
+              <p id="forgot-password-link"> Forgot your password? <%= link_to "Request a reset", new_user_password_path %></p>
             </div>
-            <%= f.submit "Sign in", class: "registration-modal-submit-button" %>
+            <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: "3" %>
           <% end %>
-
-          <p> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
         </div>
       </div>
     </div>

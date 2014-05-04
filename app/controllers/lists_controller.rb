@@ -25,9 +25,13 @@ class ListsController < InheritedResources::Base
    
   def add
     venue = Venue.find(params[:venue_id])
-    resource.venues << venue
+    unless resource.venues.include?(venue)
+      resource.venues << venue
+    end
    
-    render nothing: true, status: :ok
+    respond_to do |format|
+      format.json { render json: {notice: "Successfully added #{venue.name} to #{resource.name}", status: :ok} }
+    end
   end
    
   def remove
@@ -40,7 +44,7 @@ class ListsController < InheritedResources::Base
   def upvote
     unless current_user.liked_lists.include?(resource)
     current_user.liked_lists << resource
-    current_user.save!
+    #current_user.save!
     end
     
     respond_to do |format|
@@ -51,7 +55,7 @@ class ListsController < InheritedResources::Base
    
   def remove_vote
     current_user.liked_lists.delete(resource)
-    current_user.save!
+    #current_user.save!
     List.decrement_counter(:list_likes_count, resource.id)
     
     respond_to do |format|

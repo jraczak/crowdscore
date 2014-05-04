@@ -1,1 +1,0 @@
-(function(){this.JST||(this.JST={}),this.JST["templates/list_modal_instructions"]=function(obj){var __p=[];with(obj||{})__p.push('<p>Add this venue to an existing list or create a new one.</p>\n<fieldset id="pickers"></fieldset>\n');return __p.join("")}}).call(this);
