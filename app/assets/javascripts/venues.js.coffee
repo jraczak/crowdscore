@@ -189,7 +189,7 @@ class AddToListModal extends SimpleDomObject
     
     listId = $(@ddSelector).get(0).value
     venueId = $(@ddSelector).data('venue-id')
-
+    
     $.ajax(
       type: "PUT"
       url: "/lists/" + listId + "/add"
@@ -197,6 +197,7 @@ class AddToListModal extends SimpleDomObject
     )
       .done( (response) ->
         $("#flash-container").append("<div class='notice'>" + response.notice + "</div>")
+        $('.md-close').click()
       )
 
     window.location.href = "#"
