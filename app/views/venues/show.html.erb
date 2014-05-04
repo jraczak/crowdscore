@@ -130,11 +130,19 @@ var auto_zoom = false;
 							</a>
 						</span>	
 						<span class="add-venue-to-list">
-							<a href="#add_to_list">
-								<p>
-									<%= image_tag('add_to_list.png') %>ADD TO LIST
-								</p>
-							</a>
+						  <% if user_signed_in? %>  
+							  <a data-open-modal="add_to_list" href="#">
+							  	<p>
+							  	  <%= image_tag('add_to_list.png') %>ADD TO LIST
+							  	</p>
+							  </a>
+						  <% else %>
+							  <a data-target-action="add_to_list" href="#" class=fn-open-modal data-target-modal=login-modal>
+							  	<p>
+							  	  <%= image_tag('add_to_list.png') %>ADD TO LIST
+							  	</p>
+							  </a>						  
+						  <% end %>
 						</span>
 					</div>
 				</div> <!-- End grey bar section -->
@@ -318,8 +326,11 @@ var auto_zoom = false;
     </div>
   </div>
 
+
 <%= render "submit_score" %>
-<%= render "lists/add_venue", :venue_id => resource.id %>
+<% if user_signed_in? %>  
+  <%= render "lists/add_venue", :venue_id => resource.id %>
+<% end %>
 
 <script>
 

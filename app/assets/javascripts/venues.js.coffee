@@ -1,3 +1,10 @@
+getParameterByName = (name) ->
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")
+  regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+  results = regex.exec(location.search)
+  (if not results? then "" else decodeURIComponent(results[1].replace(/\+/g, " ")))
+  
+
 # SimpleDomObject is used for organizing event handlers
 class SimpleDomObject
   
@@ -195,6 +202,28 @@ class AddToListModal extends SimpleDomObject
     window.location.href = "#"
 
 $(document).ready ->
+  
+  page_action = getParameterByName('page_action')
+  if page_action
+  	switch page_action
+      when "submit-score-modal"
+      	$("#submit-score-modal").addClass('visible')
+      when "add_to_list"
+      	$('#add_to_list').addClass('md-open')
+      
+  $("[data-open-modal]").click ->
+  	$("#" + $(this).data('open-modal')).addClass('md-open')
+  	
+  $("body").on "click", ".fn-open-modal", (e) ->
+    target = $(e.currentTarget).data('target-modal')
+    pageAction = $(e.currentTarget).data('target-action')
+    
+    $("#" + target).addClass('visible')
+    $("#user_page_action").get(0).value = pageAction
+
+  $(".md-close").click ->
+    $("#" + $(this).data('target-modal')).removeClass('md-open')
+
   new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
   new AddToListModal('#list-select')
   $('body').on 'click', '#gangster-daddy', ->
