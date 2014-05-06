@@ -80,7 +80,7 @@ end
 
 #add gems for sauce labs testing
 group :test, :development do
-  gem "capybara", '~> 2.2.1', git: "https://github.com/jnicklas/capybara.git"
+  gem "capybara", git: "https://github.com/jnicklas/capybara.git"
   gem 'sauce', '~> 3.1.1'
   gem 'sauce-connect'
   gem 'parallel_tests'
