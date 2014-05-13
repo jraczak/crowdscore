@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20140217223502) do
+ActiveRecord::Schema.define(:version => 20140513023110) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -240,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
     t.string   "home_city"
     t.boolean  "receive_follower_emails",               :default => true
     t.boolean  "receive_product_emails",                :default => true
+    t.text     "liked_venue_categories"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
