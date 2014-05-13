@@ -49,9 +49,9 @@
         <div class="searchbar-inner">
           <a class="brand" href="#"></a>
           <%= form_tag search_venues_path, method: :get, id: 'search' do |f| %>
-            <%= text_field_tag :q2, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
+            <%= text_field_tag :q, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
             <div class='search-input-fade'></div>
-            <%= text_field_tag :zip, '', placeholder: "city & state or zip", class: 'location-input'%>
+            <%= text_field_tag :zip2, '', placeholder: "city & state or zip", class: 'location-input'%>
             <%= submit_tag "Find it!", style: 'display: none' %>
             <%= hidden_field_tag :latitude, '' %>
             <%= hidden_field_tag :longitude, '' %>

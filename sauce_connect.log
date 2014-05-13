@@ -155,3 +155,517 @@
 2014-05-05 18:07:41,638 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (189ms)
 2014-05-05 18:09:30,329 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
 2014-05-05 18:12:44,874 - sauce_connect:0 - INFO - received SIGINT
+2014-05-05 18:36:17,407 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 18:36:17,413 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 18:36:17,417 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 18:36:17,421 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['53861'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 18:36:17,424 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['53861'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 18:36:17,424 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['53861']
+2014-05-05 18:36:17,444 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:53861 in 13ms
+2014-05-05 18:36:17,888 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["53861"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 18:36:21,957 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (f9175d49c27d48348f55a32956b88aea)
+2014-05-05 18:36:22,134 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 18:36:51,242 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki77054.miso.saucelabs.com
+2014-05-05 18:36:51,263 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:53861 in 0ms
+2014-05-05 18:36:51,275 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 18:36:51,278 - sauce_connect:642 - INFO - Connecting to tunnel host maki77054.miso.saucelabs.com as jraczak
+2014-05-05 18:36:51,457 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 53881
+2014-05-05 18:36:51,467 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 18:36:51,575 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 18:36:51,585 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: 8355f0d428044d4cacb28ff024425194
+2014-05-05 18:36:51,589 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 18:37:02,815 - sauce_connect:0 - INFO - GET http://ctldl.windowsupdate.com/msdownload/update/v3/static/trustedr/en/disallowedcertstl.cab?178f863a6bf9e16c -> 304 (437ms)
+2014-05-05 18:37:03,479 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (571ms)
+2014-05-05 18:37:03,697 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (196ms)
+2014-05-05 18:37:03,723 - sauce_connect:0 - INFO - GET http://crl.omniroot.com/PublicSureCodeSign.crl -> 200 (852ms)
+2014-05-05 18:37:04,023 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (261ms)
+2014-05-05 18:37:04,051 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (275ms)
+2014-05-05 18:37:04,084 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (576ms)
+2014-05-05 18:37:04,145 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (375ms)
+2014-05-05 18:37:04,151 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (378ms)
+2014-05-05 18:37:04,200 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (427ms)
+2014-05-05 18:37:04,444 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (93ms)
+2014-05-05 18:37:04,513 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (170ms)
+2014-05-05 18:37:04,519 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (175ms)
+2014-05-05 18:37:04,526 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (174ms)
+2014-05-05 18:37:04,681 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (80ms)
+2014-05-05 18:37:04,707 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (446ms)
+2014-05-05 18:37:05,674 - sauce_connect:0 - INFO - GET https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Fcrowdscore-staging.herokuapp.com -> 200 (777ms)
+2014-05-05 18:37:05,842 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (82ms)
+2014-05-05 18:37:05,944 - sauce_connect:0 - INFO - GET https://oauth.googleusercontent.com/gadgets/js/core:rpc:shindig.random:shindig.sha1.js?c=2 -> 200 (188ms)
+2014-05-05 18:37:06,138 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (103ms)
+2014-05-05 18:37:06,486 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (448ms)
+2014-05-05 18:37:06,690 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399340223879&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (626ms)
+2014-05-05 18:37:07,052 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=99&ap=281&be=655&fe=2457&dc=720&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399340220759,%22n%22:0,%22dl%22:602,%22di%22:635,%22ds%22:1373,%22de%22:1446,%22dc%22:3102,%22l%22:3112,%22le%22:3124,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:9,%22rp%22:602,%22rpe%22:607%7D,%22navigation%22:%7B%7D%7D -> 200 (533ms)
+2014-05-05 18:37:11,990 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (181ms)
+2014-05-05 18:39:44,161 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
+2014-05-05 18:42:11,355 - sauce_connect:0 - INFO - received SIGINT
+2014-05-05 18:46:37,901 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 18:46:37,908 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 18:46:37,920 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 18:46:37,923 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['54396'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 18:46:37,927 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['54396'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 18:46:37,928 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['54396']
+2014-05-05 18:46:37,950 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54396 in 6ms
+2014-05-05 18:46:38,461 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["54396"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 18:46:42,779 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (27b0b3f6ee2b4cfaa5c830775b0b02d0)
+2014-05-05 18:46:42,959 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 18:47:14,976 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki76049.miso.saucelabs.com
+2014-05-05 18:47:14,997 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54396 in 3ms
+2014-05-05 18:47:15,006 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 18:47:15,009 - sauce_connect:642 - INFO - Connecting to tunnel host maki76049.miso.saucelabs.com as jraczak
+2014-05-05 18:47:15,276 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 54453
+2014-05-05 18:47:15,282 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 18:47:15,454 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 18:47:15,466 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: 3641059de7f04516bb1d5317ec17bedc
+2014-05-05 18:47:15,473 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 18:48:38,224 - sauce_connect:0 - INFO - received SIGINT
+2014-05-05 18:49:34,323 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 18:49:34,331 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 18:49:34,338 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 18:49:34,342 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['54578'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 18:49:34,345 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['54578'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 18:49:34,348 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['54578']
+2014-05-05 18:49:34,368 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54578 in 6ms
+2014-05-05 18:49:34,825 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["54578"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 18:49:38,742 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (44c9c8c709eb4780b23da0a4340908c0)
+2014-05-05 18:49:38,921 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 18:50:23,457 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki77140.miso.saucelabs.com
+2014-05-05 18:50:23,473 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54578 in 0ms
+2014-05-05 18:50:23,476 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 18:50:23,479 - sauce_connect:642 - INFO - Connecting to tunnel host maki77140.miso.saucelabs.com as jraczak
+2014-05-05 18:50:23,615 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 54631
+2014-05-05 18:50:23,624 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 18:50:23,737 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 18:50:23,743 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: 02cb755173f54dd99cff2ba30ff5d70e
+2014-05-05 18:50:23,746 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 18:51:14,765 - sauce_connect:0 - INFO - received SIGINT
+2014-05-05 18:52:39,641 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 18:52:39,648 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 18:52:39,665 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 18:52:39,671 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['54752'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 18:52:39,673 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['54752'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 18:52:39,674 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['54752']
+2014-05-05 18:52:39,703 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54752 in 8ms
+2014-05-05 18:52:40,105 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["54752"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 18:52:44,183 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (79b79c93fb644d04bde4efe098df5c92)
+2014-05-05 18:52:44,361 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 18:53:12,177 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki76049.miso.saucelabs.com
+2014-05-05 18:53:12,193 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:54752 in 0ms
+2014-05-05 18:53:12,204 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 18:53:12,207 - sauce_connect:642 - INFO - Connecting to tunnel host maki76049.miso.saucelabs.com as jraczak
+2014-05-05 18:53:12,390 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 54773
+2014-05-05 18:53:12,408 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 18:53:12,476 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 18:53:12,480 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: bc00f6af1e234f2c9d4d2a5080750627
+2014-05-05 18:53:12,484 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 18:53:24,180 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (352ms)
+2014-05-05 18:53:24,480 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (208ms)
+2014-05-05 18:53:24,844 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (289ms)
+2014-05-05 18:53:25,009 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (730ms)
+2014-05-05 18:53:25,016 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (452ms)
+2014-05-05 18:53:25,035 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (471ms)
+2014-05-05 18:53:25,040 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (476ms)
+2014-05-05 18:53:25,079 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (514ms)
+2014-05-05 18:53:25,436 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (101ms)
+2014-05-05 18:53:25,490 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (147ms)
+2014-05-05 18:53:25,492 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (157ms)
+2014-05-05 18:53:25,520 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (177ms)
+2014-05-05 18:53:25,651 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (89ms)
+2014-05-05 18:53:25,703 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (485ms)
+2014-05-05 18:53:25,938 - sauce_connect:0 - INFO - GET https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Fcrowdscore-staging.herokuapp.com -> 200 (145ms)
+2014-05-05 18:53:26,085 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (99ms)
+2014-05-05 18:53:26,180 - sauce_connect:0 - INFO - GET https://oauth.googleusercontent.com/gadgets/js/core:rpc:shindig.random:shindig.sha1.js?c=2 -> 200 (200ms)
+2014-05-05 18:53:26,295 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (48ms)
+2014-05-05 18:53:26,361 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (118ms)
+2014-05-05 18:53:26,438 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=67&be=530&fe=1919&dc=922&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341201437,%22n%22:0,%22dl%22:415,%22di%22:512,%22ds%22:1451,%22de%22:1539,%22dc%22:2437,%22l%22:2449,%22le%22:2464,%22f%22:1,%22dn%22:1,%22dne%22:1,%22c%22:1,%22ce%22:1,%22rq%22:18,%22rp%22:415,%22rpe%22:476%7D,%22navigation%22:%7B%7D%7D -> 200 (122ms)
+2014-05-05 18:53:26,844 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (122ms)
+2014-05-05 18:53:26,917 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341203895&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (620ms)
+2014-05-05 18:53:31,265 - sauce_connect:0 - INFO - POST http://crowdscore-staging.herokuapp.com/users/sign_in -> 200 (161ms)
+2014-05-05 18:53:31,529 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/facebook_sign_in-353b70a46a4eb87d6521832d6ea362e9.png -> 200 (243ms)
+2014-05-05 18:53:31,615 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (328ms)
+2014-05-05 18:53:31,867 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (202ms)
+2014-05-05 18:53:31,875 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (203ms)
+2014-05-05 18:53:32,062 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (380ms)
+2014-05-05 18:53:32,187 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (900ms)
+2014-05-05 18:53:32,213 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (531ms)
+2014-05-05 18:53:32,634 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/1XxlArmg6pEqOe3G/track.js?_=1399341210123&s=1&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vdXNlcnMvc2lnbl9pbiIsInIiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIn19 -> 200 (152ms)
+2014-05-05 18:53:32,658 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (143ms)
+2014-05-05 18:53:32,700 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (183ms)
+2014-05-05 18:53:32,747 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (1071ms)
+2014-05-05 18:53:32,782 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (266ms)
+2014-05-05 18:53:32,993 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (169ms)
+2014-05-05 18:55:03,713 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (548ms)
+2014-05-05 18:55:04,016 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (265ms)
+2014-05-05 18:55:04,315 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (560ms)
+2014-05-05 18:55:04,755 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (167ms)
+2014-05-05 18:55:04,757 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (169ms)
+2014-05-05 18:55:04,763 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (156ms)
+2014-05-05 18:55:04,769 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (171ms)
+2014-05-05 18:55:04,819 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (244ms)
+2014-05-05 18:55:04,835 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (250ms)
+2014-05-05 18:55:04,862 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (254ms)
+2014-05-05 18:55:04,944 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (87ms)
+2014-05-05 18:55:05,042 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (474ms)
+2014-05-05 18:55:05,190 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (416ms)
+2014-05-05 18:55:05,253 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (63ms)
+2014-05-05 18:55:05,451 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341304132&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (151ms)
+2014-05-05 18:55:05,737 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (455ms)
+2014-05-05 18:55:05,869 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (95ms)
+2014-05-05 18:55:05,898 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=11&be=738&fe=1533&dc=826&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341301847,%22n%22:0,%22dl%22:728,%22di%22:1563,%22ds%22:1564,%22de%22:1668,%22dc%22:2270,%22l%22:2270,%22le%22:2289,%22f%22:97,%22dn%22:97,%22dne%22:97,%22c%22:119,%22ce%22:127,%22rq%22:127,%22rp%22:724,%22rpe%22:726%7D,%22navigation%22:%7B%7D%7D -> 200 (122ms)
+2014-05-05 18:55:08,351 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/venues/search?utf8=%E2%9C%93&q=pillows&zip=94404&commit=Find+it&latitude=&longitude= -> 200 (574ms)
+2014-05-05 18:55:08,615 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (219ms)
+2014-05-05 18:55:08,907 - sauce_connect:0 - INFO - GET http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true -> 200 (509ms)
+2014-05-05 18:55:08,915 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (519ms)
+2014-05-05 18:55:09,171 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (132ms)
+2014-05-05 18:55:09,178 - sauce_connect:0 - INFO - GET http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/15/18/%7Bmain,geometry%7D.js -> 200 (142ms)
+2014-05-05 18:55:09,201 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (171ms)
+2014-05-05 18:55:09,207 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (169ms)
+2014-05-05 18:55:09,214 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (172ms)
+2014-05-05 18:55:09,375 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (339ms)
+2014-05-05 18:55:09,571 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (316ms)
+2014-05-05 18:55:09,585 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (326ms)
+2014-05-05 18:55:09,588 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (329ms)
+2014-05-05 18:55:09,655 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/fontawesome-webfont-7daae4e8c41bd3f07010a510f51c2097.woff -> 200 (395ms)
+2014-05-05 18:55:09,779 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=479&be=616&fe=1295&dc=860&v=400.de4accb&to=dVlfFRAJDVhRRUsQAFhDVBJNFQRVRlQM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341306615,%22n%22:0,%22u%22:601,%22ue%22:602,%22dl%22:611,%22di%22:1476,%22ds%22:1476,%22de%22:1546,%22dc%22:1911,%22l%22:1911,%22le%22:1917,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:1,%22rp%22:596,%22rpe%22:597%7D,%22navigation%22:%7B%7D%7D -> 200 (61ms)
+2014-05-05 18:55:09,846 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/1XxmH5P7KKP5QVZd/track.js?_=1399341308528&s=1&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vdmVudWVzL3NlYXJjaD91dGY4PSVFMiU5QyU5MyZxPXBpbGxvd3MmemlwPTk0NDA0JmNvbW1pdD1GaW5kK2l0JmxhdGl0dWRlPSZsb25naXR1ZGU9IiwiciI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8ifX0%3D -> 200 (151ms)
+2014-05-05 18:55:09,946 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (85ms)
+2014-05-05 18:55:34,082 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (184ms)
+2014-05-05 18:55:34,437 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (263ms)
+2014-05-05 18:55:35,209 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (1030ms)
+2014-05-05 18:55:35,546 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (89ms)
+2014-05-05 18:55:35,608 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (161ms)
+2014-05-05 18:55:35,631 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (172ms)
+2014-05-05 18:55:35,632 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (177ms)
+2014-05-05 18:55:35,681 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (258ms)
+2014-05-05 18:55:35,782 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (324ms)
+2014-05-05 18:55:35,789 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (331ms)
+2014-05-05 18:55:35,848 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (327ms)
+2014-05-05 18:55:36,075 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (627ms)
+2014-05-05 18:55:37,262 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (94ms)
+2014-05-05 18:55:37,365 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (89ms)
+2014-05-05 18:55:37,430 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=12&be=314&fe=2986&dc=1297&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341331847,%22n%22:0,%22dl%22:279,%22di%22:1537,%22ds%22:1609,%22de%22:1617,%22dc%22:3298,%22l%22:3298,%22le%22:3303,%22f%22:21,%22dn%22:75,%22dne%22:76,%22c%22:76,%22ce%22:77,%22rq%22:77,%22rp%22:277,%22rpe%22:278%7D,%22navigation%22:%7B%7D%7D -> 200 (261ms)
+2014-05-05 18:55:37,734 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341335150&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (565ms)
+2014-05-05 18:55:40,394 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/venues/search?utf8=%E2%9C%93&q=pillows&zip=94404&commit=Find+it&latitude=&longitude= -> 200 (493ms)
+2014-05-05 18:55:40,756 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (301ms)
+2014-05-05 18:55:41,104 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (650ms)
+2014-05-05 18:55:41,224 - sauce_connect:0 - INFO - GET http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true -> 200 (107ms)
+2014-05-05 18:55:41,335 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (87ms)
+2014-05-05 18:55:41,338 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (89ms)
+2014-05-05 18:55:41,338 - sauce_connect:0 - INFO - GET http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/15/18/%7Bmain,geometry%7D.js -> 200 (86ms)
+2014-05-05 18:55:41,417 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (166ms)
+2014-05-05 18:55:41,677 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (243ms)
+2014-05-05 18:55:41,766 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/fontawesome-webfont-7daae4e8c41bd3f07010a510f51c2097.woff -> 200 (333ms)
+2014-05-05 18:55:41,948 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=1&ap=397&be=567&fe=1380&dc=940&v=400.de4accb&to=dVlfFRAJDVhRRUsQAFhDVBJNFQRVRlQM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341337910,%22n%22:0,%22u%22:533,%22ue%22:535,%22dl%22:533,%22di%22:1503,%22ds%22:1506,%22de%22:1536,%22dc%22:1946,%22l%22:1946,%22le%22:1953,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:16,%22rp%22:526,%22rpe%22:526%7D,%22navigation%22:%7B%7D%7D -> 200 (60ms)
+2014-05-05 18:55:42,020 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/1XxmdRDwCUKzRkJZ/track.js?_=1399341339860&s=1&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vdmVudWVzL3NlYXJjaD91dGY4PSVFMiU5QyU5MyZxPXBpbGxvd3MmemlwPTk0NDA0JmNvbW1pdD1GaW5kK2l0JmxhdGl0dWRlPSZsb25naXR1ZGU9IiwiciI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8ifX0%3D -> 200 (156ms)
+2014-05-05 18:55:46,499 - sauce_connect:0 - INFO - GET http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/15/18/%7Bcommon,util,stats%7D.js -> 200 (120ms)
+2014-05-05 18:55:46,668 - sauce_connect:0 - INFO - GET http://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?1shttp%3A%2F%2Fcrowdscore-staging.herokuapp.com%2Fvenues%2Fsearch%3Futf8%3D%25E2%259C%2593%26q%3Dpillows%26zip%3D94404%26commit%3DFind%2Bit%26latitude%3D%26longitude%3D&5e1&callback=_xdc_._5h10xp&token=34465 -> 200 (124ms)
+2014-05-05 18:55:56,868 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (631ms)
+2014-05-05 18:55:57,467 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (471ms)
+2014-05-05 18:55:58,039 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (425ms)
+2014-05-05 18:55:58,266 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (1265ms)
+2014-05-05 18:55:58,357 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (743ms)
+2014-05-05 18:55:58,506 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (53ms)
+2014-05-05 18:55:58,509 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (891ms)
+2014-05-05 18:55:58,572 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (959ms)
+2014-05-05 18:55:58,605 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (87ms)
+2014-05-05 18:55:58,618 - sauce_connect:0 - INFO - GET http://ctldl.windowsupdate.com/msdownload/update/v3/static/trustedr/en/disallowedcertstl.cab?a9fd63da24a79629 -> 304 (78ms)
+2014-05-05 18:55:58,680 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (162ms)
+2014-05-05 18:55:58,762 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (239ms)
+2014-05-05 18:55:58,769 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (1157ms)
+2014-05-05 18:55:58,813 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (150ms)
+2014-05-05 18:55:59,319 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=17&be=846&fe=2020&dc=1404&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341355063,%22n%22:0,%22dl%22:789,%22di%22:2249,%22ds%22:2249,%22de%22:2314,%22dc%22:2862,%22l%22:2866,%22le%22:2878,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:788,%22rp%22:789,%22rpe%22:792%7D,%22navigation%22:%7B%7D%7D -> 200 (119ms)
+2014-05-05 18:55:59,332 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (132ms)
+2014-05-05 18:55:59,354 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341357934&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (154ms)
+2014-05-05 18:56:00,180 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
+2014-05-05 18:56:02,355 - sauce_connect:0 - INFO - GET http://crl.omniroot.com/PublicSureCodeSign.crl -> 200 (70ms)
+2014-05-05 18:56:04,813 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/venues/search?utf8=%E2%9C%93&q=pillows&zip=94404&commit=Find+it&latitude=&longitude= -> 200 (709ms)
+2014-05-05 18:56:04,897 - sauce_connect:0 - INFO - GET http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true -> 200 (59ms)
+2014-05-05 18:56:05,194 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (361ms)
+2014-05-05 18:56:05,592 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (341ms)
+2014-05-05 18:56:05,714 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (456ms)
+2014-05-05 18:56:05,729 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (477ms)
+2014-05-05 18:56:05,744 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (486ms)
+2014-05-05 18:56:05,811 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (558ms)
+2014-05-05 18:56:06,051 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (1218ms)
+2014-05-05 18:56:06,328 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (103ms)
+2014-05-05 18:56:06,410 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (187ms)
+2014-05-05 18:56:06,459 - sauce_connect:0 - INFO - GET http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/15/18/%7Bmain,geometry%7D.js -> 200 (89ms)
+2014-05-05 18:56:06,466 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (245ms)
+2014-05-05 18:56:06,759 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/1XxmsPGeWOLLKmYp/track.js?_=1399341365472&s=1&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vdmVudWVzL3NlYXJjaD91dGY4PSVFMiU5QyU5MyZxPXBpbGxvd3MmemlwPTk0NDA0JmNvbW1pdD1GaW5kK2l0JmxhdGl0dWRlPSZsb25naXR1ZGU9IiwiciI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8ifX0%3D -> 200 (144ms)
+2014-05-05 18:56:06,769 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (130ms)
+2014-05-05 18:56:06,782 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=521&be=814&fe=1736&dc=1632&v=400.de4accb&to=dVlfFRAJDVhRRUsQAFhDVBJNFQRVRlQM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341362963,%22n%22:0,%22u%22:731,%22ue%22:731,%22dl%22:727,%22di%22:2446,%22ds%22:2446,%22de%22:2515,%22dc%22:2538,%22l%22:2550,%22le%22:2551,%22f%22:2,%22dn%22:2,%22dne%22:2,%22c%22:2,%22ce%22:2,%22rq%22:726,%22rp%22:727,%22rpe%22:729%7D,%22navigation%22:%7B%7D%7D -> 200 (121ms)
+2014-05-05 18:56:06,953 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/fontawesome-webfont-639f71a9d5d884a6764a6dcad83fe0d8.eot? -> 200 (400ms)
+2014-05-05 18:56:10,230 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (459ms)
+2014-05-05 18:58:20,533 - sauce_connect:0 - INFO - GET https://sls.update.microsoft.com/SLS/%7B9482F4B4-E343-43B6-B170-9A65BC822C77%7D/x64/6.3.9600.0/0?CH=41&L=en-US&P=&PT=0x8&WUA=7.9.9600.16403 -> 200 (472ms)
+2014-05-05 18:58:21,892 - sauce_connect:0 - INFO - GET https://sls.update.microsoft.com/SLS/%7B9482F4B4-E343-43B6-B170-9A65BC822C77%7D/x64/6.3.9600.0/0?CH=41&L=en-US&P=&PT=0x8&WUA=7.9.9600.16403 -> 200 (353ms)
+2014-05-05 18:58:42,061 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
+2014-05-05 19:00:47,059 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 19:00:47,065 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 19:00:47,072 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 19:00:47,073 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['55565'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 19:00:47,075 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['55565'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 19:00:47,078 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['55565']
+2014-05-05 19:00:47,094 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:55565 in 9ms
+2014-05-05 19:00:47,572 - sauce_connect:198 - INFO - Shutting down other tunnel remote VMs using requested domains
+2014-05-05 19:00:47,575 - sauce_connect:202 - DEBUG - Shutting down old tunnel remote VM: 79b79c93fb644d04bde4efe098df5c92
+2014-05-05 19:00:49,453 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["55565"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 19:00:49,573 - sauce_connect:0 - INFO - Sauce Connect connection stalled! 425/426 acks, 2094ms since last recv, 2009ms timeout exceeded, min ack: 4
+2014-05-05 19:00:49,578 - sauce_connect:0 - INFO - disconnected from Sauce Connect server
+2014-05-05 19:00:49,578 - sauce_connect:0 - INFO - connection to Sauce Connect server closed
+2014-05-05 19:00:53,581 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (545186ee029840878296113dd57d8e5f)
+2014-05-05 19:00:53,763 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 19:00:57,464 - sauce_connect:642 - INFO - status check found tunnel in terminated
+2014-05-05 19:00:57,466 - sauce_connect:642 - INFO - Remote tunnel VM no longer running, shutting down
+2014-05-05 19:00:57,470 - sauce_connect:0 - INFO - asked to close connection to Sauce Connect server
+2014-05-05 19:00:57,576 - sauce_connect:648 - INFO - Finished running tunnel
+2014-05-05 19:00:57,578 - sauce_connect:277 - INFO - Shutting down tunnel remote VM (please wait)
+2014-05-05 19:00:57,581 - sauce_connect:278 - DEBUG - tunnel remote VM ID: 79b79c93fb644d04bde4efe098df5c92
+2014-05-05 19:00:57,940 - sauce_connect:300 - INFO - Finished shutting down tunnel remote VM
+2014-05-05 19:00:57,943 - sauce_connect:401 - INFO - \ Exiting /
+2014-05-05 19:01:06,489 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki77185.miso.saucelabs.com
+2014-05-05 19:01:06,506 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:55565 in 1ms
+2014-05-05 19:01:06,513 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 19:01:06,516 - sauce_connect:642 - INFO - Connecting to tunnel host maki77185.miso.saucelabs.com as jraczak
+2014-05-05 19:01:06,674 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 55581
+2014-05-05 19:01:06,686 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 19:01:06,789 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 19:01:06,802 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: 437516f7aee3434e987756f0b11bb474
+2014-05-05 19:01:06,805 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 19:01:14,043 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (184ms)
+2014-05-05 19:01:17,831 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (283ms)
+2014-05-05 19:01:18,082 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (230ms)
+2014-05-05 19:01:18,358 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (504ms)
+2014-05-05 19:01:18,368 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (183ms)
+2014-05-05 19:01:18,553 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (330ms)
+2014-05-05 19:01:18,559 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (335ms)
+2014-05-05 19:01:18,581 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (353ms)
+2014-05-05 19:01:18,596 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (409ms)
+2014-05-05 19:01:18,812 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (94ms)
+2014-05-05 19:01:18,815 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (89ms)
+2014-05-05 19:01:18,826 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (172ms)
+2014-05-05 19:01:18,862 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (137ms)
+2014-05-05 19:01:18,950 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (92ms)
+2014-05-05 19:01:18,996 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (441ms)
+2014-05-05 19:01:19,404 - sauce_connect:0 - INFO - GET https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Fcrowdscore-staging.herokuapp.com -> 200 (218ms)
+2014-05-05 19:01:19,578 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (114ms)
+2014-05-05 19:01:19,661 - sauce_connect:0 - INFO - GET https://oauth.googleusercontent.com/gadgets/js/core:rpc:shindig.random:shindig.sha1.js?c=2 -> 200 (164ms)
+2014-05-05 19:01:19,861 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (141ms)
+2014-05-05 19:01:20,203 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (476ms)
+2014-05-05 19:01:20,359 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=43&ap=12&be=353&fe=1832&dc=722&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341675148,%22n%22:0,%22dl%22:309,%22di%22:339,%22ds%22:1074,%22de%22:1167,%22dc%22:2173,%22l%22:2185,%22le%22:2197,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:7,%22rp%22:309,%22rpe%22:315%7D,%22navigation%22:%7B%7D%7D -> 200 (123ms)
+2014-05-05 19:01:20,392 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341677340&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (641ms)
+2014-05-05 19:03:35,634 - sauce_connect:0 - INFO - received SIGINT
+2014-05-05 19:04:58,884 - sauce_connect:554 - INFO - / Starting \
+2014-05-05 19:04:58,890 - sauce_connect:555 - INFO - Please wait for "You may start your tests" to start your tests.
+2014-05-05 19:04:58,900 - sauce_connect:567 - DEBUG - System is -7.0 hours off UTC
+2014-05-05 19:04:58,901 - sauce_connect:569 - DEBUG - options: {'user': 'jraczak', 'ports': ['55858'], 'domains': ['sauce-connect.proxy'], 'debug_ssh': False, 'tunnel_ports': ['80'], 'allow_unclean_exit': False, 'rest_url': 'https://saucelabs.com/rest/v1', 'logfile': 'sauce_connect.log', 'squid_opts': '', 'ssh': False, 'se_port': '4445', 'readyfile': 'sauce_connect.ready', 'shared_tunnel': False, 'boost_mode': True, 'tunnel_identifier': '', 'ssh_port': 443, 'fast_fail_regexps': '', 'direct_domains': '', 'host': '127.0.0.1', 'quiet': False, 'latency_log': 150, 'use_ssh_config': False}
+2014-05-05 19:04:58,911 - sauce_connect:570 - DEBUG - metadata: {'PythonVersion': '2.5.1', 'OwnerHost': '127.0.0.1', 'Release': '3.0-r25', 'OwnerPorts': ['55858'], 'Ports': ['80'], 'Platform': 'Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64', 'Build': '38', 'ScriptRelease': 38, 'ScriptName': 'sauce_connect'}
+2014-05-05 19:04:58,914 - sauce_connect:572 - INFO - Forwarding: ['sauce-connect.proxy']:['80'] -> 127.0.0.1:['55858']
+2014-05-05 19:04:58,950 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:55858 in 19ms
+2014-05-05 19:04:59,428 - sauce_connect:234 - INFO - {"squid_config":null,"use_caching_proxy":true,"metadata":{"PythonVersion":"2.5.1","OwnerHost":"127.0.0.1","Release":"3.0-r25","OwnerPorts":["55858"],"Ports":["80"],"Platform":"Java-1.6.0_65-Java_HotSpot-TM-_64-Bit_Server_VM,_20.65-b04-462,_Apple_Inc.-on-Mac_OS_X-10.9.1-x86_64","Build":"38","ScriptRelease":38,"ScriptName":"sauce_connect"},"use_kgp":true,"tunnel_identifier":"","shared_tunnel":false,"fast_fail_regexps":null,"ssh_port":443,"direct_domains":null,"domain_names":["sauce-connect.proxy"]}
+2014-05-05 19:05:03,375 - sauce_connect:246 - INFO - Tunnel remote VM is provisioned (0433cb4dd0264616bedabe32e42f13bc)
+2014-05-05 19:05:03,562 - sauce_connect:264 - INFO - Tunnel remote VM is booting ..
+2014-05-05 19:05:25,838 - sauce_connect:268 - INFO - Tunnel remote VM is running at maki77185.miso.saucelabs.com
+2014-05-05 19:05:25,858 - sauce_connect:371 - INFO - Succesfully connected to local server 127.0.0.1:55858 in 0ms
+2014-05-05 19:05:25,861 - sauce_connect:642 - INFO - Starting connection to tunnel host...
+2014-05-05 19:05:25,864 - sauce_connect:642 - INFO - Connecting to tunnel host maki77185.miso.saucelabs.com as jraczak
+2014-05-05 19:05:25,992 - sauce_connect:642 - INFO - Forwarding Selenium with ephemeral port 55889
+2014-05-05 19:05:26,013 - sauce_connect:642 - INFO - Selenium HTTP proxy listening on port 4445
+2014-05-05 19:05:26,088 - sauce_connect:0 - INFO - Successful handshake with Sauce Connect server
+2014-05-05 19:05:26,098 - sauce_connect:0 - INFO - Tunnel host version: 0.1.0, remote endpoint ID: e6de8bbff0c74e608842f8c1b2f25694
+2014-05-05 19:05:26,101 - sauce_connect:642 - INFO - Connected! You may start your tests.
+2014-05-05 19:05:40,625 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (202ms)
+2014-05-05 19:05:40,842 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (181ms)
+2014-05-05 19:05:41,082 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (172ms)
+2014-05-05 19:05:41,220 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (550ms)
+2014-05-05 19:05:41,223 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (303ms)
+2014-05-05 19:05:41,227 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (307ms)
+2014-05-05 19:05:41,240 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (316ms)
+2014-05-05 19:05:41,290 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (370ms)
+2014-05-05 19:05:41,674 - sauce_connect:0 - INFO - GET http://ctldl.windowsupdate.com/msdownload/update/v3/static/trustedr/en/disallowedcertstl.cab?9eca84529ceb9c0b -> 304 (58ms)
+2014-05-05 19:05:41,726 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (92ms)
+2014-05-05 19:05:41,727 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (88ms)
+2014-05-05 19:05:41,808 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (170ms)
+2014-05-05 19:05:41,946 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (440ms)
+2014-05-05 19:05:42,348 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (609ms)
+2014-05-05 19:05:42,490 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (106ms)
+2014-05-05 19:05:42,944 - sauce_connect:0 - INFO - GET http://crl.omniroot.com/PublicSureCodeSign.crl -> 200 (445ms)
+2014-05-05 19:05:43,250 - sauce_connect:0 - INFO - GET https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Fcrowdscore-staging.herokuapp.com -> 200 (571ms)
+2014-05-05 19:05:43,482 - sauce_connect:0 - INFO - GET https://oauth.googleusercontent.com/gadgets/js/core:rpc:shindig.random:shindig.sha1.js?c=2 -> 200 (159ms)
+2014-05-05 19:05:43,842 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (539ms)
+2014-05-05 19:05:43,979 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (93ms)
+2014-05-05 19:05:44,325 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (438ms)
+2014-05-05 19:05:44,476 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=1&ap=12&be=299&fe=3172&dc=833&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399341938803,%22n%22:0,%22dl%22:255,%22di%22:286,%22ds%22:1132,%22de%22:1233,%22dc%22:3463,%22l%22:3472,%22le%22:3484,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:6,%22rp%22:255,%22rpe%22:259%7D,%22navigation%22:%7B%7D%7D -> 200 (120ms)
+2014-05-05 19:05:44,532 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399341942280&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (579ms)
+2014-05-05 19:05:51,233 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (278ms)
+2014-05-05 19:08:23,220 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
+2014-05-05 19:10:56,933 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (198ms)
+2014-05-05 19:10:57,210 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (236ms)
+2014-05-05 19:10:57,473 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (495ms)
+2014-05-05 19:10:57,907 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (167ms)
+2014-05-05 19:10:57,908 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (172ms)
+2014-05-05 19:10:57,921 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (161ms)
+2014-05-05 19:10:57,951 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (207ms)
+2014-05-05 19:10:57,960 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (241ms)
+2014-05-05 19:10:57,976 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (253ms)
+2014-05-05 19:10:58,003 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (246ms)
+2014-05-05 19:10:58,088 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTPIBf466Sl1e8xEUgiU9rHcFWvnGQ/cb=gapi.loaded_0 -> 200 (108ms)
+2014-05-05 19:10:58,263 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (535ms)
+2014-05-05 19:10:58,266 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (338ms)
+2014-05-05 19:10:59,648 - sauce_connect:0 - INFO - GET https://ssl.gstatic.com/accounts/o/682094929-postmessagerelay.js -> 200 (85ms)
+2014-05-05 19:11:00,111 - sauce_connect:0 - INFO - GET http://js-agent.newrelic.com/nr-400.min.js -> 200 (439ms)
+2014-05-05 19:11:00,270 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=6&ap=12&be=352&fe=2701&dc=738&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342254601,%22n%22:0,%22dl%22:340,%22di%22:1089,%22ds%22:1089,%22de%22:1197,%22dc%22:3052,%22l%22:3052,%22le%22:3069,%22f%22:74,%22dn%22:74,%22dne%22:74,%22c%22:104,%22ce%22:114,%22rq%22:114,%22rp%22:334,%22rpe%22:336%7D,%22navigation%22:%7B%7D%7D -> 200 (129ms)
+2014-05-05 19:11:00,309 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342257666&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (616ms)
+2014-05-05 19:11:00,421 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (92ms)
+2014-05-05 19:11:18,365 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (238ms)
+2014-05-05 19:11:18,740 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (330ms)
+2014-05-05 19:11:18,921 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (508ms)
+2014-05-05 19:11:19,226 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (27ms)
+2014-05-05 19:11:19,326 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (129ms)
+2014-05-05 19:11:19,364 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (162ms)
+2014-05-05 19:11:19,372 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (170ms)
+2014-05-05 19:11:19,407 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (250ms)
+2014-05-05 19:11:19,440 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (235ms)
+2014-05-05 19:11:19,450 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (247ms)
+2014-05-05 19:11:19,588 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (380ms)
+2014-05-05 19:11:19,677 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (471ms)
+2014-05-05 19:11:19,861 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (92ms)
+2014-05-05 19:11:19,908 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=63&be=307&fe=1324&dc=762&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342276300,%22n%22:0,%22dl%22:283,%22di%22:999,%22ds%22:1067,%22de%22:1076,%22dc%22:1629,%22l%22:1629,%22le%22:1635,%22f%22:15,%22dn%22:28,%22dne%22:28,%22c%22:28,%22ce%22:29,%22rq%22:29,%22rp%22:281,%22rpe%22:281%7D,%22navigation%22:%7B%7D%7D -> 200 (115ms)
+2014-05-05 19:11:19,940 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342277934&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (148ms)
+2014-05-05 19:11:19,963 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (88ms)
+2014-05-05 19:11:32,447 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (556ms)
+2014-05-05 19:11:32,661 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (190ms)
+2014-05-05 19:11:33,019 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (545ms)
+2014-05-05 19:11:33,111 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (397ms)
+2014-05-05 19:11:33,114 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (399ms)
+2014-05-05 19:11:33,132 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (416ms)
+2014-05-05 19:11:33,211 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (498ms)
+2014-05-05 19:11:33,418 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (136ms)
+2014-05-05 19:11:33,461 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (171ms)
+2014-05-05 19:11:33,487 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (199ms)
+2014-05-05 19:11:33,526 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (236ms)
+2014-05-05 19:11:33,529 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (814ms)
+2014-05-05 19:11:33,651 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (436ms)
+2014-05-05 19:11:33,786 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (90ms)
+2014-05-05 19:11:33,858 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=3&ap=11&be=635&fe=1187&dc=713&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342289897,%22n%22:0,%22dl%22:583,%22di%22:1348,%22ds%22:1348,%22de%22:1403,%22dc%22:1812,%22l%22:1821,%22le%22:1834,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:582,%22rp%22:582,%22rpe%22:586%7D,%22navigation%22:%7B%7D%7D -> 200 (118ms)
+2014-05-05 19:11:33,894 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342291726&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (140ms)
+2014-05-05 19:13:35,250 - sauce_connect:0 - INFO - GET https://sls.update.microsoft.com/SLS/%7B9482F4B4-E343-43B6-B170-9A65BC822C77%7D/x64/6.3.9600.0/0?CH=41&L=en-US&P=&PT=0x8&WUA=7.9.9600.16403 -> 200 (115ms)
+2014-05-05 19:13:36,838 - sauce_connect:0 - INFO - GET https://sls.update.microsoft.com/SLS/%7B9482F4B4-E343-43B6-B170-9A65BC822C77%7D/x64/6.3.9600.0/0?CH=41&L=en-US&P=&PT=0x8&WUA=7.9.9600.16403 -> 200 (557ms)
+2014-05-05 19:16:46,414 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (714ms)
+2014-05-05 19:16:46,710 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (247ms)
+2014-05-05 19:16:47,042 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (573ms)
+2014-05-05 19:16:47,289 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (36ms)
+2014-05-05 19:16:47,450 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (192ms)
+2014-05-05 19:16:47,460 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (181ms)
+2014-05-05 19:16:47,466 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (174ms)
+2014-05-05 19:16:47,467 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (189ms)
+2014-05-05 19:16:47,469 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (189ms)
+2014-05-05 19:16:47,565 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (278ms)
+2014-05-05 19:16:47,627 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (362ms)
+2014-05-05 19:16:47,654 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (191ms)
+2014-05-05 19:16:47,884 - sauce_connect:0 - INFO - GET https://oauth.googleusercontent.com/gadgets/js/core:rpc:shindig.random:shindig.sha1.js?c=2 -> 200 (145ms)
+2014-05-05 19:16:48,227 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=1&ap=11&be=865&fe=1472&dc=799&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342603708,%22n%22:0,%22dl%22:851,%22di%22:1663,%22ds%22:1663,%22de%22:1755,%22dc%22:2337,%22l%22:2337,%22le%22:2352,%22f%22:61,%22dn%22:61,%22dne%22:61,%22c%22:96,%22ce%22:104,%22rq%22:105,%22rp%22:845,%22rpe%22:847%7D,%22navigation%22:%7B%7D%7D -> 200 (233ms)
+2014-05-05 19:16:48,631 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342606053&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (686ms)
+2014-05-05 19:16:48,779 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (102ms)
+2014-05-05 19:16:55,798 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (166ms)
+2014-05-05 19:18:05,562 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (618ms)
+2014-05-05 19:18:05,947 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (334ms)
+2014-05-05 19:18:06,625 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (1008ms)
+2014-05-05 19:18:06,986 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (90ms)
+2014-05-05 19:18:07,030 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (139ms)
+2014-05-05 19:18:07,065 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (161ms)
+2014-05-05 19:18:07,075 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (172ms)
+2014-05-05 19:18:07,151 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (246ms)
+2014-05-05 19:18:07,249 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (398ms)
+2014-05-05 19:18:07,299 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (398ms)
+2014-05-05 19:18:07,371 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (380ms)
+2014-05-05 19:18:07,371 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (510ms)
+2014-05-05 19:18:07,536 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (88ms)
+2014-05-05 19:18:07,602 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=4&ap=62&be=738&fe=1829&dc=1254&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342683412,%22n%22:0,%22dl%22:708,%22di%22:1907,%22ds%22:1990,%22de%22:2001,%22dc%22:2566,%22l%22:2566,%22le%22:2570,%22f%22:13,%22dn%22:64,%22dne%22:64,%22c%22:65,%22ce%22:66,%22rq%22:66,%22rp%22:704,%22rpe%22:704%7D,%22navigation%22:%7B%7D%7D -> 200 (117ms)
+2014-05-05 19:18:07,651 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (100ms)
+2014-05-05 19:18:07,950 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342685982&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjB9LCJlIjp7InUiOiJodHRwOi8vY3Jvd2RzY29yZS1zdGFnaW5nLmhlcm9rdWFwcC5jb20vIiwiciI6IiJ9fQ%3D%3D -> 200 (487ms)
+2014-05-05 19:18:12,809 - sauce_connect:0 - INFO - GET http://log.client.akadns.net/cl/1a3101aa59aa4ecbbcc00611605ea801 -> 200 (524ms)
+2014-05-05 19:18:25,572 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (270ms)
+2014-05-05 19:18:25,878 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (258ms)
+2014-05-05 19:18:26,115 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (499ms)
+2014-05-05 19:18:26,532 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (139ms)
+2014-05-05 19:18:26,536 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (138ms)
+2014-05-05 19:18:26,799 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (251ms)
+2014-05-05 19:18:26,806 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (241ms)
+2014-05-05 19:18:26,982 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (171ms)
+2014-05-05 19:18:27,253 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (23ms)
+2014-05-05 19:18:27,319 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (89ms)
+2014-05-05 19:18:27,364 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (133ms)
+2014-05-05 19:18:27,578 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (348ms)
+2014-05-05 19:18:27,665 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (436ms)
+2014-05-05 19:18:27,801 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (86ms)
+2014-05-05 19:18:27,829 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=33&ap=11&fe=2082&dc=702&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken -> 200 (119ms)
+2014-05-05 19:18:27,865 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342784809&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjQyMH0sImUiOnsidSI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8iLCJyIjoiaHR0cDovL2xvY2FsaG9zdDoyMTQ2Mi9jb25uZWN0Lmh0bWw%2FdXJsPXdzJTNBJTJGJTJGbG9jYWxob3N0JTNBMjE0NjIifX0%3D -> 200 (147ms)
+2014-05-05 19:18:34,990 - sauce_connect:0 - INFO - GET http://crl.apple.com/timestamp.crl -> 200 (258ms)
+2014-05-05 19:18:36,418 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (242ms)
+2014-05-05 19:18:36,687 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (243ms)
+2014-05-05 19:18:37,354 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (904ms)
+2014-05-05 19:18:37,655 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (136ms)
+2014-05-05 19:18:37,677 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (182ms)
+2014-05-05 19:18:37,690 - sauce_connect:0 - INFO - POST https://albert.apple.com/WebObjects/ALUnbrick.woa/wa/deviceActivation?device=MacOS -> 200 (837ms)
+2014-05-05 19:18:37,710 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (216ms)
+2014-05-05 19:18:37,759 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (273ms)
+2014-05-05 19:18:37,851 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (360ms)
+2014-05-05 19:18:37,994 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (512ms)
+2014-05-05 19:18:38,032 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (528ms)
+2014-05-05 19:18:38,072 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (588ms)
+2014-05-05 19:18:38,141 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (443ms)
+2014-05-05 19:18:38,348 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=12&be=457&fe=1722&dc=1037&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342715912,%22n%22:0,%22dl%22:451,%22di%22:1494,%22ds%22:1494,%22de%22:1604,%22dc%22:2179,%22l%22:2179,%22le%22:2187,%22f%22:174,%22dn%22:174,%22dne%22:174,%22c%22:189,%22ce%22:190,%22rq%22:190,%22rp%22:446,%22rpe%22:449%7D,%22navigation%22:%7B%7D%7D -> 200 (118ms)
+2014-05-05 19:18:38,378 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342718098&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjQyMH0sImUiOnsidSI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8iLCJyIjoiIn19 -> 200 (146ms)
+2014-05-05 19:18:38,486 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (94ms)
+2014-05-05 19:18:56,232 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (257ms)
+2014-05-05 19:18:56,469 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (195ms)
+2014-05-05 19:18:56,842 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (566ms)
+2014-05-05 19:18:57,232 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (74ms)
+2014-05-05 19:18:57,233 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (308ms)
+2014-05-05 19:18:57,236 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (190ms)
+2014-05-05 19:18:57,299 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (374ms)
+2014-05-05 19:18:57,368 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (97ms)
+2014-05-05 19:18:57,382 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-900.otf -> 200 (335ms)
+2014-05-05 19:18:57,401 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (358ms)
+2014-05-05 19:18:57,421 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (151ms)
+2014-05-05 19:18:57,894 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (843ms)
+2014-05-05 19:18:58,088 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (94ms)
+2014-05-05 19:18:58,111 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=65&fe=1653&dc=877&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken -> 200 (116ms)
+2014-05-05 19:18:58,154 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342737883&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjQyMH0sImUiOnsidSI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8iLCJyIjoiaHR0cDovL2xvY2FsaG9zdDozNzU5Ny9jb25uZWN0Lmh0bWw%2FdXJsPXdzJTNBJTJGJTJGbG9jYWxob3N0JTNBMzc1OTcifX0%3D -> 200 (146ms)
+2014-05-05 19:19:04,552 - sauce_connect:0 - INFO - GET http://crl.apple.com/timestamp.crl -> 200 (20ms)
+2014-05-05 19:19:04,720 - sauce_connect:0 - INFO - GET http://crl.apple.com/root.crl -> 200 (10ms)
+2014-05-05 19:19:07,803 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (201ms)
+2014-05-05 19:19:08,115 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (286ms)
+2014-05-05 19:19:08,648 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (813ms)
+2014-05-05 19:19:08,980 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (180ms)
+2014-05-05 19:19:08,986 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (178ms)
+2014-05-05 19:19:08,989 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (177ms)
+2014-05-05 19:19:08,996 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (150ms)
+2014-05-05 19:19:09,111 - sauce_connect:0 - INFO - GET https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en_US.kNwaVZwQWsc.O/m=client,plusone/rt=j/sv=1/d=1/ed=1/am=EQ/rs=AItRSTPs5SgYslZfbjmv2gemnrahG3MGOA/cb=gapi.loaded_0 -> 200 (85ms)
+2014-05-05 19:19:09,125 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (329ms)
+2014-05-05 19:19:09,178 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (358ms)
+2014-05-05 19:19:09,243 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (445ms)
+2014-05-05 19:19:09,278 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (276ms)
+2014-05-05 19:19:09,305 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (510ms)
+2014-05-05 19:19:09,500 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342749301&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjQyMH0sImUiOnsidSI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8iLCJyIjoiIn19 -> 200 (144ms)
+2014-05-05 19:19:09,516 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&ap=13&be=524&fe=1511&dc=966&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342747260,%22n%22:0,%22dl%22:521,%22di%22:1489,%22ds%22:1489,%22de%22:1656,%22dc%22:2035,%22l%22:2035,%22le%22:2043,%22f%22:248,%22dn%22:248,%22dne%22:248,%22c%22:264,%22ce%22:282,%22rq%22:282,%22rp%22:517,%22rpe%22:519%7D,%22navigation%22:%7B%7D%7D -> 200 (118ms)
+2014-05-05 19:19:09,651 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (96ms)
+2014-05-05 19:19:28,996 - sauce_connect:0 - INFO - Could not proxy http://195.59.54.118/logs/1a3101aa59aa4ecbbcc00611605ea801.log, exception: java.net.ConnectException: Operation timed out
+2014-05-05 19:19:35,437 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/ -> 200 (199ms)
+2014-05-05 19:19:35,772 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-fb85aea9014e41de32c7c40a91498c8b.css -> 200 (283ms)
+2014-05-05 19:19:36,359 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/application-63d88d7877f09f33204e5b168b5d85a6.js -> 200 (868ms)
+2014-05-05 19:19:36,602 - sauce_connect:0 - INFO - GET http://widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js -> 200 (19ms)
+2014-05-05 19:19:36,707 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/crowdscore_logo.png -> 200 (97ms)
+2014-05-05 19:19:36,750 - sauce_connect:0 - INFO - GET https://apis.google.com/js/client:plusone.js -> 200 (142ms)
+2014-05-05 19:19:36,790 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/search.png -> 200 (180ms)
+2014-05-05 19:19:36,806 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/location.png -> 200 (195ms)
+2014-05-05 19:19:36,838 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-500.otf -> 200 (268ms)
+2014-05-05 19:19:36,966 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-700.otf -> 200 (356ms)
+2014-05-05 19:19:36,971 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-100.otf -> 200 (358ms)
+2014-05-05 19:19:36,986 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/assets/MuseoSansRounded-300.otf -> 200 (373ms)
+2014-05-05 19:19:37,220 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (111ms)
+2014-05-05 19:19:37,226 - sauce_connect:0 - INFO - GET http://beacon-3.newrelic.com/1/564cad895c?a=1719513&qt=3&ap=14&be=288&fe=1546&dc=1091&v=400.de4accb&to=dVlfFRAJDVhRRUsOCltTHggMAgRM&f=%5B%5D&jsonp=NREUM.setToken&perf=%7B%22timing%22:%7B%22of%22:1399342775157,%22n%22:0,%22dl%22:255,%22di%22:1316,%22ds%22:1379,%22de%22:1387,%22dc%22:1833,%22l%22:1833,%22le%22:1838,%22f%22:33,%22dn%22:40,%22dne%22:40,%22c%22:40,%22ce%22:41,%22rq%22:41,%22rp%22:254,%22rpe%22:254%7D,%22navigation%22:%7B%7D%7D -> 200 (119ms)
+2014-05-05 19:19:37,280 - sauce_connect:0 - INFO - GET https://by.uservoice.com/t/141118/x/p/track.js?_=1399342776993&s=0&c=__uvSessionData0&d=eyJ1Ijp7Im8iOjQyMH0sImUiOnsidSI6Imh0dHA6Ly9jcm93ZHNjb3JlLXN0YWdpbmcuaGVyb2t1YXBwLmNvbS8iLCJyIjoiIn19 -> 200 (171ms)
+2014-05-05 19:19:37,328 - sauce_connect:0 - INFO - GET http://crowdscore-staging.herokuapp.com/favicon.ico -> 200 (93ms)
+2014-05-05 19:19:40,088 - sauce_connect:0 - INFO - received SIGINT

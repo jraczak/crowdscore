@@ -3,8 +3,6 @@
 require "sauce"
 require "sauce/capybara"
 
-STDERR.puts "I hate require order problems"
-
 Sauce.config do |config|
   config[:browsers] = [
     ["Windows 8", "Internet Explorer", "10"],
