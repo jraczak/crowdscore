@@ -37,6 +37,13 @@
       <%= link_to "", new_user_invitation_path %>
     </div>
   </div>
+  
+  <div>
+    <% get_recommended_venues(current_user) %>
+    <% @recommended_venues.each do |v| %>
+      <%= v.name %>
+    <% end %>
+  </div>
 
 
   <! -- BEGIN NETWORK ACTIVITY SECTION -->

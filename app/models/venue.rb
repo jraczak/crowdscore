@@ -42,6 +42,8 @@ class Venue < ActiveRecord::Base
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
     #text(:tags) { |venue| venue.tags.map(&:full_name) }
+    integer :venue_category_id
+    integer :venue_subcategory_id
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
