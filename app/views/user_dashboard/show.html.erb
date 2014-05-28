@@ -41,8 +41,11 @@
   <div>
   <h3>Recommended restuarants for tonight</h3>
     <% get_restaurant_recommendations %>
-    <% @recs.each do |v| %>
-      <%= v.name %>
+    <% unless @recs.empty? %>
+      <% @recs.each do |v| %>
+        <h2><%= v.name %></h2>
+        <p><%= "Because you said you like #{v.venue_subcategory.name} restaurants" %></p>
+      <% end %>
     <% end %>
   </div>
 
