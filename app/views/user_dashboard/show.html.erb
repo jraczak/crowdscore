@@ -39,8 +39,9 @@
   </div>
   
   <div>
-    <% get_recommended_venues(current_user) %>
-    <% @recommended_venues.each do |v| %>
+  <h3>Recommended restuarants for tonight</h3>
+    <% get_restaurant_recommendations %>
+    <% @recs.each do |v| %>
       <%= v.name %>
     <% end %>
   </div>
