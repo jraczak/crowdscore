@@ -7,5 +7,9 @@ module UserDashboardHelper
     end
     @recs = rec_search.results
   end
+  
+  def get_ip_address
+    request.env['REMOTE_ADDR']
+  end
 
 end

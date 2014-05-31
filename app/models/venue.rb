@@ -1,6 +1,7 @@
 class Venue < ActiveRecord::Base
   acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
+  acts_as_mappable
 
   scope :active, where(active: true)
   scope :alphabetical, order(:name)
