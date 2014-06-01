@@ -1,10 +1,9 @@
 module UserDashboardHelper
 
   def get_restaurant_recommendations
-    @lat_lng = cookies[:user_location]
     rec_search = Venue.search do
-      with :venue_category_id, current_user.liked_venue_categories[1]
-      with(:location).in_radius(37.5559915, -122.2613072, 10)
+      with :venue_subcategory_id, current_user.liked_venue_categories[1]
+      with(:location).in_radius(user_location_data.lat, user_location_data.lng, 2)
     end
     @recs = rec_search.results
   end
@@ -16,7 +15,7 @@ module UserDashboardHelper
   end
   
   def dashboard_salutation
-    current_time = Time.now.strftime("%k").to_i
+    current_time = Time.zone.now.in_time_zone(user_time_zone).strftime("%k").to_i
     name = current_user.first_name
     case current_time
       when 0..5

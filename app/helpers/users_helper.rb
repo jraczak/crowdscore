@@ -9,5 +9,14 @@ module UsersHelper
       false
     end
   end
+  
+  def user_time_zone
+    tz = Timezone::Zone.new :latlon => [user_location_data.lat, user_location_data.lng]
+    return tz.active_support_time_zone
+  end
+  
+  def time_at_user
+    Time.zone.now.in_time_zone(user_time_zone).strftime("%l:%M%P")
+  end
 
 end

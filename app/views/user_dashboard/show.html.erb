@@ -5,15 +5,15 @@
   </h1>
   <div>
   <h2>
-	  It's <%= Time.now.strftime("%l:%M%P") %><% if user_location_data != false %> in <%= user_location_data.city %> <% end %>
+	  It's <%= time_at_user %><% if user_location_data != false %> in <%= user_location_data.city %> <% end %>
   </h2>
-  <% unless current_meal == false %>
+  <% get_restaurant_recommendations %>
+  <% unless current_meal == false || @recs.empty? %>
     <p>Here are some suggestions for <%= current_meal %></p>
-    <% get_restaurant_recommendations %>
       <% unless @recs.empty? %>
         <% @recs.each do |v| %>
           <h3 style="margin-bottom: 10px"><%= link_to v.name, v %> (<%= v.computed_score %>)</h3>
-          <p style="margin-bottom: 50px"><small><%= "Because you said you like #{v.venue_subcategory.name} restaurants" %></small></p>
+          <p style="margin-bottom: 50px"><small><%= "Because you said you like #{v.venue_subcategory.name} #{v.venue_category.name.downcase}s" %></small></p>
         <% end %>
       <% end %>
   <% end %>
