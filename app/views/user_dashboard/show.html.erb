@@ -1,14 +1,30 @@
 <div id='dashboard_page'>
 
-  <% if current_user.gone_for_a_week? %>
-    <h1>
-      We've missed you, <%= current_user.first_name %>!
-    </h1>  
-  <% else %>
-    <h1>
-      Welcome back, <%= current_user.first_name %>!
-    </h1>
+  <h1>
+    <%= dashboard_salutation %>
+  </h1>
+  <div>
+  <h2>
+	  It's <%= Time.now.strftime("%l:%M%P") %><% if user_location_data != false %> in <%= user_location_data.city %> <% end %>
+  </h2>
+  <% unless current_meal == false %>
+    <p>Here are some suggestions for <%= current_meal %></p>
+    <% get_restaurant_recommendations %>
+      <% unless @recs.empty? %>
+        <% @recs.each do |v| %>
+          <h3 style="margin-bottom: 10px"><%= link_to v.name, v %> (<%= v.computed_score %>)</h3>
+          <p style="margin-bottom: 50px"><small><%= "Because you said you like #{v.venue_subcategory.name} restaurants" %></small></p>
+        <% end %>
+      <% end %>
   <% end %>
+  
+  
+  <!--<br><p><% where_am_i %><%= @location %></p>
+    <p><%= user_location_data %><% @user_lat_lng %></p>
+  <h3>Recommended restuarants for tonight</h3>
+
+  </div>
+  -->
 
   <div id="dashboard-header">
     <div id="profile-picture" class="header-section">
@@ -36,19 +52,6 @@
       <span class="angle-right"><i class="icon-angle-right"></i></span>
       <%= link_to "", new_user_invitation_path %>
     </div>
-  </div>
-  
-  <div>
-  <h3>Recommended restuarants for tonight</h3>
-    <% get_restaurant_recommendations %>
-    <% unless @recs.empty? %>
-      <% @recs.each do |v| %>
-        <h2><%= v.name %></h2>
-        <p><%= "Because you said you like #{v.venue_subcategory.name} restaurants" %></p>
-      <% end %>
-    <% end %>
-    
-    <br><p><%= get_ip_address %></p>
   </div>
 
 

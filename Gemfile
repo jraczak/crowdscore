@@ -29,6 +29,8 @@ gem "sunspot_solr", "~> 2.1.0"
 gem "devise_invitable", "~> 1.1.0"
 gem 'aws-sdk'
 gem 'factual-api'
+gem 'geokit'
+gem 'geokit-rails'
 
 
 # Gems used only for assets and not required

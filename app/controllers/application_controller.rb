@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  
+  helper :all
 
   #before_filter :authenticate_on_production
   before_filter :remember_return_to

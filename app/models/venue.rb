@@ -1,7 +1,10 @@
 class Venue < ActiveRecord::Base
   acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
-  acts_as_mappable
+  acts_as_mappable :default_units => :miles,
+  		           :lat_column_name => :latitude,
+  		           :lng_column_name => :longitude#,
+  		           #:auto_geocode => true
 
   scope :active, where(active: true)
   scope :alphabetical, order(:name)

@@ -7,6 +7,11 @@
     <%= javascript_include_tag "application" %>
     <%= yield :scripts %>
   </head>
+  <!-- try to get the user's location to use around the site -->
+  <script>
+    getUserLocation();
+  </script>
+  
   <script type="text/javascript">
       (function() {
        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

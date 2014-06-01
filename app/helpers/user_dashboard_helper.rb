@@ -1,6 +1,7 @@
 module UserDashboardHelper
 
   def get_restaurant_recommendations
+    @lat_lng = cookies[:user_location]
     rec_search = Venue.search do
       with :venue_category_id, current_user.liked_venue_categories[1]
       with(:location).in_radius(37.5559915, -122.2613072, 10)
@@ -8,8 +9,41 @@ module UserDashboardHelper
     @recs = rec_search.results
   end
   
-  def get_ip_address
-    request.env['REMOTE_ADDR']
+  def where_am_i
+    #ip = "162.222.72.33" #request.env['REMOTE_ADDR']
+    @location = Geokit::Geocoders::IpGeocoder.geocode(request.env['REMOTE_ADDR'])
+    @status = @location.success
+  end
+  
+  def dashboard_salutation
+    current_time = Time.now.strftime("%k").to_i
+    name = current_user.first_name
+    case current_time
+      when 0..5
+        return "Hey there, night owl"
+      when 5..12
+        return "Good morning, #{name}"
+      when 12..18
+        return "Good afternoon, #{name}"
+      when 18..23
+        return "Good evening, #{name}"
+      else
+        return "Hi, #{name}"
+      end
+  end
+  
+  def current_meal
+    current_time = Time.now.strftime("%k").to_i
+    case current_time
+      when 17..22
+        return "dinner"
+      when 5..11
+        return "coffee or breakfast"
+      when 11..17
+        return "lunch"
+      else
+        return false
+      end
   end
 
 end
