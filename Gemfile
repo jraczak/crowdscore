@@ -31,6 +31,7 @@ gem 'aws-sdk'
 gem 'factual-api'
 gem 'geokit'
 gem 'geokit-rails'
+gem 'timezone'
 
 
 # Gems used only for assets and not required

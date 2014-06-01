@@ -371,6 +371,7 @@ GEM
     thor (0.14.6)
     tilt (1.4.1)
     timecop (0.7.1)
+    timezone (0.3.2)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -447,5 +448,6 @@ DEPENDENCIES
   sunspot_solr (~> 2.1.0)
   thin
   timecop
+  timezone
   uglifier (>= 1.0.3)
   will_paginate (~> 3.0.0)
