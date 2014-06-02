@@ -32,6 +32,7 @@ gem 'factual-api'
 gem 'geokit'
 gem 'geokit-rails'
 gem 'timezone'
+gem 'nearest_time_zone'
 
 
 # Gems used only for assets and not required
