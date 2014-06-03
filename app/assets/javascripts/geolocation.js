@@ -5,7 +5,16 @@ function getUserLocation() {
 
 function setUserLocationCookie(position) {
 	var cookie_value = position.coords.latitude + "," + position.coords.longitude;
-	document.cookie = "detected_user_location=" + escape(cookie_value);
+	var d = new Date();
+	d.setTime(d.getTime() + (15*60*1000)); // 15 minutes to milliseconds
+	var expires = "expires=" + d.toGMTString();
+	document.cookie = "detected_user_location=" + escape(cookie_value) + "; " + expires;
+	
+	$.ajax({
+	  type: "GET",
+	  url: "/dashboard",
+	  dataType: "script"
+	});
 }
 
 function alertNoGeolocation () {

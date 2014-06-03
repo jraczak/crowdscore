@@ -5,6 +5,10 @@ class UserDashboardController < ApplicationController
     if current_user
       text = "this is my text"
     # If user is NOT signed in, redirect to home page.
+    respond_to do |format|
+      format.html
+      format.js
+    end
     else
       flash[:notice] = "You must be logged in to view your dashboard."
       redirect_to root_path
