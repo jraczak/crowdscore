@@ -30,7 +30,7 @@
 
     # You can also use the free API key instead of signed requests
     # See https://developers.google.com/maps/documentation/geocoding/#api_key
-    #Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyBhPFZz5fazzkwQwiexGXBTqEZ8Vj7_U7M'
+    Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyBhPFZz5fazzkwQwiexGXBTqEZ8Vj7_U7M'
 
     # You can also set multiple API KEYS for different domains that may be directed to this same application.
     # The domain from which the current user is being directed will automatically be updated for Geokit via

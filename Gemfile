@@ -29,7 +29,7 @@ gem "sunspot_solr", "~> 2.1.0"
 gem "devise_invitable", "~> 1.1.0"
 gem 'aws-sdk'
 gem 'factual-api'
-gem 'geokit'
+gem 'geokit', branch: 'master', git: 'https://github.com/geokit/geokit.git'
 gem 'geokit-rails'
 gem 'timezone'
 gem 'nearest_time_zone'
