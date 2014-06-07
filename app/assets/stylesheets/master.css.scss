@@ -39,9 +39,15 @@ html, body{
 }
   
 body{
-  background: #FFF;
+  background-color: #dbdde2;
   text-align: center;
 }  
+
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
 
 p{
   margin: 0;
@@ -53,13 +59,26 @@ p{
   @include box-sizing();
 }
 
-.wrapper{
-  width: 100%;
+#wrapper{
+  background-color: #fff;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1920px;
   min-width: 960px;
-  height: 2000px;
+  overflow: hidden;
+  width: 100%;
+}
 
-  text-align: center;
-  position: relative;;
+// A rounded container with a child img element which is also rounded
+.obj-rounded-image-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
 }
 
 nav{

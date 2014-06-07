@@ -34,8 +34,9 @@
   
   
   <body>
-    <section class="full-body-container">    
-      <nav>
+    <div id="wrapper">    
+      <%= render 'layouts/navbar' %>
+      <!-- <nav>
         <div class="navbar-inner">
           <ul>
             <li><a id="register" href="#">register</a></li>
@@ -59,7 +60,7 @@
             <input type='button' class="edit" id="edit-location">
           <% end %>
         </div>
-      </div>
+      </div> -->
       
       <!-- BEGIN FLASH MESSAGES SECTION -->
       <div id="flash-container">  
@@ -92,17 +93,17 @@
       </div>
 
       <%= yield %>
-      <!--
+      
       
       
       <footer>
         Copyright &copy; 2013 Crowdscore. All rights reserved.
       </footer>
       
-      -->
       
       
-    </section>
+      
+    </div>
 <!-- 
     <div id="auth-modal" class='full-screen-modal'>
       <div class='modal-mask'>
