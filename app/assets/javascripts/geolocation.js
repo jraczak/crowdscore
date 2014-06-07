@@ -10,6 +10,8 @@ function setUserLocationCookie(position) {
 	var expires = "expires=" + d.toGMTString();
 	document.cookie = "detected_user_location=" + escape(cookie_value) + "; " + expires;
 	
+	console.log(cookie_value);
+	
 	$.ajax({
 	  type: "GET",
 	  url: "/dashboard",
