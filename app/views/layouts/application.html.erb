@@ -73,10 +73,11 @@
 
 
         <%= yield %>
-        <%= render "layouts/footer" %>
+        <div class="footer-push"></div>
       </div>
+      <%= render "layouts/footer" %>
     </div>
-    <div class="floater">
+    <!-- <div class="floater">
       <ul>
         <% if user_signed_in? %>
           <li>
@@ -96,7 +97,7 @@
         <% end %>
         <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
       </ul>
-    </div>    
+    </div>     -->
 <!-- 
     <div id="auth-modal" class='full-screen-modal'>
       <div class='modal-mask'>
