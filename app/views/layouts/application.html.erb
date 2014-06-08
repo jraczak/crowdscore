@@ -34,76 +34,69 @@
   
   
   <body>
-    <div id="wrapper">    
-      <%= render 'layouts/navbar' %>
-      <!-- <nav>
-        <div class="navbar-inner">
-          <ul>
-            <li><a id="register" href="#">register</a></li>
-            <li><a href="#" id="login-button">log in</a></li>
-          </ul>
-        </div>
-      </nav>
+    <div class="page-wrapper">    
+      <div class="container">
+        <%= render 'layouts/navbar' %>
+        <!-- <nav>
+          <div class="navbar-inner">
+            <ul>
+              <li><a id="register" href="#">register</a></li>
+              <li><a href="#" id="login-button">log in</a></li>
+            </ul>
+          </div>
+        </nav>
 
-      <div class='searchbar-placeholder'></div>
-      <div class='searchbar'>
-        <div class="searchbar-inner">
-          <a class="brand" href="#"></a>
-          <%= form_tag search_venues_path, method: :get, id: 'search' do |f| %>
-            <%= text_field_tag :q, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
-            <div class='search-input-fade'></div>
-            <%= text_field_tag :zip2, '', placeholder: "city & state or zip", class: 'location-input'%>
-            <%= submit_tag "Find it!", style: 'display: none' %>
-            <%= hidden_field_tag :latitude, '' %>
-            <%= hidden_field_tag :longitude, '' %>
-            <input type='button' class="close" id="exit-location">
-            <input type='button' class="edit" id="edit-location">
+        <div class='searchbar-placeholder'></div>
+        <div class='searchbar'>
+          <div class="searchbar-inner">
+            <a class="brand" href="#"></a>
+            <%= form_tag search_venues_path, method: :get, id: 'search' do |f| %>
+              <%= text_field_tag :q, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
+              <div class='search-input-fade'></div>
+              <%= text_field_tag :zip2, '', placeholder: "city & state or zip", class: 'location-input'%>
+              <%= submit_tag "Find it!", style: 'display: none' %>
+              <%= hidden_field_tag :latitude, '' %>
+              <%= hidden_field_tag :longitude, '' %>
+              <input type='button' class="close" id="exit-location">
+              <input type='button' class="edit" id="edit-location">
+            <% end %>
+          </div>
+        </div> -->
+        
+        <!-- BEGIN FLASH MESSAGES SECTION -->
+        <div id="flash-container">  
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, class: name %>
           <% end %>
         </div>
-      </div> -->
-      
-      <!-- BEGIN FLASH MESSAGES SECTION -->
-      <div id="flash-container">  
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
-        <% end %>
-      </div>
-      <!-- END FLASH MESSAGES SECTION -->
+        <!-- END FLASH MESSAGES SECTION -->
 
-      <div class="floater">
-        <ul>
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to "Account", dashboard_path, class: "menu" %>
-              <ul>
-                <li>
-                  <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-                  <%= link_to "View My Lists", lists_path %>
-                  <%= link_to "My Profile", user_path(current_user) %>
-                  <%= link_to "My Account", edit_user_registration_path %>
-                </li>
-              </ul>
-            </li>
-          <% else %>  
-            <li><%= link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true" %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <% end %>
-          <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-        </ul>
-      </div>
 
-      <%= yield %>
-      
-      
-      
-      <footer>
-        Copyright &copy; 2013 Crowdscore. All rights reserved.
-      </footer>
-      
-      
-      
-      
+        <%= yield %>
+        <%= render "layouts/footer" %>
+      </div>
     </div>
+    <div class="floater">
+      <ul>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Account", dashboard_path, class: "menu" %>
+            <ul>
+              <li>
+                <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+                <%= link_to "View My Lists", lists_path %>
+                <%= link_to "My Profile", user_path(current_user) %>
+                <%= link_to "My Account", edit_user_registration_path %>
+              </li>
+            </ul>
+          </li>
+        <% else %>  
+          <li><%= link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true" %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <% end %>
+        <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+      </ul>
+    </div>    
 <!-- 
     <div id="auth-modal" class='full-screen-modal'>
       <div class='modal-mask'>

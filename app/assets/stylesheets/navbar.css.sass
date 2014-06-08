@@ -46,6 +46,27 @@
 	& > li 
 		float: left
 
+.cs-h-nav-link-with-arrow
+	a
+		color: #2d3132
+		cursor: pointer
+		display: block
+		font-family: Museo
+		font-size: 11px
+		font-weight: 500
+		letter-spacing: 1px
+		line-height: 28px
+		text-transform: uppercase
+		text-decoration: none
+
+	img 
+		+transform(translateX(5px))
+		+transition(all 0.25s)
+
+	&:hover
+		img 
+			+transform(translateX(2px))
+
 .cs-h-nav-link
 	float: left
 	margin-left: 25px
@@ -58,13 +79,10 @@
 		display: block
 		font-family: Museo
 		font-size: 11px
-		font-weight: 300
+		font-weight: 500
 		line-height: 28px
 		text-transform: uppercase
-
-	img 
-		margin-left: 12px
-
+	
 .cs-h-search-trigger
 	cursor: pointer
 	height: 100%
