@@ -5,5 +5,10 @@ class VenueSubcategoriesController < InheritedResources::Base
 
   def index
     respond_with collection.to_json(:only => [:id, :name])
+    @venue_subcategories = VenueSubcategory.all
+  end
+  
+  def show
+    @venue_subcategory = VenueSubcategory.find(params[:id])
   end
 end

@@ -16,7 +16,11 @@
 				  </div>
 			    <a class='venue-name' href='/venues/<%= resource.id %>'><%= resource.name %></a>
 			    <div class='cs-iw-cid'>
-			    <span class='category'><%= resource.venue_subcategory.name %></span>
+			    <% if resource.venue_subcategory %>
+			      <span class='category'><%= resource.venue_subcategory.name %></span>
+			    <% else %>
+			      <span class='category'><%= resource.venue_category.name %></span>
+			    <% end %>
 			    <span class='distance'>0.1 mi away</span>
 			  </div>
 			</div>

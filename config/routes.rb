@@ -72,6 +72,15 @@ Crowdscore::Application.routes.draw do
     namespace :venues do
       resource :import, :controller => :venue_imports, :as => :import, :only => [:new, :create]
     end
+    resources :venue_categories
+    resources :venue_subcategories
+    namespace :venue_categories do
+      
+    end
+    namespace :venue_subcategories do
+      
+    end
+    resources :factual_crowdscore_maps#, :controller => :factual_crowdscore_maps, :as => :factual_crowdscore_maps
     root to: 'dashboards#show'
   end
 

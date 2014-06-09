@@ -25,7 +25,7 @@ class Venue < ActiveRecord::Base
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
-                               :longitude]
+                               :longitude, :factual_id, :country]
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]
@@ -88,7 +88,7 @@ class Venue < ActiveRecord::Base
   
   def get_score_categories
     @score_categories = []
-    if venue_subcategory.score_categories.any?
+    if venue_subcategory && venue_subcategory.score_categories.any?
       venue_subcategory.score_categories.each do |sc|
         @score_categories << sc
       end

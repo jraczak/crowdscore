@@ -1,0 +1,9 @@
+<%= render 'admin/subnav' %>
+
+<%= errors_for resource %>
+
+<%= form_for resource, :url => admin_venues_import_path do |f| %>
+  <%= f.label :file, "Select CSV file" %><br>
+  <%= f.file_field :file, size: "30" %><br>
+  <%= f.submit("Import venues") %>
+<% end %>
