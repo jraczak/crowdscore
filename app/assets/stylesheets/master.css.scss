@@ -61,9 +61,15 @@ p{
   background-color: #fff;
   min-height: 100%;
   margin: 0 auto -405px;
+  height: 100%;
   max-width: 1920px;
   min-width: 960px;
   width: 100%;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 // A rounded container with a child img element which is also rounded
@@ -75,6 +81,14 @@ p{
     width: 100%;
     height: 100%;
     border-radius: 50%;
+  }
+}
+
+.p-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
 
