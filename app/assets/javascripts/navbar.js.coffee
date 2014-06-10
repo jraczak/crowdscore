@@ -33,7 +33,7 @@ class CrowdscoreHeader extends SimpleDomObject
     super()
 
   initialize: =>
-    @$searchInput = new InputToTextMocker('#cs-h-search-input', '#cs-h-search-input-placeholder')
+    new InputToTextMocker('#cs-h-search-input', '#cs-h-search-input-placeholder')
 
   events: =>
     'showSearchView#click' : '.cs-h-search-trigger'
@@ -55,6 +55,7 @@ class CrowdscoreHeader extends SimpleDomObject
 
   showSearchView: =>
     @$navInner.addClass "cs-h-push"
+    @$searchInput.focus()
 
     if @$navInner.hasClass "cs-h-location"
       @$navInner.removeClass "cs-h-location" 

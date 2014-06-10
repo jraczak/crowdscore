@@ -1,5 +1,5 @@
 <div class="cs-h">
-	<div class="cs-h-inner cs-h-push">
+	<div class="cs-h-inner">
 		<div class="cs-h-main">
 			<%= link_to root_path do %>
 				<%= image_tag 'cs_nav_logo.png', class: "cs-h-logo", width: 24, height: 28 %>
@@ -45,16 +45,17 @@
 			<div class="cs-h-search-lever"></div>
 		</div>
 
+		<%= form_tag search_venues_path, method: "get" do |f| %>
 		<div class="cs-h-search-wrapper">
 			<div class="cs-h-search">
 				<div class="cs-h-search-icon"></div>
 				<div class="cs-h-search-input-wrapper">
-					<input type="text" id="cs-h-search-input" placeholder="Type something in that you want like sneakers..." tabindex=5>
+					<%= text_field_tag :q, "", id: "cs-h-search-input", placeholder: "Type something in that you want like sneakers...", tabindex: 5%>
 
 					<div id="cs-h-search-input-placeholder">
 						<p></p>
 						<div class="cs-h-location-input-wrapper">
-							<input type="text" id="cs-h-location-input" placeholder="City, State or Zip" tabindex=6>
+							<%= text_field_tag :zip, "", id: "cs-h-location-input", placeholder: "City, State or Zip", tabindex: 6 %>
 						</div>
 					</div>
 				</div>
@@ -69,5 +70,6 @@
 				</button>
 			</div>
 		</div>
+		<% end %>
 	</div>
 </div>
