@@ -61,10 +61,11 @@ p{
   background-color: #fff;
   min-height: 100%;
   margin: 0 auto -405px;
-  height: 100%;
+
   max-width: 1920px;
   min-width: 960px;
   width: 100%;
+
   &:after {
     content: "";
     display: table;

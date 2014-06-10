@@ -55,7 +55,6 @@ class CrowdscoreHeader extends SimpleDomObject
 
   showSearchView: =>
     @$navInner.addClass "cs-h-push"
-    @$searchInput.focus()
 
     if @$navInner.hasClass "cs-h-location"
       @$navInner.removeClass "cs-h-location" 

@@ -47,12 +47,12 @@
         <%= yield %>
 
         <div class="footer-push"></div>
+  
       </div>
-      
       <!-- Hide footer on search page -->
       <% unless params[:action] == 'search' %>
         <%= render "layouts/footer" %>
-      <% end %>
+      <% end %>  
     </div>
   
     <div id="register-modal" class="modal">
