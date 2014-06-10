@@ -19,4 +19,5 @@
 //= require_tree ./templates
 //= require crowdscore
 //= require graph
+//= require SimpleDomObject
 //= require_tree .

@@ -3,28 +3,6 @@ getParameterByName = (name) ->
   regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
   results = regex.exec(location.search)
   (if not results? then "" else decodeURIComponent(results[1].replace(/\+/g, " ")))
-  
-
-# SimpleDomObject is used for organizing event handlers
-class SimpleDomObject
-  
-  constructor: ->
-    # Bind event listeners
-    @listen()
-
-  listen: ->
-    events = @events()
-
-    for key of events
-      try 
-        f = @[key.split(/#(.+)?/)[0]] # event
-        e = key.split(/#(.+)?/)[1] # target
-        t = events[key] # function
-
-        $('body').on e, t, f
-
-      catch
-        console.log "Unable to bind " + e + " event to " + t
 
 ### ** DOCUMENTATION **
 
