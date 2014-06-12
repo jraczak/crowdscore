@@ -99,6 +99,7 @@ class VenueImport
     end
     venue = Venue.create({
 	  factual_id: row['factual_id'],
+	  factual_category_id: factual_category_id,
 	  name: row['name'],
 	  address1: row['address'],
 	  city: row['locality'],

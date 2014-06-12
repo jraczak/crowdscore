@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140612214920) do
+ActiveRecord::Schema.define(:version => 20140612215328) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -356,6 +356,7 @@ ActiveRecord::Schema.define(:version => 20140612214920) do
     t.string   "country"
     t.text     "hours"
     t.text     "neighborhoods"
+    t.integer  "factual_category_id"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"
