@@ -33,9 +33,12 @@ class Venue < ActiveRecord::Base
   attr_accessible *default_accessible_fields
   attr_accessible *(default_accessible_fields - noneditable_fields), as: :regular_user_editing
   attr_accessible *(default_accessible_fields + admin_only_fields), as: :admin
+  
+  store :hours
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
+  validates :factual_id, unique: true
 
   geocoded_by :full_address
   after_validation :geocode, if: :address_parts_changed?
