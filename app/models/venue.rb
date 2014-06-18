@@ -35,6 +35,7 @@ class Venue < ActiveRecord::Base
   attr_accessible *(default_accessible_fields + admin_only_fields), as: :admin
   
   store :hours
+  store :hour_ranges
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }

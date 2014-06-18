@@ -110,6 +110,7 @@ class VenueImport
 	  url: row['website'],
 	  latitude: row['latitude'],
 	  longitude: row['longitude'],
+	  neighborhoods: row['neighborhood'],
 	  venue_category: category,
 	  venue_subcategory: subcategory
     })    
@@ -161,4 +162,22 @@ class VenueImport
   def sanitize_url(url)
     url =~ /^http/ ? url : "http://#{url}"
   end
+  
 end
+ 
+ 
+ 
+ 
+hours.each do |day_name, hours|
+     hour_range = []
+   hours.each do |hour_set|
+       hour_set.each do |hour|
+         hour_range << hour
+       end
+     hour_range = hour_range.sort { |x, y| x.to_i <=> y.to_i }
+     hours_range[:"#{day_name}"] = {:open => hour_range.first, :close => hour_range.last }
+     end
+   end
+   
+   #Pulling out human readable values from the hash after created from the JSON
+   puts "#{key} we open at #{Time.parse(values[:open]).strftime("%l:%M%p")} and close at #{Time.parse(values[:close]).strft 
