@@ -97,6 +97,16 @@ class VenueImport
       category = VenueCategory.find_by_factual_category_id(factual_category_id)
       subcategory = nil
     end
+    
+    
+    if row['hours']
+      raw_hours = row['hours']
+      #raw_hours_string = '#{raw_hours}'
+      hours = JSON.parse(raw_hours)
+    end
+    
+    hour_ranges = parse_hour_ranges(hours)
+    
     venue = Venue.create({
 	  factual_id: row['factual_id'],
 	  factual_category_id: factual_category_id,
@@ -112,7 +122,9 @@ class VenueImport
 	  longitude: row['longitude'],
 	  neighborhoods: row['neighborhood'],
 	  venue_category: category,
-	  venue_subcategory: subcategory
+	  venue_subcategory: subcategory,
+	  hours: hours,
+	  hour_ranges: hour_ranges
     })    
     
     #venue = Venue.create({
@@ -147,6 +159,26 @@ class VenueImport
     return venue
   end
 
+  def sanitize_url(url)
+    url =~ /^http/ ? url : "http://#{url}"
+  end
+  
+  def parse_hour_ranges(full_hours)
+    unless full_hours.nil?
+      hour_ranges = {}
+      full_hours.each do |day_name, hours|
+        hour_range = []
+        hours.each do |hour_set|
+          hour_range << hour_set[0]
+          hour_range << hour_set[1]
+          hour_range = hour_range.sort { |x,y| x.to_i <=> y.to_i }
+          hour_ranges[:"#{day_name}"] = { :open => hour_range.first, :close => hour_range.last }
+        end
+      end
+    end
+    return hour_ranges
+  end
+  
   def find_category(factual_category_id)
     #VenueCategory.find_by_name(name)
     map = FactualCrowdscoreMap.find_by_factual_category_id(factual_category_id)
@@ -159,25 +191,20 @@ class VenueImport
     VenueSubcategory.find(map.venue_subcategory_id) unless map.venue_subcategory_id.blank?
   end
 
-  def sanitize_url(url)
-    url =~ /^http/ ? url : "http://#{url}"
-  end
   
 end
  
  
- 
- 
-hours.each do |day_name, hours|
-     hour_range = []
-   hours.each do |hour_set|
-       hour_set.each do |hour|
-         hour_range << hour
-       end
-     hour_range = hour_range.sort { |x, y| x.to_i <=> y.to_i }
-     hours_range[:"#{day_name}"] = {:open => hour_range.first, :close => hour_range.last }
-     end
-   end
+#hours.each do |day_name, hours|
+#     hour_range = []
+#   hours.each do |hour_set|
+#       hour_set.each do |hour|
+#         hour_range << hour
+#       end
+#     hour_range = hour_range.sort { |x, y| x.to_i <=> y.to_i }
+#     hours_range[:"#{day_name}"] = {:open => hour_range.first, :close => hour_range.last }
+#     end
+#   end
    
    #Pulling out human readable values from the hash after created from the JSON
-   puts "#{key} we open at #{Time.parse(values[:open]).strftime("%l:%M%p")} and close at #{Time.parse(values[:close]).strft 
+   #puts "#{key} we open at #{Time.parse(values[:open]).strftime("%l:%M%p")} and close at #{Time.parse(values[:close]).strft 

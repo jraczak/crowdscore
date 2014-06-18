@@ -25,7 +25,7 @@ class Venue < ActiveRecord::Base
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
-                               :longitude, :factual_id, :country]
+                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges]
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]
@@ -39,7 +39,7 @@ class Venue < ActiveRecord::Base
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
-  validates :factual_id, unique: true
+  validates :factual_id, uniqueness: true
 
   geocoded_by :full_address
   after_validation :geocode, if: :address_parts_changed?
