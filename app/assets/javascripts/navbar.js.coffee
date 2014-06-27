@@ -65,4 +65,5 @@ class CrowdscoreHeader extends SimpleDomObject
 
 
 $(document).ready ->
+  alert('')
   navbar = new CrowdscoreHeader('element');
