@@ -9,7 +9,7 @@
 <% resource.hours_with_names.each do |day, hours| %>
   <p><b><%= day %>:</b></p><br>
   <% hours.each do |hour_set| %>
-    <p><%= hour_set[:open] %> - <%= hour_set[:close] %> <%= "(#{hour_set[:name]})" unless hour_set[:name].nil? %></p><br>
+    <p><%= Time.parse(hour_set[:open]).strftime("%l:%M%p") %> - <%= Time.parse(hour_set[:close]).strftime("%l:%M%p") %> <%= "(#{hour_set[:name]})" unless hour_set[:name].nil? %></p><br>
   <% end %>
   <br>
 <% end %>
