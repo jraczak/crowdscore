@@ -1,0 +1,28 @@
+<h1><%=resource.name%></h1>
+<p><%= "#{resource.venue_category.name} | #{resource.venue_subcategory.name unless resource.venue_subcategory.nil?}" %></p><br>
+<br>
+<p><%= resource.full_address %></p><br>
+<p><%= number_to_phone(resource.phone, area_code: true) %></p><br>
+<p><%= link_to resource.url, resource.url %></p><br>
+
+<h2>Operating Hours</h2>
+<% resource.hours_with_names.each do |day, hours| %>
+  <p><b><%= day %>:</b></p><br>
+  <% hours.each do |hour_set| %>
+    <p><%= hour_set[:open] %> - <%= hour_set[:close] %> <%= "(#{hour_set[:name]})" unless hour_set[:name].nil? %></p><br>
+  <% end %>
+  <br>
+<% end %>
+
+<h2>Operating Hours</h2>
+<% resource.hour_ranges.each do |day, hours| %>
+  <p><b><%= day %>: </b>Open <%= Time.parse(hours[:open]).strftime("%l:%M%p") %>, Close <%= Time.parse(hours[:close]).strftime("%l:%M%p") %></p><br>
+<% end %>
+
+<h2>Activity</h2>
+<%= pluralize(resource.venue_scores.count, "score") %><br>
+<%= pluralize(resource.tips.count, "tip") %><br>
+<br>
+<%= link_to "Edit venue", edit_admin_venue_path(resource) %>
+
+

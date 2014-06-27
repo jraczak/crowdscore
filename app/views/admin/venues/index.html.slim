@@ -1,6 +1,7 @@
 = render partial: 'admin/subnav'
 
 h1 Existing venues
+h3 = "Showing #{Venue.all.count} venues"
 
 = paginate collection
 

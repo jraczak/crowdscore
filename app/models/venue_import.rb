@@ -98,6 +98,7 @@ class VenueImport
       subcategory = nil
     end
     
+    tel = !row['tel'].nil? ? row['tel'].gsub(/[^0-9a-z]/i, '') : nil
     
     if row['hours']
       raw_hours = row['hours']
@@ -106,6 +107,7 @@ class VenueImport
     end
     
     hour_ranges = parse_hour_ranges(hours)
+    hours_with_names = parse_hours_with_names(hours)
     
     venue = Venue.create({
 	  factual_id: row['factual_id'],
@@ -116,7 +118,7 @@ class VenueImport
 	  state: row['region'],
 	  zip: row['postcode'],
 	  country: row['country'],
-	  phone: row['tel'].gsub(/[^0-9a-z]/i, ''),
+	  phone: tel,
 	  url: row['website'],
 	  latitude: row['latitude'],
 	  longitude: row['longitude'],
@@ -124,7 +126,8 @@ class VenueImport
 	  venue_category: category,
 	  venue_subcategory: subcategory,
 	  hours: hours,
-	  hour_ranges: hour_ranges
+	  hour_ranges: hour_ranges,
+	  hours_with_names: hours_with_names
     })    
     
     #venue = Venue.create({
@@ -143,6 +146,9 @@ class VenueImport
   
   def update_venue_from_csv(row)
     venue = Venue.find_by_factual_id(row['factual_id'])
+    
+    tel = !row['tel'].nil? ? row['tel'].gsub(/[^0-9a-z]/i, '') : nil
+    
     venue.assign_attributes(
 	  name: row['name'],
 	  address1: row['address'],
@@ -150,7 +156,7 @@ class VenueImport
 	  state: row['region'],
 	  zip: row['postcode'],
 	  country: row['country'],
-	  phone: row['tel'].gsub(/[^0-9a-z]/i, ''),
+	  phone: tel,
 	  url: row['website'],
 	  latitude: row['latitude'],
 	  longitude: row['longitude'],
@@ -177,6 +183,23 @@ class VenueImport
       end
     end
     return hour_ranges
+  end
+  
+  def parse_hours_with_names(full_hours)
+    unless full_hours.nil?
+      hours_with_names = {}
+      full_hours.each do |day_name, hours|
+        hours_with_names[:"#{day_name}"] = []
+        hours.each do |hour_set|
+          if hour_set[2]
+            hours_with_names[:"#{day_name}"] << { :open => hour_set[0], :close => hour_set[1], :name => hour_set[2] }
+          else
+            hours_with_names[:"#{day_name}"] << { :open => hour_set[0], :close => hour_set[1], :name => nil }
+          end
+        end
+      end
+    end
+    return hours_with_names
   end
   
   def find_category(factual_category_id)
