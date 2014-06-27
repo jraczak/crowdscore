@@ -65,12 +65,6 @@ p{
   max-width: 1920px;
   min-width: 960px;
   width: 100%;
-
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
 
 // A rounded container with a child img element which is also rounded

@@ -25,7 +25,7 @@ getParameterByName = (name) ->
       <ul class="cs-obj-dd-opts"></ul>
     </div>
 ###
-class CustomDropdownMenu extends SimpleDomObject
+class document.CustomDropdownMenu extends SimpleDomObject
   
   constructor: (wrapper, defaultMsg, selectedIndex) ->
     
@@ -80,7 +80,7 @@ class CustomDropdownMenu extends SimpleDomObject
   val: =>
     return @valContent
 
-class AddToListDropdownMenu extends CustomDropdownMenu
+class AddToListDropdownMenu extends document.CustomDropdownMenu
 
   constructor: (wrapper, defaultMsg, selectedIndex) ->
     super(wrapper, defaultMsg, selectedIndex)
@@ -181,6 +181,8 @@ class AddToListModal extends SimpleDomObject
     window.location.href = "#"
 
 $(document).ready ->
+
+  $('.cs-obj-dropdown')
   
   page_action = getParameterByName('page_action')
   if page_action
@@ -203,7 +205,8 @@ $(document).ready ->
   $(".md-close").click ->
     $("#" + $(this).data('target-modal')).removeClass('md-open')
 
-  new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
+  if $('#list-dropdown').length > 0
+    new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
   new AddToListModal('#list-select')
   $('body').on 'click', '#gangster-daddy', ->
   	venueId = $(this).data('venue-id')

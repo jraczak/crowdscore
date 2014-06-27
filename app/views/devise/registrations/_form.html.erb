@@ -41,7 +41,12 @@
       <%= f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender" %><br>
       
       <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
-      <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'side-by-side' %>
+      <div class="cs-obj-dd dd-default" id="cs-dd-birth-month">
+        <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'cs-obj-dd-sel' %>
+        <div class="cs-obj-dd-val dd-toggle"></div>
+        <ul class="cs-obj-dd-opts"></ul>
+      </div>
+      
       <%= f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side' %><br>
       
       <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label", placeholder: "We only need your username" %><br>
@@ -98,4 +103,8 @@
       <span class="help-block">Enter your current password to authorize your password update</span><br>
     </fieldset>
   </div>
+
+  <script type="text/javascript">
+    new document.CustomDropdownMenu('#cs-dd-birth-month')
+  </script>
 
