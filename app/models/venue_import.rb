@@ -42,6 +42,11 @@ class VenueImport
     message += " #{unsaved_venues.length} venue(s) not imported due to failed validations." if unsaved_venues.any?
     message += " #{@existing_venues} unchanged venue(s) were not imported." if @existing_venues > 0
     message += " #{@updated_venues.length} venue(s) updated with new data." if @updated_venues.any?
+    @unsaved_venues.each do |v|
+      if v.errors.full_messages.any?
+        message += "#{v.name} failed to save because #{v.errors.full_messages.first}"
+      end
+    end
     message
   end
 
