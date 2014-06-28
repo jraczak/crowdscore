@@ -43,7 +43,10 @@ class Venue < ActiveRecord::Base
   validates :factual_id, uniqueness: true
 
   geocoded_by :full_address
-  after_validation :geocode, if: :address_parts_changed?
+  
+  ##Remove geocoding for now as latlong is received from Factual
+  ##and these calls to the API are unnecessary
+  #after_validation :geocode, if: :address_parts_changed?
 
   searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
