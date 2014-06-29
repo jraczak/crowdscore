@@ -10,7 +10,7 @@
 				<% if user_signed_in? %>
 					<li class="cs-h-user-nav">
 						<div class="obj-rounded-image-wrapper">
-							<img src="http://i853.photobucket.com/albums/ab94/AutumnInsanity/Splatt/Yearbook/Mowgli.jpg">
+							<%= image_tag current_user.image_url_url(:thumb).to_s %>
 						</div>
 						<div class="cs-h-user-dropdown-wrapper">
 							<div class="cs-h-user-dropdown-carot"></div>
