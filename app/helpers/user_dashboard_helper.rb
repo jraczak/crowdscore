@@ -37,7 +37,7 @@ module UserDashboardHelper
   end
   
   def current_meal
-    current_time = Time.now.strftime("%k").to_i
+    current_time = time_at_user #Time.now.strftime("%k").to_i
     case current_time
       when 17..22
         return "dinner"
