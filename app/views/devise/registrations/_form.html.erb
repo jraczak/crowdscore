@@ -1,12 +1,6 @@
   
-  <span id="required-field-key"><p class="required">* REQUIRED FIELDS</p></span><br>
-  
   <div id="user-form-fields-upper-container">
     <fieldset id="left-user-form-fields">
-    
-      <%= f.label :username, class: "user-form-label" %>
-      <span class="required">*</span><br>
-      <%= f.text_field :username, class: "required-form-field disabled-half-width-form-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?, title: "Username cannot be changed" if f.object.persisted? %><br>
         
       <%= f.label :email, class: "user-form-label" %>
       <span class="required">*</span><br>

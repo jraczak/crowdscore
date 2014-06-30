@@ -1,5 +1,12 @@
 <div id="edit-user-inner-page-container">
 
+  <div id="edit-user-header">
+    <div class="obj-rounded-image-wrapper">
+      <img src="<%= current_user.image_url.to_s %>">
+    </div>
+    <p><%= current_user.full_name %></p>
+  </div>
+
   <%= devise_error_messages! %>
   
   <h2 id="edit-user-form-header">Manage my account</h2>
@@ -9,13 +16,29 @@
   <% else %>
     <p class="facebook-not-connected">For easier logins, you can connect your Facebook account to your Crowdscore account by <%= link_to "clicking here", user_omniauth_authorize_path(:facebook) %>.</p>
   <% end %>
-  <%= form_for resource, as: resource_name, url: registration_path(resource_name) do |user| %>
 
-    <%= image_tag current_user.image_url.to_s %>
-    <p>
-      <%= user.file_field :image_url %>
-      <%= user.submit "gangster" %>
-    </p> 
+
+  <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "p-clearfix" } do |f| %>
+    <span id="required-field-key"><p class="required">* REQUIRED FIELDS</p></span><br>
+  
+    <fieldset class="left-user-form-fields">
+      <%= f.label :username, class: "user-form-label" %>
+      <span class="required">*</span><br>
+      <%= f.text_field :username, class: "required-form-field disabled-half-width-form-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?, title: "Username cannot be changed" if f.object.persisted? %><br>
+    </fieldset>
+    <fieldset class="right-user-form-fields">
+      <%= f.label :image_url, 'profile picture', class: "user-form-label", onclick: "console.log($('#edit-user-image-selector'))" %><br>
+      <div id="edit-user-image-wrapper">
+        <%= image_tag current_user.image_url.to_s, id: "edit-user-image" %>
+        <%= f.file_field :image_url, id: "edit-user-image-selector" %>
+        <p id="edit-user-image-label">Choose File</p>
+      </div>
+
+      <p id="edit-user-image-info">
+        gif, jpg, or png under 2mb<br>hint: square photos work best
+      </p>
+    </fieldset>
+    
   <% end %>
 
   <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-stacked' } do |f| %>

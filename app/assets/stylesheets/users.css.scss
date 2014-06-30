@@ -191,11 +191,11 @@
 }
 
 .blue-button {
-	background-color: #02b8ea;
+  background-color: #02b8ea;
 }
 
 .green-button {
-	background-color: #72ca28;
+  background-color: #72ca28;
 }
 
 #follow-user-button a, {
@@ -439,178 +439,123 @@ h2#user-profile-lists-header {
     margin-right: 0px;
 }
 
-/************************/
-/* EDIT USER FORM STYLES*/
-/************************/
+/*************************/
+/* EDIT USER FORM STYLES */
+/*************************/
+
+#edit-user-header {
+  display: inline-block;
+  margin-top: 127px;
+  position: relative;
+  width: auto;
+
+  &:after {
+    background-color: #2d3132;
+    content: "";
+    height: 4px;
+    left: 50%;
+    margin-left: -40px;
+    position: absolute;
+    top: 100%;
+    width: 80px;
+  }
+
+  .obj-rounded-image-wrapper {
+    background-color: #eee;
+    height: 35px;
+    width: 35px;
+  }
+
+  p {
+    color: #2d3132;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+}
 
 #edit-user-inner-page-container {
-	width: 960px;
-	margin: auto;
-	padding-right: 50px;
-	padding-left: 50px;
+  width: 960px;
+  margin: auto;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 #edit-user-form-header {
-	font-weight: 100;
-	font-size: 58px;
-	color: #2d3132;
-	margin-bottom: 10px;
-    margin-top: 40px;
+  font-weight: 100;
+  font-size: 58px;
+  color: #2d3132;
+  margin-bottom: 6px;
+  margin-top: 42px;
+}
+
+#edit-user-image-wrapper {
+  background-color: #02b8ea;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  height: 45px;
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+  width: 165px;
+
+  img {
+    float: left;
+    height: 45px;
+    overflow: hidden;
+    width: 45px;
+  }
+}
+
+#edit-user-image-selector {
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  outline: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#edit-user-image-label {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 45px;
+  float: left;
+  text-align: center;
+  text-transform: uppercase;
+  width: 120px;
+}
+
+#edit-user-image-info {
+  color: #b6b6b6;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 18px;
+  padding: 5px 9px;
+  text-transform: uppercase;
+  vertical-align: top;
 }
 
 .facebook-connected,
 .facebook-not-connected {
-	width: 420px;
-	font-weight: 100;
-	font-size: 14px;
-	line-height: 20px;
-	color: #6b6e70;
-	margin-bottom: 40px;
-	a {
-        color: #02b8ea;
-        text-decoration: none;
+  width: 410px;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b6e70;
+  margin-bottom: 40px;
+
+  a {
+      color: #02b8ea;
+      text-decoration: none;
     }
-
 }
-
-
-/** LEGACY STYLES 
-
-#user-name {
-
-  h2 {
-    font-family: 'Gotham-Light';
-    font-weight: normal;
-    font-size: 3.0em;
-    margin-bottom: 30px;
-  }
-  
-}
-
-#user-stats {
-  
-  table {
-    border: none;
-    background: #1e1e1e;
-    color: white;
-    padding: 30px;
-    margin-bottom: 0px;
-    margin-top: 30px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-  }
-  
-  table tr td {
-    border: none;
-    width: 30%;
-    text-align: center;
-    font-family: 'Gotham-XLight';
-    font-weight: normal;
-    font-size: 1.25em;
-  }
-  
-  td.label {
-    padding-top: 5px;
-  }
-  
-  .label {
-    background: none;
-    color: #898989;
-    font-family: 'Gotham-Light';
-    text-transform: none;
-    font-size: 1.1em;
-    padding-bottom: 0px;
-  }
-  
-  .scores, .tips, .followers {
-    font-size: 4.0em;
-  }
-  
-  #follow-button-container {
-    background: #1e1e1e;
-    margin-left: 0px;
-  
-  #follow-button {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-    
-  .btn-main {
-      padding-right: 10px;
-      padding-left: 10px;
-      margin-bottom: 30px;
-      width: 150px;
-    }
-  }
-  
-}
-   
-}
-
- USER DETAILS MODULE 
-
-#user-details {
-  background: none;
-  margin-left: 0;
-  margin-top: 30px;
-  padding: 10px;
-  
-  h1 {
-    font-family: 'Gotham-Book';
-    font-weight: normal;
-    font-size: 3.0em;
-    border-bottom: 2px solid #898989;
-  }
-  
-  h2 {
-    font-family: 'Gotham-Book';
-    font-weight: normal;
-    font-size: 2.5em;
-    
-  }
-  
-  h3 {
-    font-family: 'Gotham-Light';
-    font-weight: normal;
-    font-size: 1.0em;
-    
-    line-height: 1.2em;
-  }
-  
-  p {
-    font-family: 'Gotham-Light';
-    font-size: 1.3em;
-    line-height: 1.2em;
-  }
-  
-  table {
-    border: none;
-    padding-top: 10px;
-  
-    td {
-      border: none;
-    }
-    
-    .label {
-      font-family: 'Gotham-Light';
-      font-weight: normal;
-      font-size: 1.0em;
-      line-height: 1.2em;
-      text-transform: none;
-      background: none;
-      color: black;
-    }
-    
-    .username, .member_since, .twitter {
-     font-family: 'Gotham-Book';
-     font-weight: normal;
-     font-size: 2.2em;
-     padding-left: 0;
-    }
-  
-  }
-
-}
-**/
