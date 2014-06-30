@@ -21,7 +21,11 @@ getParameterByName = (name) ->
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
-      <div class="cs-obj-dd-val dd-toggle"></div>
+      <div class="cs-obj-dd-val dd-toggle">
+        <span class="cs-obj-dd-btn">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </div>
       <ul class="cs-obj-dd-opts"></ul>
     </div>
 ###

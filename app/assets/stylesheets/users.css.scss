@@ -443,6 +443,15 @@ h2#user-profile-lists-header {
 /* EDIT USER FORM STYLES */
 /*************************/
 
+.user-dropdown-input-wrapper {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.user-dropdown-input-birthday {
+    margin-left: 10px;
+}
+
 #edit-user-header {
   display: inline-block;
   margin-top: 127px;

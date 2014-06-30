@@ -31,20 +31,37 @@
       <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
       <%= f.text_field :zip_code, size: "10", class: "half-width-form-field" %><br>
       
-      <%= f.label :gender, class: "user-form-label" %><br>
-      <%= f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender" %><br>
-      
-      <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
-      <div class="cs-obj-dd dd-default" id="cs-dd-birth-month">
-        <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'cs-obj-dd-sel' %>
-        <div class="cs-obj-dd-val dd-toggle"></div>
-        <ul class="cs-obj-dd-opts"></ul>
-      </div>
-      
-      <%= f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side' %><br>
-      
       <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label", placeholder: "We only need your username" %><br>
-      <%= f.text_field :twitter_username, class: "half-width-form-field", size: "30" %><br>
+      <%= f.text_field :twitter_username, class: "half-width-form-field", style: "margin-bottom: 5px", size: "30" %><br>
+
+      <div class="user-dropdown-input-wrapper">
+      <%= f.label :gender, class: "user-form-label" %><br>
+        <div class="cs-obj-dd dd-default dd-user-input-gender" id="cs-dd-gender">
+          <%= f.select :gender, ['Male', 'Female'], {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
+
+      <div class="user-dropdown-input-wrapper user-dropdown-input-birthday">
+        <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
+        <div class="cs-obj-dd dd-default dd-user-input-month" id="cs-dd-birth-month">
+          <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
+
+      <div class="user-dropdown-input-wrapper">
+        <div class="cs-obj-dd dd-default dd-user-input-day" id="cs-dd-birth-day">
+          <%= f.select :birth_day, 0..31, {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
     
     </fieldset>
   </div>
@@ -99,6 +116,8 @@
   </div>
 
   <script type="text/javascript">
-    new document.CustomDropdownMenu('#cs-dd-birth-month')
+    new document.CustomDropdownMenu('#cs-dd-birth-month', "Month")
+    new document.CustomDropdownMenu('#cs-dd-gender', "Gender")
+    new document.CustomDropdownMenu('#cs-dd-birth-day', "Day")
   </script>
 

@@ -39,6 +39,65 @@ $cs-c-ddgray: #6b6e70
   background-color: black
 
 .dd-default
+  &.cs-obj-dd
+    border: 1px solid $cs-c-blue
+    border-radius: 2px
+    display: inline-block
+    height: 45px
+    z-index: 200
+  
+  .cs-obj-dd-val
+    line-height: 43px
+    color: $cs-c-blue
+    font-weight: 500
+    font-size: 14px
+    padding: 0 37px 0px 15px
+    position: relative
+    z-index: 2
+    background-color: #fff
+
+    .cs-obj-dd-btn
+      width: 22px
+      height: 100%
+      right: 0
+      background-color: $cs-c-blue
+      position: absolute
+      color: #fff
+      text-align: center
+
+  .cs-obj-dd-opts
+    border: 1px solid $cs-c-blue
+    bottom: 100%
+    display: none
+    left: -1px
+    max-height: calc(5*46px)
+    overflow: auto
+    width: calc(100% + 2px)
+    z-index: 1
+    
+  .cs-obj-dd-opt
+    background-color: #f4fcfe
+    border-bottom: 1px solid $cs-c-blue
+    color: $cs-c-ddgray
+    font-size: 11px
+    font-weight: 300
+    letter-spacing: 0.7px
+    line-height: 45px
+    padding: 0 37px 0px 15px
+    position: relative
+    text-transform: uppercase
+
+    &:last-child 
+      border-bottom: 0
+
+.dd-user-input-month
+  width: 160px
+
+.dd-user-input-year
+  width: 90px
+
+.dd-user-input-day
+  width: 90px
 
 // Add-to-list Dropdown
 .dd-addtolist
