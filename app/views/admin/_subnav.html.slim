@@ -9,4 +9,4 @@
       = admin_subnav_item "Venue Subcategories", admin_venue_subcategories_path, 'admin/venue_subcategories'
       
 - if VenueCategory.where(factual_category_id: nil).any?
-  h2 = WARNING! There are currently Venue Categories not attached to Factual category IDs!
+  h2 = "WARNING! There are currently Venue Categories not attached to Factual category IDs!"
