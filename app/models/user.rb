@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails, :liked_venue_categories
   
   # Serialize venue_subcategories within venue_categories to build explicit user preferences
   store :liked_venue_categories, accessors: [ :restaurants ]

@@ -3,6 +3,8 @@
   <h1>
     <%= dashboard_salutation %>
   </h1>
+  <%= debug current_meal %>
+  <%= debug time_at_user %>
   <div id="dashboard-recommendations-container">
   <% if user_time_zone && user_location_data %>
     <%= render "dashboard_recommendations" %>
