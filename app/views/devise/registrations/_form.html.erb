@@ -2,6 +2,10 @@
   <div id="user-form-fields-upper-container">
     <fieldset id="left-user-form-fields">
         
+      <%= f.label :username, class: "user-form-label" %>
+      <span class="required">*</span><br>
+      <%= f.text_field :username, class: "required-form-field disabled-half-width-form-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?, title: "Username cannot be changed" if f.object.persisted? %><br>
+
       <%= f.label :email, class: "user-form-label" %>
       <span class="required">*</span><br>
       <%= f.text_field :email, class: "half-width-form-field required-form-field", size: "30" %><br>
@@ -16,11 +20,20 @@
       <%= f.label :bio, class: "user-form-label" %><br>
       <%= f.text_area :bio, class: "half-width-form-field big-text-area", size: "250", placeholder: "Share a little about what makes you awesome" %><br>
     
-      
-    
     </fieldset>
     
     <fieldset id="right-user-form-fields">
+      
+      <%= f.label :image_url, 'profile picture', class: "user-form-label", onclick: "console.log($('#edit-user-image-selector'))" %><br>
+      <div id="edit-user-image-wrapper">
+        <%= image_tag current_user.image_url.to_s, id: "edit-user-image" %>
+        <%= f.file_field :image_url, id: "edit-user-image-selector" %>
+        <p id="edit-user-image-label">Choose File</p>
+      </div>
+
+      <p id="edit-user-image-info">
+        gif, jpg, or png under 2mb<br>hint: square photos work best
+      </p>
       
       <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
       <%= f.text_field :home_city, size: "30", class: "half-width-form-field" %><br>
@@ -47,7 +60,7 @@
       <div class="user-dropdown-input-wrapper user-dropdown-input-birthday">
         <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
         <div class="cs-obj-dd dd-default dd-user-input-month" id="cs-dd-birth-month">
-          <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'cs-obj-dd-sel' %>
+          <%= f.select :birth_month, ::Date::MONTHNAMES[1..-1], {}, class: 'cs-obj-dd-sel' %>
 
           <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
           <ul class="cs-obj-dd-opts"></ul>
@@ -116,8 +129,8 @@
   </div>
 
   <script type="text/javascript">
-    new document.CustomDropdownMenu('#cs-dd-birth-month', "Month")
-    new document.CustomDropdownMenu('#cs-dd-gender', "Gender")
-    new document.CustomDropdownMenu('#cs-dd-birth-day', "Day")
+    new document.CustomDropdownMenu('#cs-dd-birth-month', "Month", $('#cs-dd-birth-month').find('select').get(0).selectedIndex, 0)
+    new document.CustomDropdownMenu('#cs-dd-gender', "Gender", $('#cs-dd-gender').find('select').get(0).selectedIndex, 0)
+    new document.CustomDropdownMenu('#cs-dd-birth-day', "Day", $('#cs-dd-birth-day').find('select').get(0).selectedIndex, 0)
   </script>
 

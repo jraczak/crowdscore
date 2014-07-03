@@ -31,7 +31,7 @@ getParameterByName = (name) ->
 ###
 class document.CustomDropdownMenu extends SimpleDomObject
   
-  constructor: (wrapper, defaultMsg, selectedIndex) ->
+  constructor: (wrapper, defaultMsg, selectedIndex, offset) ->
     
     # Change these values for defaults
     dm = "Choose one" # Default message
@@ -42,6 +42,11 @@ class document.CustomDropdownMenu extends SimpleDomObject
       @selectedIndex = si
     else 
       @selectedIndex = selectedIndex
+
+    if typeof(offset) == 'undefined'
+      @offset = -1
+    else 
+      @offset = offset
 
     if typeof(defaultMsg) == 'undefined'
       @defaultMsg = dm
@@ -66,14 +71,16 @@ class document.CustomDropdownMenu extends SimpleDomObject
       $(@wrapper + " .cs-obj-dd-opts").append(@_listItemMarkup(option.value, option.text))
 
     $(@wrapper + " .cs-obj-dd-val").text(@defaultMsg).append(@valContent)
-    
+
+    $(@wrapper + " .cs-obj-dd-val").text($(@dropdown).val()).append(@valContent)
+
   open: =>
     @wrapperDOM.toggleClass('open')
 
   # Update hidden select value, update visible selected value
   update: (e) =>
     li = $(e.currentTarget)
-    @dropdown.selectedIndex = li.index() - 1
+    @dropdown.selectedIndex = li.index() - @offset
     $(@wrapper + " .cs-obj-dd-val").text(li.text()).append(@valContent)
     @wrapperDOM.removeClass('open')
 
