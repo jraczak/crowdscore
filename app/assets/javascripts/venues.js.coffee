@@ -1,23 +1,8 @@
-# SimpleDomObject is used for organizing event handlers
-class SimpleDomObject
-  
-  constructor: ->
-    # Bind event listeners
-    @listen()
-
-  listen: ->
-    events = @events()
-
-    for key of events
-      try 
-        f = @[key.split(/#(.+)?/)[0]] # event
-        e = key.split(/#(.+)?/)[1] # target
-        t = events[key] # function
-
-        $('body').on e, t, f
-
-      catch
-        console.log "Unable to bind " + e + " event to " + t
+getParameterByName = (name) ->
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")
+  regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+  results = regex.exec(location.search)
+  (if not results? then "" else decodeURIComponent(results[1].replace(/\+/g, " ")))
 
 ### ** DOCUMENTATION **
 
@@ -36,13 +21,17 @@ class SimpleDomObject
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
-      <div class="cs-obj-dd-val dd-toggle"></div>
+      <div class="cs-obj-dd-val dd-toggle">
+        <span class="cs-obj-dd-btn">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </div>
       <ul class="cs-obj-dd-opts"></ul>
     </div>
 ###
-class CustomDropdownMenu extends SimpleDomObject
+class document.CustomDropdownMenu extends SimpleDomObject
   
-  constructor: (wrapper, defaultMsg, selectedIndex) ->
+  constructor: (wrapper, defaultMsg, selectedIndex, offset) ->
     
     # Change these values for defaults
     dm = "Choose one" # Default message
@@ -53,6 +42,11 @@ class CustomDropdownMenu extends SimpleDomObject
       @selectedIndex = si
     else 
       @selectedIndex = selectedIndex
+
+    if typeof(offset) == 'undefined'
+      @offset = -1
+    else 
+      @offset = offset
 
     if typeof(defaultMsg) == 'undefined'
       @defaultMsg = dm
@@ -77,14 +71,16 @@ class CustomDropdownMenu extends SimpleDomObject
       $(@wrapper + " .cs-obj-dd-opts").append(@_listItemMarkup(option.value, option.text))
 
     $(@wrapper + " .cs-obj-dd-val").text(@defaultMsg).append(@valContent)
-    
+
+    $(@wrapper + " .cs-obj-dd-val").text($(@dropdown).val()).append(@valContent)
+
   open: =>
     @wrapperDOM.toggleClass('open')
 
   # Update hidden select value, update visible selected value
   update: (e) =>
     li = $(e.currentTarget)
-    @dropdown.selectedIndex = li.index() - 1
+    @dropdown.selectedIndex = li.index() - @offset
     $(@wrapper + " .cs-obj-dd-val").text(li.text()).append(@valContent)
     @wrapperDOM.removeClass('open')
 
@@ -95,7 +91,7 @@ class CustomDropdownMenu extends SimpleDomObject
   val: =>
     return @valContent
 
-class AddToListDropdownMenu extends CustomDropdownMenu
+class AddToListDropdownMenu extends document.CustomDropdownMenu
 
   constructor: (wrapper, defaultMsg, selectedIndex) ->
     super(wrapper, defaultMsg, selectedIndex)
@@ -182,23 +178,48 @@ class AddToListModal extends SimpleDomObject
     
     listId = $(@ddSelector).get(0).value
     venueId = $(@ddSelector).data('venue-id')
-
+    
     $.ajax(
       type: "PUT"
       url: "/lists/" + listId + "/add"
       data: { venue_id: venueId }
     )
-      .done( ->
-        # TODO: PRESENT TOAST
+      .done( (response) ->
+        $("#flash-container").append("<div class='notice'>" + response.notice + "</div>")
+        $('.md-close').click()
       )
 
     window.location.href = "#"
 
 $(document).ready ->
+
+  # $('.cs-obj-dropdown')
+  
+  # page_action = getParameterByName('page_action')
+  # if page_action
+  # 	switch page_action
+  #     when "submit-score-modal"
+  #     	$("#submit-score-modal").addClass('visible')
+  #     when "add_to_list"
+  #     	$('#add_to_list').addClass('md-open')
+      
+  # $("[data-open-modal]").click ->
+  # 	$("#" + $(this).data('open-modal')).addClass('md-open')
+  	
+  # $("body").on "click", ".fn-open-modal", (e) ->
+  #   target = $(e.currentTarget).data('target-modal')
+  #   pageAction = $(e.currentTarget).data('target-action')
+    
+  #   $("#" + target).addClass('visible')
+  #   $("#user_page_action").get(0).value = pageAction
+
+  # $(".md-close").click ->
+  #   $("#" + $(this).data('target-modal')).removeClass('md-open')
+
   if $('#list-dropdown').length > 0
     new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
     new AddToListModal('#list-select')
-    
+
   $('body').on 'click', '#gangster-daddy', ->
   	venueId = $(this).data('venue-id')
   	scoreData = [

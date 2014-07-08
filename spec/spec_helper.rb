@@ -1,7 +1,13 @@
 require 'rubygems'
 require 'spork'
 
+# Requires for Sauce Labs testing
+require 'capybara/rails'
+require 'capybara/rspec'
+Capybara.default_driver = :sauce
+
 Spork.prefork do
+  require "sauce_helper"
   ENV["RAILS_ENV"] ||= 'test'
 
   # These two lines fix an issue with Spork and Devise preloading the user model
@@ -21,7 +27,7 @@ Spork.prefork do
 
   EphemeralResponse.configure do |config|
     config.expiration = 1.month
-    config.white_list = 'localhost', '127.0.0.1'
+    config.white_list = 'localhost', '127.0.0.1', 'ondemand.saucelabs.com'
     config.debug_output = $stderr
   end
 
@@ -42,13 +48,13 @@ Spork.prefork do
   end
 
   # Mock out Fog by pretending a bucket exists
-  Fog.mock!
-  connection = Fog::Storage.new(:provider => 'AWS')
-  connection.directories.create(:key => 'crowdscore-test')
+  #Fog.mock!
+  #connection = Fog::Storage.new(:provider => 'AWS')
+  #connection.directories.create(:key => 'crowdscore-test')
 end
 
-Spork.each_run do
-  FactoryGirl.definition_file_paths = [ File.join(Rails.root, 'spec', 'factories') ]
-  FactoryGirl.find_definitions
-end
+#Spork.each_run do
+#  FactoryGirl.definition_file_paths = [ File.join(Rails.root, 'spec', 'factories') ]
+#  FactoryGirl.find_definitions
+#end
 

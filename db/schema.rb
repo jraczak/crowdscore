@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20140217223502) do
+ActiveRecord::Schema.define(:version => 20140627051823) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -45,6 +44,17 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
   add_index "badges_sashes", ["badge_id", "sash_id"], :name => "index_badges_sashes_on_badge_id_and_sash_id"
   add_index "badges_sashes", ["badge_id"], :name => "index_badges_sashes_on_badge_id"
   add_index "badges_sashes", ["sash_id"], :name => "index_badges_sashes_on_sash_id"
+
+  create_table "factual_crowdscore_maps", :force => true do |t|
+    t.integer  "factual_category_id"
+    t.integer  "venue_subcategory_id"
+    t.text     "description"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "venue_category_id"
+  end
+
+  add_index "factual_crowdscore_maps", ["factual_category_id", "venue_subcategory_id"], :name => "index_factual_crowdscore_maps_on_ids", :unique => true
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
@@ -240,6 +250,8 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
     t.string   "home_city"
     t.boolean  "receive_follower_emails",               :default => true
     t.boolean  "receive_product_emails",                :default => true
+    t.text     "liked_venue_categories"
+    t.string   "image_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -252,12 +264,13 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
 
   create_table "venue_categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "prompt1"
     t.string   "prompt2"
     t.string   "prompt3"
     t.string   "prompt4"
+    t.integer  "factual_category_id"
   end
 
   create_table "venue_category_tag_sets", :force => true do |t|
@@ -309,8 +322,9 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
   create_table "venue_subcategories", :force => true do |t|
     t.integer  "venue_category_id"
     t.string   "name"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "factual_category_id"
   end
 
   add_index "venue_subcategories", ["venue_category_id"], :name => "index_venue_subcategories_on_venue_category_id"
@@ -340,6 +354,12 @@ ActiveRecord::Schema.define(:version => 20140217223502) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "factual_id"
+    t.string   "country"
+    t.text     "hours"
+    t.text     "neighborhoods"
+    t.integer  "factual_category_id"
+    t.text     "hour_ranges"
+    t.text     "hours_with_names"
   end
 
   add_index "venues", ["venue_category_id"], :name => "index_venues_on_venue_category_id"

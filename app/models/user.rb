@@ -6,7 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable#, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails, :image_url
+  
+  # Serialize venue_subcategories within venue_categories to build explicit user preferences
+  store :liked_venue_categories, accessors: [ :restaurants ]
+  
   has_merit
 
   # Include default devise modules. Others available are:
@@ -56,7 +61,8 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :password, length: { in: 6..20 }
+  validates :password, length: { in: 6..20 }, on: :create
+  validates :password, length: { in: 6..20 }, on: :update, allow_blank: true
   validates :email, presence: true #, uniqueness: true
   ###
   # Add a conditional validation on email that allows users who were invited
@@ -70,6 +76,9 @@ class User < ActiveRecord::Base
   validate :check_date_for_realness
   # Removing username update validation - should check later for conflicts or issues arising from this
   # validate :prevent_username_change, on: :update
+
+  # add image uploader to model
+  mount_uploader :image_url, ImageUrlUploader
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

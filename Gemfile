@@ -29,6 +29,10 @@ gem "sunspot_solr", "~> 2.1.0"
 gem "devise_invitable", "~> 1.1.0"
 gem 'aws-sdk'
 gem 'factual-api'
+gem 'geokit', branch: 'master', git: 'https://github.com/geokit/geokit.git'
+gem 'geokit-rails'
+gem 'timezone'
+gem 'nearest_time_zone'
 
 
 # Gems used only for assets and not required
@@ -58,7 +62,7 @@ end
 group :development, :test do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem "pry"
-  gem "rspec-rails", "~> 2.8.0"
+  gem "rspec-rails", "~> 2.12.0"
   gem 'heroku'
   gem "pickle"
   gem "rails3-generators"
@@ -70,14 +74,22 @@ end
 group :test do
   gem "cucumber-rails", require: false
   gem "factory_girl"
-  gem "capybara", git: "https://github.com/jnicklas/capybara.git"
   gem "database_cleaner"
   gem "timecop"
   gem "shoulda", "~> 3.0.0.beta2"
   gem "launchy"
-  gem "email_spec", "~> 1.2.1"
+  #gem "email_spec", "~> 1.5.0"
   gem "ephemeral_response"
 end
+
+#add gems for sauce labs testing
+group :test, :development do
+  gem "capybara", git: "https://github.com/jnicklas/capybara.git"
+  gem 'sauce', '~> 3.1.1'
+  gem 'sauce-connect'
+  gem 'parallel_tests'
+end
+  
 
 group :staging, :production do
   gem "newrelic_rpm"

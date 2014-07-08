@@ -1,58 +1,136 @@
   
-  <fieldset id="required-user-form-fields">
-  <h2 class="user-form-header">These we need.</h2><br>
+  <div id="user-form-fields-upper-container">
+    <fieldset id="left-user-form-fields">
+        
+      <%= f.label :username, class: "user-form-label" %>
+      <span class="required">*</span><br>
+      <%= f.text_field :username, class: "required-form-field disabled-half-width-form-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted?, title: "Username cannot be changed" if f.object.persisted? %><br>
+
+      <%= f.label :email, class: "user-form-label" %>
+      <span class="required">*</span><br>
+      <%= f.text_field :email, class: "half-width-form-field required-form-field", size: "30" %><br>
+      
+      <%= f.label :first_name, class: "user-form-label" %>
+      <span class="required">*</span><br>
+      <%= f.text_field :first_name, size: "30", class: "half-width-form-field required-form-field" %><br>
+      
+      <%= f.label :last_name, class: "user-form-label" %><br>
+      <%= f.text_field :last_name, class: "half-width-form-field", size: "30" %><br>
+      
+      <%= f.label :bio, class: "user-form-label" %><br>
+      <%= f.text_area :bio, class: "half-width-form-field big-text-area", size: "250", placeholder: "Share a little about what makes you awesome" %><br>
+    
+    </fieldset>
+    
+    <fieldset id="right-user-form-fields">
+      
+      <%= f.label :image_url, 'profile picture', class: "user-form-label", onclick: "console.log($('#edit-user-image-selector'))" %><br>
+      <div id="edit-user-image-wrapper">
+        <%= image_tag current_user.image_url.to_s, id: "edit-user-image" %>
+        <%= f.file_field :image_url, id: "edit-user-image-selector" %>
+        <p id="edit-user-image-label">Choose File</p>
+      </div>
+
+      <p id="edit-user-image-info">
+        gif, jpg, or png under 2mb<br>hint: square photos work best
+      </p>
+      
+      <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
+      <%= f.text_field :home_city, size: "30", class: "half-width-form-field" %><br>
+      
+      <%= f.label :home_state, "Home state", class: "user-form-label" %><br>
+      <%= f.text_field :home_state, size: "10", class: "half-width-form-field" %><br>
+      
+      <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
+      <%= f.text_field :zip_code, size: "10", class: "half-width-form-field" %><br>
+      
+      <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label", placeholder: "We only need your username" %><br>
+      <%= f.text_field :twitter_username, class: "half-width-form-field", style: "margin-bottom: 5px", size: "30" %><br>
+
+      <div class="user-dropdown-input-wrapper">
+      <%= f.label :gender, class: "user-form-label" %><br>
+        <div class="cs-obj-dd dd-default dd-user-input-gender" id="cs-dd-gender">
+          <%= f.select :gender, ['Male', 'Female'], {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
+
+      <div class="user-dropdown-input-wrapper user-dropdown-input-birthday">
+        <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
+        <div class="cs-obj-dd dd-default dd-user-input-month" id="cs-dd-birth-month">
+          <%= f.select :birth_month, ::Date::MONTHNAMES[1..-1], {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
+
+      <div class="user-dropdown-input-wrapper">
+        <div class="cs-obj-dd dd-default dd-user-input-day" id="cs-dd-birth-day">
+          <%= f.select :birth_day, 0..31, {}, class: 'cs-obj-dd-sel' %>
+
+          <div class="cs-obj-dd-val dd-toggle"><span class="cs-obj-dd-btn"><i class="fa fa-angle-down"></i></span></div>
+          <ul class="cs-obj-dd-opts"></ul>
+        </div>
+      </div>
+    
+    </fieldset>
+  </div>
   
-    <%= f.label :first_name, class: "user-form-label" %><br>
-    <%= f.text_field :first_name, size: "30", class: "standard-blue-text-field" %><br>
-    
-    <%= f.label :email, class: "user-form-label" %><br>
-    <%= f.text_field :email, class: "standard-blue-text-field", size: "30" %><br>
-    
-    <%= f.label :username, class: "user-form-label" %><br>
-    <%= f.text_field :username, class: "standard-blue-text-field#{" disabled" if f.object.persisted?}", size: "30", :disabled => f.object.persisted? %><br>
-      <% if f.object.persisted? %>
-        <span class="help-block">Username cannot be changed.</span><br>
-      <% end %>
   
-    <%= f.label :password, class: "user-form-label" %><br>
-    <%= f.password_field :password, class: "standard-blue-text-field ", size: "30" %><br>
-      <% if f.object.persisted? %>
-        <span class="help-block">Leave this blank if you don't want your password to change.</span><br>
-      <% else %>
-        <span class="help-block">Hint: this should be at least 6 characters long.</span><br>
-      <% end %>
-    <%= f.label :password_confirmation, "confirm your password", class: "user-form-label" %><br>
-    <%= f.password_field :password_confirmation, class: "standard-blue-text-field", size: "30" %><br>
+    <div id="user-form-fields-email-container">
+      <div id="user-form-email-preferences-instructions">
+        <h3>
+          My email preferences
+        </h3>
+        
+        <p>
+          Let us know which emails you want to receive from us using the options to the right.
+        </p>
+      </div>
+      
+      <fieldset id="user-form-update-email-preferences-container">
+        <%= f.check_box :receive_follower_emails, class: "email-checkbox" %><%= f.label :receive_follower_emails, "Send me an email when someone follows me", class: "user-form-label" %><br>
+        <%= f.check_box :receive_product_emails, class: "email-checkbox" %><%= f.label :receive_product_emails, "Send me updates about Crowdscore features", class: "user-form-label" %><br>
+        
+        <span class="help-block">We try to send these only when we have something newsworthy</span><br>
+      </fieldset>
+    </div>
+
   
-  </fieldset>
-  
-  <fieldset id="optional-user-form-fields">
-  <h2 class="user-form-header">These are optional.</h2><br>
-  
-    <%= f.label :home_city, "Home city", class: "user-form-label" %><br>
-    <%= f.text_field :home_city, size: "30", class: "standard-blue-text-field" %><br>
+  <div id="user-form-fields-lower-container">    
+    <div id="user-form-update-password-instructions">
+      <h3>
+        Update my password
+      </h3>
+      
+      <p>
+        If you want to update your password, provide your new password and confirm your current password.
+        </p>
+    </div>
     
-    <%= f.label :home_state, "Home state", class: "user-form-label" %><br>
-    <%= f.text_field :home_state, size: "10", class: "standard-blue-text-field" %><br>
-    
-    <%= f.label :zip_code, "Home zip code", class: "user-form-label" %><br>
-    <%= f.text_field :zip_code, size: "10", class: "standard-blue-text-field" %><br>
-    
-    <%= f.label :last_name, class: "user-form-label" %><br>
-    <%= f.text_field :last_name, class: "standard-blue-text-field", size: "30" %><br>
-    
-    <%= f.label :gender, class: "user-form-label" %><br>
-    <%= f.select :gender, ['Male', 'Female'], include_blank: true, class: "user-form-gender" %><br>
-    
-    <%= f.label :birth_month, "When is your birthday?", class: "user-form-label" %><br>
-    <%= f.select :birth_month, ::Date::MONTHNAMES, {}, class: 'side-by-side' %>
-    <%= f.select :birth_day, 1..31, {include_blank: true}, class: 'side-by-side' %><br>
-    
-    <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label" %><br>
-    <%= f.text_field :twitter_username, class: "standard-blue-text-field", size: "30" %><br>
-    
-    <%= f.label :bio, "Share your cliff note biography in 250 characters or less.", class: "user-form-label" %><br>
-    <%= f.text_area :bio, class: "standard-blue-text-field", size: "250" %><br>
-  
-  </fieldset>
+    <fieldset id="user-form-password-reset-container">
+    <%= f.label :password, "your new password", class: "user-form-label" %><br>
+      <%= f.password_field :password, class: "half-width-form-field password-no-margin", size: "30" %><br>
+        <% if f.object.persisted? %>
+          <span class="help-block">Leave this blank if you don't want your password to change.</span><br>
+        <% else %>
+          <span class="help-block">Hint: this should be at least 6 characters long.</span><br>
+        <% end %>
+      <%= f.label :password_confirmation, "confirm your new password", class: "user-form-label" %><br>
+      <%= f.password_field :password_confirmation, class: "half-width-form-field", size: "30" %><br>
+      
+      <%= f.label :current_password, class: "user-form-label" %><br>
+      <%= f.password_field :current_password, class: "half-width-form-field password-no-margin", size: "30" %><br>
+      <span class="help-block">Enter your current password to authorize your password update</span><br>
+    </fieldset>
+  </div>
+
+  <script type="text/javascript">
+    new document.CustomDropdownMenu('#cs-dd-birth-month', "Month", $('#cs-dd-birth-month').find('select').get(0).selectedIndex, 0)
+    new document.CustomDropdownMenu('#cs-dd-gender', "Gender", $('#cs-dd-gender').find('select').get(0).selectedIndex, 0)
+    new document.CustomDropdownMenu('#cs-dd-birth-day', "Day", $('#cs-dd-birth-day').find('select').get(0).selectedIndex, 0)
+  </script>
 

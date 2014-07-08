@@ -1,3 +1,4 @@
+@import "bourbon";
 /* PAGE STYLES */
 
 
@@ -133,7 +134,7 @@
 .search-results-map {
   float: left;
   width: calc(100% - 372px);
-  height: calc(100% - 110px);
+  height: calc(100% - 60px);
   position: relative;
 
   #map, .map_container {

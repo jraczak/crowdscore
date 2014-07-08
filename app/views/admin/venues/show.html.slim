@@ -25,6 +25,10 @@
 
       dt Status
       dd = resource.active? ? "Active" : "Inactive"
+      
+      dt Today's Hours
+      - if resource.hour_ranges
+        dd = "Open: #{resource.hour_ranges[:tuesday][:open]} - Close: #{resource.hour_ranges[:tuesday][:close]}"
 
     .well
       = link_to "Edit", edit_admin_venue_path(resource), class: 'btn'

@@ -1,3 +1,7 @@
+@import "bourbon";
+$cs-c-blue: #02b8ea;
+$cs-c-ddgray: #6b6e70;
+
 .md-modal {
   position: fixed;
   left: 0;
@@ -93,6 +97,29 @@
     }
   }
 }
+
+
+.md-close {
+    width: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    color: #999999;
+    line-height: 25px;
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 100;
+
+    cursor: pointer;
+    border-radius: 12px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=6);
+  }
 
 .cs-cta-lg {
   line-height: 44px;

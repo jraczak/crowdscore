@@ -1,0 +1,75 @@
+<div class="cs-h">
+	<div class="cs-h-inner">
+		<div class="cs-h-main">
+			<%= link_to root_path do %>
+				<%= image_tag 'cs_nav_logo.png', class: "cs-h-logo", width: 24, height: 28 %>
+				<h1 class="cs-h-brand">crowdscore</h1>
+			<% end %>
+
+			<ul class="cs-h-nav">
+				<% if user_signed_in? %>
+					<li class="cs-h-user-nav">
+						<div class="obj-rounded-image-wrapper">
+							<%= image_tag current_user.image_url_url(:thumb).to_s %>
+						</div>
+						<div class="cs-h-user-dropdown-wrapper">
+							<div class="cs-h-user-dropdown-carot"></div>
+							<ul class="cs-h-user-dropdown" >
+						    <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
+						    <li><%= link_to "View My Lists", lists_path %></li>
+						    <li><%= link_to "My Profile", user_path(current_user) %></li>
+						    <li><%= link_to "My Account", edit_user_registration_path %></li>
+						  </ul>
+					  </div>
+					</li>
+					<li class="cs-h-nav-greeting">
+						Hello, <%= current_user.first_name %>
+					</li>
+				<% else %>
+					<li class="cs-h-nav-link">
+						<a id="login-button">log in</a>
+					</li>
+					
+					<li class="cs-h-nav-link  cs-h-nav-register cs-h-nav-link-with-arrow">
+						<a id="register">register 
+							<%= image_tag 'cs_nav_arrow.png', width: 17, height: 8 %>
+						</a>
+					</li>
+				<% end %>
+			</ul>
+
+			<%= image_tag 'cs_header_search.png', class: "cs-h-search-img", width: 24, height: 24 %>
+		</div>
+
+		<div class="cs-h-search-trigger">
+			<div class="cs-h-search-lever"></div>
+		</div>
+
+		<%= form_tag search_venues_path, method: "get" do |f| %>
+		<div class="cs-h-search-wrapper">
+			<div class="cs-h-search">
+				<div class="cs-h-search-icon"></div>
+				<div class="cs-h-search-input-wrapper">
+					<%= text_field_tag :q, "", id: "cs-h-search-input", placeholder: "Type something in that you want like sneakers...", tabindex: 5%>
+
+					<div id="cs-h-search-input-placeholder">
+						<p></p>
+						<div class="cs-h-location-input-wrapper">
+							<%= text_field_tag :zip, "", id: "cs-h-location-input", placeholder: "City, State or Zip", tabindex: 6 %>
+						</div>
+					</div>
+				</div>
+
+				<button class="cs-h-search-button">
+					<div class="image-wrapper image-wrapper-location">
+						<%= image_tag 'cs_header_location.png', width: 15, height: 21 %>
+					</div>
+					<div class="image-wrapper image-wrapper-search">
+					<%= image_tag 'cs_header_search_small.png', width: 18, height: 18 %>
+					</div>
+				</button>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

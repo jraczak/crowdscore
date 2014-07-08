@@ -1,6 +1,12 @@
 = render partial: 'admin/subnav'
 
 h1 Existing venues
+h3 = "Showing #{Venue.all.count} venues"
+
+- collection.each do |v|
+  - if v.errors.full_messages.any?
+    - v.errors.full_messages.each do |em|
+      p = em
 
 = paginate collection
 

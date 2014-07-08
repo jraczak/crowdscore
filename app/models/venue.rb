@@ -1,6 +1,10 @@
 class Venue < ActiveRecord::Base
   acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
+  acts_as_mappable :default_units => :miles,
+  		           :lat_column_name => :latitude,
+  		           :lng_column_name => :longitude#,
+  		           #:auto_geocode => true
 
   scope :active, where(active: true)
   scope :alphabetical, order(:name)
@@ -9,11 +13,11 @@ class Venue < ActiveRecord::Base
   belongs_to :venue_category
   belongs_to :venue_subcategory
 
-  has_many :venue_scores
-  has_many :tips
+  has_many :venue_scores, dependent: :destroy
+  has_many :tips, dependent: :destroy
   has_many :venue_images
   has_many :venue_snapshots
-  has_many :scores
+  has_many :scores, dependent: :destroy
 
   has_and_belongs_to_many :lists
   has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
@@ -21,7 +25,7 @@ class Venue < ActiveRecord::Base
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
-                               :longitude]
+                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names]
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]
@@ -29,12 +33,20 @@ class Venue < ActiveRecord::Base
   attr_accessible *default_accessible_fields
   attr_accessible *(default_accessible_fields - noneditable_fields), as: :regular_user_editing
   attr_accessible *(default_accessible_fields + admin_only_fields), as: :admin
+  
+  store :hours
+  store :hour_ranges
+  store :hours_with_names
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
+  validates :factual_id, uniqueness: true
 
   geocoded_by :full_address
-  after_validation :geocode, if: :address_parts_changed?
+  
+  ##Remove geocoding for now as latlong is received from Factual
+  ##and these calls to the API are unnecessary
+  #after_validation :geocode, if: :address_parts_changed?
 
   searchable(include: [:tips, :venue_category, :venue_subcategory]) do
     text :name
@@ -42,6 +54,8 @@ class Venue < ActiveRecord::Base
     text(:category) { |venue| venue.full_category_name }
     text(:tips) { |venue| venue.tips.map(&:text) }
     #text(:tags) { |venue| venue.tags.map(&:full_name) }
+    integer :venue_category_id, :multiple => true
+    integer :venue_subcategory_id, :multiple => true
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
@@ -82,7 +96,7 @@ class Venue < ActiveRecord::Base
   
   def get_score_categories
     @score_categories = []
-    if venue_subcategory.score_categories.any?
+    if venue_subcategory && venue_subcategory.score_categories.any?
       venue_subcategory.score_categories.each do |sc|
         @score_categories << sc
       end

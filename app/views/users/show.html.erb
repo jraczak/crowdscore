@@ -78,7 +78,7 @@
           <% end %>
           <% unless resource.twitter_username.nil? || resource.twitter_username.empty? %>
             <p><span class="user-profile-detail-label">Tweets from:</span>
-            <span class="user-profile-detail-data"><%= link_to resource.twitter_username, resource.twitter_link %></span></p><br>
+            <span class="user-profile-detail-data"><%= link_to resource.twitter_username, resource.twitter_link, target: "_blank" %></span></p><br>
           <% end %>
           <% unless resource.bio.nil? || resource.bio.empty? %>
             <p><span class="user-profile-detail-label">Bio:</span>

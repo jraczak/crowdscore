@@ -1,14 +1,23 @@
 <div id='dashboard_page'>
 
-  <% if current_user.gone_for_a_week? %>
-    <h1>
-      We've missed you, <%= current_user.first_name %>!
-    </h1>  
-  <% else %>
-    <h1>
-      Welcome back, <%= current_user.first_name %>!
-    </h1>
+  <h1>
+    <%= dashboard_salutation %>
+  </h1>
+  <div id="dashboard-recommendations-container">
+  <% if user_time_zone && user_location_data %>
+    <%= render "dashboard_recommendations" %>
   <% end %>
+  </div>  
+  <%= session[:geo_location] %>
+  <%= cookies[:geo_session] %>
+  
+  
+  <!--<br><p><% where_am_i %><%= @location %></p>
+    <p><%= user_location_data %><% @user_lat_lng %></p>
+  <h3>Recommended restuarants for tonight</h3>
+
+  </div>
+  -->
 
   <div id="dashboard-header">
     <div id="profile-picture" class="header-section">

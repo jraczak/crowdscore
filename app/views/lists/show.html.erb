@@ -1,4 +1,5 @@
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
+
 <div id="list-header-outter-container">
   <div id="list-header-container">
   
@@ -59,16 +60,26 @@
 
       </div>
     <% end %>
-  <% else %>
-    <h4>This list doesn't have any venues yet!</h4>
   <% end %>
 </div>
 
-<!-- BEGIN MAP MODULE -->
+<% unless resource.venues.empty? %>
 
-<div class="list-map-container" id="search-results-map">
+  <!-- BEGIN MAP MODULE -->
+  <div class="list-map-container" id="search-results-map"></div>
 
-</div>
+<% else %>
+  <div class="empty-container">
+    <div class="center-absolute">
+      
+      <div class='cs-logo'></div>
+      <div class="add-msg">There are no venues in this list</div>
+
+    </div>
+  </div>
+<% end %>
+
+
 
 <!-- BEGIN MORE LISTS BY USER MODULE -->
 
@@ -137,5 +148,5 @@
 </script>
 
 <% if resource.user == current_user %>
-  <%= link_to "&laquo; Back to my Lists".html_safe, lists_path %>
+  <%# link_to "&laquo; Back to my Lists".html_safe, lists_path %>
 <% end %>

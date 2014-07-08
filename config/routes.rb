@@ -11,7 +11,7 @@ Crowdscore::Application.routes.draw do
 
   get "user_locks/create"
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations", }
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", :registrations => "registrations", :passwords => "passwords" }
   
   devise_scope :user do 
     get "users/edit" => "devise/registrations#edit", :as => :edit_user_registration
@@ -72,6 +72,15 @@ Crowdscore::Application.routes.draw do
     namespace :venues do
       resource :import, :controller => :venue_imports, :as => :import, :only => [:new, :create]
     end
+    resources :venue_categories
+    resources :venue_subcategories
+    namespace :venue_categories do
+      
+    end
+    namespace :venue_subcategories do
+      
+    end
+    resources :factual_crowdscore_maps#, :controller => :factual_crowdscore_maps, :as => :factual_crowdscore_maps
     root to: 'dashboards#show'
   end
 

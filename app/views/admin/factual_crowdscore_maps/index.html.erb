@@ -1,0 +1,22 @@
+<%= render 'admin/subnav' %>
+
+<h1>Data Mapping & Category Management</h1>
+
+<h2>Here are the existing Factual maps</h2>
+
+<%= link_to "Create a new factual map", new_admin_factual_crowdscore_map_path %><br>
+
+<% FactualCrowdscoreMap.all.each do |m, i| %>
+  <p><%= m.factual_category_id %> maps to <%= VenueSubcategory.find(m.venue_subcategory_id).name if m.venue_subcategory_id.present? %> (<%= VenueCategory.find(m.venue_category_id).name %>)</p><br>
+<% end %>
+
+<h2>Category Management</h2>
+
+<% VenueCategory.all.each do |vc| %>
+  <h3><%= vc.name %></h3><br>
+  <ul>
+    <% vc.venue_subcategories.each do |vsc| %>
+      <li><%= link_to vsc.name, root_path %></li>
+    <% end %>
+  </ul>
+<% end %>

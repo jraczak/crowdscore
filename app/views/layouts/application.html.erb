@@ -7,6 +7,14 @@
     <%= javascript_include_tag "application" %>
     <%= yield :scripts %>
   </head>
+  
+  <!-- try to get the user's location to use around the site -->
+  <% unless cookies[:detected_user_location] %>
+    <script>
+      getUserLocation();
+    </script>
+  <% end %>
+  
   <script type="text/javascript">
       (function() {
        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -32,159 +40,111 @@
 }
   </script>
   
-  
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("<% if Rails.env.development? %>0049809657a93a75fea2bee579959d0f<% elsif Rails.env.production? %>064776f76ea0c5bb065dd81b934405d8<% end %>");</script>
+<!-- end Mixpanel -->
+
+<script>
+mixpanel.track_links("#register", "click-register", { "page": "<%= request.path %>" });
+</script>
+
   <body>
-    <section class="full-body-container">    
-      <nav>
-        <div class="navbar-inner">
-          <ul>
-            <li><a id="register" href="#">register</a></li>
-            <li><a href="#" id="login-button">log in</a></li>
-          </ul>
-        </div>
-      </nav>
 
-      <div class='searchbar-placeholder'></div>
-      <div class='searchbar'>
-        <div class="searchbar-inner">
-          <a class="brand" href="#"></a>
-          <%= form_tag search_venues_path, method: :get, id: 'search' do |f| %>
-            <%= text_field_tag :q, '', placeholder: "try coffee, hotel, etc", class: 'search-input' %>
-            <div class='search-input-fade'></div>
-            <%= text_field_tag :zip, '', placeholder: "city & state or zip", class: 'location-input'%>
-            <%= submit_tag "Find it!", style: 'display: none' %>
-            <%= hidden_field_tag :latitude, '' %>
-            <%= hidden_field_tag :longitude, '' %>
-            <input type='button' class="close" id="exit-location">
-            <input type='button' class="edit" id="edit-location">
+    <div class="page-wrapper">    
+      <div class="container">
+        <%= render 'layouts/navbar' %>
+
+        <div id="flash-container">  
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, class: name %>
           <% end %>
         </div>
+
+        <%= yield %>
+
+        <div class="footer-push"></div>
+  
       </div>
-      
-      <!-- BEGIN FLASH MESSAGES SECTION -->
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
-        <% end %>
-      <!-- END FLASH MESSAGES SECTION -->
-
-      <div class="floater">
-        <ul>
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to "Account", "#", class: "menu" %>
-              <ul>
-                <li>
-                  <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-                  <%= link_to "View My Lists", lists_path %>
-                  <%= link_to "My Profile", user_path(current_user) %>
-                  <%= link_to "My Account", edit_user_registration_path %>
-                </li>
-              </ul>
-            </li>
-          <% else %>  
-            <li><%= link_to "Sign in", new_user_session_path, :class => '', :"data-controls-modal" => "sign-in-modal", :"data-backdrop" => "true" %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <% end %>
-          <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-        </ul>
-      </div>
-
-      <%= yield %>
-      <!--
-      
-      
-      <footer>
-        Copyright &copy; 2013 Crowdscore. All rights reserved.
-      </footer>
-      
-      -->
-      
-      
-    </section>
-<!-- 
-    <div id="auth-modal" class='full-screen-modal'>
-      <div class='modal-mask'>
-        <div class='modal-content'>
-          <div class='close-modal'>+</div>
-        </div>
-      </div>
-    </div> -->
-
-
-<div id="placeholder-modal" class="tmp-modal">
-</div>
-
-<div id="register-modal" class="modal">
-  <div class="modal-mask">
-    <div class="modal-content download-app">
-      <div class="close-modal">+</div>
-      <div class="modal-vertical-center">
-        <div class="left-rail">
-          <h1>Register</h1>
-          <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
-          <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
-            <i class="icon-facebook"></i><div>REGISTER WITH FACEBOOK</div>
-          <% end %>
-        </div>
-        <div class="right-rail">
-          <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
-            <div class="registration-modal-form-field full">
-              <%= f.label :email, "email address", class: "" %>
-              <%= f.text_field :email, class: "", size: "30" %>
+      <!-- Hide footer on search page -->
+      <% unless params[:action] == 'search' %>
+        <%= render "layouts/footer" %>
+      <% end %>  
+    </div>
+  
+    <div id="register-modal" class="modal">
+      <div class="modal-mask">
+        <div class="modal-content download-app">
+          <div class="close-modal">+</div>
+          <div class="modal-vertical-center">
+            <div class="left-rail">
+              <h1>Register</h1>
+              <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
+              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
+                <i class="icon-facebook"></i><div>REGISTER WITH FACEBOOK</div>
+              <% end %>
             </div>
-            <div class="registration-modal-form-field half">
-              <%= f.label :first_name, class: "" %>
-              <%= f.text_field :first_name, size: "30", class: "" %>
+            <div class="right-rail">
+              <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
+                <div class="registration-modal-form-field full">
+                  <%= f.label :email, "email address", class: "" %>
+                  <%= f.text_field :email, class: "", size: "30" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :first_name, class: "" %>
+                  <%= f.text_field :first_name, size: "30", class: "" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :password, class: "" %>
+                  <%= f.password_field :password, class: "", size: "30" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :username, "Choose your username" , class: "" %>
+                  <%= f.text_field :username, class: "", size: "30", :disabled => f.object.persisted? %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :password_confirmation, "confirm password", class: "" %>
+                  <%= f.password_field :password_confirmation, class: "", size: "30" %>
+                </div>
+                <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button" %>
+              <% end %>
             </div>
-            <div class="registration-modal-form-field half">
-              <%= f.label :password, class: "" %>
-              <%= f.password_field :password, class: "", size: "30" %>
-            </div>
-            <div class="registration-modal-form-field half">
-              <%= f.label :username, "Choose your username" , class: "" %>
-              <%= f.text_field :username, class: "", size: "30", :disabled => f.object.persisted? %>
-            </div>
-            <div class="registration-modal-form-field half">
-              <%= f.label :password_confirmation, "confirm password", class: "" %>
-              <%= f.password_field :password_confirmation, class: "", size: "30" %>
-            </div>
-            <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button" %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 
-<div id="login-modal" class="modal">
-  <div class="modal-mask">
-    <div class="modal-content download-app">
-      <div class="close-modal">+</div>
-      <div class="modal-vertical-center">
-        <div class="modal-centered-body">
-          <h1>Sign in</h1>
-          <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
-            <i class="icon-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
-          <% end %><br>
-          <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
-            <div class="registration-modal-form-field">
-              <%= f.label :email, "email address", class: "" %>
-              <%= f.text_field :email, class: "" %>
+    <div id="login-modal" class="modal">
+      <div class="modal-mask">
+        <div class="modal-content download-app">
+          <div class="close-modal">+</div>
+          <div class="modal-vertical-center">
+            <div class="modal-centered-body">
+              <h1>Sign in</h1>
+              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
+                <i class="icon-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
+              <% end %><br>
+              <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
+                <div class="registration-modal-form-field">
+                  <%= f.label :email, "email or username", class: "" %>
+                  <%= f.text_field :email, class: "", tabindex: "1" %>
+                  <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
+                </div>
+                <div class="registration-modal-form-field password">
+                  <%= f.label :password, class: "" %>
+                  <%= f.password_field :password, tabindex: "2" %>
+                  <%= f.hidden_field :page_action, value: "" %>
+                  <p id="forgot-password-link"> Forgot your password? <%= link_to "Request a reset", new_user_password_path %></p>
+                </div>
+                <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: "3" %>
+              <% end %>
             </div>
-            <div class="registration-modal-form-field password">
-              <%= f.label :password, class: "" %>
-              <%= f.password_field :password, placeholder: "Password" %>
-            </div>
-            <%= f.submit "Sign in", class: "registration-modal-submit-button" %>
-          <% end %>
-
-          <p> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
     <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)
@@ -378,38 +338,26 @@ UserVoice.push(['autoprompt', {}]);
       $(document).ready(function() {
         $( "#login-button" ).click(function() {
           $( '#auth-modal' ).addClass("visible");
-          //$('.full-body-container').addClass('blurry');
-          //$('.full-body-container').css('filter','url("#blur")');
         });
 
         $('.close-modal').click(function(){
           $("#auth-modal").removeClass("visible");
-          //$('.full-body-container').removeClass('blurry');
-          //$('.full-body-container').css('filter','none');
         });
       });
 
       $(document).keyup(function(e) {
         if (e.keyCode == 27) { 
           $('.full-screen-modal').removeClass('visible');
-          //$('.full-body-container').removeClass('blurry');
-          //$('.full-body-container').css('filter','none');
         }
       });
 
-
       $('#submit-score-btn').click(function(){
         $( '#submit-score-modal' ).addClass("visible");
-        //$('.full-body-container').addClass('blurry');
-        //$('.full-body-container').css('filter','url("#blur")');
       });
 
-
-        $('.close-modal').click(function(){
-          $("#auth-modal").removeClass("visible");
-          //$('.full-body-container').removeClass('blurry');
-          //$('.full-body-container').css('filter','none');
-        });
+      $('.close-modal').click(function(){
+        $("#auth-modal").removeClass("visible");
+      });
     </script>
 
   </body>

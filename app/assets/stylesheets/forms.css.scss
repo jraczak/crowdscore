@@ -1,6 +1,8 @@
 /** AGGREGATED STYLES FOR FORMS ACROSS THE APPLICATION **/
 
-/** EDIT USER PAGE **/
+/******************/
+/* EDIT USER PAGE */
+/******************/
 
 #inner-page-container {
     width: 960px;
@@ -9,26 +11,6 @@
     margin-top: 80px;
     display: block;
     position: relative;
-}
-
-h1, h2 {
-    font-family: Museo;
-    font-weight: 100;
-}
-
-p#facebook-not-connected {
-    font-family: Museo;
-    font-weight: 100;
-    
-    a {
-        color: #02b8ea;
-        text-decoration: none;
-    }
-}
-
-
-p#facebook-connected {
-    font-family: Museo;
 }
 
 form#edit_user {
@@ -47,20 +29,77 @@ fieldset {
     margin: 0;
 }
 
-#required-user-form-fields {
-    width: 50%;
-    float: left;
+#required-field-key {
+	float: left;
+	/* border-left: 2px solid #f15a23; */
+	
 }
 
-#optional-user-form-fields {
+.required {
+	color: #f15a23;
+	font-weight: 100;
+	font-size: 11px;
+}
+
+#user-form-fields-upper-container {
+	overflow: hidden;
+	margin-bottom: 60px;
+}
+
+#left-user-form-fields,
+.left-user-form-fields {
+    width: 50%;
+    float: left;
+    margin-right: 0px;
+    padding-right: 10px;
+}
+
+#right-user-form-fields,
+.right-user-form-fields {
     width: 50%;
     float: right;
     margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+#right-user-form-fields,
+#left-user-form-fields,
+.right-user-form-fields,
+.left-user-form-fields {
+	&:after {
+		clear: both;
+		display: table;
+		content: ""
+	}
 }
 
 #password-confirmation {
     width: 50%;
     float: left;
+}
+
+.half-width-form-field,
+.disabled-half-width-form-field {
+	margin-bottom: 20px;
+	padding: 0px 20px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.half-width-form-field {
+	width: 100%;
+	height: 45px;
+	background-color: #e5f8fd;
+	border: none;
+	border-radius: 3px;
+}
+
+.disabled-half-width-form-field {
+	width: 100%;
+	height: 45px;
+	border: none;
+	border-radius: 3px;
+	background-color: #f2f2f2;
 }
 
 .standard-blue-text-field {
@@ -76,6 +115,99 @@ textarea.standard-blue-text-field {
     width: 85%;
 }
 
+.big-text-area {
+	width: 100%;
+	height: 128px;
+	padding: 10px 20px 0px 20px;
+}
+
+/*
+.required-form-field {
+	border-left: 2px solid #f15a23;
+}
+*/
+
+#user-form-fields-lower-container {
+	overflow: hidden;
+	border-top: 1px solid #dadada;
+	padding-top: 60px;
+	margin-bottom: 60px;
+}
+
+#user-form-fields-email-container {
+	overflow: hidden;
+	border-top: 1px solid #dadada;
+	padding-top: 60px;
+	margin-bottom: 60px;
+}
+
+#user-form-email-preferences-instructions {
+	width: 50%;
+	float: left;
+	
+	h3 {
+		font-size: 25px;
+		font-weight: 100;
+		color: #2d3132;
+	}
+	p {
+		width: 80%;
+		font-size: 14px;
+		font-weight: 100;
+		color: #6b6e70;
+	}
+}
+
+#user-form-update-email-preferences-container {
+	width: 50%;
+	float: right;
+	
+	.password-no-margin {
+		margin-bottom: 0px;
+	}
+	
+	.help-block {
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+	
+	.email-checkbox {
+		margin-right: 10px;
+		margin-bottom: 30px;
+	}
+}
+
+#user-form-update-password-instructions {
+	width: 50%;
+	float: left;
+	
+	h3 {
+		font-size: 25px;
+		font-weight: 100;
+		color: #2d3132;
+	}
+	p {
+		width: 80%;
+		font-size: 14px;
+		font-weight: 100;
+		color: #6b6e70;
+	}
+}
+
+#user-form-password-reset-container {
+	width: 50%;
+	float: right;
+	
+	.password-no-margin {
+		margin-bottom: 0px;
+	}
+	
+	.help-block {
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+}
+
 label.user-form-label {
     font-family: Museo;
     text-align: left;
@@ -84,6 +216,7 @@ label.user-form-label {
     font-weight: 300;
     font-size: 11px;
     line-height: 32px;
+    letter-spacing: 1px;
 }
 
 .help-block {
@@ -91,4 +224,36 @@ label.user-form-label {
     font-weight: 100;
     font-size: 12px;
     color: #acacac;
+}
+
+#user-form-save-updates-container {
+	width: 100%;
+	padding-top: 60px;
+	text-align: center;
+	border-top: 1px solid #dadada;
+	margin-bottom: 20px;
+	
+	button {
+		background-color: #02b8ea;
+		border-radius: 30px;
+		border: none;
+		padding: 20px 44px;
+		color: #fff;
+		font-weight: 700;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+}
+
+#user-form-cancel-account-container {
+	width: 100%;
+	
+	p {
+	    width: 70%;
+	    font-weight: 100;
+	    font-size: 14px;
+	    line-height: 20px;
+	    color: #6b6e70;
+	}
 }

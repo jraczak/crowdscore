@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  
+  helper :all
 
   #before_filter :authenticate_on_production
   before_filter :remember_return_to
@@ -23,7 +25,11 @@ class ApplicationController < ActionController::Base
     if session[:previous_url] == root_path
       dashboard_path
     else
-      session[:previous_url] #|| root_path
+      if params[:user][:page_action]
+      	"#{session[:previous_url]}?page_action=#{params[:user][:page_action]}"
+      else
+	    session[:previous_url] #|| root_path
+      end
     end
   end
   
