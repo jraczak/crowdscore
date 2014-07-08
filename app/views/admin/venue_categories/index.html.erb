@@ -1,0 +1,14 @@
+<%= render 'admin/subnav' %>
+
+<h1>Data Mapping & Category Management</h1>
+
+<h2>Category Management</h2>
+
+<% VenueCategory.all.each do |vc| %>
+  <h3><%= link_to vc.name, admin_venue_category_path(vc) %> (<%= link_to "edit", edit_admin_venue_category_path(vc) %>)</h3>
+  <ul>
+    <% vc.venue_subcategories.each do |vsc| %>
+      <li><%= link_to vsc.name, admin_venue_subcategory_path(vsc) %> (<%= link_to "edit", edit_admin_venue_subcategory_path(vsc) %>)</li>
+    <% end %>
+  </ul>
+<% end %>

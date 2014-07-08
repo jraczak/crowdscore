@@ -1,0 +1,16 @@
+<h3>Make a new factual to crowdscore map</h3>
+
+<%= errors_for resource %>
+<%= form_for resource, :url => {:controller => "factual_crowdscore_maps", :action => "create"} do |f| %>
+  <%= f.label :factual_category_id, "Factual category ID" %><br>
+  <%= f.text_field :factual_category_id %><br>
+  <%= f.label :venue_subcategory_id, "Crowdscore Venue Subcategory ID" %><br>
+  <%= f.text_field :venue_subcategory_id %><br>
+  <%= f.label :venue_category_id, "Crowdscore Venue Category ID" %><br>
+  <p>NOTE: Only provide this if the factual category id does not map directly to a Crowdscore venue_subcategory_id.<br>
+  If a subcategory id value is provided, the category will be automatically populated.</p><br>
+  <%= f.text_field :venue_category_id %><br>
+  <%= f.label :description, "Description (optional)" %><br>
+  <%= f.text_field :description %><br>
+  <%= f.submit("Create new map") %>
+<% end %>
