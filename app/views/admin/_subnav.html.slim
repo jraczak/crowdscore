@@ -7,6 +7,7 @@
       = admin_subnav_item "Factual Maps", admin_factual_crowdscore_maps_path, 'admin/factual_crowdscore_maps'
       = admin_subnav_item "Venue Categories", admin_venue_categories_path, 'admin/venue_categories'
       = admin_subnav_item "Venue Subcategories", admin_venue_subcategories_path, 'admin/venue_subcategories'
+      = admin_subnav_item "Score Categories", admin_score_categories_path, 'admin/score_categories'
       
 - if VenueCategory.where(factual_category_id: nil).any?
   h2 = "WARNING! There are currently Venue Categories not attached to Factual category IDs!"

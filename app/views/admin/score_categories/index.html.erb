@@ -1,0 +1,5 @@
+<%= link_to "Create a new score category", new_admin_score_category_path %>
+
+<% collection.each do |sc| %>
+  <h3><%= link_to sc.name, admin_score_category_path(sc) %></h3>
+<% end %>
