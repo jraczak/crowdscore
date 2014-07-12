@@ -1,5 +1,21 @@
+<%= render 'admin/subnav' %>
+
 <%= link_to "Create a new score category", new_admin_score_category_path %>
 
-<% collection.each do |sc| %>
-  <h3><%= link_to sc.name, admin_score_category_path(sc) %></h3>
-<% end %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Venue Categories</th>
+      <th>Venue Subcategories</th>
+    </tr>
+  </thead>
+  <% collection.each do |sc| %>
+    <tr>
+      <td><%= link_to sc.name, admin_score_category_path(sc) %></td>
+      <td><%= sc.venue_categories.count %></td>
+      <td><%= sc.venue_subcategories.count %></td>
+    </tr
+  <% end %>
+</table>
+

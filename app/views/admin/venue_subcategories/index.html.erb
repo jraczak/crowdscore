@@ -1,3 +1,24 @@
-<% collection.each do |c| %>
-  <%= c.name %><br>
-<% end %>
+<%= render 'admin/subnav' %>
+
+<h1>Data Mapping & Category Management</h1>
+
+<h2>Venue Subcategory Management</h2>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Venue Category</th>
+      <th>Venues</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <% collection.each do |vsc| %>
+    <tr>
+      <td><%= link_to vsc.name, admin_venue_subcategory_path(vsc) %></td>
+      <td><%= vsc.venue_category.name %></td>
+      <td><%= vsc.venues.count %></td>
+      <td><%= link_to "edit", edit_admin_venue_subcategory_path(vsc) %></td>
+    </tr>
+  <% end %>
+</table>

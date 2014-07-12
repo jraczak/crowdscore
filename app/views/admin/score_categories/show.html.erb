@@ -1,3 +1,5 @@
+<%= render 'admin/subnav' %>
+
 <h1><%= resource.name %></h1>
 <p><% resource.venue_categories.each do |vc| %><%= vc.name %><% end %></p>
 <p><% resource.venue_subcategories.each do |vsc| %><%= vsc.name %><% end %></p>
