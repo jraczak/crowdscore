@@ -1,14 +1,15 @@
 module UserDashboardHelper
 
-  def get_restaurant_recommendations
+  def get_restaurant_recommendations(user)
     location = user_location_data
     
       rec_search = Venue.search do
-        with :venue_subcategory_id, current_user.liked_venue_categories[1] unless current_user.liked_venue_categories.empty?
-        with(:location).in_radius(location["lat"], location["lng"], 2) unless location == false
+        with :venue_subcategory_id, user.liked_venue_categories["restaurant"][0] unless user.liked_venue_categories.empty?
+        with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
       end
 
     @recs = rec_search.results
+    raise
   end
   
   def where_am_i
@@ -37,7 +38,8 @@ module UserDashboardHelper
   end
   
   def current_meal
-    current_time = time_at_user #Time.now.strftime("%k").to_i
+    
+    current_time = Time.parse(time_at_user).strftime("%k").to_i unless time_at_user == false
     case current_time
       when 17..22
         return "dinner"

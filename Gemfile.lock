@@ -353,6 +353,9 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.2)
     shoulda-matchers (1.0.0)
+    simple_form (2.1.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -454,6 +457,7 @@ DEPENDENCIES
   sauce (~> 3.1.1)
   sauce-connect
   shoulda (~> 3.0.0.beta2)
+  simple_form
   slim-rails
   spin
   spork (~> 0.9.0.rc)

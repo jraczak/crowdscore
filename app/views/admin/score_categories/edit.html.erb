@@ -1,0 +1,14 @@
+<%= render 'admin/subnav' %>
+
+<h1>Update <%= resource.name %></h1>
+
+<%= simple_form_for resource, :url => admin_score_category_path(resource) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  
+  <p>NOTE: Select only <b>ONE</b> of either Venue Category or Venue Subcategory options as assigning both will break queries throughout the app</p>
+  <%= f.association :venue_categories, as: :check_boxes, label_method: :name, value_method: :id %>
+  <%= f.association :venue_subcategories, as: :check_boxes, label_method: :name, value_method: :id %>
+  
+  <%= f.button :submit %>
+<% end %>

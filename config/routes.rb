@@ -74,12 +74,7 @@ Crowdscore::Application.routes.draw do
     end
     resources :venue_categories
     resources :venue_subcategories
-    namespace :venue_categories do
-      
-    end
-    namespace :venue_subcategories do
-      
-    end
+    resources :score_categories
     resources :factual_crowdscore_maps#, :controller => :factual_crowdscore_maps, :as => :factual_crowdscore_maps
     root to: 'dashboards#show'
   end
