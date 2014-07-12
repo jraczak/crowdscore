@@ -1,0 +1,36 @@
+<%= render 'admin/subnav' %>
+
+<h1>Existing Venues</h1>
+
+<h3>Looked up <%= pluralize(Venue.all.count, "venue") %></h3>
+
+<%= paginate collection %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Location</td>
+      <td>Venue Category</td>
+      <td>Venue Subcategory</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <% collection.each do |venue| %>
+    <tr>
+      <td><%= link_to venue.name, admin_venue_path(venue) %></td>
+      <td><%= "#{venue.city}, #{venue.state}" %></td>
+      <td><%= venue.venue_category.name %></td>
+      <td><%= venue.venue_subcategory.name if venue.venue_subcategory %></td>
+      <td><%= link_to "Edit venue", edit_admin_venue_path(venue) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate collection %>
+
+<div class="well">
+  <%= link_to "Add a venue manually", new_admin_venue_path, class: "btn btn-primary" %>
+  <%= link_to "Import a CSV file", new_admin_venues_import_path, class: "btn btn-primary" %>
+</div>
+
