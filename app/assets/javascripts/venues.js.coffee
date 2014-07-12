@@ -68,12 +68,10 @@ class document.CustomDropdownMenu extends SimpleDomObject
   # Replicates the Select dropdown into the custom dropdown
   initialize: =>
     for option in @dropdown.options
-      $(@wrapper + " .cs-obj-dd-opts").append(@_listItemMarkup(option.value, option.text))
+      if $(option).attr('disabled') != 'disabled'
+        $(@wrapper + " .cs-obj-dd-opts").append(@_listItemMarkup(option.value, option.text))
 
     $(@wrapper + " .cs-obj-dd-val").text(@defaultMsg).append(@valContent)
-
-    $(@wrapper + " .cs-obj-dd-val").text($(@dropdown).val()).append(@valContent)
-
   open: =>
     @wrapperDOM.toggleClass('open')
 
@@ -93,8 +91,8 @@ class document.CustomDropdownMenu extends SimpleDomObject
 
 class AddToListDropdownMenu extends document.CustomDropdownMenu
 
-  constructor: (wrapper, defaultMsg, selectedIndex) ->
-    super(wrapper, defaultMsg, selectedIndex)
+  constructor: (wrapper, defaultMsg, selectedIndex, offset) ->
+    super(wrapper, defaultMsg, selectedIndex, offset)
 
   events: ->
     $.extend super(), 
@@ -195,29 +193,29 @@ $(document).ready ->
 
   # $('.cs-obj-dropdown')
   
-  # page_action = getParameterByName('page_action')
-  # if page_action
-  # 	switch page_action
-  #     when "submit-score-modal"
-  #     	$("#submit-score-modal").addClass('visible')
-  #     when "add_to_list"
-  #     	$('#add_to_list').addClass('md-open')
+  page_action = getParameterByName('page_action')
+  if page_action
+  	switch page_action
+      when "submit-score-modal"
+      	$("#submit-score-modal").addClass('visible')
+      when "add_to_list"
+      	$('#add_to_list').addClass('md-open')
       
-  # $("[data-open-modal]").click ->
-  # 	$("#" + $(this).data('open-modal')).addClass('md-open')
+  $("[data-open-modal]").click ->
+  	$("#" + $(this).data('open-modal')).addClass('md-open')
   	
-  # $("body").on "click", ".fn-open-modal", (e) ->
-  #   target = $(e.currentTarget).data('target-modal')
-  #   pageAction = $(e.currentTarget).data('target-action')
+  $("body").on "click", ".fn-open-modal", (e) ->
+    target = $(e.currentTarget).data('target-modal')
+    pageAction = $(e.currentTarget).data('target-action')
     
-  #   $("#" + target).addClass('visible')
-  #   $("#user_page_action").get(0).value = pageAction
+    $("#" + target).addClass('visible')
+    $("#user_page_action").get(0).value = pageAction
 
-  # $(".md-close").click ->
-  #   $("#" + $(this).data('target-modal')).removeClass('md-open')
+  $(".md-close").click ->
+    $("#" + $(this).data('target-modal')).removeClass('md-open')
 
   if $('#list-dropdown').length > 0
-    new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1)
+    new AddToListDropdownMenu('#list-dropdown', "Choose a list", -1, 0)
     new AddToListModal('#list-select')
 
   $('body').on 'click', '#gangster-daddy', ->
