@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<div id="admin-nav-wrapper" style="margin-top: 40px">
+  <ul class="nav nav-pills nav-justified">
+    <li class="admin_subnav_item"><%= link_to "Admin Dashboard", admin_root_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Venues", admin_venues_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Users", admin_users_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Factual Maps", admin_factual_crowdscore_maps_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Venue Categories", admin_venue_categories_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Venue Subcategories", admin_venue_subcategories_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Score Categories", admin_score_categories_path %></li>
+  </ul>
+  
+  <% if VenueCategory.where(factual_category_id: nil).any? %>
+    <h2>WARNING! There are currently Venue Categories not associated with Factual Category IDs. This can lead to serious data and association breaks that are irreversible</h2>
+  <% end %>
+</div>

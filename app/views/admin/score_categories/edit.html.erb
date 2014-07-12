@@ -1,18 +1,14 @@
 <h1>Update <%= resource.name %></h1>
 
-<%= form_for resource, :url => admin_score_category_path(resource) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
+
+
+<%= simple_form_for resource, :url => admin_score_category_path(resource) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
   
-  <%= f.label :description %>
-  <%= f.text_field :description %><br>
+  <p>NOTE: Select only <b>ONE</b> of either Venue Category or Venue Subcategory options as assigning both will break queries throughout the app</p>
+  <%= f.association :venue_categories, as: :check_boxes, label_method: :name, value_method: :id %>
+  <%= f.association :venue_subcategories, as: :check_boxes, label_method: :name, value_method: :id %>
   
-  <p>NOTE: Select only <b>ONE</b> of either venue category or venue subcategory.</p><br>
-  <%= f.label :venue_category_id, "Venue Category" %>
-  <%= select(:score_category, :venue_category_id, VenueCategory.all.collect { |vc| [vc.name, vc.id]}, :include_blank => true) %><br>
-  
-  <%= f.label :venue_subcategory_id, "Venue Subcategory" %>
-  <%= select(:score_category, :venue_subcategory_id, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
-  
-  <%= f.button "Update score category", type: :submit %>
+  <%= f.button :submit %>
 <% end %>
