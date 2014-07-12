@@ -26,7 +26,7 @@ require "json"
     #tz = Timezone::Zone.new :latlon => [user_location_data.lat, user_location_data.lng]
     #tz = NearestTimeZone.to(user_location_data.lat, user_location_data.lng)
     #return tz.active_support_time_zone
-    if user_location_data
+    if user_location_data && user_location_data["success"] == true
       NearestTimeZone.to(user_location_data["lat"], user_location_data["lng"])
     else
       false

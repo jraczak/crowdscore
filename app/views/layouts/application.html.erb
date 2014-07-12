@@ -358,6 +358,14 @@ UserVoice.push(['autoprompt', {}]);
       $('.close-modal').click(function(){
         $("#auth-modal").removeClass("visible");
       });
+
+      setTimeout( function(){
+        $('input:-webkit-autofill').each( function(i, v) {
+          $(v).val('');
+        });
+      }, 100 );
+
+
     </script>
 
   </body>

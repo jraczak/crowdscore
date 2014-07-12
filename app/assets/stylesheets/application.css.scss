@@ -66,6 +66,10 @@ table {
 	min-width: 980px;
 }
 
+input:-webkit-autofill {
+  background-color: transparent !important;
+}
+
 @import "navbar";
 @import "footer";
 @import "custom_dropdown";

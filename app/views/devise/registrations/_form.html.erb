@@ -45,7 +45,7 @@
       <%= f.text_field :zip_code, size: "10", class: "half-width-form-field" %><br>
       
       <%= f.label :twitter_username, "Are you on Twitter?", class: "user-form-label", placeholder: "We only need your username" %><br>
-      <%= f.text_field :twitter_username, class: "half-width-form-field", style: "margin-bottom: 5px", size: "30" %><br>
+      <%= f.text_field :twitter_username, class: "half-width-form-field", style: "margin-bottom: 5px", size: "30", autocomplete: "off" %><br>
 
       <div class="user-dropdown-input-wrapper">
       <%= f.label :gender, class: "user-form-label" %><br>
@@ -133,5 +133,10 @@
     new document.CustomDropdownMenu('#cs-dd-birth-month', "Month", $('#cs-dd-birth-month').find('select').get(0).selectedIndex, 0)
     new document.CustomDropdownMenu('#cs-dd-gender', "Gender", $('#cs-dd-gender').find('select').get(0).selectedIndex, 0)
     new document.CustomDropdownMenu('#cs-dd-birth-day', "Day", $('#cs-dd-birth-day').find('select').get(0).selectedIndex, 0)
+
+    var avatar = $('#edit-user-header img')
+    avatar.error(function () {
+      avatar.attr('src', document.defaultAvatarSrc)
+    })
   </script>
 
