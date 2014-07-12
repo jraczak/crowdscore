@@ -2,6 +2,13 @@
 
   <%= devise_error_messages! %>
   
+  <div id="edit-user-header">
+    <div class="obj-rounded-image-wrapper">
+      <img src="<%= current_user.image_url.to_s %>">
+    </div>
+    <p><%= current_user.full_name %></p>
+  </div>
+  
   <h2 id="edit-user-form-header">Manage my account</h2>
   
   <% if resource.facebook_id? %>
@@ -9,8 +16,11 @@
   <% else %>
     <p class="facebook-not-connected">For easier logins, you can connect your Facebook account to your Crowdscore account by <%= link_to "clicking here", user_omniauth_authorize_path(:facebook) %>.</p>
   <% end %>
-  
-  <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-stacked' } do |f| %>
+
+  <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, class: "p-clearfix form-stacked" } do |f| %>
+    
+    <span id="required-field-key"><p class="required">* REQUIRED FIELDS</p></span><br>
+    
     <%= render partial: 'form', locals: { f: f } %>
     
     

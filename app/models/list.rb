@@ -9,6 +9,8 @@ class List < ActiveRecord::Base
   has_many :liked_by, through: :list_likes, source: :user
   
   validates :name, :user, presence: true
+  validates :name, length: { maximum: 40 }
+  validates :description, length: { maximum: 100 }
 
   # after_save :reindex_list
   # before_destroy :decrement_counter

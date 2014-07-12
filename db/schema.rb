@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(:version => 20140703053848) do
     t.boolean  "receive_follower_emails",               :default => true
     t.boolean  "receive_product_emails",                :default => true
     t.text     "liked_venue_categories"
+    t.string   "image_url"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

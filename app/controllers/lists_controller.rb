@@ -40,7 +40,11 @@ class ListsController < InheritedResources::Base
    
     render nothing: true, status: :ok
   end
-   
+     
+  def show
+    @json = resource.venues.to_gmaps4rails
+  end
+  
   def upvote
     unless current_user.liked_lists.include?(resource)
     current_user.liked_lists << resource

@@ -46,18 +46,31 @@ fieldset {
 	margin-bottom: 60px;
 }
 
-#left-user-form-fields {
+#left-user-form-fields,
+.left-user-form-fields {
     width: 50%;
     float: left;
     margin-right: 0px;
     padding-right: 10px;
 }
 
-#right-user-form-fields {
+#right-user-form-fields,
+.right-user-form-fields {
     width: 50%;
     float: right;
     margin-bottom: 10px;
     padding-left: 10px;
+}
+
+#right-user-form-fields,
+#left-user-form-fields,
+.right-user-form-fields,
+.left-user-form-fields {
+	&:after {
+		clear: both;
+		display: table;
+		content: ""
+	}
 }
 
 #password-confirmation {

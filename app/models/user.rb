@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails, :liked_venue_categories
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :home_city, :home_state, :receive_follower_emails, :receive_product_emails, :liked_venue_categories, :image_url
   
   # Serialize venue_subcategories within venue_categories to build explicit user preferences
   store :liked_venue_categories, accessors: [ :restaurants ]
@@ -76,6 +76,9 @@ class User < ActiveRecord::Base
   validate :check_date_for_realness
   # Removing username update validation - should check later for conflicts or issues arising from this
   # validate :prevent_username_change, on: :update
+
+  # add image uploader to model
+  mount_uploader :image_url, ImageUrlUploader
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

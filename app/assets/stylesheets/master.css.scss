@@ -23,25 +23,23 @@
   -webkit-box-sizing: border-box;
 }
 
-footer {
-  background-color: #2d3132;
-  margin-top: 50px;
-  height: 80px;
-  color: #ffffff;
-  line-height: 80px
-}
-
 html, body{
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: Museo;
 }
   
 body{
-  background: #FFF;
+  background-color: #dbdde2;
   text-align: center;
+  height: 100%;
 }  
+
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
 
 p{
   margin: 0;
@@ -51,15 +49,43 @@ p{
 
 * {
   @include box-sizing();
+  font-family: Museo;
 }
 
-.wrapper{
+.page-wrapper {
   width: 100%;
-  min-width: 960px;
-  height: 2000px;
+  height: 100%;
+  overflow: auto;
+}
 
-  text-align: center;
-  position: relative;;
+.container {
+  background-color: #fff;
+  min-height: 100%;
+  margin: 0 auto -405px;
+
+  max-width: 1920px;
+  min-width: 960px;
+  width: 100%;
+}
+
+// A rounded container with a child img element which is also rounded
+.obj-rounded-image-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.p-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 nav{
@@ -827,5 +853,47 @@ label.standard-form-field-label {
   pointer-events: none;
   opacity: 0;
   background-color: rgba(255,255,255,0.97);
+}
+
+
+.empty-container{
+  min-height: 380px;
+  position: relative;
+  width: 582px;
+  margin: 20px auto 80px;
+
+  background: url('gray_line_pattern.png');
+  background-repeat: repeat; 
+  text-align: center;
+  
+  .center-absolute{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    .cs-logo{
+      position: relative;
+      right: 0;
+      height: 95px;
+      width: 84px;
+      display: inline-block;
+      top: 100px;
+      background-image: url('logo.png');
+      background-repeat: no-repeat;
+    }
+
+    .add-msg{
+      position: relative;
+      right: 0%;
+      top: 110px;
+      color: #c5c5c5;
+      font-size: 30px;
+      font-weight: 100;
+      text-align: center;
+      width: 100%;
+    }
+  }
 }
 
