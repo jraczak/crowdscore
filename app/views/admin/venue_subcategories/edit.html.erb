@@ -1,12 +1,9 @@
 <h1>Edit Venue Subcategory</h1>
 
-<%= form_for resource, :url => {:controller => "admin/venue_categories", :action => "update"} do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <p>USE CAUTION UPDATING THE BELOW INFORMATION!</p><br>
-  <%= f.label :venue_category_id, "venue category ID" %><br>
-  <%= f.text_field :venue_category_id %><br>
-  <%= f.label :factual_category_id, "Factual category ID" %><br>
-  <%= f.text_field :factual_category_id %><br>
-  <%= f.submit("update venue category") %>
+<%= simple_form_for resource, :url => {:controller => "admin/venue_categories", :action => "update"} do |f| %>
+  <%= f.input :name %>
+  <p>Use caution updating the below information as it has cascading effects across the app</p>
+  <%= f.association :venue_category, label_method: :name, value_method: :id %>
+  <%= f.input :factual_category_id %>
+  <%= f.button :submit %>
 <% end %>
