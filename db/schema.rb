@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20140712192232) do
 
   create_table "audits", :force => true do |t|
@@ -132,8 +133,14 @@ ActiveRecord::Schema.define(:version => 20140712192232) do
   create_table "score_categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
+<<<<<<< HEAD
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+=======
+    t.integer  "venue_subcategory_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+>>>>>>> master
   end
 
   create_table "score_categories_venue_categories", :id => false, :force => true do |t|

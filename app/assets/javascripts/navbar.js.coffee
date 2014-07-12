@@ -1,4 +1,5 @@
 
+defaultAvatarSrc = "http://fc04.deviantart.net/fs70/f/2013/076/0/f/square_avatar_by_ask_wolfprince-d5ybidu.png"
 class window.InputToTextMocker extends window.SimpleDomObject
 
   constructor: (@inputSelector, @textSelector) ->
@@ -34,6 +35,10 @@ class CrowdscoreHeader extends SimpleDomObject
 
   initialize: =>
     new InputToTextMocker('#cs-h-search-input', '#cs-h-search-input-placeholder')
+
+    avatar = @$el.find('.cs-h-user-nav img')
+    avatar.error ->
+      avatar.attr 'src', defaultAvatarSrc
 
   events: =>
     'showSearchView#click' : '.cs-h-search-trigger'
