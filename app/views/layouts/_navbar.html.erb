@@ -10,7 +10,7 @@
 				<% if user_signed_in? %>
 					<li class="cs-h-user-nav">
 						<div class="obj-rounded-image-wrapper">
-							<%= image_tag current_user.image_url_url(:thumb).to_s %>
+							<%= image_tag current_user.image(:thumb).to_s %>
 						</div>
 						<div class="cs-h-user-dropdown-wrapper">
 							<div class="cs-h-user-dropdown-carot"></div>

@@ -40,4 +40,6 @@
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  ENV['FACEBOOK_APP_ID'] = '789772787721079'
+  ENV['FACEBOOK_APP_SECRET'] = '6403443212d290cb56941a2128c13558'
 end

@@ -256,6 +256,18 @@ class User < ActiveRecord::Base
     #permalink
     #"#{id}-#{username}"
   end
+  
+  def image(size=nil)
+   if facebook_image_url.present?
+     facebook_image_url
+   else
+     if size
+       image_url_url(size)
+     else
+       image_url
+     end
+   end
+  end
 
   # Public: lock a user's account and provide a reason why.
   #
@@ -362,22 +374,28 @@ class User < ActiveRecord::Base
       signed_in_resource
     elsif user = User.where(facebook_id: data.id).first
       user
-    else # Create a user with a stub password. 
-      nil
+    else # Create a user with a stub password and username. 
+      #User.create(
+      #email: data["email"],
+      #first_name: data["first_name"],
+      #last_name: data["last_name"],
+      #username: "temp",
+      #password: Devise.friendly_token[0,20]
+      #)
     end
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"]
-        user.first_name = data["first_name"]
-        user.last_name = data["last_name"]
-        #user.username = data["username"]
-        user.gender = data["gender"].capitalize
-        user.facebook_id = data["id"]
+      if data = session["devise.facebook_data"] #&& session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["info"]["email"]
+        user.first_name = data["info"]["first_name"]
+        user.last_name = data["info"]["last_name"]
+        user.facebook_image_url = data["info"]["image"]
+        user.facebook_id = data["uid"]
         user.skip_confirmation!
       end
     end
   end
+
 end

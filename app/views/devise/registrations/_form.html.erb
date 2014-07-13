@@ -26,7 +26,9 @@
       
       <%= f.label :image_url, 'profile picture', class: "user-form-label", onclick: "console.log($('#edit-user-image-selector'))" %><br>
       <div id="edit-user-image-wrapper">
-        <%= image_tag current_user.image_url.to_s, id: "edit-user-image" %>
+        <% if current_user %>
+          <%= image_tag current_user.image_url.to_s, id: "edit-user-image" %>
+        <% end %>
         <%= f.file_field :image_url, id: "edit-user-image-selector" %>
         <p id="edit-user-image-label">Choose File</p>
       </div>

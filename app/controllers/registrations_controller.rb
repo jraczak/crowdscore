@@ -39,7 +39,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def after_sign_up_path_for(devise_resource)
-    edit_user_registration_path
+    #edit_user_registration_path
+    dashboard_path
   end
   
   #def account_update_params
