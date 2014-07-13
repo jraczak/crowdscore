@@ -36,10 +36,6 @@ class CrowdscoreHeader extends SimpleDomObject
   initialize: =>
     new InputToTextMocker('#cs-h-search-input', '#cs-h-search-input-placeholder')
 
-    avatar = @$el.find('.cs-h-user-nav img')
-    avatar.error ->
-      avatar.attr 'src', document.defaultAvatarSrc
-
   events: =>
     'showSearchView#click' : '.cs-h-search-trigger'
     'showSearchView#focus' : '#cs-h-search-input'

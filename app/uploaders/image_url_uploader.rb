@@ -12,6 +12,10 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  def default_url
+    'default_user_avatar.png'
+  end
 
   process :resize_to_fill => [400, 400]
   
