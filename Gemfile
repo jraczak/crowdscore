@@ -22,7 +22,7 @@ gem "sunspot_rails"
 gem "geocoder"
 gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
-gem "omniauth-facebook", '~> 1.6.0'
+gem "omniauth-facebook", '~> 1.4.0'
 gem "gmaps4rails", "~> 1.5.6"
 gem "merit"
 gem "sunspot_solr", "~> 2.1.0"
