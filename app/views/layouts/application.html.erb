@@ -58,7 +58,9 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
 
         <div id="flash-container">  
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: name %>
+            <div class="<%= name %>">
+              <p class="msg"><%= msg %></p>
+            </div>
           <% end %>
         </div>
 
@@ -359,14 +361,9 @@ UserVoice.push(['autoprompt', {}]);
         $("#auth-modal").removeClass("visible");
       });
 
-      setTimeout( function(){
-        $('input:-webkit-autofill').each( function(i, v) {
-          $(v).val('');
-        });
-      }, 100 );
-
 
     </script>
+
 
   </body>
 </html>

@@ -45,8 +45,10 @@ class CrowdscoreHeader extends SimpleDomObject
     'showSearchView#focus' : '#cs-h-search-input'
     'stopDefaultNavAction#click' : '.cs-h'
     'showDefaultView#click' : document
+    'showLocationViewFromEnter#keydown' : '#cs-h-search-input'
     'showLocationView#click' : '.cs-h-search-button'
     'showLocationView#focus' : '#cs-h-location-input'
+    'stopSearchQuery#click' : '.cs-h-push:not(.cs-h-location) button.cs-h-search-button'
 
   showDefaultView: =>
     if @$navInner.hasClass "cs-h-push"
@@ -55,11 +57,27 @@ class CrowdscoreHeader extends SimpleDomObject
     if @$navInner.hasClass "cs-h-location"
       @$navInner.removeClass "cs-h-location" 
 
-  showLocationView: =>
+    $('input').blur()
+
+  stopSearchQuery: (e) =>
+    e.stopPropagation()
+    e.preventDefault()
+    return false
+
+  showLocationViewFromEnter: (e) =>
+    if e.keyCode == 13
+      @$navInner.addClass 'cs-h-location'
+      @$navInner.find('#cs-h-location-input').focus()
+      @stopSearchQuery(e)
+
+  showLocationView: (e) =>
     @$navInner.addClass "cs-h-location"
 
   showSearchView: =>
+    input = @$navInner.find('#cs-h-search-input')
     @$navInner.addClass "cs-h-push"
+    if document.activeElement != $('#cs-h-search-input').get(0)
+      $('#cs-h-search-input').focus()
 
     if @$navInner.hasClass "cs-h-location"
       @$navInner.removeClass "cs-h-location" 
