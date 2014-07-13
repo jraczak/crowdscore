@@ -8,18 +8,7 @@
     <%= yield :scripts %>
 
     <style type="text/css">
-   @font-face {
-  font-family: Museo;
-  src: url(../font/Museo-100.otf);
-  font-weight: 100; }
-@font-face {
-  font-family: Museo;
-  src: url(../font/Museo-900.otf);
-  font-weight: 900; }
-@font-face {
-  font-family: Museo;
-  src: url(../font/Museo-300.otf);
-  font-weight: 300; }
+
 .btn {
   cursor: pointer;
   text-decoration: none;
@@ -235,7 +224,7 @@ p.main-spread-font {
 .hps-icon,
 .hps-submit {
   background-color: transparent;
-  background-image: url(../img/hps_search_icon.png);
+  background-image: url(<%= image_path('hps_search_icon.png') %>);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px 28px;
@@ -328,7 +317,7 @@ p.main-spread-font {
     width: 240px; }
 
 .hps-location-main {
-  background: rgba(255, 255, 255, 0.5) url(../img/hps_location_icon.png) no-repeat 25px center;
+  background: rgba(255, 255, 255, 0.5) url(<%= image_path('hps_location_icon.png') %>) no-repeat 25px center;
   float: left;
   height: 100%;
   margin-left: 2px;
