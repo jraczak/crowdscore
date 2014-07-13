@@ -132,8 +132,8 @@ GEM
     factual-api (1.3.11)
       json (>= 1.2.0)
       oauth (>= 0.4.4)
-    faraday (0.8.8)
-      multipart-post (~> 1.2.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
     fog (1.3.1)
       builder
@@ -167,7 +167,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    hashie (2.0.5)
+    hashie (3.2.0)
     heroku (2.26.3)
       heroku-api (~> 0.2.1)
       launchy (>= 0.3.2)
@@ -215,7 +215,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.2)
     multi_test (0.0.3)
-    multipart-post (1.2.0)
+    multipart-post (2.0.0)
     nearest_time_zone (0.0.2)
       andand
       kdtree
@@ -236,10 +236,10 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-facebook (1.5.1)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
@@ -441,7 +441,7 @@ DEPENDENCIES
   merit
   nearest_time_zone
   newrelic_rpm
-  omniauth-facebook
+  omniauth-facebook (~> 1.4.0)
   parallel_tests
   pg
   pickle
