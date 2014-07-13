@@ -66,6 +66,9 @@ p{
   max-width: 1920px;
   min-width: 960px;
   width: 100%;
+  &.map {
+    height: 100%;
+  }
 }
 
 // A rounded container with a child img element which is also rounded
