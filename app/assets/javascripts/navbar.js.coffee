@@ -53,8 +53,6 @@ class CrowdscoreHeader extends SimpleDomObject
     if @$navInner.hasClass "cs-h-location"
       @$navInner.removeClass "cs-h-location" 
 
-    $('input').blur()
-
   stopSearchQuery: (e) =>
     e.stopPropagation()
     e.preventDefault()
