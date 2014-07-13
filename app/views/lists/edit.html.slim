@@ -1,0 +1,10 @@
+
+= errors_for @list
+
+h1 Editing a new list
+
+= form_for @list do |f|
+  fieldset
+    == render partial: "form", locals: { f: f }
+    .actions
+      button.btn.primary(type="submit") Update

@@ -1,0 +1,84 @@
+<div class="r_list-index">
+	<h1>Your Lists</h1>
+
+	<% current_user.lists.by_recent.each do |l| %>
+     
+
+
+    <!-- BEGIN LIST CARD CODE -->
+
+    <div class="list-card details">
+    	<div class="details-card">
+    		<h3 class="title"><%= link_to l.name, l %></h3>
+    		<p class="description"><%= l.description %></p>
+
+    		<ul class="venues">
+    			<% preview_card_venues(l).each_with_index do |v, i| %>
+	          <li class="venue">
+	            <span class="number"><%= i+1 %></span>
+	            <span class="name">
+	              <%= link_to truncate(v.name, length: 28, separator: ' ', omission: '...'), v %>
+	            </span>
+	          </li>
+        	<% end %>
+        <%= link_to "see all #{pluralize(l.venues.count, "venue")}", l, class: 'link' %>
+    		</ul>
+
+    		<p class="timestamp"><%= time_ago_in_words(l.updated_at) %> ago</p>
+    		<div class="toggle"></div>
+    	</div>
+
+    	<div class="details-card edit-card">
+    		<h3 class="title">Edit list details</h3>
+    		
+    		<%= form_for l do |f| %>
+	    		<%= f.label :name, "list name" %>
+	    		<%= f.text_field :name, size: "30" %>
+	    
+	  			<%= f.label :description %>
+	    		<%= f.text_area :description %>
+
+	    		<%= f.submit "update details", class: "button update" %>
+
+	    		<div class="button cancel">canel</div>
+
+    		<% end %>
+    		
+    		<div class="confirm">
+    			<h3 class="title">Are you sure?</h3>
+    			<%= link_to "Yes, delete this list", list_path(l), :method => :delete, class: 'button delete' %>
+
+    			<p class="keep">no, keep this list</p>
+    		</div>
+    		<div class="toggle delete"></div>
+    	</div>
+
+    </div>
+
+  <% end %>
+  <!-- END LIST CARD CODE -->
+
+  <div class="list-card new">
+
+  	<div class="create"></div>
+	  <h3 class="title">Create a new list</h3>
+
+	  <div class="details-card new-card">
+  		<h3 class="title">Edit list details</h3>
+  		
+  		<%= form_for List.new do |f| %>
+    		<%= f.label :name, "list name" %>
+    		<%= f.text_field :name, size: "30" %>
+    
+  			<%= f.label :description %>
+    		<%= f.text_area :description %>
+
+    		<%= f.submit "create list", class: "button update" %>
+
+    		<div class="button cancel">canel</div>
+
+  		<% end %>
+  	</div>
+  </div>
+
+</div>

@@ -183,7 +183,7 @@ class AddToListModal extends SimpleDomObject
       data: { venue_id: venueId }
     )
       .done( (response) ->
-        $("#flash-container").append("<div class='notice'>" + response.notice + "</div>")
+        $("#flash-container").append("<div class='notice'><p class='msg'>" + response.notice + "</p></div>")
         $('.md-close').click()
       )
 

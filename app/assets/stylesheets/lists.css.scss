@@ -1,5 +1,6 @@
 $cs-c-blue: #02b8ea;
 $cs-c-ddgray: #6b6e70;
+@import "bourbon";
 
 /* Styles for list detail page */
 
@@ -470,11 +471,6 @@ $cs-c-ddgray: #6b6e70;
 	}
 }
 
-
-
-
-
-
 #list-creator {
 	text-transform: uppercase;
 }
@@ -490,3 +486,392 @@ $cs-c-ddgray: #6b6e70;
 #list-updated-at {
 	text-transform: uppercase;
 }
+
+
+// List Index Page
+
+// list-index region 
+.r_list-index {
+	padding: 40px 0px;
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	width: 970px;
+	margin: 0 auto;
+
+	h1 {
+		color: #2d3132;
+		text-align: center;
+		font-size: 58px;
+		font-weight: 100;
+		line-height: 2em;
+	}
+
+	.list-card {
+		text-align: center;
+		display: inline-block;
+		margin: 9px;
+		background-color: #fff;
+		box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+		border-radius: 4px;
+		position: relative;
+		height: 437px;
+		width: 300px;
+		overflow: hidden;
+		@include transition(border-color 0.2s);
+		@include transition-delay(0.01s);
+
+		&.details {
+			border-top: 6px solid #2464ad;
+		}
+
+		&.edit {
+			border-top: 6px solid #f15a23;
+			@include transition(border-color 0.2s);
+			@include transition-delay(0s);
+		}
+
+
+		.details-card {
+			border-radius: 4px;
+			padding: 0px 29px;
+			height: 100%;
+			width: 100%;
+			position: relative;
+			padding-top: 45px;
+
+
+			.toggle {
+				border-color: transparent transparent #02b8ea transparent;
+
+				&:before {
+					position: absolute;
+					content: "";
+					top: 25px;
+					right: 8px;
+
+					width: 12px;
+					height: 12px;
+					background-image: url(image_path('list-card-edit.png'));
+					background-size: 12px 12px;
+					background-position: center;
+
+				}
+			}
+
+			h3.title a {
+				color: #2464ad;
+			}
+		}
+
+
+		.edit-card, 
+		.new-card {
+			border-radius: 4px;
+			padding: 0px 29px;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			padding-top: 45px;
+
+			background-color: #fff;
+			top: 20px;
+			left: 10px;
+			max-height: 0%;
+			max-width: 0%;
+			overflow: hidden;
+			opacity: 0;
+			z-index: 1;
+
+			@include transition(opacity 0.2s, top 0.2s, left 0.2s, max-height 0s, max-width 0s);
+			@include transition-delay(0.01s, 0.01s, 0.01s, 0.21s, 0.21s);
+
+			&.visible {
+				max-height: 100%;
+				max-width: 100%;
+				overflow: visible;
+				opacity: 1;
+				top: 0;
+				left: 0;
+				@include transition(opacity 0.2s, top 0.2s, left 0.2s, max-height 0s, max-width 0s);
+				@include transition-delay(0s, 0s, 0s, 0s, 0s);
+			}
+
+			input[type="text"],
+			textarea {
+				background-color: #f9dfd5;
+			}
+
+			.toggle {
+				border-color: transparent transparent #f15a23 transparent;
+
+				&:before {
+					position: absolute;
+					content: "";
+					top: 25px;
+					right: 8px;
+
+					width: 10px;
+					height: 10px;
+					background-image: url(image_path('list-card-edit-close.png'));
+					background-size: 10px 10px;
+					background-position: center;
+
+				}
+			}
+
+			.button {
+				background-color: #f15a23;
+				color: #ffffff;
+				&.cancel {
+					color: #f15a23;
+				}
+			}
+
+			h3.title {
+				color: #f15a23;
+			}
+		}
+
+		&.new {
+			border-top: 6px solid #72ca28;
+			@include transition(border-color 0.2s);
+			@include transition-delay(0s);
+
+			.create {
+				height: 88px;
+				width: 88px;
+				background-image: url(image_path('list-card-create.png'));
+				background-position: center;
+				background-size: 36px 40px;
+				background-repeat: no-repeat;
+
+				border-radius: 50%;
+				background-color: #72ca28;
+				margin: 120px auto 0;
+				cursor: pointer;
+			}
+
+			h3.title {
+				color: #72ca28;
+				margin-top: 25px;
+			}
+
+			input[type="text"],
+			textarea {
+				background-color: #e5f7d5;
+			}
+
+			.button {
+				background-color: #72ca28;
+				color: #ffffff;
+				&.cancel {
+					color: #72ca28;
+				}
+			}
+		}
+
+
+		h3.title {
+			margin-bottom: 12px;
+			font-size: 25px;
+			font-weight: 300;
+			line-height: 1.28em;
+
+			a {
+				display: block;
+				text-decoration: none;
+			}
+		}
+
+		p.description {
+			color: #6b6e70;
+			font-size: 14px;
+			font-weight: 300;
+			line-height: 1.28em;
+			overflow: hidden;
+			max-height: 3.84em;
+		}
+
+		.toggle {
+			width: 47px;
+			height: 47px;
+			position: absolute;
+			border-style: solid;
+			border-width: 0 0 47px 47px;
+			bottom: 0;
+			right: 0;
+			cursor: pointer;
+			display: block;
+		}
+
+		p.timestamp {
+			font-size: 12px;
+			color: #000;
+			font-weight: 700;
+			position: absolute;
+			left: 29px;
+			bottom: 20px; 
+		}
+
+		.venues {
+			list-style: none;
+			margin-top: 20px;
+			position: relative;
+			height: 185px;
+			position: absolute;
+			padding-bottom: 30px;
+			width: 100%;
+			left: 0;
+			bottom: 85px;
+			padding-left: 29px;
+			padding-right: 29px;
+
+			.venue {
+				text-align: left;
+				border-bottom: 1px solid #dadada;
+				line-height: 49px;
+			}
+
+			.number {
+				color: #000;
+				font-weight: 700;
+				font-size: 12px;
+				margin-right: 15px;
+			}
+
+			.name a{
+				color: #6b6e70;
+				font-weight: 300;
+				font-size: 14px;
+				text-decoration: none;
+			}
+
+			.link {
+				font-weight: 900;
+				color: #02b8ea;
+				font-size: 11px;
+				text-transform: uppercase;
+				position: absolute;
+				text-decoration: none;
+				bottom: 0;
+				left: 29px;
+			}
+		}
+
+		.button {
+			display: inline-block;
+			line-height: 42px;
+			font-weight: 900;
+			
+			font-size: 12px;
+			cursor: pointer;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			border: 0;
+			border-radius: 21px;
+			margin: 0;
+
+			&.update {
+				width: 173px;
+			}
+
+			&.cancel {
+				background-color: #fff;
+			}
+
+			&.delete {
+				text-decoration: none;
+				width: 224px;
+			}
+		}
+
+		form {
+			text-align: left;
+		}
+
+		label {
+			color: #2d3132;
+			font-size: 11px;
+			text-transform: uppercase;
+			line-height: 30px;
+		}
+
+		input[type="text"],
+		textarea {
+			width: 100%;
+			border: 0;
+			font-weight: 700;
+			color: #2d3132;
+			font-size: 13px;
+			outline: none;
+		}
+
+		textarea {
+			margin-bottom: 18px;
+		}
+
+		input[type="text"] {
+			height: 45px;
+			padding: 0 15px;
+			margin-bottom: 8px;
+		}
+
+		textarea {
+			height: 105px;
+			padding: 15px;
+			line-height: 1.3em;
+		}
+
+		.confirm {
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			position: absolute;
+			top: 20px;
+			left: 10px;
+			max-height: 0%;
+			max-width: 0%;
+			overflow: hidden;
+			opacity: 0;
+			z-index: 1;
+
+			@include transition(opacity 0.2s, top 0.2s, left 0.2s, max-height 0s, max-width 0s);
+			@include transition-delay(0.2s, 0.2s, 0.2s, 0.4s, 0.4s);
+
+			h3.title {
+				margin-top: 160px;
+			}
+
+			.keep {
+				text-transform: uppercase;
+				font-weight: 900;
+				font-size: 11px;
+				color: #f15a23;
+				position: absolute;
+				width: 100%;
+				bottom: 50px;
+				left: 0;
+				cursor: pointer;
+			}
+
+			&.visible {
+				max-height: 100%;
+				max-width: 100%;
+				overflow: visible;
+				opacity: 1;
+				top: 0;
+				left: 0;
+				@include transition(opacity 0.2s, top 0.2s, left 0.2s, max-height 0s, max-width 0s);
+				@include transition-delay(0s, 0s, 0s, 0s, 0s);
+			}
+		}
+
+	}
+}
+
+
+
+
+
+

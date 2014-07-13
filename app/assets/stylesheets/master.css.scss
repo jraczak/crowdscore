@@ -69,6 +69,10 @@ p{
   &.map {
     height: 100%;
   }
+
+  &.dark {
+    background-color: #f7f7f7;
+  }
 }
 
 // A rounded container with a child img element which is also rounded
