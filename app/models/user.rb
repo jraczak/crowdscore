@@ -387,15 +387,23 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] #&& session["devise.facebook_data"]["extra"]["raw_info"]
+      if data = session["devise.facebook_data"] #&& session["devise.facebook_data"]["extra"]["raw_info"] 
+        
+        location = data["info"]["location"]
+        city = location.slice(0..(location.index(','))).chop
+        state = location.slice(location.index(',')..100).slice(2..100)
+        
         user.email = data["info"]["email"]
         user.first_name = data["info"]["first_name"]
         user.last_name = data["info"]["last_name"]
         user.facebook_image_url = data["info"]["image"]
         user.facebook_id = data["uid"]
+        user.home_city = city
+        user.home_state = state
         user.skip_confirmation!
       end
     end
   end
+
 
 end
