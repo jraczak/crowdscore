@@ -144,6 +144,7 @@ textarea.standard-blue-text-field {
 #user-form-email-preferences-instructions {
 	width: 50%;
 	float: left;
+	line-height: 1.3em;
 	
 	h3 {
 		font-size: 25px;
@@ -155,6 +156,7 @@ textarea.standard-blue-text-field {
 		font-size: 14px;
 		font-weight: 100;
 		color: #6b6e70;
+		margin-top: 15px;
 	}
 }
 
@@ -180,6 +182,7 @@ textarea.standard-blue-text-field {
 #user-form-update-password-instructions {
 	width: 50%;
 	float: left;
+	line-height: 1.3em;
 	
 	h3 {
 		font-size: 25px;
@@ -191,6 +194,7 @@ textarea.standard-blue-text-field {
 		font-size: 14px;
 		font-weight: 100;
 		color: #6b6e70;
+		margin-top: 15px;
 	}
 }
 
@@ -248,6 +252,7 @@ label.user-form-label {
 
 #user-form-cancel-account-container {
 	width: 100%;
+	margin-bottom: 60px;
 	
 	p {
 	    width: 70%;
