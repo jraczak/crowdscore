@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
+  <head>
+    <title><%= "Crowdscore #{yield(:title)}" %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
+    <%= yield :scripts %>
+
+    <style type="text/css">
+   @font-face {
+  font-family: Museo;
+  src: url(../font/Museo-100.otf);
+  font-weight: 100; }
+@font-face {
+  font-family: Museo;
+  src: url(../font/Museo-900.otf);
+  font-weight: 900; }
+@font-face {
+  font-family: Museo;
+  src: url(../font/Museo-300.otf);
+  font-weight: 300; }
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.bg-norep {
+  background-repeat: no-repeat; }
+
+.bg-center {
+  background-position: center center; }
+
+.p-left {
+  float: left; }
+
+.p-right {
+  float: right; }
+
+.p-abs {
+  position: absolute; }
+
+.p-bottom {
+  bottom: 0; }
+
+.p-left {
+  left: 0; }
+
+.p-right {
+  right: 0; }
+
+.p-top {
+  top: 0; }
+
+.p-fixed {
+  position: fixed; }
+
+.p-abs-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+
+.p-rel-cover {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.obj-rounded-image-wrapper {
+  border-radius: 50%; }
+  .obj-rounded-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
+
+.f-left {
+  text-align: left; }
+
+.f-center {
+  text-align: center; }
+
+.f-right {
+  text-align: right; }
+
+.f-condensed {
+  font-family: "Open Sans Condensed", sans-serif; }
+
+.f-uppercase {
+  text-transform: uppercase; }
+
+.f-italic {
+  font-style: italic; }
+
+.f-bold {
+  font-weight: 900; }
+
+.f-normal {
+  font-weight: 300; }
+
+.f-light {
+  font-weight: 100; }
+
+.f-no-decoration {
+  text-decoration: none; }
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+p,
+body,
+html,
+ul {
+  margin: 0;
+  padding: 0; }
+
+body,
+html {
+  height: 100%;
+  min-width: 980px;
+  font-family: Museo; }
+
+.full-bg {
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+  .full-bg img {
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0); }
+
+.info-spread {
+  position: relative;
+  width: 100%; }
+  .info-spread.one {
+    height: 430px; }
+  .info-spread.two {
+    height: 493px; }
+  .info-spread.register {
+    height: 380px; }
+
+.section-one {
+  display: inline-block;
+  width: 700px; }
+  .section-one img {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 100px; }
+
+.section-two {
+  display: inline-block;
+  height: 343px;
+  margin-top: 82px;
+  position: relative; }
+  .section-two .column {
+    display: table;
+    float: left;
+    height: 100%;
+    padding: 0 15px;
+    vertical-align: top;
+    width: 313px; }
+    .section-two .column.middle {
+      margin: 0 20px;
+      border-left: 1px solid gainsboro;
+      border-right: 1px solid gainsboro;
+      padding: 0 25px; }
+  .section-two p.main-spread-font {
+    display: table-cell;
+    vertical-align: middle; }
+  .section-two p.description {
+    color: #6b6e70;
+    font-family: Museo;
+    font-weight: 300;
+    line-height: 1.6em; }
+  .section-two h3 {
+    color: #2d3132;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0;
+    text-transform: uppercase; }
+  .section-two hr {
+    border: 2px solid #2d3132;
+    margin: 20px auto;
+    width: 80px; }
+  .section-two .centered {
+    display: table-cell;
+    vertical-align: middle; }
+
+p.main-spread-font {
+  color: #2d3132;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 1.6em; }
+
+#hp-main-center {
+  height: 80%;
+  left: 50%;
+  margin-left: -410px;
+  position: absolute;
+  top: 10%;
+  width: 820px; }
+
+#hp-brand {
+  color: white;
+  font-size: 100px;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  margin-top: 10%; }
+
+#hp-slogan {
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  margin: 0; }
+
+.hps-icon,
+.hps-submit {
+  background-color: transparent;
+  background-image: url(../img/hps_search_icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px 28px;
+  height: 80px; }
+
+.hps-icon {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 65px;
+  -webkit-transition: -webkit-transform 0.1s;
+  -moz-transition: -moz-transform 0.1s;
+  transition: transform 0.1s;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+  .hps-icon.search {
+    -webkit-transform: translate3d(-50px, 0, 0);
+    -moz-transform: translate3d(-50px, 0, 0);
+    -ms-transform: translate3d(-50px, 0, 0);
+    -o-transform: translate3d(-50px, 0, 0);
+    transform: translate3d(-50px, 0, 0); }
+
+.hps-submit {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-position: center;
+  border: 0;
+  cursor: pointer;
+  float: left;
+  margin-left: 2px;
+  outline: none;
+  width: 80px; }
+
+.hps-input {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  height: 80px;
+  left: 0;
+  opacity: 0;
+  outline: none;
+  padding-left: 70px;
+  padding-right: 30px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  -webkit-transition: opacity 0.1s, padding-left 0.1s;
+  -moz-transition: opacity 0.1s, padding-left 0.1s;
+  transition: opacity 0.1s, padding-left 0.1s; }
+  .hps-input.search {
+    opacity: 1;
+    padding-left: 30px; }
+  .hps-input::-webkit-input-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-input::-moz-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-input:-moz-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-input:-ms-input-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+
+.hps-input-main {
+  background-color: rgba(255, 255, 255, 0.5);
+  float: left;
+  height: 100%;
+  position: relative;
+  width: 820px;
+  -webkit-transition: width 0.1s;
+  -moz-transition: width 0.1s;
+  transition: width 0.1s; }
+  .hps-input-main.search {
+    width: 738px; }
+  .hps-input-main.location {
+    width: 240px; }
+
+.hps-location-main {
+  background: rgba(255, 255, 255, 0.5) url(../img/hps_location_icon.png) no-repeat 25px center;
+  float: left;
+  height: 100%;
+  margin-left: 2px;
+  position: relative;
+  width: 496px; }
+
+.hps-placeholder {
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  left: 0;
+  line-height: 80px;
+  opacity: 1;
+  padding-left: 70px;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s; }
+  .hps-placeholder b {
+    font-weight: 9900; }
+  .hps-placeholder.search {
+    opacity: 0;
+    padding-left: 30px; }
+
+.hps-wrapper {
+  bottom: 0;
+  height: 80px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0); }
+
+.hps-inner {
+  width: 200%;
+  height: 100%; }
+
+.hps-location-input {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  height: 80px;
+  left: 0;
+  opacity: 0;
+  outline: none;
+  padding-left: 70px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  -webkit-transition: opacity 0.1s;
+  -moz-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+  .hps-location-input.location {
+    opacity: 1; }
+  .hps-location-input::-webkit-input-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-location-input::-moz-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-location-input:-moz-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+  .hps-location-input:-ms-input-placeholder {
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 1; }
+
+
+
+.hp-register-header {
+  color: #2d3132;
+  font-size: 58px;
+  margin: 0; }
+
+.hp-register-text {
+  color: #6b6e70;
+  font-size: 14px;
+  line-height: 1.6em;
+  margin: 10px auto;
+  width: 430px; }
+
+.cta-register {
+  background-color: #02b8ea;
+  border: 0;
+  border-radius: 22px;
+  color: white;
+  letter-spacing: 1px;
+  line-height: 44px;
+  margin-top: 20px;
+  padding: 0 44px; }
+
+.register {
+  height: 380px;
+  padding-top: 90px; }
+
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 100;
+  pointer-events: none;
+  overflow-y: scroll;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000, endColorstr=#cc000000)";
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s; }
+  .modal > .modal-mask {
+    position: static;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .modal > .modal-mask .modal-vertical-center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center; }
+  .modal .modal-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table; }
+  .modal .close-modal {
+    width: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #999999;
+    line-height: 25px;
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 100;
+    cursor: pointer;
+    border-radius: 12px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=6); }
+
+.modal.visible,
+.tmp-modal.visible {
+  opacity: 1;
+  pointer-events: auto; }
+
+#register-modal > .modal-mask,
+#login-modal > .modal-mask {
+  text-align: left;
+  min-width: 1050px; }
+#register-modal h1,
+#login-modal h1 {
+  font-size: 58px;
+  font-weight: 100;
+  color: #2d3132;
+  margin: 0;
+  text-align: left; }
+#register-modal p,
+#login-modal p {
+  margin-top: 10px;
+  margin-left: 0px;
+  font-size: 14px;
+  color: #6b6e70;
+  text-align: left;
+  line-height: 1.5em;
+  font-weight: 300;
+  display: block; }
+  #register-modal p a,
+  #login-modal p a {
+    text-decoration: none;
+    color: #02b8ea; }
+#register-modal p#join-crowdscore-link, #register-modal p#forgot-password-link,
+#login-modal p#join-crowdscore-link,
+#login-modal p#forgot-password-link {
+  margin-left: 0px; }
+#register-modal .modal-facebook-signup-button,
+#register-modal .modal-facebook-signin-button,
+#login-modal .modal-facebook-signup-button,
+#login-modal .modal-facebook-signin-button {
+  color: white;
+  display: inline-block;
+  margin: 25px 0;
+  line-height: 44px;
+  background-color: #3b5998;
+  text-align: left;
+  border-radius: 24px;
+  text-decoration: none; }
+  #register-modal .modal-facebook-signup-button i, #register-modal .modal-facebook-signup-button > div,
+  #register-modal .modal-facebook-signin-button i,
+  #register-modal .modal-facebook-signin-button > div,
+  #login-modal .modal-facebook-signup-button i,
+  #login-modal .modal-facebook-signup-button > div,
+  #login-modal .modal-facebook-signin-button i,
+  #login-modal .modal-facebook-signin-button > div {
+    display: inline-block; }
+  #register-modal .modal-facebook-signup-button i,
+  #register-modal .modal-facebook-signin-button i,
+  #login-modal .modal-facebook-signup-button i,
+  #login-modal .modal-facebook-signin-button i {
+    width: 53px;
+    font-size: 26px;
+    line-height: 44px;
+    vertical-align: top;
+    border-right: 1px solid #536da5;
+    text-align: center; }
+  #register-modal .modal-facebook-signup-button > div,
+  #register-modal .modal-facebook-signin-button > div,
+  #login-modal .modal-facebook-signup-button > div,
+  #login-modal .modal-facebook-signin-button > div {
+    border-left: 1px solid #344e86;
+    font-size: 12px;
+    vertical-align: top;
+    text-align: center;
+    width: 230px;
+    font-weight: 600;
+    letter-spacing: 1px; }
+#register-modal .registration-modal-form-field,
+#login-modal .registration-modal-form-field {
+  text-align: left;
+  margin-left: 3%;
+  position: relative;
+  display: block;
+  float: left;
+  margin-top: 10px; }
+  #register-modal .registration-modal-form-field label,
+  #login-modal .registration-modal-form-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 300;
+    color: #2d3132;
+    line-height: 24px;
+    text-transform: uppercase; }
+  #register-modal .registration-modal-form-field input,
+  #login-modal .registration-modal-form-field input {
+    background-color: #e5f8fd;
+    outline: none;
+    height: 44px;
+    border: 0;
+    padding: 0 20px;
+    width: 100%;
+    font-size: 12px; }
+#register-modal .left-rail,
+#login-modal .left-rail {
+  width: 440px;
+  padding: 60px 70px;
+  text-align: left;
+  display: inline-block;
+  vertical-align: top;
+  border-right: 1px solid #dadada; }
+#register-modal .registration-modal-submit-button,
+#login-modal .registration-modal-submit-button {
+  line-height: 44px;
+  border-radius: 23px;
+  border: 0px;
+  padding: 0;
+  background-color: #02b8ea;
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin-top: 25px;
+  text-align: center;
+  width: 256px;
+  margin-left: 3%;
+  text-transform: uppercase; }
+#register-modal .right-rail,
+#login-modal .right-rail {
+  vertical-align: top;
+  display: inline-block;
+  padding: 40px 20px; }
+  #register-modal .right-rail .registration-modal-form,
+  #login-modal .right-rail .registration-modal-form {
+    width: 540px; }
+    #register-modal .right-rail .registration-modal-form .half,
+    #login-modal .right-rail .registration-modal-form .half {
+      width: 47%; }
+    #register-modal .right-rail .registration-modal-form .full,
+    #login-modal .right-rail .registration-modal-form .full {
+      width: 97%; }
+
+#login-modal > .modal-mask {
+  min-width: 960px; }
+#login-modal p {
+  margin: 30px 10px; }
+#login-modal h1 {
+  display: inline-block;
+  vertical-align: top; }
+#login-modal .modal-facebook-signin-button {
+  display: inline-block;
+  vertical-align: top;
+  margin: 12px; }
+#login-modal input[type="text"],
+#login-modal input[type="password"] {
+  width: 345px; }
+#login-modal input[type="submit"] {
+  display: inline-block;
+  margin: 0;
+  width: 200px;
+  vertical-align: top;
+  margin-top: 34px;
+  margin-left: 24px; }
+#login-modal .modal-centered-body {
+  display: inline-block;
+  text-align: left;
+  width: 960px; }
+#login-modal .registration-modal-form-field {
+  margin-left: 5px; }
+#login-modal .password {
+  margin-left: 20px; }
+
+.tmp-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.97); }
+
+    </style>
+  </head>
+  
+  <!-- try to get the user's location to use around the site -->
+  <% unless cookies[:detected_user_location] %>
+    <script>
+      getUserLocation();
+    </script>
+  <% end %>
+  
+  <script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+  </script>
+  
+  <script type="text/javascript">
+  function signinCallback(authResult) {
+  if (authResult['access_token']) {
+    // Successfully authorized
+    // Hide the sign-in button now that the user is authorized, for example:
+    document.getElementById('signinButton').setAttribute('style', 'display: none');
+    alert("this worked!");
+  } else if (authResult['error']) {
+    // There was an error.
+    // Possible error codes:
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatically log in the user
+    // console.log('There was an error: ' + authResult['error']);
+  }
+}
+  </script>
+  
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("<% if Rails.env.development? %>0049809657a93a75fea2bee579959d0f<% elsif Rails.env.production? %>064776f76ea0c5bb065dd81b934405d8<% end %>");</script>
+<!-- end Mixpanel -->
+
+<body>
+  <%= render 'layouts/navbar' %>
+  <section id="main" class="full-bg p-rel-cover">
+    <%= image_tag "home_page_main_hero.jpg", :"data-parallax-speed" => 4 %>
+    <div id="hp-main-center">
+
+      <h1 id="hp-brand">crowdscore</h1>
+      <h2 id="hp-slogan">Find new places to love</h2>
+    
+      <div class="hps-wrapper">
+        <div class="hps-inner">
+          <div class="hps-input-main">
+            <div class="hps-icon"></div>
+            <p class="hps-placeholder"><b>Search</b> restaurants, bars, salons, food...</p>
+            <input type="text" class="hps-input" placeholder="What would you like?" tabindex=1>
+          </div>
+          <div class="hps-location-main">
+            <input type="text" class="hps-location-input" placeholder="in san francisco, ca" tabindex=2>
+          </div>
+          <input type="submit" class="hps-submit" value="">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-spread one f-center" >
+    <div class="section-one">
+      <%= image_tag 'hps_crowdscore_logo.png' %>
+      <p class="main-spread-font">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+    </div>
+  </section>
+
+  <section id="roof"  class="full-bg p-rel-cover" >
+
+    <%= image_tag "home_page_roof_hero.jpg", :"data-parallax-speed" => 4 %>
+  </section>
+
+  <section class="info-spread two f-center">
+    <div class="section-two">
+      <div class="column">
+        <div class="centered">
+          <h3>Tips You Want</h3>
+          <hr>
+          <p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to.</p>
+        </div>
+      </div>
+      <div class="column middle"><p class="main-spread-font">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorem qulaudantium, totam rem aperiam, eaque.</p></div>
+      <div class="column">
+        <div class="centered">
+          <h3>Better Ratings</h3>
+          <hr>
+          <p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="laugh" class="full-bg p-rel-cover">
+    <%= image_tag "home_page_smile_hero.jpg", :"data-parallax-speed" => 4 %>
+  </section>
+
+  <section class="info-spread register f-center">
+    <h2 class="hp-register-header f-light">Register for an Account</h2>
+    <p class="hp-register-text f-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p><br>
+    <button id="register" class="cta-register f-bold f-uppercase btn">Create your account</button>
+  </section>
+  
+  <%= render "layouts/footer" %>
+  
+  <div id="register-modal" class="modal">
+      <div class="modal-mask">
+        <div class="modal-content download-app">
+          <div class="close-modal">+</div>
+          <div class="modal-vertical-center">
+            <div class="left-rail">
+              <h1>Register</h1>
+              <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
+              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
+                <i class="fa fa-facebook"></i><div>REGISTER WITH FACEBOOK</div>
+              <% end %>
+            </div>
+            <div class="right-rail">
+              <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
+                <div class="registration-modal-form-field full">
+                  <%= f.label :email, "email address", class: "" %>
+                  <%= f.text_field :email, class: "", size: "30" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :first_name, class: "" %>
+                  <%= f.text_field :first_name, size: "30", class: "" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :password, class: "" %>
+                  <%= f.password_field :password, class: "", size: "30" %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :username, "Choose your username" , class: "" %>
+                  <%= f.text_field :username, class: "", size: "30", :disabled => f.object.persisted? %>
+                </div>
+                <div class="registration-modal-form-field half">
+                  <%= f.label :password_confirmation, "confirm password", class: "" %>
+                  <%= f.password_field :password_confirmation, class: "", size: "30" %>
+                </div>
+                <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="login-modal" class="modal">
+      <div class="modal-mask">
+        <div class="modal-content download-app">
+          <div class="close-modal">+</div>
+          <div class="modal-vertical-center">
+            <div class="modal-centered-body">
+              <h1>Sign in</h1>
+              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
+                <i class="fa fa-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
+              <% end %><br>
+              <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
+                <div class="registration-modal-form-field">
+                  <%= f.label :email, "email or username", class: "" %>
+                  <%= f.text_field :email, class: "", tabindex: "1" %>
+                  <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
+                </div>
+                <div class="registration-modal-form-field password">
+                  <%= f.label :password, class: "" %>
+                  <%= f.password_field :password, tabindex: "2" %>
+                  <%= f.hidden_field :page_action, value: "" %>
+                  <p id="forgot-password-link"> Forgot your password? <%= link_to "Request a reset", new_user_password_path %></p>
+                </div>
+                <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: "3" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <script>
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/QKme0uQF5KF0iFN17AsfQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+//
+// UserVoice Javascript SDK developer documentation:
+// https://www.uservoice.com/o/javascript-sdk
+//
+
+// Set colors
+UserVoice.push(['set', {
+  accent_color: '#02b8ea',
+  trigger_color: 'white',
+  trigger_background_color: '#02b8ea'
+}]);
+
+// Identify the user and pass traits
+// To enable, replace sample data with actual user traits and uncomment the line
+UserVoice.push(['identify', {
+  
+  <% if current_user %>
+    email:      '<%= current_user.email %>', // User?s email address
+  <% end %>
+  <% if current_user %>
+    name:       '<%= current_user.first_name %>', // User?s real name
+  <% end %>
+  //created_at: 1364406966, // Unix timestamp for the date the user signed up
+  //id:         123, // Optional: Unique id of the user (if set, this should not change)
+  //type:       'Owner', // Optional: segment your users by type
+  //account: {
+  //  id:           123, // Optional: associate multiple users with a single account
+  //  name:         'Acme, Co.', // Account name
+  //  created_at:   1364406966, // Unix timestamp for the date the account was created
+  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+  //  ltv:          1495.00, // Decimal; lifetime value of the account
+  //  plan:         'Enhanced' // Plan name for the account
+  //}
+}]);
+
+// Add default trigger to the bottom-right corner of the window:
+UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+
+// Or, use your own custom trigger:
+//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+UserVoice.push(['autoprompt', {}]);
+</script>
+<script type="text/javascript">
+
+function ParallaxScroll () {
+  this.initialize();
+  this.setupScrollHandlers();
+}
+
+ParallaxScroll.prototype.initialize = function () {
+  this.$window = $(window)
+  this.$document = $(document)
+
+  this.isScrolling = false;
+  this.lastScrollY = 0;
+
+  var transforms = ["transform", "msTransform", "webkitTransform", "mozTransform", "oTransform"];
+  this.transformProperty = getSupportedPropertyName(transforms);
+
+  function getSupportedPropertyName(properties) {
+    for (var i = 0; i < properties.length; i++) {
+      if (typeof document.body.style[properties[i]] != "undefined") {
+        return properties[i];
+      }
+    }
+    return null;
+  }
+
+  this.setupScrollIntervals();
+}
+
+ParallaxScroll.prototype.handleEvent = function ( event ) {
+  if(event.type === "resize"){
+    this.setupScrollIntervals()
+  }
+}
+
+ParallaxScroll.prototype.setupScrollHandlers = function () {
+  var _this = this;
+
+  var onScroll = function () {
+    _this.isScrolling = true;
+  }
+
+  window.addEventListener('resize', _this);
+  window.addEventListener('scroll', onScroll, false);
+
+  _this.updateBackgrounds();
+
+};
+
+ParallaxScroll.prototype.updateBackgrounds = function () {
+  if (this.isScrolling) {
+    this.lastScrollY = window.scrollY
+    var _this = this;
+
+    _this.scrollIntervals.forEach(function(elem){ 
+      if (_this.isInView(elem)) {
+        var yPos = (-elem.height + (_this.lastScrollY - elem.trigger)) * (1 - 1/elem.speed)
+        var transform = "translate3d(" + elem.left + ', ' + yPos + 'px, 0' + ")";
+        elem.el.style[_this.transformProperty] = transform;
+      }
+    });
+    
+    this.isScrolling = false;
+  }
+
+  requestAnimationFrame(this.updateBackgrounds.bind(this));
+};
+
+ParallaxScroll.prototype.isInView = function (elem) {
+  return (this.lastScrollY > elem.trigger && this.lastScrollY < elem.trigger + this.windowHeight + elem.height)
+}
+ParallaxScroll.prototype.setupScrollIntervals = function () {
+  var _this = this;
+  _this.scrollIntervals = [];
+  _this.windowHeight = _this.$window.height();
+  
+  $('[data-parallax-speed]').each(function(){
+    var elem = this;
+    var obj = {
+      el: elem,
+      height: $(elem).height(),
+      duration: _this.$window.height(),
+      speed: $(elem).data("parallax-speed"),
+      left: ((_this.$document.width() - $(elem).width()) / 2) + "px",
+      trigger: $(elem).parent().position().top - _this.$window.height()
+    };
+
+    _this.scrollIntervals.push(obj);
+
+    var yPos = (-obj.height + (_this.lastScrollY - obj.trigger)) * (1 - 1/obj.speed)
+    var val = "translate3d(" + obj.left + ', ' + yPos + 'px, 0' + ")";
+    elem.style[_this.transformProperty] = val;
+  }); 
+}
+
+
+function HomepageSearch () {
+  this.initialize();
+};
+
+HomepageSearch.prototype.initialize = function () {
+  this.setElements();
+  this.setupEvents();
+};
+
+HomepageSearch.prototype.setElements = function () {
+  this.$icon = $('.hps-icon');
+  this.$placeholder = $('.hps-placeholder');
+  this.$inputMain = $('.hps-input-main');
+  this.$locationMain = $('.hps-location-main');
+  this.$inner = $('.hps-inner');
+  this.$input = $('.hps-input');
+  this.$locationInput = $('.hps-location-input');
+};
+
+// Function I wrote to allow all event handling declarations to be defined in one place
+// Check them out in HomepageSearch.prototype.events
+HomepageSearch.prototype.setupEvents = function () {
+  var e, events, f, key, t;
+
+  events = this.events();
+
+  for (key in events) {
+    try {
+      f = this[key.split(/#(.+)?/)[0]].bind(this);
+      e = key.split(/#(.+)?/)[1];
+      t = events[key];
+      $('body').on(e, t, f);
+      
+    } catch (e) {}
+  }
+};
+
+HomepageSearch.prototype.events = function () {
+  return {
+    'setSearch#click' : '.hps-input-main',
+    'setSearch#focus' : '.hps-input',
+    'setLocation#focus' : '.hps-location-input',
+    'setLocation#click' : '.hps-location-main',
+    'reset#click' : document,
+  }
+};
+
+HomepageSearch.prototype.reset = function (e) {
+  this.$icon.removeClass('search')
+  this.$placeholder.removeClass('search')
+  this.$inputMain.removeClass('search').removeClass('location')
+  this.$input.removeClass('search')
+  this.$locationInput.removeClass('location')
+};
+
+HomepageSearch.prototype.setSearch = function (e) {
+  e.stopPropagation();
+  this.$icon.addClass('search')
+  this.$placeholder.addClass('search')
+  this.$inputMain.addClass('search').removeClass('location')
+  this.$input.addClass('search')
+  this.$locationInput.removeClass('location')
+};
+
+HomepageSearch.prototype.setLocation = function (e) {
+  e.stopPropagation();
+  this.$inputMain.addClass('location')
+  this.$locationInput.addClass('location')
+};
+
+$(document).ready( function () {
+  var merp = new ParallaxScroll();
+  var map = new HomepageSearch();
+
+  $('body').on("click", ".modal-background, .close-modal", function() {
+    $('.modal').removeClass("visible");
+    return $('.tmp-modal').removeClass('visible');
+  });
+
+  $('#register').click(function() {
+    return $('#register-modal').addClass('visible');
+  });
+
+  $('#login-button').click(function() {
+    return $('#login-modal').addClass('visible');
+  });
+
+});
+
+
+</script>
+
+  </body>
+</html>
