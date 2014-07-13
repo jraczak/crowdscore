@@ -353,6 +353,13 @@ UserVoice.push(['autoprompt', {}]);
         }
       });
 
+      $(window).load(function () {
+        $('input:-webkit-autofill').each(function(){
+          console.log(this)
+          $(this).val('');
+        });
+      })
+      
       $('#submit-score-btn').click(function(){
         $( '#submit-score-modal' ).addClass("visible");
       });
@@ -360,6 +367,7 @@ UserVoice.push(['autoprompt', {}]);
       $('.close-modal').click(function(){
         $("#auth-modal").removeClass("visible");
       });
+
 
 
     </script>
