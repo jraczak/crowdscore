@@ -53,12 +53,14 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
   <body>
 
     <div class="page-wrapper">    
-      <div class="container">
+      <div class="container <%= 'map' if params[:action] == 'search' %>">
         <%= render 'layouts/navbar' %>
 
         <div id="flash-container">  
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: name %>
+            <div class="<%= name %>">
+              <p class="msg"><%= msg %></p>
+            </div>
           <% end %>
         </div>
 
@@ -82,7 +84,7 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
               <h1>Register</h1>
               <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
               <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
-                <i class="icon-facebook"></i><div>REGISTER WITH FACEBOOK</div>
+                <i class="fa fa-facebook"></i><div>REGISTER WITH FACEBOOK</div>
               <% end %>
             </div>
             <div class="right-rail">
@@ -124,7 +126,7 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
             <div class="modal-centered-body">
               <h1>Sign in</h1>
               <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
-                <i class="icon-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
+                <i class="fa fa-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
               <% end %><br>
               <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
                 <div class="registration-modal-form-field">
@@ -359,14 +361,9 @@ UserVoice.push(['autoprompt', {}]);
         $("#auth-modal").removeClass("visible");
       });
 
-      setTimeout( function(){
-        $('input:-webkit-autofill').each( function(i, v) {
-          $(v).val('');
-        });
-      }, 100 );
-
 
     </script>
+
 
   </body>
 </html>

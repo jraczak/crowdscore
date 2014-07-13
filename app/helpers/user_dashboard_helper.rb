@@ -9,7 +9,6 @@ module UserDashboardHelper
       end
 
     @recs = rec_search.results
-    raise
   end
   
   def where_am_i
