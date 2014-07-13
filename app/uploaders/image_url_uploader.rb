@@ -14,7 +14,7 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
   end
   
   def default_url
-    "/images/avatar.png"
+    'default_user_avatar.png'
   end
 
   process :resize_to_fill => [400, 400]
