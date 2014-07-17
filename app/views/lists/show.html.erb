@@ -21,7 +21,7 @@
     
     <div class="social-container">
 
-      <% if current_user.liked_lists.include?(resource) %>
+      <% if current_user && current_user.liked_lists.include?(resource) %>
         <%= link_to remove_vote_list_path, class: "action like-button green" do %>
           <span>liked</span>
         <% end %>
