@@ -1,5 +1,6 @@
 class ListsController < InheritedResources::Base
   before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, only: [:show]
   custom_actions resource: [:add, :remove, :upvote, :remove_vote]
    
   respond_to :html, :json
