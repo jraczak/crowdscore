@@ -53,7 +53,7 @@
           <div class="venue-index-container"><%= i+1 %></div>
           <div class="venue-info">
             <%= link_to venue.name, venue, class: "venue-name" %>
-            <p class="venue-categories"><%= venue.venue_category.name %><% if resource.venue_subcategory %>  &#903;  <%= venue.venue_subcategory.name %><% end %></p>
+            <p class="venue-categories"><%= venue.venue_category.name %><% if venue.venue_subcategory %>  &#903;  <%= venue.venue_subcategory.name %><% end %></p>
           </div>
 
         <%= render 'shared/pie_graph', type: "map", score: venue.graph_score, animate: true  %>
