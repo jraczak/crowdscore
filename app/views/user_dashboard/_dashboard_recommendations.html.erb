@@ -8,7 +8,9 @@
           <% unless @recs.empty? %>
             <% @recs.each do |v| %>
               <h3 style="margin-bottom: 10px"><%= link_to v.name, v %> (<%= v.computed_score %>)</h3>
-              <p style="margin-bottom: 50px"><small><%= "Because you said you like #{v.venue_subcategory.name} #{v.venue_category.name.downcase}s" %></small></p>
+              
+              <!-- <p style="margin-bottom: 50px"><small><%= #"Because you said you like #{v.venue_subcategory.name} #{v.venue_category.name.downcase}s" %></small></p> -->
+            
             <% end %>
           <% end %>
       <% end %>
