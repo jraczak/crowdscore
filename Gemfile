@@ -34,6 +34,7 @@ gem 'geokit-rails'
 gem 'timezone'
 gem 'nearest_time_zone'
 gem 'simple_form'
+gem 'fb_graph'
 
 
 # Gems used only for assets and not required

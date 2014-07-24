@@ -12,7 +12,7 @@ class ListsController < InheritedResources::Base
   def create
     @list = List.new(params[:list])
     @list.user_id = current_user.id
-    
+      
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: "Your list '#{@list.name}' was created." }
@@ -22,6 +22,11 @@ class ListsController < InheritedResources::Base
         format.json { render json: @list.errors, status: :unprocessable_entity }
       end
     end
+    @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+    @fb_user = FbGraph::User.me(current_user.facebook_access_token)
+    
+    action = @fb_user.og_action!(
+             @app.og_action(:create), :list => list_url(@list))
   end
    
   def add

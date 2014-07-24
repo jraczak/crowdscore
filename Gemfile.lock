@@ -62,6 +62,7 @@ GEM
     ambry (0.3.1)
     andand (1.3.3)
     arel (3.0.3)
+    attr_required (1.0.0)
     aws-sdk (1.31.3)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -134,6 +135,11 @@ GEM
       oauth (>= 0.4.4)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    fb_graph (2.7.16)
+      httpclient (>= 2.2.0.2)
+      multi_json (>= 1.3)
+      rack-oauth2 (>= 0.14.4)
+      tzinfo
     ffi (1.9.3)
     fog (1.3.1)
       builder
@@ -179,6 +185,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     httpauth (0.2.0)
+    httpclient (2.4.0)
     i18n (0.6.9)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -261,6 +268,12 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-oauth2 (1.0.8)
+      activesupport (>= 2.3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.2.0.2)
+      multi_json (>= 1.3.6)
+      rack (>= 1.1)
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -425,6 +438,7 @@ DEPENDENCIES
   ephemeral_response
   factory_girl
   factual-api
+  fb_graph
   fog (~> 1.3.1)
   font-awesome-rails
   geocoder

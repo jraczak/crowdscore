@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140713035114) do
+ActiveRecord::Schema.define(:version => 20140724025551) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(:version => 20140713035114) do
     t.text     "liked_venue_categories"
     t.string   "image_url"
     t.string   "facebook_image_url"
+    t.string   "facebook_access_token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

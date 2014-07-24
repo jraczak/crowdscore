@@ -400,6 +400,7 @@ class User < ActiveRecord::Base
         user.last_name = data["info"]["last_name"]
         user.facebook_image_url = data["info"]["image"]
         user.facebook_id = data["uid"]
+        user.facebook_access_token = data["credentials"]["token"]
         user.home_city = city if city
         user.home_state = state if state
         user.skip_confirmation!
