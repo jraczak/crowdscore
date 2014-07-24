@@ -1,5 +1,7 @@
-<% content_for :fb_og_type do %>
-  property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:list" %>"
+
+<% content_for :fb_meta_tags do %>
+  <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:list" %>" />
+  <meta property="og:title" content="Crowdscore Lists - <%= resource.name %>" />
 <% end %>
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 
