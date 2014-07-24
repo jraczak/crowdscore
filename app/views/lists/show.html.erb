@@ -1,3 +1,6 @@
+<% content_for :fb_og_type do %>
+  property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:list" %>"
+<% end %>
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 
 <div id="list-header-outter-container">

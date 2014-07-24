@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
   <head>
     <meta property="fb:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
-    <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:#{resource.class.name}" %>/>
+    <meta <%= yield :fb_og_type %> />
     <title><%= "Crowdscore #{yield(:title)}" %></title>
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
