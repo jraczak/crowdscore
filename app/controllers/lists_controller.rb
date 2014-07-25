@@ -77,6 +77,7 @@ class ListsController < InheritedResources::Base
     action = @fb_user.og_action!(
              @app.og_action(:create), :list => list_url(list))
   end
+  handle_asynchronously :publish_facebook_list_creation, :run_at => Proc.new { 1.minutes.from_now }
    
   protected
     def resource
