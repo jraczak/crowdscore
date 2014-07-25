@@ -35,6 +35,7 @@ gem 'timezone'
 gem 'nearest_time_zone'
 gem 'simple_form'
 gem 'fb_graph'
+gem 'delayed_job_active_record'
 
 
 # Gems used only for assets and not required
