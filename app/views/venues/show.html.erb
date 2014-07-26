@@ -2,6 +2,7 @@
 <% content_for :fb_meta_tags do %>
   <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:venue" %>" />
   <meta property="og:title" content="<%= resource.name %>" />
+  <meta property="og:description" content="<%= "Have you been to #{resource.name} in #{resource.city}? Join Crowdscore to share your experience." %>" />
 <% end %>
 <script>
 // set JS variables for controls to be made available for gmaps4rails JS files
