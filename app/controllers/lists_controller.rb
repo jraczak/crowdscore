@@ -1,4 +1,5 @@
 class ListsController < InheritedResources::Base
+  include JobScheduler
   before_filter :authenticate_user!
   skip_before_filter :authenticate_user!, only: [:show]
   custom_actions resource: [:add, :remove, :upvote, :remove_vote]
@@ -22,7 +23,10 @@ class ListsController < InheritedResources::Base
         format.json { render json: @list.errors, status: :unprocessable_entity }
       end
     end
-    
+    #publish_facebook_list_creation(@list)
+    if current_user.facebook_id && current_user.facebook_access_token
+      Delayed::Job.enqueue JobScheduler::PublishFBListCreation.new(list_url(@list), current_user.facebook_access_token), 0, 1.minutes.from_now
+    end
   end
    
   def add
@@ -51,6 +55,7 @@ class ListsController < InheritedResources::Base
     unless current_user.liked_lists.include?(resource)
     current_user.liked_lists << resource
     #current_user.save!
+    publish_facebook_list_favorite(resource)
     end
     
     respond_to do |format|
@@ -70,14 +75,24 @@ class ListsController < InheritedResources::Base
     end
   end
   
-  def publish_facebook_list_creation(list)
+  def publish_facebook_list_favorite(list)
     @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
     @fb_user = FbGraph::User.me(current_user.facebook_access_token)
-    
-    action = @fb_user.og_action!(
-             @app.og_action(:create), :list => list_url(list))
+      
+    unless Rails.env.development?
+      action = @fb_user.og_action!(
+               @app.og_action(:favorite), :list => list_url(list))
+    end
   end
-  handle_asynchronously :publish_facebook_list_creation, :run_at => Proc.new { 1.minutes.from_now }
+  
+  #def publish_facebook_list_creation(list)
+  #  @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+  #  @fb_user = FbGraph::User.me(current_user.facebook_access_token)
+  #  
+  #  action = @fb_user.og_action!(
+  #           @app.og_action(:create), :list => list_url(list))
+  #end
+  #handle_asynchronously :publish_facebook_list_creation, :run_at => Proc.new { 1.minutes.from_now }
    
   protected
     def resource
