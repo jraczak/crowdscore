@@ -1,4 +1,8 @@
 <% provide(:title, " | #{resource.name.titlecase}") %>
+<% content_for :fb_meta_tags do %>
+  <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:venue" %>" />
+  <meta property="og:title" content="<%= resource.name %>" />
+<% end %>
 <script>
 // set JS variables for controls to be made available for gmaps4rails JS files
 var disable_default_ui = true;
