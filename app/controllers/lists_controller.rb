@@ -25,7 +25,7 @@ class ListsController < InheritedResources::Base
     end
     #publish_facebook_list_creation(@list)
     if current_user.facebook_id && current_user.facebook_access_token
-      Delayed::Job.enqueue JobScheduler::PublishFBListCreation.new(list_url(@list), current_user.facebook_access_token), 0, 1.minutes.from_now
+      Delayed::Job.enqueue JobScheduler::PublishFBListCreation.new(list_url(@list), current_user.facebook_access_token), 0, 5.minutes.from_now
     end
   end
    
@@ -55,8 +55,10 @@ class ListsController < InheritedResources::Base
     unless current_user.liked_lists.include?(resource)
     current_user.liked_lists << resource
     #current_user.save!
-    publish_facebook_list_favorite(resource)
+    unless Rails.env.development?
+      publish_facebook_list_favorite(resource)
     end
+  end
     
     respond_to do |format|
       format.html { redirect_to resource }
@@ -79,10 +81,8 @@ class ListsController < InheritedResources::Base
     @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
     @fb_user = FbGraph::User.me(current_user.facebook_access_token)
       
-    unless Rails.env.development?
-      action = @fb_user.og_action!(
-               @app.og_action(:favorite), :list => list_url(list))
-    end
+    action = @fb_user.og_action!(
+             @app.og_action(:favorite), :list => list_url(list))
   end
   
   #def publish_facebook_list_creation(list)
