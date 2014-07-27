@@ -9,6 +9,10 @@ class Admin::UsersController < InheritedResources::Base
     resource.confirmed_at = Time.now
     create!
   end
+  
+  def show
+    @user = User.find_by_permalink(params[:id])
+  end
 
   private
 
