@@ -13,6 +13,10 @@ class Admin::UsersController < InheritedResources::Base
   def show
     @user = User.find_by_permalink(params[:id])
   end
+  
+  def collection
+    @users ||= end_of_association_chain.page(params[:page])
+  end
 
   private
 

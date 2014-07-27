@@ -1,0 +1,36 @@
+<%= render 'admin/subnav' %>
+
+<h1>Users</h1>
+
+<h3>Looked up <%= pluralize(User.all.count, "user") %></h3>
+
+<%= paginate collection %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <td>Username</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Location</td>
+      <td>Venue Scores</td>
+      <td>Tips</td>
+      <td>Lists</td>
+      <td>Last Active</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <% collection.each do |user| %>
+    <tr>
+      <td><%= link_to user.username, admin_user_path(user) %></td>
+      <td><%= user.full_name %></td>
+      <td><%= mail_to user.email %></td>
+      <td><%= user_full_location(user) %></td>
+      <td><%= user.venue_scores.count %></td>
+      <td><%= user.tips.count %></td>
+      <td><%= user.lists.count %></td>
+      <td><%= user.updated_at.to_date %></td>
+      <td><%= link_to "Edit user", edit_admin_user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>
