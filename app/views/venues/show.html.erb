@@ -305,7 +305,7 @@ var auto_zoom = false;
 	 			</div>
 	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
 			</div>
-				<p class="pull-left"><%= v.venue_subcategory.name %></p>
+				<p class="pull-left"><%= v.venue_subcategory.name if v.venue_subcategory %></p>
 				<p class="pull-right distance" data-lat="#{v.latitude}" data-long="#{v.longitude}"></p>
 		</div>
 	  <% end %>
