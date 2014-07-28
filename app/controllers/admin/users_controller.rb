@@ -14,6 +14,10 @@ class Admin::UsersController < InheritedResources::Base
     @user = User.find_by_permalink(params[:id])
   end
   
+  def edit
+    @user = User.find_by_permalink(params[:id])
+  end
+  
   def collection
     @users ||= end_of_association_chain.page(params[:page])
   end
