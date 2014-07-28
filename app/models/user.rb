@@ -251,7 +251,7 @@ class User < ActiveRecord::Base
 
   # NEED TO CHANGE THIS BACK TO FRIENDLY URLS AFTER FOLLOWING
   def to_param
-    "#{username}"
+    "#{username.downcase}"
     #"#{id}"
     #permalink
     #"#{id}-#{username}"
