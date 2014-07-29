@@ -1,6 +1,6 @@
 class Venue < ActiveRecord::Base
   audited
-  acts_as_audited protected: false
+  #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
   acts_as_mappable :default_units => :miles,
   		           :lat_column_name => :latitude,
