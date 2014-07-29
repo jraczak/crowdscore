@@ -16,7 +16,9 @@ gem "fog", "~> 1.3.1"
 gem "will_paginate", "~> 3.0.0"
 gem "state_select", git: "git://github.com/jraczak/state_select.git"
 #git: "git@github.com:heimidal/state_select.git"
-gem "acts_as_audited", "2.0.0"
+#gem "acts_as_audited", "2.0.0"
+gem 'audited-activerecord'
+
 gem "airbrake"
 gem "sunspot_rails"
 gem "geocoder"
