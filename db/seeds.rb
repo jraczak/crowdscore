@@ -42,7 +42,7 @@ default_venue_categories.each do |name, subs|
   puts "Updating #{name} subcategories..."
   cat = VenueCategory.find_or_create_by_name(name)
   subs.each do |subname, subcat|
-    unless VenueSubcategory.where(name: subname).exists?
+    unless VenueSubcategory.find_by_factual_category_id(subcat)
       cat.venue_subcategories.create(name: subname, factual_category_id: subcat)
     end
   end
