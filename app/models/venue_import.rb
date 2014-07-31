@@ -8,6 +8,8 @@ class VenueImport
   include ActiveModel::Conversion
 
   attr_accessor :file, :saved_venues, :unsaved_venues
+  
+  #mount_uploader :venue_import, VenueImportUploader
 
   #def initialize(attributes = {})
    def initialize(options)
