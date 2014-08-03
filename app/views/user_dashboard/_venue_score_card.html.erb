@@ -1,0 +1,15 @@
+<div class="activity-card venue-score">
+	<div class="score-container">
+    <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+  </div>
+
+  <p class="story"><%= link_to User.find(story.user_id).first_name, User.find(story.user_id) %> posted a score for <%= link_to Venue.find(story.venue_id).name, Venue.find(story.venue_id) %>.</p>
+
+  <div class="signature">
+  	<div class="user-image obj-rounded-image-wrapper">
+			<%= image_tag story.user.image_url %>
+		</div>
+  	<p class="timestamp"><%= time_ago_in_words(story.created_at) %> ago
+  </div>
+  
+</div>

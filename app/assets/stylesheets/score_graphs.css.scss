@@ -42,6 +42,24 @@ $pie-fore-color: #02b8ea;
       color: #02b8ea;
     }
   }
+
+  &.dashboard-score {
+    height: 173px;
+    width: 173px;
+
+    .pie-graph-mask-color-white { 
+      height: 153px;
+      width: 153px;
+      top: 10px;
+      left: 10px;
+
+      line-height: 153px;
+      font-weight: 900;
+      font-size: 65px;
+      color: #02b8ea;
+    }
+  }
+
   &.venue-score {
     height: 173px;
     width: 173px;

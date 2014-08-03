@@ -1,0 +1,10 @@
+<% activity = current_user.network_activity %>
+<% if activity.empty? %>
+  <div id="empty-dashboard-state">
+    No recent activity by your crowd.
+  </div>
+<% else %>
+	<% activity.each do |story| %>
+		<%= render_dashboard_story story %>
+	<% end %>
+<% end %>

@@ -53,102 +53,31 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
 </script>
 
   <body>
+    <div class="page-wrapper">
+    <div class="container <%= 'map' if params[:action] == 'search' %> <%= 'dark' if params[:action] == 'index' && params[:controller] == 'lists' %>">
+      <%= render 'layouts/navbar' %>
 
-    <div class="page-wrapper">    
-      <div class="container <%= 'map' if params[:action] == 'search' %> <%= 'dark' if params[:action] == 'index' && params[:controller] == 'lists' %>">
-        <%= render 'layouts/navbar' %>
-
-        <div id="flash-container">  
-          <% flash.each do |name, msg| %>
-            <div class="<%= name %>">
-              <p class="msg"><%= msg %></p>
-            </div>
-          <% end %>
-        </div>
-
-        <%= yield %>
-
-        <div class="footer-push"></div>
-  
+      <div id="flash-container">  
+        <% flash.each do |name, msg| %>
+          <div class="<%= name %>">
+            <p class="msg"><%= msg %></p>
+          </div>
+        <% end %>
       </div>
-      <!-- Hide footer on search page -->
+
+      <%= yield %>
+
       <% unless params[:action] == 'search' %>
         <%= render "layouts/footer" %>
       <% end %>  
+
+    </div>
     </div>
   
-    <div id="register-modal" class="modal">
-      <div class="modal-mask">
-        <div class="modal-content download-app">
-          <div class="close-modal">+</div>
-          <div class="modal-vertical-center">
-            <div class="left-rail">
-              <h1>Register</h1>
-              <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
-              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
-                <i class="fa fa-facebook"></i><div>REGISTER WITH FACEBOOK</div>
-              <% end %>
-            </div>
-            <div class="right-rail">
-              <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
-                <div class="registration-modal-form-field full">
-                  <%= f.label :email, "email address", class: "" %>
-                  <%= f.text_field :email, class: "", size: "30" %>
-                </div>
-                <div class="registration-modal-form-field half">
-                  <%= f.label :first_name, class: "" %>
-                  <%= f.text_field :first_name, size: "30", class: "" %>
-                </div>
-                <div class="registration-modal-form-field half">
-                  <%= f.label :password, class: "" %>
-                  <%= f.password_field :password, class: "", size: "30" %>
-                </div>
-                <div class="registration-modal-form-field half">
-                  <%= f.label :username, "Choose your username" , class: "" %>
-                  <%= f.text_field :username, class: "", size: "30", :disabled => f.object.persisted? %>
-                </div>
-                <div class="registration-modal-form-field half">
-                  <%= f.label :password_confirmation, "confirm password", class: "" %>
-                  <%= f.password_field :password_confirmation, class: "", size: "30" %>
-                </div>
-                <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div id="login-modal" class="modal">
-      <div class="modal-mask">
-        <div class="modal-content download-app">
-          <div class="close-modal">+</div>
-          <div class="modal-vertical-center">
-            <div class="modal-centered-body">
-              <h1>Sign in</h1>
-              <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
-                <i class="fa fa-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
-              <% end %><br>
-              <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
-                <div class="registration-modal-form-field">
-                  <%= f.label :email, "email or username", class: "" %>
-                  <%= f.text_field :email, class: "", tabindex: "1" %>
-                  <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
-                </div>
-                <div class="registration-modal-form-field password">
-                  <%= f.label :password, class: "" %>
-                  <%= f.password_field :password, tabindex: "2" %>
-                  <%= f.hidden_field :page_action, value: "" %>
-                  <p id="forgot-password-link"> Forgot your password? <%= link_to "Request a reset", new_user_password_path %></p>
-                </div>
-                <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: "3" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% if current_user.nil? %>
+      <%= render 'shared/signup_modal' %>
+      <%= render 'shared/login_modal' %>
+    <% end %>
 
     <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)

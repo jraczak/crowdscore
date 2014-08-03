@@ -20,5 +20,5 @@ function setUserLocationCookie(position) {
 }
 
 function alertNoGeolocation () {
-	alert("Uh oh, we couldn't locate you!");
+	// alert("Uh oh, we couldn't locate you!");
 }

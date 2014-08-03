@@ -1,0 +1,17 @@
+<div class="activity-card list">
+	<div class="user-image obj-rounded-image-wrapper">
+		<%= image_tag story.user.image_url %>
+	</div>
+	
+	<%= link_to story.name, story, class: "title" %>
+	<p class="description"><%= story.description %></p>
+  
+  <hr>
+
+  <p class="story"><%= link_to story.user.first_name, story.user %> created a new list.</p>
+
+  <div class="signature">
+  	<p class="timestamp"><%= time_ago_in_words(story.created_at) %> ago
+  </div>
+  
+</div>

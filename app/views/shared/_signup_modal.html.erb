@@ -1,0 +1,41 @@
+ <div id="register-modal" class="modal">
+  <div class="modal-mask">
+    <div class="modal-content download-app">
+      <div class="close-modal">+</div>
+      <div class="modal-vertical-center">
+        <div class="left-rail">
+          <h1>Register</h1>
+          <p>Fill out the quick info below and we’ll set up your account. You can finish filling out your profile later. Already a member? <%= link_to "Sign in", "#", class: "button-show-login-modal" %></p>
+          <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signup-button") do %>
+            <i class="fa fa-facebook"></i><div>REGISTER WITH FACEBOOK</div>
+          <% end %>
+        </div>
+        <div class="right-rail">
+          <%= form_for devise_resource, as: resource_name, url: registration_path(resource_name), html: { class: 'registration-modal-form' } do |f| %>
+            <div class="registration-modal-form-field full">
+              <%= f.label :email, "email address", class: "" %>
+              <%= f.text_field :email, class: "", size: "30", tabindex: 9 %>
+            </div>
+            <div class="registration-modal-form-field half">
+              <%= f.label :first_name, class: "" %>
+              <%= f.text_field :first_name, size: "30", class: "", tabindex: 9 %>
+            </div>
+            <div class="registration-modal-form-field half">
+              <%= f.label :password, class: "" %>
+              <%= f.password_field :password, class: "", size: "30", tabindex: 10 %>
+            </div>
+            <div class="registration-modal-form-field half">
+              <%= f.label :username, "Choose your username" , class: "" %>
+              <%= f.text_field :username, class: "", size: "30", :disabled => f.object.persisted?, tabindex: 9 %>
+            </div>
+            <div class="registration-modal-form-field half">
+              <%= f.label :password_confirmation, "confirm password", class: "" %>
+              <%= f.password_field :password_confirmation, class: "", size: "30", tabindex: 10 %>
+            </div>
+            <%= f.submit "CREATE YOUR ACCOUNT", class: "registration-modal-submit-button", tabindex: 11 %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

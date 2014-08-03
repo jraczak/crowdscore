@@ -72,11 +72,10 @@ table {
 
   .notice {
     background-color: #72ca28;
-    padding-top: 25px;
-
+    
     .msg {
       display: inline-block;
-      line-height: 53px;
+      line-height: 75px;
       padding-left: 45px;
       background-image: url(image_path('flash_notice_check.png'));
       background-size: 28px 28px;

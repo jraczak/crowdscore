@@ -22,11 +22,11 @@ class ListsController < InheritedResources::Base
         format.json { render json: @list.errors, status: :unprocessable_entity }
       end
     end
-    @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
-    @fb_user = FbGraph::User.me(current_user.facebook_access_token)
+    # @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+    # @fb_user = FbGraph::User.me(current_user.facebook_access_token)
     
-    action = @fb_user.og_action!(
-             @app.og_action(:create), :list => list_url(@list))
+    # action = @fb_user.og_action!(
+    #          @app.og_action(:create), :list => list_url(@list))
   end
    
   def add

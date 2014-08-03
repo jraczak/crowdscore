@@ -1,294 +1,707 @@
-// Place all the styles related to the user_dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-$text-main: #2d3132;
-.body-wrapper {
-  width: 960px;
-  dispay: inline-block;
-  text-align: center;
-  font-size: 0;
-}
+.r_dashboard 
+{
+	background-color: #f2f2f2;
+	overflow: auto;
 
-#dashboard_page {
-	width: 940px;
-	display: block;
-	margin: 0 auto;
-
-	& > h1 {
+	h1 
+	{
 		font-size: 58px;
 		font-weight: 100;
-		color: $text-main;
-		margin-top: 70px;
-		margin-bottom: 25px;
+		color: #2d3132;
+		margin-top: 125px;
+		margin-bottom: 70px;
 	}
 
-	#dashboard-header {
-	  width: 940px;;
-	  height: 260px;
-	  position: relative;
-	  overflow: hidden;
-	  border-radius: 2px;
-	  border-top: 6px solid #72CA28;
-	  display: inline-block;
-	  box-shadow: 0px 0px 3px rgba(100,100,100,.4);
-	  box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-	}
+	.featured-module 
+	{
+		width: 85%;
+		position: relative;
+		margin-bottom: 90px;
 
-	.header-section {
-	  width: 25%;
-	  display: block;
-	  float: left;
-	  margin-top: 39px;
-	  height: 120px;
-	  padding: 6px;
-	  box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
+		.image 
+		{
+			width: 100%;
+			height: 420px;
+			overflow: hidden;
+			background-position: center;
+			background-size: cover;
+		}
 
-	  p {
-	  	font-size: 11px;
-	  	font-weight: 700;
-	  	color: $text-main;
-	  }
+		.info 
+		{
+			border-top: 5px solid #00b8ea;
+			width: 410px;
+			height: 180px;
+			background-color: #f2f2f2;
+			position: absolute;
+			right: 0;
+			bottom: 0;
 
-	  p.header-green {
-			font-size: 60px;
-			font-weight: 100;
-		  color: #72CA28;
+			.body
+			{
+				position: relative;
+				width: 100%;
+				height: 100%;
+				margin: 25px 50px;
+				padding-top: 13px;
+			}
+
+			h4 
+			{
+				color: #000;
+				font-size: 16px;
+				font-weight: 700;
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				text-align: left;
+				padding-left: 75px;
+			}
+
+			p.geo
+			{
+				font-size: 11px;
+				font-weight: 500;
+				color: #b8bdbf;
+				line-height: 30px;
+				text-transform: uppercase;
+				text-align: left;
+				padding-left: 75px;
+				width: 100%;
+
+				span:not(:first-child)
+				{
+					margin-left: 15px;
+					position: relative;
+
+					&:before 
+					{
+						content: "";
+						width: 4px;
+						height: 4px;
+						top: 4px;
+						left: -10px;
+						background-color: #b8bdbf;
+						position: absolute;
+						border-radius: 50%;
+					}
+				}
+			}
+
+			p.description
+			{
+				font-size: 14px;
+				color: #6b6e70;
+				line-height: 1.43em;
+				text-align: left;
+				margin-top: 20px;
+			}
+		}
+
+		.score-container 
+		{
+			width: 59px;
+			height: 59px;
+			position: absolute;
+			top: 0;
+			left: -5px;
+
+			.pie-container 
+			{
+				width: 59px;
+				height: 59px;							
+
+				.pie-graph-mask-color-white 
+				{ 
+	        height: 51px;
+	        width: 51px;
+	        top: 4px;
+	        left: 4px;
+
+	        line-height: 51px;
+	        font-weight: 900;
+	        font-size: 20px;
+	      }
+			}
 		}
 	}
 
+	.recommendation-module
+	{
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		display: block;
+		margin-bottom: 60px;
 
-	#followers, 
-	#following, 
-	#karma {
-		border-left: 1px solid #e9e9e9;
+		&.right {
+			.recommendation-module-body
+			{
+				@include transform(translateX(-75px));
+			}
+		}
+
+		&.left 
+		{
+			.recommendation-module-body
+			{
+				@include transform(translateX(75px));
+			}
+		}
+
+		.recommendation-module-body
+		{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-self: flex-start;
+			padding: 5px 0;
+			height: 440px;
+			overflow: hidden;
+			// @include transition(margin 0.2s);
+			@include transition(all 0.2s);
+
+			.recommendation-module-cards
+			{
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-self: flex-start;
+				overflow: scroll;
+				padding-bottom: 30px;
+			}
+
+			.module-left,
+			.module-right
+			{
+				width: 75px;
+				background-color: blue;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				z-index: 1;
+				cursor: pointer;
+			}
+
+			.module-right
+			{
+				right: -75px;
+			}
+
+			.module-left
+			{
+				left: -75px;
+			}
+
+			.recommendation-card
+			{
+				width: 300px;
+				height: 430px;
+				margin: 0 10px;
+				flex: none;
+				background-color: #fff;
+				box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+				position: relative;
+				overflow: hidden;
+
+				.pie-container 
+				{
+					z-index: 0;
+				}
+
+				&.empty 
+				{
+					img 
+					{
+						display: none;
+					}
+
+					.stats
+					{
+						text-align: center;
+					}
+
+					.score-container 
+					{
+						width: 300px;
+						height: 300px;
+						background-color: #f9feff;
+						padding-top: 65px;
+
+						.pie-graph-mask-color-white 
+						{
+			        background-color: #f9feff;
+			      }
+					}
+				}
+
+				&.populated 
+				{
+					.image
+					{
+						width: 300px;
+						height: 300px;
+						display: block;
+						overflow: hidden;
+					}
+
+					img 
+					{
+						min-width: 100%;
+						min-height: 100%;
+					}
+
+					.stats
+					{
+						text-align: right;
+					}
+
+					.score-container 
+					{
+						width: 59px;
+						height: 59px;
+						position: absolute;
+						left: 24px;
+						top: 286px;
+
+						.pie-container 
+						{
+							width: 59px;
+							height: 59px;							
+
+							.pie-graph-mask-color-white 
+							{ 
+				        height: 51px;
+				        width: 51px;
+				        top: 4px;
+				        left: 4px;
+
+				        line-height: 51px;
+				        font-weight: 900;
+				        font-size: 20px;
+				      }
+						}
+					}
+				}
+			}
+
+			.stats 
+			{
+				width: 100%;
+				height: 36px;
+				line-height: 36px;
+				background-color: #f2fcff;
+				box-shadow: 0px 0px 0px 1px #e0edf1;
+				padding: 0 18px;
+				font-size: 11px;
+				color: #00b8ec;
+				text-transform: uppercase;
+
+				span:not(:first-child)
+				{
+					margin-left: 15px;
+					line-height: 36px;
+					position: relative;
+
+					&:before 
+					{
+						content: "";
+						width: 3px;
+						height: 3px;
+						top: 5px;
+						left: -10px;
+						background-color: #00b8ec;
+						position: absolute;
+						border-radius: 50%;
+					}
+				}
+			}
+
+			.info 
+			{
+				text-align: left;
+				padding: 30px 30px;
+
+				h4 
+				{
+					color: #000;
+					font-size: 16px;
+					font-weight: 700;
+					width: 100%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				p
+				{
+					font-size: 11px;
+					font-weight: 500;
+					color: #b8bdbf;
+					line-height: 30px;
+					text-transform: uppercase;
+				}
+
+				span:not(:first-child)
+				{
+					margin-left: 15px;
+					position: relative;
+
+					&:before 
+					{
+						content: "";
+						width: 4px;
+						height: 4px;
+						top: 4px;
+						left: -10px;
+						background-color: #b8bdbf;
+						position: absolute;
+						border-radius: 50%;
+					}
+				}
+			}
+
+			.recommendation-header
+			{
+				flex: none;
+				text-align: left;
+				font-weight: 300;
+				width: 230px;
+				height: 430px;
+				margin-left: 60px;
+				margin-right: 50px;
+				border-top: 4px solid #34373f;
+
+				h2
+				{
+					font-size: 35px;
+					color: #34373f;
+					line-height: 1em;
+					margin-bottom: 10px;
+					margin-top: 45px;
+				}	
+
+				p
+				{
+					font-size: 14px;
+					color: #6b6e70;
+					line-height: 1.43em;
+				}
+			}
+		}
 	}
 
-	#profile-picture img {
-		width: 111px;
-		height: 111px;
-		border-radius: 50%;
-	}
-
-	#invitations-container {
+	#user 
+	{
+		background-color: #fff;
 	  width: 100%;
-	  height: 57px;
-	  background-color: $text-main;
-	  position: absolute;
-	  bottom: 0;
-	  border-radius: 0 0 2px 2px;;
-	  line-height: 57px;
-	  
-	  a {
-	    color: white;
-	    position: absolute;
-	    width: 100%;
-	    height: 100%;
-	    top: 0;
-	    left: 0;
-	    text-decoration: none;
+	  height: 220px;
+	  box-shadow: 0px 0px 0px 1px #e6e6e6;
+	  padding: 60px;
+	  margin-bottom: 120px;
+	  position: relative;
+
+	  .invitations-container {
+		  width: 100%;
+		  height: 57px;
+		  background-color: #2d3132;
+		  position: absolute;
+		  top: 100%;
+		  border-radius: 0 0 2px 2px;;
+		  line-height: 57px;
+		  left: 0;
+		  
+		  a {
+		    color: white;
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    top: 0;
+		    left: 0;
+		    text-decoration: none;
+		  }
+
+		  p {
+		  	display: inline-block;
+		  	font-size: 20px;
+		  	font-weight: 300;
+		  	color: #ffffff;
+		  }
+
+		  .angle-right {
+		  	width: 20px;
+		  	height: 20px;
+		  	display: inline-block;
+		  	border-radius: 10px;
+		  	background-color: #ffffff;
+		  	margin-left: 12px;
+		  	i {
+		  		line-height: 20px;
+		  		display: block;
+		  	}
+		  }
+		}
+
+	  .user-profile-image
+	  {
+	  	width: 110px;
+	  	height: 110px;
+	  	margin: 0 90px;
+	  	border-radius: 50%;
+	  	overflow: hidden;
+
+	  	img 
+	  	{
+	  		width: 100%;
+	  		height: 100%;
+	  		border-radius: 50%;
+	  	}
 	  }
 
-	  p {
+	  .user-following,
+	  .user-follower,
+	  .user-profile-image
+	  {
+	  	height: 110px;
 	  	display: inline-block;
-	  	font-size: 20px;
-	  	font-weight: 300;
-	  	color: #ffffff;
+	  	vertical-align: top;
 	  }
 
-	  .angle-right {
-	  	width: 20px;
-	  	height: 20px;
-	  	display: inline-block;
-	  	border-radius: 10px;
-	  	background-color: #ffffff;
-	  	margin-left: 12px;
-	  	i {
-	  		line-height: 20px;
-	  		display: block;
+	  .user-following,
+	  .user-follower
+	  {
+	  	position: relative;
+	  	padding: 5px 0;
+
+	  	&:before
+	  	{
+	  		content: "";
+	  		position: absolute;
+	  		height: 100px;
+	  		background-color: #e9e9e9;
+	  		width: 1px;
+	  	}
+
+	  	h3 
+	  	{
+	  		font-weight: 100;
+	  		font-size: 65px;
+	  		color: #72ca28;
+	  	}
+
+	  	p
+	  	{
+	  		font-weight: 700;
+	  		font-size: 11px;
+	  		color: #2d3132;
+	  	}
+	  }
+
+	  .user-following
+	  {
+	  	padding-left: 90px;
+	  	
+	  	&:before
+	  	{
+	  		left: 0;
+	  		top: 5px;
+	  	}
+	  }
+
+	  .user-follower
+	  {
+	  	padding-right: 90px;
+	  	
+	  	&:before
+	  	{
+	  		right: 0;
+	  		top: 5px;
 	  	}
 	  }
 	}
 
+	#crowdfeed
+	{
+		flex-wrap: wrap;
+		display: flex;
+		flex-direction: row;
+		width: 960px;
+		margin: 0 auto 70px;
 
-	#crowdfeed-header {
-    display: block;
-    text-align: left;
-    color: #2d3132;
-    font-size: 25px;
-    font-weight: 300;
-    padding: 0 5px;
-    margin-top: 40px;
-    margin-bottom: 25px;
-	}
-
-	.activity-card {
-		width: 300px;
-		height: 360px;
-		
-		display: block;
-		float: left;
-		vertical-align: top;
-		margin: 0px 10px 20px 10px;
-		padding: 0px 30px;
-		box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		border-radius: 2px;
-		box-shadow: 0px 0px 3px rgba(100,100,100,.4);
-		position: relative;
-
-		.time-stamp {
-			position: absolute;
-			width: 100%; 
-			text-align: center;
-			bottom: 25px;
-			left: 0px;
-			font-size: 12px; 
-			font-weight: 700;
-		}
-
-		.icon-container{
-			display: block;
+		h2
+		{
 			width: 100%;
-			height: 27px;
-			margin-bottom: 27px;
-			border-bottom: 1px solid #e9e9e9;
-			text-align: center;
-
-			.icon {
-				height: 57px;
-				width: 57px;
-				border-radius: 50%;
-				display: inline-block;
-
-				background-position: center center;
-				background-repeat: no-repeat;
-			}
-		}
-	}
-
-	#empty-dashboard-state {
-		box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		background-image: url('gray_line_pattern.png');
-   	background-repeat: repeat; 
-   	width: 100%;
-   	color: #c5c5c5;
-		font-size: 20px;
-		font-weight: 300;
-		text-align: center;
-   	padding: 150px;
-   	margin-bottom: 60px;
-	}
-
-	.venue-score-card {
-		border-top: 6px solid #02B8EA;
-		font-size: 25px;
-		font-weight: 100;
-		
-		a {
-		  color: #02B8EA;
-		  text-decoration: none;
+			color: #2d3132;
+			font-size: 35px;
+			font-weight: 300;
+			margin-bottom: 20px;
 		}
 
-		figure {
+		.activity-card 
+		{
+			width: 300px;
+			height: 430px;
+			margin: 10px;
+			background-color: #fff;
+			box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
 			position: relative;
-			margin-top: 56px;
-			margin-bottom: 28px;
-		}
-		.venue-score {
-			position: absolute;
-			width: 100%;
-			top: 27px;
-			text-align: center;
-			left: 0;
-			font-size: 30px;
-			color: #02b8ea;
-			font-weight: 900;
-		}
-	}
+			overflow: hidden;
 
-	.tip-card {
-		border-top: 6px solid #FECB00;
-		
-		.icon-container {
-			margin-top: 80px;
+			&.list 
+			{
+				border-top: 6px solid #2464ad;
+				padding: 0 30px;
 
-			.icon {
-				background-color: #fecb00;
-				background-image: url(dashboard_quotes.png);
+				.user-image 
+				{
+					margin-top: 90px;
+				}
+
+				a.title
+				{
+					font-size: 25px;
+					font-weight: 300;
+					color: #2464ad;
+					margin: 10px auto 0px;
+					line-height: 35px;
+					text-decoration: none;
+				}
+
+				p.description
+				{
+					font-weight: 300;
+					font-size: 14px;
+					color: #6b6e70;
+					line-height: 18px;
+				}
+				p.story 
+				{
+					color: #2d3132;
+					a
+					{
+						color: #2464ad;
+					}
+				}
+			}
+
+			&.tip 
+			{
+				border-top: 6px solid #fecb00;
+				padding: 0 30px;
+
+				.user-image 
+				{
+					margin-top: 90px;
+				}
+
+				p.story 
+				{
+					a
+					{
+						color: #fecb00;
+					}
+				}
+			}
+
+			&.venue-score 
+			{
+				border-top: 6px solid #02b8ea;
+				padding: 0 30px;
+
+				.score-container
+				{
+					margin-top: 57px;
+				}
+
+				.user-image 
+				{
+					margin-top: 90px;
+				}
+
+				p.story 
+				{
+					a
+					{
+						color: #02b8ea;
+					}
+				}
+			}
+
+			p.story 
+			{
+				color: #2d3132;
+			}
+
+			p.description
+			{
+				margin-top: 10px;
+				font-weight: 300;
+				font-size: 14px;
+				color: #6b6e70;
+				line-height: 18px;
+			}	
+
+			p.story 
+			{
+				font-weight: 700;
+				color: #2d3132;
+				margin-top: 15px;
+				line-height: 18px;
+				a
+				{
+					color: #2464ad;
+					text-decoration: none;
+				}
+			}
+
+			hr
+			{
+				border: 0;
+				border-top: 1px solid #e9e9e9;
+				margin: 15px 0 0px;
+			}
+
+			.signature 
+			{
+				width: 100%;
+				position: absolute;
+				bottom: 30px;
+				left: 0;
+
+				.timestamp
+				{
+					color: #b8bdbf;
+					text-transform: uppercase;
+					font-size: 11px;
+					font-weight: 500;
+					margin-top: 8px;
+				}
+			}
+
+			.user-image
+			{
+				width: 59px;
+				height: 59px;
+				position: relative;
+				margin: 0 auto;
+
+				&:after 
+				{
+					content: "";
+					border-radius: 50%;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					border: 1px solid rgba(black, 0.05);
+					top: 0;
+					left: 0;
+					z-index: 1;
+					@include box-sizing(border-box);
+				}
 			}
 		}
-
-		.tip-body {
-			font-size: 14px;
-			font-weight: 300;
-			margin-top: 10px;
-			color: #6b6e70;
-		}
-
-		.card-description {
-			font-weight: 300;
-			color: #6b6e70;
-			font-size: 14px;
-			position: absolute;
-			left: 0;
-			text-align: center;
-			bottom: 60px;
-			width: 100%;
-		}
-
-		a {
-		  color: #FECB00;
-		  font-weight: normal;
-		  text-decoration: none;
-		}
 	}
-
-	.list-card {
-		border-top: 6px solid #2464AD;
-
-
-		.icon-container {
-			margin-top: 100px;
-			.icon {
-				background-color: #2464ad;
-				background-image: url(dashboard_list.png);
-			}
-		}
-
-		.list-name {
-			font-size: 25px;
-			font-weight: 300;
-			color: #2464ad;
-			margin-top: 10px;
-		}
-
-		.info {
-			color: #6b6e70;
-			font-size: 14px;
-			font-weight: 300;
-		}
-
-		a {
-		  color: #2464AD;
-		  font-weight: normal;
-		  text-decoration: none;
-		}
-	}
-
-	.clear {
-		clear: both;
-		display: block;
-	}
-
-} 
+}

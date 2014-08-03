@@ -1,8 +1,47 @@
-<div id='dashboard_page'>
+<div class='r_dashboard'>
+  <h1><%= dashboard_salutation %></h1>
 
-  <h1>
-    <%= dashboard_salutation %>
-  </h1>
+  <%= render 'recommendation_module' %>
+  <%= render 'featured_venue' %>
+  <%= render 'recommendation_module' %>
+  <%= render 'recommendation_module' %>
+
+
+  <!-- Start User Module -->
+  <section id="user">
+    <div class="user-follower">
+      <h3><%= current_user.followers.count %></h3>
+      <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
+    </div>
+
+    <div class="user-profile-image">
+      <%= image_tag '6df1b47ff48b7258264ec5fe9daf8e7e (1).jpeg' %>
+      <%# image_tag current_user.image.to_s %>
+    </div>
+    
+    <div class="user-following">
+      <h3><%= current_user.follows.count %></h3>
+      <p>FOLLOWING</p>
+    </div>
+
+    <!-- <div class="invitations-container">
+      <p>Invite your friends to Crowdscore
+      </p>
+      <span class="angle-right"><i class="icon-angle-right"></i></span>
+      <%= link_to "", new_user_invitation_path %>
+    </div> -->
+  </section>
+  <!-- End User Module -->
+
+
+  <section id="crowdfeed">
+    <h2>Your Crowdfeed</h2>
+    <%= render 'crowdfeed_cards' %>
+  </section>
+
+</div>
+<!-- 
+
   <%= debug current_meal %>
   <%= debug time_at_user %>
   <%= debug current_user.liked_venue_categories["restuarant"] %>
@@ -13,7 +52,7 @@
   </div>  
   <%= session[:geo_location] %>
   <%= cookies[:geo_session] %>
-  
+   -->
   
   <!--<br><p><% where_am_i %><%= @location %></p>
     <p><%= user_location_data %><% @user_lat_lng %></p>
@@ -22,213 +61,7 @@
   </div>
   -->
 
-  <div id="dashboard-header">
-    <div id="profile-picture" class="header-section">
-      <%= image_tag current_user.image.to_s %>
-    </div>
-    
-    <div id="followers" class="header-section">
-      <p class="header-green"><%= current_user.followers.count %></p><br>
-      <p>FOLLOWER<% if current_user.followers.count == 0 || current_user.followers.count > 1 %>S<% end %></p>
-    </div>
-    
-    <div id="following" class="header-section">
-      <p class="header-green"><%= current_user.follows.count %></p><br>
-      <p>FOLLOWING</p>
-    </div>
-     
-    <div id="karma" class="header-section">
-      <p class="header-green"><%= current_user.points %></p><br>
-      <p>KARMA POINT<% if current_user.points == 0 || current_user.points > 1 %>S<% end %></p>
-    </div>
-    
-    <div id="invitations-container">
-      <p>Invite your friends to Crowdscore
-      </p>
-      <span class="angle-right"><i class="icon-angle-right"></i></span>
-      <%= link_to "", new_user_invitation_path %>
-    </div>
-  </div>
+  
 
-
-  <! -- BEGIN NETWORK ACTIVITY SECTION -->
-  <h4 id="crowdfeed-header">Your Crowdfeed</h4>
-
-  <% activity = current_user.network_activity %>
-  <% if activity.empty? %>
-    <div id="empty-dashboard-state">
-      No recent activity by your crowd.
-    </div><!-- End Conta
-  <% else %>
-    <% activity.each do |a| %>
-      <% if a.class == VenueScore %>
-        <div class="activity-card venue-score-card">
-          <figure class="canvas-container">
-            <canvas width="88" height="88" data-score="<%= a.computed_score %>"></canvas>
-            <span class="venue-score"><%= a.computed_score %></span>
-          </figure>
-          <p><%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> posted a score for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-        </div>
-      <% elsif a.class == Tip %>
-
-
-        <div class="activity-card tip-card">
-          <div class="icon-container"><div class="icon"></div></div>
-          <p class="tip-body">"<%= a.text %>"<br>
-          <p class="card-description">
-            <%= link_to User.find(a.user_id).first_name, User.find(a.user_id) %> added a new tip for <%= link_to Venue.find(a.venue_id).name, Venue.find(a.venue_id) %>.
-          </p>
-         </p>
-         <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-        </div>
-
-
-      <% elsif a.class == List %>
-        <div class="activity-card list-card">
-          <div class="icon-container"><div class="icon"></div></div>
-          <p class="list-name"><%= link_to a.name, a %></p>
-          <p class="info"><%= link_to a.user.first_name, a.user %> created a new list.</p>
-          <p class="time-stamp"><%= time_ago_in_words(a.created_at) %> ago
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-<span class="clear"></span>
-  <!-- END NETWORK ACTIVITY SECTION -->
-
-<!--   <h4>Your Lists</h4>
-  <% if current_user.lists.empty? %>
-    <p>You haven't created any lists yet.</p>
-  <% else %>
-    <% current_user.lists.each do |l| %>
-      <%= link_to l.name, l %><br>
-    <% end %>
-  <% end %> -->
 
 </div>
-        
-
-
-<script>  
-
-  function GraphAnimation (canvas, innerColor, outterColor, percent, zeroDegree, thickness, innerWhite)
-  {
-
-    this.innerWhite = innerWhite;
-    this.ctx = canvas;
-    this.canvas = canvas.getContext('2d');
-    this.outterColor = outterColor;
-    this.innerColor = innerColor;
-    this.intervalID;
-    this.thickness = thickness;
-    this.startAngle = zeroDegree;
-    this.endAngle = zeroDegree;
-    this.speed = 10; // speed * 100 = total time in ms
-    this.xCenter = canvas.width / 2;
-    this.yCenter = canvas.height / 2;
-    this.radius = this.xCenter - this.thickness / 2;
-    this.zeroDegree = zeroDegree;
-
-    this.percent = percent;
-  }
-
-  GraphAnimation.prototype.drawFullCircle = function (){
-    // Draw the solid circle 
-    this.canvas.beginPath();
-    this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-    this.canvas.lineWidth = this.thickness;
-    this.canvas.strokeStyle = this.innerColor;
-    this.canvas.stroke(); 
-
-    if (this.innerWhite == true){
-      this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-      this.canvas.lineWidth = 0;
-      this.canvas.fillStyle ='#f7f7f7';
-      this.canvas.fill();
-      this.canvas.stroke();
-    }
-  };
-
-  GraphAnimation.prototype.drawPartialCircle = function() {
-    var self = this;
-    function updateInterval() {
-      self.updateShape();
-    }
-    this.intervalID = window.setInterval(updateInterval, this.speed);
-  }
-
-  GraphAnimation.prototype.stopTimer = function() {
-    if (this.intervalID != null) window.clearInterval(this.intervalID)
-    this.intervalID = null;
-  }
-
-  GraphAnimation.prototype.updateShape = function() {
-    if ( this.endAngle < ( 2*Math.PI*this.percent/100 + this.zeroDegree )){
-      // Draw a piece of the circle on each existing canvas
-      this.canvas.beginPath();
-      this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.endAngle, false);
-      this.canvas.lineWidth = this.thickness;
-      this.canvas.strokeStyle = this.outterColor;
-      this.canvas.stroke();
-      this.startAngle = this.endAngle - Math.PI/(4*180);
-      this.endAngle = this.endAngle + (2 * Math.PI/100);
-    }
-    else {
-      this.stopTimer();
-    }
-  }
-
-  var count = 1;
-  GraphAnimation.prototype.drawLoading = function(){
-    if ( count < 10 ){
-
-      this.canvas.beginPath();
-      this.canvas.arc(this.xCenter, this.yCenter, this.radius, 0, Math.PI*2, false);
-      this.canvas.lineWidth = this.thickness;
-      this.canvas.strokeStyle = this.innerColor;
-      this.canvas.stroke(); 
-      
-      // Draw a piece of the circle on each existing canvas
-      this.canvas.beginPath();
-      this.canvas.arc(this.xCenter, this.yCenter, this.radius, this.startAngle, this.startAngle + Math.PI/2, false);
-      this.canvas.lineWidth = this.thickness;
-      this.canvas.strokeStyle = this.outterColor;
-      this.canvas.stroke();
-      this.startAngle = this.startAngle + Math.PI/180;
-    }
-    else {
-      this.stopTimer();
-    }
-  }
-
-  GraphAnimation.prototype.drawArc = function() {
-    var self = this;
-    function draw() {
-      self.drawLoading();
-    }
-    this.intervalID = window.setInterval(draw, this.speed)
-  }
-</script>
-  
-<script>
-  
-  var circleColors = ["#78E1FF", "#00B5E9"];  
-
-  var graphs = new Array;
-  
-  var index = 0;
-  var arr = document.getElementsByTagName('canvas');
-  for ( var i = 0; i < arr.length; i++ ) {
-    graphs.push(new GraphAnimation(arr[i], circleColors[0], circleColors[1], arr[i].getAttribute('data-score'), Math.PI*3/2, 8, true));
-    index++;
-  }
-  graphs.forEach(draw);
-  function draw (elem, index, arr) {
-    elem.drawFullCircle();
-    elem.drawPartialCircle();
-  }         
-
-
-
-</script>

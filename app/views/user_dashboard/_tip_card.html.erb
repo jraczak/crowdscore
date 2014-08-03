@@ -1,0 +1,17 @@
+<div class="activity-card tip">
+	<div class="user-image obj-rounded-image-wrapper">
+		<%= image_tag story.user.image_url %>
+	</div>
+
+	<p class="description"><%= story.text %></p>
+  
+  <hr>
+
+  
+  <p class="story"><%= link_to User.find(story.user_id).first_name, User.find(story.user_id) %> added a new tip for <%= link_to Venue.find(story.venue_id).name, Venue.find(story.venue_id) %>.</p>
+
+  <div class="signature">
+  	<p class="timestamp"><%= time_ago_in_words(story.created_at) %> ago
+  </div>
+  
+</div>

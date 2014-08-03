@@ -51,4 +51,16 @@ module UserDashboardHelper
       end
   end
 
+  def render_dashboard_story(story)
+    puts story.class
+    case story.class.to_s
+    when "Tip"
+      render "user_dashboard/tip_card", story: story
+    when "List"
+      render "user_dashboard/list_card", story: story
+    when "VenueScore"
+      render "user_dashboard/venue_score_card", story: story
+    end
+  end
+
 end
