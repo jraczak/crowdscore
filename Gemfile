@@ -39,7 +39,6 @@ gem 'simple_form'
 gem 'fb_graph'
 gem 'delayed_job_active_record'
 gem 'daemons'
-#gem 'random-gem-name'
 
 gem 'carrierwave_direct'
 
