@@ -51,7 +51,7 @@ include VenueImportsHelper
         else
           Delayed::Worker.logger.debug "--> Attempting to create new venue from row"
           venue = create_venue_from_csv(row)
-          Delayed::Worker.logger.debug "--> New venue was created with id #{venue.id}"
+          Delayed::Worker.logger.debug "--> New venue was created with id #{venue.id} and name #{venue.name}"
           if venue.new_record?
             #@unsaved_venues << venue
         else
