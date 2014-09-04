@@ -29,7 +29,7 @@ include VenueImportsHelper
   
   class ProcessVenueImportData < Struct.new(:venue_import_id)
     def perform
-      Rails.logger.debug "--> Looking up venue import object..."
+      Delayed::Worker.logger.debug "--> Looking up venue import object..."
       @import_target = VenueImport.find(venue_import_id)
       Rails.logger.debug "--> Parsing CSV contents..."
       @to_process = CSV.parse(@import_target.content, row_sep: "\n", headers: true)
@@ -38,15 +38,20 @@ include VenueImportsHelper
         if Venue.exists?(Venue.find_by_factual_id(row['factual_id']))
           #@existing_venues += 1 
           #@to_process.delete(row)
+          Delayed::Worker.logger.debug "--> Existing venue found matching Factual ID"
           venue = update_venue_from_csv(row)
+          Delayed::Worker.logger.debug "--> Attempting to update existing venue with id #{venue.id}"
           if venue.changed?
             venue.save!
+            Delayed::Worker.logger.debug "--> Existing venue #{venue.id} was updated"
             #@updated_venues << venue
           else
             #@existing_venues += 1
           end
         else
+          Delayed::Worker.logger.debug "--> Attempting to create new venue from row"
           venue = create_venue_from_csv(row)
+          Delayed::Worker.logger.debug "--> New venue was created with id #{venue.id}"
           if venue.new_record?
             #@unsaved_venues << venue
         else
