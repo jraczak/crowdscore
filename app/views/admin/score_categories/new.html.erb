@@ -12,7 +12,7 @@
   <%= f.select(resource, :name, VenueCategory.all.collect { |vc| [vc.name, vc.id]}, :include_blank => true) %><br>
   
   <%= f.label :venue_subcategory_id, "Venue Subcategory" %>
-  <%= select(resource, :name, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
+  <%= f.select(resource, :name, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
   
   <%= f.button "Create new category", type: :submit %>
 <% end %>
