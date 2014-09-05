@@ -32,6 +32,7 @@ include VenueImportsHelper
       Delayed::Worker.logger.debug "--> Looking up venue import object..."
       @import_target = VenueImport.find(venue_import_id)
       Rails.logger.debug "--> Parsing CSV contents..."
+      puts "--> Parsing CSV contents..."
       @to_process = CSV.parse(@import_target.content, row_sep: "\n", headers: true)
       
       @to_process.each do |row|
@@ -39,19 +40,24 @@ include VenueImportsHelper
           #@existing_venues += 1 
           #@to_process.delete(row)
           Delayed::Worker.logger.debug "--> Existing venue found matching Factual ID"
+          puts "--> Existing venue found matching Factual ID"
           venue = update_venue_from_csv(row)
           Delayed::Worker.logger.debug "--> Attempting to update existing venue with id #{venue.id}"
+          puts "--> Attempting to update existing venue with id #{venue.id}"
           if venue.changed?
             venue.save!
             Delayed::Worker.logger.debug "--> Existing venue #{venue.id} was updated"
+            puts "--> Existing venue #{venue.id} was updated"
             #@updated_venues << venue
           else
             #@existing_venues += 1
           end
         else
           Delayed::Worker.logger.debug "--> Attempting to create new venue from row"
+          puts "--> Attempting to create new venue from row"
           venue = create_venue_from_csv(row)
           Delayed::Worker.logger.debug "--> New venue was created with id #{venue.id} and name #{venue.name}"
+          puts "--> New venue was created with id #{venue.id} and name #{venue.name}"
           if venue.new_record?
             #@unsaved_venues << venue
         else
@@ -68,6 +74,7 @@ include VenueImportsHelper
         #end
       end
       Rails.logger.debug "--> Content was parsed and handled."
+      puts "--> Content was parsed and handled."
       end
       
       def create_venue_from_csv(row)
