@@ -158,6 +158,7 @@
 			vertical-align: top;
 			text-transform: uppercase;
 			margin-left: 35px;
+			width: 165px;
 
 			.attribute 
 			{
@@ -190,6 +191,10 @@
 				font-weight: 900;
 				font-size: 11px;
 				line-height: 12px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				width: 100%;
+				white-space: nowrap;
 			}
 
 			.value
@@ -199,6 +204,10 @@
 				color: #818587;
 				line-height: 18px;
 				margin-top: 5px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				width: 100%;
 			}
 		}
 
@@ -221,6 +230,7 @@
 				{
 					width: 100%;
 					margin-bottom: 60px;
+					margin-top: 0;
 					float: right;
 
 					.bar-graph
@@ -519,6 +529,53 @@
 		float: left;
 		width: calc(100% - 530px);
 		padding-right: 40px;
+		
+		.tip-prompt 
+		{
+			.user-image
+			{
+				float: left;
+			}
+
+			.btn-submit-tip
+			{
+				margin-left: 80px;
+				display: block;
+			}
+		}
+
+		.tip-input
+		{
+			margin-bottom: 18px;
+			width: calc(100% - 80px);
+			float: right;
+		}
+
+		.tip-input:after 
+		{
+			content: ' ';
+			position: absolute;
+			width: 0;
+			height: 0;
+			left: -8px;
+			top: 23px;
+			border: 9px solid;
+			border-color: #fff transparent transparent #fff;
+			@include transform(rotate(-45deg));
+		}
+
+		.tip-input:before 
+		{
+			content: ' ';
+			position: absolute;
+			width: 0;
+			height: 0;
+			left: -9px;
+			top: 22px;
+			border: 10px solid;
+			border-color: #e9e9e9 transparent transparent #e9e9e9;
+			@include transform(rotate(-45deg))
+		}
 
 		.tip
 		{

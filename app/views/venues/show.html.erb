@@ -191,9 +191,11 @@
 			function setWidthPositions() {
 				pw = $(window).width()
 				pw = pw < 960 ? 960 : pw ;
+				pw = pw > 1920 ? 1920 : pw ;
 				resize.each(function(index, item){
 					f = $(item).data('resize');
 					$(item).css($(item).data('attr'), eval(f) + 'px')
+					console.log(eval(f) + 'px')
 				})
 			}
 		})
