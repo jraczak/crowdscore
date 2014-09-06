@@ -10,7 +10,7 @@
 	      			<li>
 	      				
 	      			<h1> What did you think?</h1>
-	      			<p>Let us know what you thought of this venue! Lorem ipsum dolor sit quid facit sir do lipsum inuit si quad.</p>
+	      			<p>Score your experience at <%= resource.name %> in the categories below.</p>
 	      		    <div id="informational-steps-widget">
 	      		      <span id='crossbar'></span>
 	      		      <% resource.get_score_categories.each_with_index do |sc, index| %>
@@ -87,6 +87,7 @@
 	      					<li class="active" data-button-slide="0">
 	      						<p class="next-slide-description">Next up: <%= categories[1].name %>
 	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="1">
 	      							Continue
 	      						</div>
@@ -99,8 +100,10 @@
 	      							Back
 	      						</div>
 	      						<span class="vertical-bar"></span>
+
 	      						<p class="next-slide-description">Next up: <%= categories[2].name %>
 	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="2">Continue</div>
 	      					</li>
 	      					<li data-button-slide="2">
@@ -111,8 +114,10 @@
 	      							Back
 	      						</div>
 	      						<span class="vertical-bar"></span>
+
 	      						<p class="next-slide-description">Next up: <%= categories[3].name %>
 	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="3">
 	      							Continue
 	      						</div>

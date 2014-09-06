@@ -34,7 +34,7 @@
 
 				<div class="attribute website">
 					<div class="key">Website</div>
-					<div class="value"><%= resource.url.presence || "N/A"  %></div>
+					<div class="value"><%= link_to resource.url.presence, resource.url.presence, html_options = {target: "_blank"} || "N/A"  %></div>
 				</div>
 
 				<div class="attribute">
@@ -44,7 +44,7 @@
 
 				<div class="attribute hours <%= 'open' if true == true %>">
 					<div class="key">Hours of Operation</div>
-					<div class="value">9:00am - 10:00pm</div>
+					<div class="value"><%= business_hours(resource) %></div>
 				</div>
 			</div>
 
