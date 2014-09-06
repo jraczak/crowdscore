@@ -44,8 +44,7 @@
 
 				<div class="attribute hours <%= 'open' if true == true %>">
 					<div class="key">Hours of Operation</div>
-					<% business_hours(resource) %>
-					<div class="value"><%= "#{@open_time} - #{@close_time}" %>
+					<div class="value"><%= business_hours(resource) %></div>
 				</div>
 			</div>
 
