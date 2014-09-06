@@ -1,0 +1,342 @@
+<% provide(:title, " | #{resource.name.titlecase}") %>
+<script>
+// set JS variables for controls to be made available for gmaps4rails JS files
+var disable_default_ui = true;
+var page_zoom_level = 14;
+var auto_adjust = false;
+var auto_zoom = false;
+    	
+</script>
+  <div class="top-block"></div>
+  <div class="gray-bar"></div>
+
+  <div class="venue-container">
+  
+
+  	<!-- Start of left rail -->
+  	<div class="left-rail-container">
+
+			<!-- Overall score container-->
+		  
+		  <div class="overall-score-container">
+			  <div class="header">OVERALL SCORE</div>
+			  <div class="inner-body">
+					<%= render 'shared/pie_graph', type: "venue-score", score: resource.score, animate: true  %>
+			  	
+				  <p>
+				  	<% unless resource.venue_scores.empty? %>
+				  		based on <%= pluralize(resource.venue_scores.count, "score") %>
+				  	<% end %>
+			  	</p>
+
+				  <% if resource.venue_scores.empty? %>
+				  	<div class="no-overall-score">
+				  		No scores here yet. Be the first!
+				  	</div>
+				  <% end %>
+
+				  <div class="center-absolute">
+						<div id="submit-score-btn" class="submit-score-btn">SUBMIT YOUR SCORE</div>
+					</div>
+
+				</div>
+		  </div><!-- end overall score container -->
+
+
+		 	<!-- Image container -->
+			<% if resource.venue_images.any? %>
+			<div class="venue-image present" style="background-image: url('<%= resource.venue_images.first.image_file %>')">
+				<%= image_tag('photo_zoom.png') %></img>
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% else %>
+			<div class="venue-image">
+				<div class="center-absolute">
+			  	<div class='empty-camera'>
+			  	</div>
+
+			  	<div class="add-msg">
+			  		Be the first to add a photo!
+			  	</div>
+			  </div>
+			  <%= image_tag('photo_zoom.png') %>
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a onclick="openImageUploader()">+</a></div>
+			<% end %>
+
+			</div><!-- End Container -->
+
+
+		 	<!-- Tags container -->
+			<div class="<%= resource.tags.any? ? 'tags-container' : 'tags-container gray-line-pattern'%>">
+				
+				<div class="header">
+					<h4>TAGS</h4>
+				</div>
+				
+				<% if resource.tags.any? %>
+				  <% resource.tags.each do |t| %>
+				    <a class="tag-btn" href="#"><%= t.name.upcase %></a>
+				  <% end %>
+				
+				  <a class="see-all-tags" href="#">
+                    <h4>SEE ALL TAGS</h4>
+				  </a>
+
+		      <% else %>
+		      
+			  	<div class="center-absolute">
+				  	<div class="add-msg">
+				  		<p>No tags here yet.<br>
+				  		Share what you know and add some!</p>
+				  	</div>
+				  </div>
+
+		    <% end %>
+
+			  <div class="add-element-triangle"></div>
+			  <div class="add-element-text"><a href="#">+</a></div>
+
+			</div>
+			
+			
+
+			<!-- End tags container -->
+  	</div><!-- End of left rail -->
+
+
+  	<!-- Start of right rail -->
+  	<div class="right-rail-container">
+  		<div class="right-rail-header">
+	  		<div class="venue-title"><%= resource.name.titlecase %></div>
+
+				<!-- Grey bar section -->
+				<div class="venue-sub-header">
+					<div class="inner-body">
+						<span class="venue-type">
+							<p><%= resource.venue_category.name %></p>
+						</span>
+						
+						<!-- HOURS SUPPRESSED UNTIL DATA IS AVAILABLE -->
+						<span class="venue-hours">
+							<p class="hours"> </p>
+							<div class="operation-status-open"> </div>
+						</span>
+						<span class="share-venue">	  			
+							<a href="#">
+								<p>
+									<%= image_tag('share_venue.png') %>SHARE
+								</p>
+							</a>
+						</span>	
+						<span class="add-venue-to-list">
+						  <% if user_signed_in? %>  
+							  <a data-open-modal="add_to_list" href="#">
+							  	<p>
+							  	  <%= image_tag('add_to_list.png') %>ADD TO LIST
+							  	</p>
+							  </a>
+						  <% else %>
+							  <a data-target-action="add_to_list" href="#" class=fn-open-modal data-target-modal=login-modal>
+							  	<p>
+							  	  <%= image_tag('add_to_list.png') %>ADD TO LIST
+							  	</p>
+							  </a>						  
+						  <% end %>
+						</span>
+					</div>
+				</div> <!-- End grey bar section -->
+
+
+				<!-- Venue details section (with google map) -->
+				<div class="venue-details">
+					<div class="map-container">
+						<div class="map" id="map">
+							<%= gmaps(
+										:map_options => { 
+											:disableDefaultUI => true,
+											:zoom => 15,
+											:auto_zoom => false, 
+											maxZoom: 15,
+											minZoom: 15
+										},
+        						:markers => { :data => @json },
+        					)
+        			%>
+        		</div>
+					</div>
+					<div class="body">
+						<div class="address-contact-container">
+							<div class="center-text">
+								<div class="address">
+									<%= "#{resource.address1} #{resource.address2}" %></br>
+									<%= "#{resource.city}, #{resource.state} #{resource.zip}" %></br>
+									<%= link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{resource.full_address}", target: "_new" %>
+								</div>
+								<div class="contact">
+									<% if resource.phone.present? %>
+									  <%= number_to_phone(resource.phone, area_code: true) %></br>
+									<% else %>
+									  <%= link_to "add the phone number", edit_venue_path %></br>
+									<% end %>
+									
+									<% if resource.url.present? && resource.url != "http://" %>
+									  <%= link_to "visit the webiste", resource.url %>
+									<% else %>
+									  <%= link_to "add the website", edit_venue_path %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+						<div class="venue-traits-container">
+							<div class="center-text">
+								<div class="venue-traits">
+									<li href="#">
+										<% if resource.venue_subcategory.blank? %>
+										  <%= link_to "add subcategory", edit_venue_path(resource) %>
+										<% else %>
+										  <img src="" alt=""><%= resource.venue_subcategory.name %>
+										<% end %>
+									</li>
+									<% if resource.tags.include?("credit cards") %>
+									  <li href="#" style="padding-left: 1px;">
+										<img src="./assets/images/credit-card.png" alt="">Accepts credit cards
+									  </li>
+									<% end %>
+									<% if resource.tags.include?("reservations") %>
+									  <li href="#" style="padding-left: 1px;">
+										<img src="./assets/images/calendar.png" alt="">Takes reservations
+									  </li>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- end of venue details section -->
+
+
+				<% if resource.venue_scores.empty? %>
+					<div class='venue-scores'>
+						<% resource.get_score_categories.each do |sc| %>
+						  <div class="venue-score">
+						  	<%= render 'shared/pie_graph', type: "category-score", score: 0, animate: true  %>
+						  	<p><%= sc.name.upcase %></p>
+						  </div>
+						<% end %>  
+					</div>
+				<% else %>
+					<div class='venue-scores'>
+					  <% resource.get_score_categories.each do |sc| %>
+					    <div class="venue-score">
+					      <%= render 'shared/pie_graph', type: "category-score", score: resource.score_details[sc.id][:value], animate: true %>
+					      <p><%= sc.name.upcase %></p>
+					    </div>
+					  <% end %>
+				<% end %>
+			</div><!-- End Venue right rail header -->
+
+
+			<!-- Comment box container -->
+			<div class="commentbox-container">
+				<div class="avatar circletag"></div>
+				<div class="text-bubble"></div>
+				<%= form_for Tip.create, url: venue_tips_path(resource), remote: true do |f| %>
+  				<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
+				  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
+				<% end %> 
+				<div class="rem-char">
+					<strong id="rem-char">100</strong> characters remaining
+				</div>
+			</div><!-- End comment box container -->
+
+
+			<!-- Tip header section containing sort view and tip count -->
+			<div class="tips-header">
+				<h4><%= pluralize(resource.tips.count, "Tip") %></h4>
+				<div class="toggle-sort">
+					<div class="sort-popular-btn">POPULAR</div>
+					<div class="sort-recent-btn">RECENT</div>
+				</div>
+			</div><!-- End tip header section -->
+		
+		<% anyTips = resource.tips.any? ? true : false %>
+		<div class="all-tips-container <% if !anyTips %> gray-line-pattern<% end %>" style=<% if anyTips %>"min-height: 0;"<%end %>>
+		<% if resource.tips.any? %>
+		  <% resource.tips.by_recent.each do |t| %>
+		    <%= render :partial => "tip", :locals => { :t => t } %>
+	    <% end %>
+	  </div>
+			<div class="show-more-tips-container">
+				<a class="show-more-tips-btn" href="#">SHOW MORE TIPS</a>
+			</div>
+		<% else %>
+			<div class="center-absolute">
+		  	
+		  	<div class='cs-logo'></div>
+		  	<div class="add-msg">Be the first to add a Tip!</div>
+
+		  </div>
+		<% end %>	
+  	</div><!-- End of right rail -->
+  </div><!-- End floating body container div -->
+	
+
+
+  <!-- Other Nearby Restaurants Division -->
+	<% if @higher_scored_venues.any? %>
+	<div class="other-nearby-restaurants-division">
+		<h4>Similar Places, Higher Scores</h4>
+
+	  <% @higher_scored_venues.each do |v| %>	
+		<div class="other-nearby-restaurants-container">
+			<div class="graph-container">
+	 			<canvas id="otherVenueCanvas" width="54" height="54"></canvas>
+		 		<div class="body">
+		 			<div class="text">
+						<div>	
+		 					<p><%= link_to v.name.upcase, v %></p>
+		 				</div>
+		 			</div>
+	 			</div>
+	 			<div id="otherVenueCanvasScore" class="other-venue-graph-score"></div>
+			</div>
+				<p class="pull-left"><%= v.venue_subcategory.name %></p>
+				<p class="pull-right distance" data-lat="#{v.latitude}" data-long="#{v.longitude}"></p>
+		</div>
+	  <% end %>
+
+		
+
+	<% end %>
+	</div><!-- End of other Nearby Restaurant Division -->
+
+
+  <div id="image-upload-modal" class='full-screen-modal'>
+    <div class='modal-mask'>
+      <div class='modal-content'>
+        <div class='close-modal' onclick="closeModal()">+</div>
+        <%= form_for VenueImage.create, url: venue_images_path(resource) do |f| %>
+          <%= f.file_field :image_file %>
+          <%= f.text_field :caption %>
+          <%= f.submit "Upload" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+<%= render "submit_score" %>
+<% if user_signed_in? %>  
+  <%= render "lists/add_venue", :venue_id => resource.id %>
+<% end %>
+
+<script>
+
+	function openImageUploader(){
+		$( '#image-upload-modal' ).addClass("visible");
+	}
+
+	function closeModal(){
+		$('#image-upload-modal').removeClass('visible');
+	}
+</script>

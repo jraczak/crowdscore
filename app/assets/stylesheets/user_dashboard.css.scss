@@ -12,388 +12,6 @@
 		margin-bottom: 70px;
 	}
 
-	.featured-module 
-	{
-		width: 85%;
-		position: relative;
-		margin-bottom: 90px;
-
-		.image 
-		{
-			width: 100%;
-			height: 420px;
-			overflow: hidden;
-			background-position: center;
-			background-size: cover;
-		}
-
-		.info 
-		{
-			border-top: 5px solid #00b8ea;
-			width: 410px;
-			height: 180px;
-			background-color: #f2f2f2;
-			position: absolute;
-			right: 0;
-			bottom: 0;
-
-			.body
-			{
-				position: relative;
-				width: 100%;
-				height: 100%;
-				margin: 25px 50px;
-				padding-top: 13px;
-			}
-
-			h4 
-			{
-				color: #000;
-				font-size: 16px;
-				font-weight: 700;
-				width: 100%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				text-align: left;
-				padding-left: 75px;
-			}
-
-			p.geo
-			{
-				font-size: 11px;
-				font-weight: 500;
-				color: #b8bdbf;
-				line-height: 30px;
-				text-transform: uppercase;
-				text-align: left;
-				padding-left: 75px;
-				width: 100%;
-
-				span:not(:first-child)
-				{
-					margin-left: 15px;
-					position: relative;
-
-					&:before 
-					{
-						content: "";
-						width: 4px;
-						height: 4px;
-						top: 4px;
-						left: -10px;
-						background-color: #b8bdbf;
-						position: absolute;
-						border-radius: 50%;
-					}
-				}
-			}
-
-			p.description
-			{
-				font-size: 14px;
-				color: #6b6e70;
-				line-height: 1.43em;
-				text-align: left;
-				margin-top: 20px;
-			}
-		}
-
-		.score-container 
-		{
-			width: 59px;
-			height: 59px;
-			position: absolute;
-			top: 0;
-			left: -5px;
-
-			.pie-container 
-			{
-				width: 59px;
-				height: 59px;							
-
-				.pie-graph-mask-color-white 
-				{ 
-	        height: 51px;
-	        width: 51px;
-	        top: 4px;
-	        left: 4px;
-
-	        line-height: 51px;
-	        font-weight: 900;
-	        font-size: 20px;
-	      }
-			}
-		}
-	}
-
-	.recommendation-module
-	{
-		width: 100%;
-		overflow: hidden;
-		position: relative;
-		display: block;
-		margin-bottom: 60px;
-
-		&.right {
-			.recommendation-module-body
-			{
-				@include transform(translateX(-75px));
-			}
-		}
-
-		&.left 
-		{
-			.recommendation-module-body
-			{
-				@include transform(translateX(75px));
-			}
-		}
-
-		.recommendation-module-body
-		{
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			align-self: flex-start;
-			padding: 5px 0;
-			height: 440px;
-			overflow: hidden;
-			// @include transition(margin 0.2s);
-			@include transition(all 0.2s);
-
-			.recommendation-module-cards
-			{
-				display: flex;
-				flex-direction: row;
-				flex-wrap: nowrap;
-				justify-content: flex-start;
-				align-self: flex-start;
-				overflow: scroll;
-				padding-bottom: 30px;
-			}
-
-			.module-left,
-			.module-right
-			{
-				width: 75px;
-				background-color: blue;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				z-index: 1;
-				cursor: pointer;
-			}
-
-			.module-right
-			{
-				right: -75px;
-			}
-
-			.module-left
-			{
-				left: -75px;
-			}
-
-			.recommendation-card
-			{
-				width: 300px;
-				height: 430px;
-				margin: 0 10px;
-				flex: none;
-				background-color: #fff;
-				box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
-				position: relative;
-				overflow: hidden;
-
-				.pie-container 
-				{
-					z-index: 0;
-				}
-
-				&.empty 
-				{
-					img 
-					{
-						display: none;
-					}
-
-					.stats
-					{
-						text-align: center;
-					}
-
-					.score-container 
-					{
-						width: 300px;
-						height: 300px;
-						background-color: #f9feff;
-						padding-top: 65px;
-
-						.pie-graph-mask-color-white 
-						{
-			        background-color: #f9feff;
-			      }
-					}
-				}
-
-				&.populated 
-				{
-					.image
-					{
-						width: 300px;
-						height: 300px;
-						display: block;
-						overflow: hidden;
-					}
-
-					img 
-					{
-						min-width: 100%;
-						min-height: 100%;
-					}
-
-					.stats
-					{
-						text-align: right;
-					}
-
-					.score-container 
-					{
-						width: 59px;
-						height: 59px;
-						position: absolute;
-						left: 24px;
-						top: 286px;
-
-						.pie-container 
-						{
-							width: 59px;
-							height: 59px;							
-
-							.pie-graph-mask-color-white 
-							{ 
-				        height: 51px;
-				        width: 51px;
-				        top: 4px;
-				        left: 4px;
-
-				        line-height: 51px;
-				        font-weight: 900;
-				        font-size: 20px;
-				      }
-						}
-					}
-				}
-			}
-
-			.stats 
-			{
-				width: 100%;
-				height: 36px;
-				line-height: 36px;
-				background-color: #f2fcff;
-				box-shadow: 0px 0px 0px 1px #e0edf1;
-				padding: 0 18px;
-				font-size: 11px;
-				color: #00b8ec;
-				text-transform: uppercase;
-
-				span:not(:first-child)
-				{
-					margin-left: 15px;
-					line-height: 36px;
-					position: relative;
-
-					&:before 
-					{
-						content: "";
-						width: 3px;
-						height: 3px;
-						top: 5px;
-						left: -10px;
-						background-color: #00b8ec;
-						position: absolute;
-						border-radius: 50%;
-					}
-				}
-			}
-
-			.info 
-			{
-				text-align: left;
-				padding: 30px 30px;
-
-				h4 
-				{
-					color: #000;
-					font-size: 16px;
-					font-weight: 700;
-					width: 100%;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
-				}
-
-				p
-				{
-					font-size: 11px;
-					font-weight: 500;
-					color: #b8bdbf;
-					line-height: 30px;
-					text-transform: uppercase;
-				}
-
-				span:not(:first-child)
-				{
-					margin-left: 15px;
-					position: relative;
-
-					&:before 
-					{
-						content: "";
-						width: 4px;
-						height: 4px;
-						top: 4px;
-						left: -10px;
-						background-color: #b8bdbf;
-						position: absolute;
-						border-radius: 50%;
-					}
-				}
-			}
-
-			.recommendation-header
-			{
-				flex: none;
-				text-align: left;
-				font-weight: 300;
-				width: 230px;
-				height: 430px;
-				margin-left: 60px;
-				margin-right: 50px;
-				border-top: 4px solid #34373f;
-
-				h2
-				{
-					font-size: 35px;
-					color: #34373f;
-					line-height: 1em;
-					margin-bottom: 10px;
-					margin-top: 45px;
-				}	
-
-				p
-				{
-					font-size: 14px;
-					color: #6b6e70;
-					line-height: 1.43em;
-				}
-			}
-		}
-	}
-
 	#user 
 	{
 		background-color: #fff;
@@ -703,5 +321,389 @@
 				}
 			}
 		}
+	}
+}
+
+
+.featured-module 
+{
+	width: 85%;
+	position: relative;
+	margin-bottom: 90px;
+
+	.image 
+	{
+		width: 100%;
+		height: 420px;
+		overflow: hidden;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.info 
+	{
+		border-top: 5px solid #00b8ea;
+		width: 410px;
+		height: 180px;
+		background-color: #f2f2f2;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+
+		.body
+		{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			margin: 25px 50px;
+			padding-top: 13px;
+		}
+
+		h4 
+		{
+			color: #000;
+			font-size: 16px;
+			font-weight: 700;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			text-align: left;
+			padding-left: 75px;
+		}
+
+		p.geo
+		{
+			font-size: 11px;
+			font-weight: 500;
+			color: #b8bdbf;
+			line-height: 30px;
+			text-transform: uppercase;
+			text-align: left;
+			padding-left: 75px;
+			width: 100%;
+
+			span:not(:first-child)
+			{
+				margin-left: 15px;
+				position: relative;
+
+				&:before 
+				{
+					content: "";
+					width: 4px;
+					height: 4px;
+					top: 4px;
+					left: -10px;
+					background-color: #b8bdbf;
+					position: absolute;
+					border-radius: 50%;
+				}
+			}
+		}
+
+		p.description
+		{
+			font-size: 14px;
+			color: #6b6e70;
+			line-height: 1.43em;
+			text-align: left;
+			margin-top: 20px;
+		}
+	}
+
+	.score-container 
+	{
+		width: 59px;
+		height: 59px;
+		position: absolute;
+		top: 0;
+		left: -5px;
+
+		.pie-container 
+		{
+			width: 59px;
+			height: 59px;							
+
+			.pie-graph-mask-color-white 
+			{ 
+        height: 51px;
+        width: 51px;
+        top: 4px;
+        left: 4px;
+
+        line-height: 51px;
+        font-weight: 900;
+        font-size: 20px;
+      }
+		}
+	}
+}
+
+.recommendation-module
+{
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	display: block;
+	margin-bottom: 60px;
+
+	&.right {
+		.recommendation-module-body
+		{
+			@include transform(translateX(-75px));
+		}
+	}
+
+	&.left 
+	{
+		.recommendation-module-body
+		{
+			@include transform(translateX(75px));
+		}
+	}
+
+	.recommendation-module-body
+	{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-self: flex-start;
+		padding: 5px 0;
+		height: 440px;
+		overflow: hidden;
+		// @include transition(margin 0.2s);
+		@include transition(all 0.2s);
+
+		.recommendation-module-cards
+		{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-self: flex-start;
+			overflow: scroll;
+			padding-bottom: 30px;
+		}
+
+		.module-left,
+		.module-right
+		{
+			width: 75px;
+			background-color: blue;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			z-index: 1;
+			cursor: pointer;
+		}
+
+		.module-right
+		{
+			right: -75px;
+		}
+
+		.module-left
+		{
+			left: -75px;
+		}
+
+		.recommendation-card
+		{
+			width: 300px;
+			height: 430px;
+			margin: 0 10px;
+			flex: none;
+			background-color: #fff;
+			box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+			position: relative;
+			overflow: hidden;
+
+			.pie-container 
+			{
+				z-index: 0;
+			}
+
+			&.empty 
+			{
+				img 
+				{
+					display: none;
+				}
+
+				.stats
+				{
+					text-align: center;
+				}
+
+				.score-container 
+				{
+					width: 300px;
+					height: 300px;
+					background-color: #f9feff;
+					padding-top: 65px;
+
+					.pie-graph-mask-color-white 
+					{
+		        background-color: #f9feff;
+		      }
+				}
+			}
+
+			&.populated 
+			{
+				.image
+				{
+					width: 300px;
+					height: 300px;
+					display: block;
+					overflow: hidden;
+				}
+
+				img 
+				{
+					min-width: 100%;
+					min-height: 100%;
+				}
+
+				.stats
+				{
+					text-align: right;
+				}
+
+				.score-container 
+				{
+					width: 59px;
+					height: 59px;
+					position: absolute;
+					left: 24px;
+					top: 286px;
+
+					.pie-container 
+					{
+						width: 59px;
+						height: 59px;							
+
+						.pie-graph-mask-color-white 
+						{ 
+			        height: 51px;
+			        width: 51px;
+			        top: 4px;
+			        left: 4px;
+
+			        line-height: 51px;
+			        font-weight: 900;
+			        font-size: 20px;
+			      }
+					}
+				}
+			}
+		}
+
+		.stats 
+		{
+			width: 100%;
+			height: 36px;
+			line-height: 36px;
+			background-color: #f2fcff;
+			box-shadow: 0px 0px 0px 1px #e0edf1;
+			padding: 0 18px;
+			font-size: 11px;
+			color: #00b8ec;
+			text-transform: uppercase;
+
+			span:not(:first-child)
+			{
+				margin-left: 15px;
+				line-height: 36px;
+				position: relative;
+
+				&:before 
+				{
+					content: "";
+					width: 3px;
+					height: 3px;
+					top: 5px;
+					left: -10px;
+					background-color: #00b8ec;
+					position: absolute;
+					border-radius: 50%;
+				}
+			}
+		}
+
+		.info 
+		{
+			text-align: left;
+			padding: 30px 30px;
+
+			h4 
+			{
+				color: #000;
+				font-size: 16px;
+				font-weight: 700;
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			p
+			{
+				font-size: 11px;
+				font-weight: 500;
+				color: #b8bdbf;
+				line-height: 30px;
+				text-transform: uppercase;
+			}
+
+			span:not(:first-child)
+			{
+				margin-left: 15px;
+				position: relative;
+
+				&:before 
+				{
+					content: "";
+					width: 4px;
+					height: 4px;
+					top: 4px;
+					left: -10px;
+					background-color: #b8bdbf;
+					position: absolute;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
+}
+
+.recommendation-header,
+.blank-tip-header
+{
+	flex: none;
+	text-align: left;
+	font-weight: 300;
+	width: 230px;
+	height: 430px;
+	margin-left: 60px;
+	margin-right: 50px;
+	border-top: 4px solid #34373f;
+
+	h2
+	{
+		font-size: 35px;
+		color: #34373f;
+		line-height: 1em;
+		margin-bottom: 10px;
+		margin-top: 45px;
+	}	
+
+	p
+	{
+		font-size: 14px;
+		color: #6b6e70;
+		line-height: 1.43em;
 	}
 }

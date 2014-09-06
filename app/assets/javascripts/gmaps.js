@@ -115,3 +115,60 @@ Gmap.prototype.initialize = function(){
 	this.map = new google.maps.Map(map_canvas, map_options);
 	this.addMapMarkers();
 };
+
+
+function VenueMap(data) {
+	this.data = data[0];
+	this.bounds = new google.maps.LatLngBounds();
+	// debugger
+	this.initialize();
+}
+
+VenueMap.prototype.initialize = function(){
+	var map_canvas = document.getElementById('venue-map');
+
+	var map_options = {
+		zoom: 8,
+		scrollwheel: false,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+
+	this.map = new google.maps.Map(map_canvas, map_options);
+	this.addMapSettings();
+};
+
+VenueMap.prototype.addMapSettings = function(){
+	var self = this;
+	var map = this.map;
+
+	this.createMarker();
+
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+    zoomChangeBoundsListener = 
+      google.maps.event.addListener(map, 'bounds_changed', function(event) {
+        if (this.getZoom() > 15 && this.initialZoom == true) {
+          // Change max/min zoom here
+          this.setZoom(15);
+          this.initialZoom = false;
+        }
+      google.maps.event.removeListener(zoomChangeBoundsListener);
+    });
+	});
+	
+	map.initialZoom = true;
+	map.fitBounds(this.bounds);
+};
+
+VenueMap.prototype.createMarker = function(){
+	var position, marker, infoWindowContent, percent, content, venueId, infoWindow;
+	var self = this;
+
+	position = new google.maps.LatLng(this.data.lat, this.data.lng);
+
+	this.bounds.extend(position);
+
+	marker = new google.maps.Marker({
+		position: position,
+		map: this.map
+	});
+}

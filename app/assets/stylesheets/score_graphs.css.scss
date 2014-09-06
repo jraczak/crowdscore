@@ -61,43 +61,25 @@ $pie-fore-color: #02b8ea;
   }
 
   &.venue-score {
-    height: 173px;
-    width: 173px;
+    height: 172px;
+    width: 172px;
 
     .pie-graph-mask-color-white { 
-      height: 149px;
-      width: 149px;
-      top: 12px;
-      left: 12px;
+      height: 156px;
+      width: 156px;
+      top: 8px;
+      left: 8px;
+      background-color: #f2fcff;
 
-      line-height: 149px;
+      line-height: 156px;
       font-weight: 900;
       font-size: 65px;
       color: #02b8ea;
     }
 
     &.empty {
-      margin-top: 110px;
       .pie-graph-mask-color-white {
-        background-color: #f8f8f8;
-        color: #f4f4f4;
-      }
-
-      .pie-graph-masks {
-
-        &:before {
-          background-color: #f4f4f4;
-        }
-
-        &:after {
-          background-color: #f4f4f4;
-        }
-      }
-      .pie-graph-left-block {
-        background-color: #f4f4f4;
-      }
-      .pie-graph-right-block {
-        background-color: #f4f4f4;
+        color: #7ae0ff;
       }
     }
   }

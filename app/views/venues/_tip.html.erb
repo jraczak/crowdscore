@@ -1,30 +1,18 @@
-<div class="tip-container">
-	<div class="avatar circletag"></div>
+<div class="tip">
+	<div class="user-image obj-rounded-image-wrapper">
+		<img src="<%= image_tag t.user.image_url %>">
+	</div>
+
 	<div class="body">
-		<h4 class="name-and-time"><%= t.user.first_name.upcase %> | <%= time_ago_in_words(t.created_at) %> ago</h4>	
+		<p class="name-time"><%= t.user.first_name.upcase %><span><%= time_ago_in_words(t.created_at) %> ago</span></p>	
 		<div class="body-text"><%= t.text %></div>					
-		<div class="upvotes-and-share">
-			<a href="#">
-			<% if current_user %>
-			  <% if current_user.liked_tips.include?(t) %>
-			    <%= link_to("/venues/#{t.venue.id}/tips/#{t.id}/remove_vote", id: "tip_vote#{t.id}", remote: true) do %>
-						<div id="thumbs_up<%= t.id %>" class="img thumbs_up"></div>
-			    <% end %>
-			  <% else %>
-			    <%= link_to("/venues/#{t.venue.id}/tips/#{t.id}/upvote", id: "tip_vote#{t.id}", remote: true) do %>
-						<div id="thumbs_up<%= t.id %>" class="img thumbs_up_gray"></div>
-			    <% end %>
-			  <% end %>	
-				<p id="tip-count<%= t.id %>"><b><%= t.tip_likes.count %></b> upvotes</p>
-			<% else %>
-				<%= image_tag('thumbs_up.png') %>
-				<p id="tip-count<%= t.id %>"><b><%= t.tip_likes.count %></b> upvotes</p>
-			</a>
-			<% end %>
-			<a href="#">
-				<%= image_tag('share_venue.png') %>
-				<p><b>SHARE</b></p>
-			</a>
-		</div>
+
+		<% if current_user %>
+		  <% if current_user.liked_tips.include?(t) %>
+		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/remove_vote", class: "liked" %>	
+		  <% else %>
+		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/upvote", class: "like" %>
+		  <% end %>	
+		<% end %>
 	</div>	
 </div>

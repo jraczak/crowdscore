@@ -53,31 +53,31 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
 </script>
 
   <body>
-    <div class="page-wrapper">
-    <div class="container <%= 'map' if params[:action] == 'search' %> <%= 'dark' if params[:action] == 'index' && params[:controller] == 'lists' %>">
-      <%= render 'layouts/navbar' %>
-
-      <div id="flash-container">  
-        <% flash.each do |name, msg| %>
-          <div class="<%= name %>">
-            <p class="msg"><%= msg %></p>
-          </div>
-        <% end %>
-      </div>
-
-      <%= yield %>
-
-      <% unless params[:action] == 'search' %>
-        <%= render "layouts/footer" %>
-      <% end %>  
-
-    </div>
-    </div>
-  
     <% if current_user.nil? %>
       <%= render 'shared/signup_modal' %>
       <%= render 'shared/login_modal' %>
     <% end %>
+    
+    <div class="page-wrapper">
+      <div class="container <%= 'map' if params[:action] == 'search' %> <%= 'dark' if params[:action] == 'index' && params[:controller] == 'lists' %>">
+        <%= render 'layouts/navbar' %>
+
+        <div id="flash-container">  
+          <% flash.each do |name, msg| %>
+            <div class="<%= name %>">
+              <p class="msg"><%= msg %></p>
+            </div>
+          <% end %>
+        </div>
+
+        <%= yield %>
+
+        <% unless params[:action] == 'search' %>
+          <%= render "layouts/footer" %>
+        <% end %>  
+
+      </div>
+    </div>
 
     <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)
@@ -276,6 +276,14 @@ UserVoice.push(['autoprompt', {}]);
         $('.close-modal').click(function(){
           $("#auth-modal").removeClass("visible");
         });
+
+        var imgs = document.getElementsByTagName('img')
+          for(var i=0,j=imgs.length;i<j;i++){
+            imgs[i].onerror = function(e){
+            this.src="/assets/default_user_avatar.png";
+          }
+        }
+        
       });
 
       $(document).keyup(function(e) {
@@ -297,8 +305,6 @@ UserVoice.push(['autoprompt', {}]);
       $('.close-modal').click(function(){
         $("#auth-modal").removeClass("visible");
       });
-
-
 
     </script>
 
