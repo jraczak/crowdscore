@@ -1,2 +1,9 @@
+<%= render 'admin/subnav' %>
+
 <%= resource.name %><br>
 <%= resource.factual_category_id %>
+
+<h3>Score Categories</h3>
+<% resource.score_categories.each do |sc| %>
+  <p><%= sc.name %></p><br>
+<% end %>

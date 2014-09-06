@@ -1,3 +1,5 @@
+<%= render 'admin/subnav' %>
+
 <h1>Create a new score category</h1>
 
 <%= simple_form_for resource, :url => {:controller => "score_categories", :action => "create"} do |f| %>
@@ -9,10 +11,10 @@
   
   <p>NOTE: Select only <b>ONE</b> of either venue category or venue subcategory.</p><br>
   <%= f.label :venue_category_id, "Venue Category" %>
-  <%= f.association :venue_categories %>
+  <%= f.association :venue_categories, as: :check_boxes, label_method: :name, value_method: :id %><br>
   
   <%= f.label :venue_subcategory_id, "Venue Subcategory" %>
-  <%= select(resource, :name, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
+  <%= f.association :venue_subcategories, as: :check_boxes, label_method: :name, value_method: :id %><br>
   
   <%= f.button :submit, "Create new category" %>
 <% end %>
