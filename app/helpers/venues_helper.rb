@@ -26,4 +26,18 @@ module VenuesHelper
   def get_active_tags(venue)
     @tags = venue.tags
   end
+  
+  def business_hours(venue)
+  today = Date.today.strftime("%A").downcase
+  #sets = venue.hours["#{today}"].count
+  #if sets == 1
+  #  @open_time = venue.hours["#{today}"][0][0]
+  #  @close_time = venue.hours["#{today}"][0][1]
+  #elsif sets == 2
+  #  @open_time = venue.hours["#{today}"][0][0]
+  #  @close_time = venue.hours["#{today}"][1][1]
+  #end
+  @open_time = Time.parse(venue.hour_ranges[:"#{today}"][:open]).strftime("%l:%M%p")
+  @close_time = Time.parse(venue.hour_ranges[:"#{today}"][:close]).strftime("%l:%M%p")
+  end
 end
