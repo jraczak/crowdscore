@@ -1,4 +1,4 @@
-
+<% categories = resource.get_score_categories %>
 <div id="submit-score-modal" class="modal">
   <div class="modal-mask">
     <div class="modal-content download-app">
@@ -9,7 +9,6 @@
 	      		<ul id="submit-score-flow">
 	      			<li>
 	      				
-	      			
 	      			<h1> What did you think?</h1>
 	      			<p>Score your experience at <%= resource.name %> in the categories below.</p>
 	      		    <div id="informational-steps-widget">
@@ -23,7 +22,6 @@
 	      			</div>
 	      		    <div class="submit-score-continue first" data-slide-set="1" data-slide="1">Continue</div>
 	      			</li>
-
 
 	      			<li>
 	      				<ul id="submit-score-form-carousel">
@@ -83,16 +81,13 @@
 							      </div>
 	      					</li>
 	      				  <% end %>
-	      					
-	      					
-	      					
-	      					
-	      					
 	      				</ul>
 
 	      				<ul id="submit-score-form-carousel-buttons">
 	      					<li class="active" data-button-slide="0">
-	      						
+	      						<p class="next-slide-description">Next up: <%= categories[1].name %>
+	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="1">
 	      							Continue
 	      						</div>
@@ -100,23 +95,29 @@
 	      					<li data-button-slide="1">
 	      						<div class="submit-score-back" data-slide-set="2" data-slide="0">
 	      							<span>
-	      								<i class="icon-angle-left"></i>
+	      								<i class="fa fa-angle-left"></i>
 	      							</span>
 	      							Back
 	      						</div>
 	      						<span class="vertical-bar"></span>
-	      						
+
+	      						<p class="next-slide-description">Next up: <%= categories[2].name %>
+	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="2">Continue</div>
 	      					</li>
 	      					<li data-button-slide="2">
 	      						<div class="submit-score-back" data-slide-set="2" data-slide="1">
 	      							<span>
-	      								<i class="icon-angle-left"></i>
+	      								<i class="fa fa-angle-left"></i>
 	      							</span>
 	      							Back
 	      						</div>
 	      						<span class="vertical-bar"></span>
-	      						
+
+	      						<p class="next-slide-description">Next up: <%= categories[3].name %>
+	      						</p>
+
 	      						<div class="submit-score-continue right" data-slide-set="2" data-slide="3">
 	      							Continue
 	      						</div>
@@ -124,7 +125,7 @@
 	      					<li data-button-slide="3">
 	      						<div class="submit-score-back" data-slide-set="2" data-slide="2">
 	      							<span>
-	      								<i class="icon-angle-left"></i>
+	      								<i class="fa fa-angle-left"></i>
 	      							</span>
 	      							Back
 	      						</div>
