@@ -1,6 +1,6 @@
 <h1>Create a new score category</h1>
 
-<%= form_for resource, :url => {:controller => "score_categories", :action => "create"} do |f| %>
+<%= simple_form_for resource, :url => {:controller => "score_categories", :action => "create"} do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   
@@ -9,10 +9,10 @@
   
   <p>NOTE: Select only <b>ONE</b> of either venue category or venue subcategory.</p><br>
   <%= f.label :venue_category_id, "Venue Category" %>
-  <%= f.select(resource, :name, VenueCategory.all.collect { |vc| [vc.name, vc.id]}, :include_blank => true) %><br>
+  <%= f.association :venue_categories %>
   
   <%= f.label :venue_subcategory_id, "Venue Subcategory" %>
-  <%= f.select(resource, :name, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
+  <%= select(resource, :name, VenueSubcategory.all.collect { |vs| [vs.name, vs.id]}, :include_blank => true) %><br>
   
-  <%= f.button "Create new category", type: :submit %>
+  <%= f.button :submit, "Create new category" %>
 <% end %>
