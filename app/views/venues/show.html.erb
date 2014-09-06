@@ -116,7 +116,7 @@
 			<div class="tip-prompt p-clearfix">
 				<div class="header">share a tip</div>
 				<div class="user-image obj-rounded-image-wrapper">
-					<%= image_tag current_user.image_url %>
+					<%= image_tag current_user.image_url if current_user.present? %>
 				</div>
 				<%= form_for Tip.create, url: venue_tips_path(resource) do |f| %>
 				<div class="tip-input">
@@ -137,7 +137,7 @@
 		  			<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
 					</div>
 					<div class="user-image obj-rounded-image-wrapper">
-						<%= image_tag current_user.image_url %>
+						<%= image_tag current_user.image_url if current_user.present? %>
 					</div>
 				  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
 					<% end %> 
