@@ -1,6 +1,7 @@
 <%= render 'admin/subnav' %>
 
 <h1><%= resource.name %></h1>
+<h4>Score modal description:</h4><p><%= resource.description %></p><br>
 <p><% resource.venue_categories.each do |vc| %><%= vc.name %><% end %></p>
 <p><% resource.venue_subcategories.each do |vsc| %><%= vsc.name %><% end %></p>
 <%= link_to "edit score category", edit_admin_score_category_path(resource) %>
