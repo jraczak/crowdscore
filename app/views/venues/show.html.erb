@@ -1,3 +1,9 @@
+<% provide(:title, " | #{resource.name.titlecase}") %>
+<% content_for :fb_meta_tags do %>
+  <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:venue" %>" />
+  <meta property="og:title" content="<%= resource.name %>" />
+  <meta property="og:description" content="<%= "Have you been to #{resource.name} in #{resource.city}? Join Crowdscore to share your experience." %>" />
+<% end %>
 
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 
@@ -119,8 +125,6 @@
 			  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
 				<% end %> 
 			</div>
-
-
 	    <% end %>
 	  </div>
 		<div class="column-right">

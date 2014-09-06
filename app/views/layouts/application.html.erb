@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
   <head>
     <meta property="fb:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
+    <meta property="og:image" content="<%= "#{root_url.chop}#{image_path("cs_facebook_og_logo.png")}" %>" />
     <%= yield :fb_meta_tags %>
     <title><%= "Crowdscore #{yield(:title)}" %></title>
     <%= stylesheet_link_tag "application" %>

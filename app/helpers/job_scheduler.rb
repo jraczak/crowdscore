@@ -1,108 +1,83 @@
-class Admin::Venues::VenueImportsController < InheritedResources::Base
-  before_filter :authorize_admin!
-#   actions :new, :create
-
+module JobScheduler
+include VenueImportsHelper
   
-  def create
-    @venue_import = VenueImport.new
-    @file = params[:venue_import][:file]
-    
-    Rails.logger.debug "--> Trying to read csv file..."
-    content = File.read(@file.tempfile)
-    Rails.logger.debug "--> Loading csv contents into content column..."
-    @venue_import.content = content
-    
-    if @venue_import.save
-      Rails.logger.debug "--> Made it past the save..."
-      #delay.process_files!(@venue_import.id)
-      Rails.logger.debug "--> Queueing delayed job..."
-      Delayed::Job.enqueue JobScheduler::ProcessVenueImportData.new(@venue_import.id)
-      flash[:notice] = "CSV upload is being processed"
-      render :new
-    else
-      flash[:notice] = "CSV upload could not be processed"
-      render :new
+  class FacebookListCreation < Struct.new(:list_url, :facebook_access_token)
+    def perform
+      @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+      @fb_user = FbGraph::User.me(facebook_access_token)
+      
+      action = @fb_user.og_action!(
+               @app.og_action(:create), :list => list_url)
     end
-
-    
-    #create! do |success, failure|
-    #  success.html do
-    #    process_files!
-    #    flash[:notice] = resource.report
-    #    render :new
-    #  end
-	#
-    #  failure.html do
-    #    flash[:error] = resource.errors.full_messages.to_sentence
-    #    render :new
-    #  end
-    #end
-  
   end
   
-  def report
-    message = "#{saved_venues.length} venue(s) were successfully imported."
-    message += " #{unsaved_venues.length} venue(s) not imported due to failed validations." if unsaved_venues.any?
-    message += " #{@existing_venues} unchanged venue(s) were not imported." if @existing_venues > 0
-    message += " #{@updated_venues.length} venue(s) updated with new data." if @updated_venues.any?
-    @unsaved_venues.take(10).each do |v|
-      if v.errors.full_messages.any?
-        message += "#{v.name} failed to save because #{v.errors.full_messages.first}"
+  class PublishFBListCreation < Struct.new(:full_list_url, :facebook_access_token)
+    def perform
+      @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+      @fb_user = FbGraph::User.me(facebook_access_token)
+      
+      puts "Attempting to publish action..."
+      action = @fb_user.og_action!(
+               @app.og_action(:create), :list => full_list_url)
+      if action
+        puts "Action should be published..."
+      else
+        puts "Action was not published..."
       end
     end
-    message
   end
   
-  
-
-  private
-
-  def cleanup_before_save
-    errors.clear
-    @saved_venues = []
-    @unsaved_venues = []
-    @updated_venues = []
-    @existing_venues = 0
-  end
-
-  def process_files!(venue_import_id)
-    Rails.logger.debug "--> Beginning to parse csv content..."
-    @import_target = VenueImport.find(venue_import_id)
-    @to_process = CSV.parse(@import_target.content, row_sep: "\n", headers: true)
-    
-    @to_process.each do |row|
-      if Venue.exists?(Venue.find_by_factual_id(row['factual_id']))
-        #@existing_venues += 1 
-        #@to_process.delete(row)
-        venue = update_venue_from_csv(row)
-        if venue.changed?
-          venue.save!
-          @updated_venues << venue
+  class ProcessVenueImportData < Struct.new(:venue_import_id)
+    def perform
+      Delayed::Worker.logger.debug "--> Looking up venue import object..."
+      @import_target = VenueImport.find(venue_import_id)
+      Rails.logger.debug "--> Parsing CSV contents..."
+      puts "--> Parsing CSV contents..."
+      @to_process = CSV.parse(@import_target.content, row_sep: "\n", headers: true)
+      
+      @to_process.each do |row|
+        if Venue.exists?(Venue.find_by_factual_id(row['factual_id']))
+          #@existing_venues += 1 
+          #@to_process.delete(row)
+          Delayed::Worker.logger.debug "--> Existing venue found matching Factual ID"
+          puts "--> Existing venue found matching Factual ID"
+          venue = update_venue_from_csv(row)
+          Delayed::Worker.logger.debug "--> Attempting to update existing venue with id #{venue.id}"
+          puts "--> Attempting to update existing venue with id #{venue.id}"
+          if venue.changed?
+            venue.save!
+            Delayed::Worker.logger.debug "--> Existing venue #{venue.id} was updated"
+            puts "--> Existing venue #{venue.id} was updated"
+            #@updated_venues << venue
+          else
+            #@existing_venues += 1
+          end
         else
-          @existing_venues += 1
+          Delayed::Worker.logger.debug "--> Attempting to create new venue from row"
+          puts "--> Attempting to create new venue from row"
+          venue = create_venue_from_csv(row)
+          Delayed::Worker.logger.debug "--> New venue was created with id #{venue.id} and name #{venue.name}"
+          puts "--> New venue was created with id #{venue.id} and name #{venue.name}"
+          if venue.new_record?
+            #@unsaved_venues << venue
+        else
+         #@saved_venues << venue
         end
-      else
-        venue = create_venue_from_csv(row)
-        if venue.new_record?
-        @unsaved_venues << venue
-      else
-        @saved_venues << venue
       end
-    end
-
-      #if !venue.id_changed?
-      #  @updated_venues << venue
-      #if venue.new_record?
-      #  @unsaved_venues << venue
-      #else
-      #  @saved_venues << venue
-      #end
-    end
-    Rails.logger.debug "--> Content was parsed and handled."
-  end
-  handle_asynchronously :process_files!
-
-  def create_venue_from_csv(row)
+	  
+        #if !venue.id_changed?
+        #  @updated_venues << venue
+        #if venue.new_record?
+        #  @unsaved_venues << venue
+        #else
+        #  @saved_venues << venue
+        #end
+      end
+      Rails.logger.debug "--> Content was parsed and handled."
+      puts "--> Content was parsed and handled."
+      end
+      
+      def create_venue_from_csv(row)
     factual_category_id = row['category_ids'].gsub(/[^0-9a-z]/i, '').to_i
     #category = find_category(factual_category_id)
     #subcategory = find_subcategory(factual_category_id)
@@ -230,4 +205,10 @@ class Admin::Venues::VenueImportsController < InheritedResources::Base
     VenueSubcategory.find(map.venue_subcategory_id) unless map.venue_subcategory_id.blank?
   end
 
+  
+  end
+  
+  
+
 end
+

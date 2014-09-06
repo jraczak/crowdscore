@@ -19,6 +19,15 @@ class List < ActiveRecord::Base
     super({ methods: :venue_ids }.merge(options))
   end
   
+  def facebook_description
+    user = self.user 
+    if user.lists.count > 1
+      "#{self.name} is one of #{user.username}'s #{user.lists.count} curated lists on Crowdscore. Join today to start building lists of your own."
+    else
+      "#{self.name} is a list curated by #{user.username} on Crowdscore. Join today to start building lists of your own."
+    end
+  end
+  
   private
   
   #def reindex_list

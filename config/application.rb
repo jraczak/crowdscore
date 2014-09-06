@@ -63,4 +63,5 @@ module Crowdscore
   Timezone::Configure.begin do |c|
     c.username = 'jraczak'
   end
+  Delayed::Worker.destroy_failed_jobs = false
 end

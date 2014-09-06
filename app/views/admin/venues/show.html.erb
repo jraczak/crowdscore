@@ -1,9 +1,12 @@
+<%= render 'admin/subnav' %>
+
 <h1><%=resource.name%></h1>
 <p><%= "#{resource.venue_category.name} | #{resource.venue_subcategory.name unless resource.venue_subcategory.nil?}" %></p><br>
 <br>
 <p><%= resource.full_address %></p><br>
 <p><%= number_to_phone(resource.phone, area_code: true) %></p><br>
 <p><%= link_to resource.url, resource.url %></p><br>
+<p>Factual ID: <%= resource.factual_id %></p>
 
 <h2>Operating Hours</h2>
 <% resource.hours_with_names.each do |day, hours| %>

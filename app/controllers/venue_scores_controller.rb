@@ -26,7 +26,20 @@ class VenueScoresController < InheritedResources::Base
     @venue_score.save!
     @venue_score.venue.recompute_score!
     
-    flash[:notice] = "You've earned 1 Karma point for submitting your score!"
+    flash[:notice] = "Your score has been submitted!"
+    venue = Venue.find(params[:venue_id])
+    
+    publish_facebook_score_creation(venue)
+  end
+  
+  def publish_facebook_score_creation(venue)
+    @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
+    @fb_user = FbGraph::User.me(current_user.facebook_access_token)
+      
+    unless Rails.env.development?
+      action = @fb_user.og_action!(
+               @app.og_action(:score), :venue => venue_url(venue))
+    end
   end
   
   
