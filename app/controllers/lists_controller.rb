@@ -49,7 +49,7 @@ class ListsController < InheritedResources::Base
     venue = Venue.find(params[:venue_id])
     resource.venues.delete(venue)
    
-    render nothing: true, status: :ok
+    redirect_to resource
   end
      
   def show

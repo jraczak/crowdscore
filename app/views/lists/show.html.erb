@@ -50,13 +50,15 @@
   
   </div>
 </div>
-
-<div id="list-venues-container">
+<div id="list-venues-container" class="<%= 'owner' if current_user.id == resource.user.id %>">
   <h3><span><%= pluralize(resource.venues.count, "place") %></span></h3>
   <% unless resource.venues.empty? %>
     <% resource.venues.each_with_index do |venue, i| %>
       <div class="list-venue-container">
-          <div class="venue-index-container"><%= i+1 %></div>
+          <div class="venue-index-container">
+            <%= i+1 %>
+            <%= link_to( '+', {:controller => 'lists', :action => 'remove', :id => resource.id, :venue_id => venue.id}, {:method => :put} ) if current_user.id == resource.user.id %>
+          </div>
           <div class="venue-info">
             <%= link_to venue.name, venue, class: "venue-name" %>
             <p class="venue-categories"><%= venue.venue_category.name %><% if venue.venue_subcategory %>  &#903;  <%= venue.venue_subcategory.name %><% end %></p>
