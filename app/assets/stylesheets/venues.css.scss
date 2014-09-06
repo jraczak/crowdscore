@@ -164,7 +164,7 @@
 			{
 				padding-top: 30px;
 				position: relative;
-				margin-bottom: 30px;
+				margin-bottom: 25px;
 
 				&:after 
 				{
@@ -2711,7 +2711,7 @@ ul#submit-score-flow {
 			font-size: 13px;
 			font-weight: 900;
 			color: #02b8ea;
-			margin-top: 11px;
+			margin-top: 13px;
 		}
 
 		span.crossbar {
@@ -2729,7 +2729,7 @@ ul#submit-score-flow {
 			border-radius: 50%;
 			margin-right: 28px;
 			display: block;
-			margin-top: -24px;
+			margin-top: -22px;
 			float: left;
 			position: relative;
 
@@ -2743,7 +2743,7 @@ ul#submit-score-flow {
 		height: 39px;
 		position: absolute;
 		top: 0;
-		@include transition(width 1s linear);
+		@include transition(width 0.5s linear);
 		
 		.progress-bar-overlay {
 			position: absolute;
