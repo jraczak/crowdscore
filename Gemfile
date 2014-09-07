@@ -40,6 +40,7 @@ gem 'fb_graph'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rails_12factor'
+gem 'mixpanel-ruby'
 
 gem 'carrierwave_direct'
 

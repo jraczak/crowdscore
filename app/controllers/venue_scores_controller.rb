@@ -5,6 +5,7 @@ class VenueScoresController < InheritedResources::Base
 
   
   def create
+  	tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
   	score_data = eval(params[:score_data])
 
     @venue_score = VenueScore.new
@@ -29,11 +30,14 @@ class VenueScoresController < InheritedResources::Base
     flash[:notice] = "Your score has been submitted!"
     venue = Venue.find(params[:venue_id])
     
-    publish_facebook_score_creation(venue)
+    #publish_facebook_score_creation(venue)
 
     respond_to do |format|
         format.js   {}
     end
+    tracker.track(current_user.id, 'Score Submitted', {
+      'Venue Category' => "#{venue.venue_category.name.downcase}"
+      })
   end
   
   def publish_facebook_score_creation(venue)
