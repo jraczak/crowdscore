@@ -1,4 +1,6 @@
 <% provide(:title, " | #{resource.name.titlecase}") %>
+<% provide(:meta_description, "Reviews, ratings, and photos for #{resource.name.titlecase} in #{resource.city} #{resource.state} on Crowdscore.") %>
+<% provide(:meta_keywords, "#{resource.name} reviews, #{resource.name} #{resource.venue_category.name}, #{resource.venue_category.name} ratings") %>
 <% content_for :fb_meta_tags do %>
   <meta property="og:type" content="<%= "#{ENV['FACEBOOK_APP_NAMESPACE']}:venue" %>" />
   <meta property="og:title" content="<%= resource.name %>" />
