@@ -29,7 +29,7 @@
 	      					<li>
 	      						<h1><%= sc.name %></h1>
 	      						<p><%= sc.description %></p>
-	      						<%= select_tag "venue_score_#{index+1}", options_for_select((1..10).to_a), :"data-scid" => "#{index+1}" %>
+	      						<%= select_tag "venue_score_#{index+1}", options_for_select((1..10).to_a), :"data-scid" => "#{sc.id}" %>
 		      					<div class="slider-bar-widget-container">
 					        		<div class="ui-slider" data-field="<%= index+1%>">
 						        		<div class="ui-slider-handle" id="draggable-marker">

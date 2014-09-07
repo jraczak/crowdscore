@@ -275,24 +275,25 @@ $(document).ready ->
         $(parent).children('.slider-bar-main-background').css("width", "100%")
       $(parent).find('.marker-value').html( this.selectedIndex + 1 )
   
-
   
-  $('body').on 'submit', '#new_venue_score', ->
+  $('#new_venue_score').on 'submit', (e) ->
     venueId = $(this).data('venue-id')
     scoreData = []
 
     for select in $('select[id*="venue_score"]')
       scoreData.push([$(select).data('scid'), select.selectedIndex + 1])
 
-    console.log scoreData
-    # scoreData = JSON.stringify(scoreData)
-    # $.ajax(
-    #   type: "POST"
-    #   url: "/venues/#{venueId}/score"
-    #   dataType: "script"
-    #   data: { score_data: scoreData }
-    # )
-        
+    scoreData = JSON.stringify(scoreData)
+
+    $.ajax(
+      type: "POST"
+      url: "/venues/#{venueId}/score"
+      dataType: "script"
+      data: { score_data: scoreData }
+    )
+
+    false
+
   $('.submit-score-continue, .submit-score-back').click ->
     progressPositions = 
     switch $(this).data('slide-set')
