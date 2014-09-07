@@ -1,0 +1,151 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<div class="homepage-map">
+
+	<div id="homepage-map">
+	</div>
+
+	<div id="hp-main-center">
+		<h2 id="hp-slogan">Find New Places to Love</h2>
+	
+		<div class="hps-wrapper">
+			<%= form_tag search_venues_path, method: "get", class: "hps-inner" do |f| %>
+				<div class="hps-input-main">
+					<div class="hps-icon"></div>
+					<p class="hps-placeholder"><b>Search</b> restaurants, bars, salons, food...</p>
+					<%= text_field_tag :q, "", class: "hps-input", placeholder: "What would you like?", tabindex: 5%>
+				</div>
+				<div class="hps-location-main">
+					<%= text_field_tag :zip, "", placeholder: "in San Francisco, CA", tabindex: 6, class: "hps-location-input" %>
+				</div>
+				<input type="submit" class="hps-submit" value="" tabindex=7>
+
+			</div>
+		<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	var map;
+
+	latlng = decodeURIComponent(getCookie("detected_user_location")).split(',');
+	var SF = new google.maps.LatLng(latlng[0], latlng[1]);
+	
+	function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+	}
+
+	function initialize() {
+
+	  var featureOpts = [
+	    {
+	      elementType: 'labels',
+	      stylers: [
+	        { visibility: 'off' }
+	      ]
+	    },
+	  ];
+
+	  var mapOptions = {
+	    zoom: 15,
+	    center: SF,
+	    scrollwheel: false,
+	    disableDefaultUI: true,
+	    mapTypeControlOptions: {
+	      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
+	    },
+	    mapTypeId: 'custom_style'
+	  };
+
+	  map = new google.maps.Map(document.getElementById('homepage-map'), mapOptions);
+
+	  var styledMapOptions = {
+	    name: 'Custom Style'
+	  };
+
+	  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+	  map.mapTypes.set('custom_style', customMapType);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+	function HomepageSearch () {
+		this.initialize();
+	};
+
+	HomepageSearch.prototype.initialize = function () {
+		this.setElements();
+		this.setupEvents();
+	};
+
+	HomepageSearch.prototype.setElements = function () {
+		this.$icon = $('.hps-icon');
+		this.$placeholder = $('.hps-placeholder');
+		this.$inputMain = $('.hps-input-main');
+		this.$locationMain = $('.hps-location-main');
+		this.$inner = $('.hps-inner');
+		this.$input = $('.hps-input');
+		this.$locationInput = $('.hps-location-input');
+	};
+
+	// Function I wrote to allow all event handling declarations to be defined in one place
+	// Check them out in HomepageSearch.prototype.events
+	HomepageSearch.prototype.setupEvents = function () {
+		var e, events, f, key, t;
+
+		events = this.events();
+
+		for (key in events) {
+		  try {
+		    f = this[key.split(/#(.+)?/)[0]].bind(this);
+		    e = key.split(/#(.+)?/)[1];
+		    t = events[key];
+		    $('body').on(e, t, f);
+		    
+		  } catch (e) {}
+		}
+	};
+
+	HomepageSearch.prototype.events = function () {
+		return {
+			'setSearch#click' : '.hps-input-main',
+			'setSearch#focus' : '.hps-input',
+			'setLocation#focus' : '.hps-location-input',
+			'setLocation#click' : '.hps-location-main',
+			'reset#click' : document,
+		}
+	};
+
+	HomepageSearch.prototype.reset = function (e) {
+		this.$icon.removeClass('search')
+		this.$placeholder.removeClass('search')
+		this.$inputMain.removeClass('search').removeClass('location')
+		this.$input.removeClass('search')
+		this.$locationInput.removeClass('location')
+	};
+
+	HomepageSearch.prototype.setSearch = function (e) {
+		e.stopPropagation();
+		this.$icon.addClass('search')
+		this.$placeholder.addClass('search')
+		this.$inputMain.addClass('search').removeClass('location')
+		this.$input.addClass('search')
+		this.$locationInput.removeClass('location')
+	};
+
+	HomepageSearch.prototype.setLocation = function (e) {
+		e.stopPropagation();
+		this.$inputMain.addClass('location')
+		this.$locationInput.addClass('location')
+	};
+
+	$(document).ready( function () {
+		var map = new HomepageSearch();
+	});
+</script>

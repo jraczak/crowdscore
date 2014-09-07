@@ -60,7 +60,7 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
     <% end %>
     
     <div class="page-wrapper">
-      <div class="container <%= 'map' if params[:action] == 'search' %> <%= 'dark' if params[:action] == 'index' && params[:controller] == 'lists' %>">
+      <div class="container<%= ' map' if params[:action] == 'search' %><%= ' dark' if params[:action] == 'index' && params[:controller] == 'lists' %><%= ' home' if params[:controller] == 'home' %>">
         <%= render 'layouts/navbar' %>
 
         <div id="flash-container">  
