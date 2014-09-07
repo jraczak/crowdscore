@@ -30,6 +30,10 @@ class VenueScoresController < InheritedResources::Base
     venue = Venue.find(params[:venue_id])
     
     publish_facebook_score_creation(venue)
+
+    respond_to do |format|
+        format.js   {}
+    end
   end
   
   def publish_facebook_score_creation(venue)
