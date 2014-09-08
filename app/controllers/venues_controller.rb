@@ -19,8 +19,12 @@ class VenuesController < InheritedResources::Base
   end
   
   def show
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
     @higher_scored_venues = Venue.higher_scored_than(resource, 10)
     @json = resource.to_gmaps4rails
+    resource.views += 1
+    resource.save!
+    tracker.track(0, 'Viewed Venue')
   end
   
   def create_snapshot
