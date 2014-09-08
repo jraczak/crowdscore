@@ -33,13 +33,15 @@ class ListsController < InheritedResources::Base
     if current_user.facebook_id && current_user.facebook_access_token
       Delayed::Job.enqueue JobScheduler::PublishFBListCreation.new(list_url(@list), current_user.facebook_access_token), 0, 5.minutes.from_now
     end
-    tracker.track(current_user.id, 'List Created')
+    tracker.track(current_user.id, 'Created List')
   end
    
   def add
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
     venue = Venue.find(params[:venue_id])
     unless resource.venues.include?(venue)
       resource.venues << venue
+      tracker.track(current_user.id, 'Added Venue to List')
     end
    
     respond_to do |format|

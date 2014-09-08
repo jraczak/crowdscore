@@ -43,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
 	        '$email' => resource.email,
 	        '$username' => resource.username
         })
-        tracker.track(resource.id, 'Sign Up')
+        tracker.track(resource.id, 'Signed Up')
       end
     end
   end

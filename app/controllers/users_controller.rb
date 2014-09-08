@@ -21,6 +21,7 @@ class UsersController < InheritedResources::Base
   end
   
   def follow
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
     if current_user == resource
       flash[:notice] = "Whoops. You can't follow yourself."
     elsif current_user.follows?(resource)
@@ -28,6 +29,7 @@ class UsersController < InheritedResources::Base
     else
       current_user.follows << resource
       flash[:notice] = "You are now following #{resource.username}!"
+      tracker.track(current_user.id, 'Followed User')
       # Send a notification email to the user saying they were followed.
       unless !resource.receive_follower_emails
         FollowsMailer.new_follower_email(resource, current_user).deliver

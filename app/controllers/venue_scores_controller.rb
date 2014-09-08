@@ -35,7 +35,7 @@ class VenueScoresController < InheritedResources::Base
     respond_to do |format|
         format.js   {}
     end
-    tracker.track(current_user.id, 'Score Submitted', {
+    tracker.track(current_user.id, 'Submitted Score', {
       'Venue Category' => "#{venue.venue_category.name.downcase}"
       })
   end

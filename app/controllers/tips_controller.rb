@@ -11,12 +11,14 @@ class TipsController < InheritedResources::Base
   end
 
   def create
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
     build_resource.user = current_user
     create! { 
       respond_to do |format|
         format.html { parent }
         format.js { render "create", :locals => {:tip => build_resource} }
       end 
+      tracker.track(current_user.id, 'Posted Tip')
       return
     }
     flash[:notice] = "You've earned 1 Karma point for submitting your tip!"
