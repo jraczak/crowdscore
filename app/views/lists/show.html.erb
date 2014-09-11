@@ -57,7 +57,7 @@
       <div class="list-venue-container">
           <div class="venue-index-container">
             <%= i+1 %>
-            <%= link_to( '+', {:controller => 'lists', :action => 'remove', :id => resource.id, :venue_id => venue.id}, {:method => :put} ) if current_user.id == resource.user.id %>
+            <%= link_to( '+', {:controller => 'lists', :action => 'remove', :id => resource.id, :venue_id => venue.id}, {:method => :put} ) if current_user.id == resource.user.id if current_user %>
           </div>
           <div class="venue-info">
             <%= link_to venue.name, venue, class: "venue-name" %>
