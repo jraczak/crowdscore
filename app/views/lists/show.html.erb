@@ -50,7 +50,7 @@
   
   </div>
 </div>
-<div id="list-venues-container" class="<%= 'owner' if current_user.id == resource.user.id %>">
+<div id="list-venues-container" class="<%= 'owner' if current_user.id == resource.user.id if current_user %>">
   <h3><span><%= pluralize(resource.venues.count, "place") %></span></h3>
   <% unless resource.venues.empty? %>
     <% resource.venues.each_with_index do |venue, i| %>
