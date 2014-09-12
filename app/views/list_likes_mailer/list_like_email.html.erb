@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<body>
+			<h2>Your list is getting popular.</h2>
+		<p>
+			Hi, <%= @owner.first_name %>. <%= link_to @liker.username, @liker %> liked your list
+			<%= link_to @list.name, list %> on Crowdscore. Awesome.
+		</p>
+		
+		</body>
+	</head>
+</html>
