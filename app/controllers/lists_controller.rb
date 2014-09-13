@@ -65,7 +65,7 @@ class ListsController < InheritedResources::Base
     current_user.liked_lists << resource
     #current_user.save!
     unless Rails.env.development?
-      publish_facebook_list_favorite(resource)
+      #publish_facebook_list_favorite(resource)
     end
     ListsMailer.list_like_email(resource, resource.user, current_user).deliver
   end
