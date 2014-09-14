@@ -2,13 +2,23 @@ module UserDashboardHelper
 
   def get_restaurant_recommendations(user)
     location = user_location_data
-    
-      rec_search = Venue.search do
-        with :venue_subcategory_id, user.liked_venue_categories["restaurant"][0] unless user.liked_venue_categories.empty?
-        with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
+    all_results = []
+    @recs = []
+      
+      
+      unless user.liked_venue_categories.empty?
+        user.liked_venue_categories["restaurant"].each do |lvc|
+          rec_search = Venue.search do
+            with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
+            with(:location).in_radius(location["lat"], location["lng"], 500) unless location == false
+          end
+          all_results << rec_search.results unless rec_search.results.empty?
+        end
       end
 
-    @recs = rec_search.results
+    all_results.each do |r|
+      @recs << Venue.find(r[0]["id"])
+    end
   end
   
   def where_am_i

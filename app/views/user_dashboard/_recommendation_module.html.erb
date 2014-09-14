@@ -5,12 +5,38 @@
     <div class="module-right"></div>
 
     <div class='recommendation-header'>
-      <h2>Popular in <br>your area</h2>
+      <h2>New places <br>to try</h2>
       <p class="description">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore laudantium, totam rem. Sed ut perspiciatis.
+        Here are some new places in your area to try based on the cuisines you like.
       </p>
     </div>
 
+    <!-- START DYNAMIC RECOMMENDATION CARDS -->
+    
+    <% @recs.each do |rec| %>
+      <div class='recommendation-card empty'>
+        <div class="score-container">
+          <%= render 'shared/pie_graph', type: "dashboard-score", score: rec.score, animate: true  %>
+        </div>
+
+        <div class="stats">
+          <span><%= pluralize(rec.venue_scores.count, "score") %></span>
+          <span><%= pluralize(rec.tips.count, "tip") %></span>
+        </div>
+
+        <div class="info">
+          <h4><%= truncate(rec.name, length: 24, omission: '...' %></h4>
+          <p>
+            <span>0.2 miles</span>
+            <span><%= rec.city %></span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+    
+    <!-- END DYNAMIC RECOMMENDATION CARDS -->
+    
+    
     <div class="recommendation-module-cards">
       <div class='recommendation-card populated'>
         <div class="image">

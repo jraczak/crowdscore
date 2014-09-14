@@ -1,10 +1,10 @@
 <div class='r_dashboard'>
   <h1><%= dashboard_salutation %></h1>
 
-  <%= render 'recommendation_module' %>
+  <% get_restaurant_recommendations(current_user) %>
+  <%= render 'recommendation_module' unless @recs.empty? %>
   <%= render 'featured_venue' %>
-  <%= render 'recommendation_module' %>
-  <%= render 'recommendation_module' %>
+
 
 
   <!-- Start User Module -->
