@@ -10,14 +10,14 @@ module UserDashboardHelper
         user.liked_venue_categories["restaurant"].each do |lvc|
           rec_search = Venue.search do
             with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
-            with(:location).in_radius(location["lat"], location["lng"], 500) unless location == false
+            with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
           end
           all_results << rec_search.results unless rec_search.results.empty?
         end
       end
 
     all_results.each do |r|
-      @recs << Venue.find(r[0]["id"])
+      @recs << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
     end
   end
   
