@@ -2,7 +2,7 @@
   <h1><%= dashboard_salutation %></h1>
 
   <% get_restaurant_recommendations(current_user) %>
-  <%= render 'recommendation_module' unless @recs.empty? %>
+  <%= render 'recommendation_module' unless @cards.empty? %>
   <%= render 'featured_venue' %>
 
 

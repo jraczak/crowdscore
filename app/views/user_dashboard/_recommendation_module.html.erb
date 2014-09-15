@@ -5,39 +5,43 @@
     <div class="module-right"></div>
 
     <div class='recommendation-header'>
-      <h2>New places <br>to try</h2>
+      <h2><%= module_header( yield :module_type) %></h2>
       <p class="description">
-        Here are some new places in your area to try based on the cuisines you like.
+        <%= module_copy( yield :module_type) %>
       </p>
     </div>
 
     <!-- START DYNAMIC RECOMMENDATION CARDS -->
     
-    <% @recs.each do |rec| %>
-      <div class='recommendation-card empty'>
-        <div class="score-container">
-          <%= render 'shared/pie_graph', type: "dashboard-score", score: rec.score, animate: true  %>
+    <div class="recommendation-module-cards">
+    <% @cards.each do |venue| %>
+      <% unless venue == resource %>
+        <div class='recommendation-card empty'>
+          <div class="score-container">
+            <%= render 'shared/pie_graph', type: "dashboard-score", score: venue.score, animate: true  %>
+          </div>
+	  
+          <div class="stats">
+            <span><%= pluralize(venue.venue_scores.count, "score") %></span>
+            <span><%= pluralize(venue.tips.count, "tip") %></span>
+          </div>
+	  
+          <div class="info">
+            <h4><%= link_to truncate(venue.name, length: 24, omission: '...'), venue %></h4>
+            <p>
+              <span><%= "#{distance_between(resource, venue)} miles" %></span>
+              <span><%= venue.city %></span>
+            </p>
+          </div>
         </div>
-
-        <div class="stats">
-          <span><%= pluralize(rec.venue_scores.count, "score") %></span>
-          <span><%= pluralize(rec.tips.count, "tip") %></span>
-        </div>
-
-        <div class="info">
-          <h4><%= link_to truncate(rec.name, length: 24, omission: '...'), rec %></h4>
-          <p>
-            <span>0.2 miles</span>
-            <span><%= rec.city %></span>
-          </p>
-        </div>
-      </div>
+      <% end %>
     <% end %>
     
     <!-- END DYNAMIC RECOMMENDATION CARDS -->
     
     
-    <div class="recommendation-module-cards">
+    
+      <!-- 
       <div class='recommendation-card populated'>
         <div class="image">
           <img src="http://discovermilton.com/wp-content/uploads/2013/03/Pasta_mabo06_morguefile.jpg">
@@ -128,6 +132,7 @@
       <div class='recommendation-card'></div>
       <div class='recommendation-card'></div>
       <div style='width: 100px; height: 299px; visibility: hidden'>s</div>
+    -->
     </div>
   </div>
 </div>

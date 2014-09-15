@@ -3,7 +3,7 @@ module UserDashboardHelper
   def get_restaurant_recommendations(user)
     location = user_location_data
     all_results = []
-    @recs = []
+    @cards = []
       
       
       unless user.liked_venue_categories.empty?
@@ -17,7 +17,7 @@ module UserDashboardHelper
       end
 
     all_results.each do |r|
-      @recs << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
+      @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
     end
   end
   
@@ -70,6 +70,24 @@ module UserDashboardHelper
       render "user_dashboard/list_card", story: story
     when "VenueScore"
       render "user_dashboard/venue_score_card", story: story
+    end
+  end
+  
+  def module_header(module_type)
+    case module_type
+      when "nearby_venues"
+        return "Similar places nearby"
+      when "cuisine_recommendations"
+        return "New places to try"
+    end
+  end
+  
+  def module_copy(module_type)
+    case module_type
+      when "nearby_venues"
+        return "These places are similar to #{resource.name} and are nearby."
+      when "cuisine_recommendations"
+        return "Here are some new places to try based on the cuisines you like."
     end
   end
 
