@@ -62,11 +62,13 @@ module VenuesHelper
   end
   
   def venue_time_zone
-    NearestTimeZone.to(resource.latitude, resource.longitude)
+    unless resource.latitude.nil?
+      NearestTimeZone.to(resource.latitude, resource.longitude)
+    end
   end
   
   def open_now?
-    unless resource.hour_ranges.empty?
+    unless resource.hour_ranges.empty? || resource.latitude.nil?
       today = Date.today.strftime("%A").downcase
       if resource.hour_ranges[:"#{today}"]
         time = Time.zone.now.in_time_zone(venue_time_zone).strftime("%H%M").to_i
