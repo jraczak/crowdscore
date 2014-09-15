@@ -289,14 +289,6 @@ UserVoice.push(['autoprompt', {}]);
         $('.close-modal').click(function(){
           $("#auth-modal").removeClass("visible");
         });
-
-        var imgs = document.getElementsByTagName('img')
-          for(var i=0,j=imgs.length;i<j;i++){
-            imgs[i].onerror = function(e){
-            this.src="/assets/default_user_avatar.png";
-          }
-        }
-        
       });
 
       $(document).keyup(function(e) {

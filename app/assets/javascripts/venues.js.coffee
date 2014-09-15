@@ -191,8 +191,6 @@ class AddToListModal extends SimpleDomObject
 
 $(document).ready ->
 
-  # $('.cs-obj-dropdown')
-
   $('body').on "click", '.btn-submit-tip', (e) ->
     e.preventDefault()
     $('#new_tip').submit()
@@ -314,7 +312,4 @@ $(document).ready ->
     carousel.css('left', left)
     $('#submit-score-form-carousel-buttons li').removeClass('active')
     $('#submit-score-form-carousel-buttons li[data-button-slide=' + buttonSlide + ']').addClass('active')
-    $('.progress-bar-overlay-wrapper').css('width', "" + (buttonSlide * 66 + 38) + "px")
-
-
-
+    $('.progress-bar-overlay-wrapper').css('width', "" + (buttonSlide * 66 + 38) + "px")     

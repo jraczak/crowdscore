@@ -1,6 +1,6 @@
 <div class="tip">
 	<div class="user-image obj-rounded-image-wrapper">
-		<img src="<%= image_tag t.user.image_url %>">
+		<%= image_tag t.user.image_url, :onerror => "this.src='/assets/avatar.png';" %>
 	</div>
 
 	<div class="body">
