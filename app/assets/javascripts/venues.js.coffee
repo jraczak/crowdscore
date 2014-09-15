@@ -192,6 +192,9 @@ class AddToListModal extends SimpleDomObject
 $(document).ready ->
 
   # $('.cs-obj-dropdown')
+
+  $('body').on "submit", '#new_tip', ->
+    $(this).find('textarea').val("");
   
   page_action = getParameterByName('page_action')
   if page_action

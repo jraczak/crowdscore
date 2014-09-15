@@ -9,9 +9,9 @@
 
 		<% if current_user %>
 		  <% if current_user.liked_tips.include?(t) %>
-		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/remove_vote", class: "liked" %>	
+		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/remove_vote", class: "vote liked", :"data-tip-id" => t.id, remote: true %>	
 		  <% else %>
-		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/upvote", class: "like" %>
+		    <%= link_to "<span></span>#{t.tip_likes.count}".html_safe, "/venues/#{t.venue.id}/tips/#{t.id}/upvote", class: "vote like", :"data-tip-id" => t.id, remote: true %>
 		  <% end %>	
 		<% end %>
 	</div>	

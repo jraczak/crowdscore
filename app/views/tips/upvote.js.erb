@@ -1,3 +1,4 @@
-$('div#thumbs_up<%= tip.id %>.img').addClass('thumbs_up').removeClass('thumbs_up_gray');
-$('#tip-count<%= tip.id %>').html("<b><%= tip.tip_likes.count %></b> upvotes");
-$("#tip_vote<%= tip.id %>").prop("href", "/venues/<%= tip.venue.id %>/tips/<%= tip.id %>/remove_vote");
+var tipVote = $('.tip .vote[data-tip-id="<%= tip.id %>"]')
+var count = parseInt(tipVote.text());
+tipVote.removeClass('like').addClass('liked').html("<span></span>" + ++count)
+tipVote.prop("href", "/venues/<%= tip.venue.id %>/tips/<%= tip.id %>/remove_vote");
