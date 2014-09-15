@@ -2,13 +2,23 @@ module UserDashboardHelper
 
   def get_restaurant_recommendations(user)
     location = user_location_data
-    
-      rec_search = Venue.search do
-        with :venue_subcategory_id, user.liked_venue_categories["restaurant"][0] unless user.liked_venue_categories.empty?
-        with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
+    all_results = []
+    @cards = []
+      
+      
+      unless user.liked_venue_categories.empty?
+        user.liked_venue_categories["restaurant"].each do |lvc|
+          rec_search = Venue.search do
+            with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
+            with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
+          end
+          all_results << rec_search.results unless rec_search.results.empty?
+        end
       end
 
-    @recs = rec_search.results
+    all_results.each do |r|
+      @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
+    end
   end
   
   def where_am_i
@@ -60,6 +70,33 @@ module UserDashboardHelper
       render "user_dashboard/list_card", story: story
     when "VenueScore"
       render "user_dashboard/venue_score_card", story: story
+    end
+  end
+  
+  def module_header(module_type)
+    case module_type
+      when "nearby_venues"
+        return "Similar places nearby"
+      when "cuisine_recommendations"
+        return "New places to try"
+    end
+  end
+  
+  def module_copy(module_type)
+    case module_type
+      when "nearby_venues"
+        return "These places are similar to #{resource.name} and are nearby."
+      when "cuisine_recommendations"
+        return "Here are some new places to try based on the cuisines you like."
+    end
+  end
+  
+  def distance_from_user(venue)
+    if user_location_data
+      #user_location = Geokit::LatLng.new(user_location_data[0], user_location_data[1])
+      return venue.distance_to([user_location_data["lat"], user_location_data["lng"]]).round(1)
+    else
+      return
     end
   end
 

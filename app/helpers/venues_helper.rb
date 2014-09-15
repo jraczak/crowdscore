@@ -47,5 +47,31 @@ module VenuesHelper
     #@close_time = Time.parse(venue.hour_ranges[:"#{today}"][:close]).strftime("%l:%M%p")
   end
   end
+  
+  def get_similar_nearby_venues(venue, _limit = 10)
+    #Venue.near([venue.latitude, venue.longitude], 2).where('computed_score > ? AND venue_category_id = ?', venue.computed_score.to_i, venue.venue_category_id).limit _limit
+    @cards = Venue.near([venue.latitude, venue.longitude], 2).where(venue_subcategory_id: venue.venue_subcategory_id).limit _limit
+  end
+  
+  def distance_between(primary_venue, nearby_venue)
+    primary_venue.distance_to(nearby_venue).round(1)
+  end
+  
+  def venue_time_zone
+    NearestTimeZone.to(resource.latitude, resource.longitude)
+  end
+  
+  def open_now?
+    unless resource.hour_ranges.empty?
+      time = Time.zone.now.in_time_zone(venue_time_zone).strftime("%H%M").to_i
+      range = (Time.parse(resource.hour_ranges[:sunday][:open]).strftime("%H%M").to_i..Time.parse(resource.hour_ranges[:sunday][:close]).strftime("%H%M").to_i)
+      if time.in?(range)
+        return "open"
+      else
+        return "closed"
+      end
+    end
+  end
+  
 
 end

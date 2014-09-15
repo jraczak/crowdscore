@@ -1,0 +1,22 @@
+<%= render partial: 'admin/subnav' %>
+
+<h1>Admin Dashboard</h1>
+<p id="notice"><%= notice %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <td>Users</td>
+      <td>Venue Scores</td>
+      <td>Tips</td>
+      <td>Lists</td>
+    </tr>
+  </thead>
+    <tr>
+      <td><%= User.all.count %></td>
+      <td><%= VenueScore.all.count %></td>
+      <td><%= Tip.all.count %></td>
+      <td><%= List.all.count %></td>
+    </tr>
+</table>
+

@@ -1,4 +1,4 @@
-<!-- USER DASHBOARD PAGE RECOMMENDATION PARTIAL -->
+<!-- VENUE PAGE RECOMMENDATION PARTIAL -->
 
 <% custom_class = custom_class || "" %>
 <div class='recommendation-module<%= " #{custom_class}" %>'>
@@ -7,9 +7,9 @@
     <div class="module-right"></div>
 
     <div class='recommendation-header'>
-      <h2><%= module_header( yield :module_type) %></h2>
+      <h2>Similar places nearby</h2>
       <p class="description">
-        <%= module_copy( yield :module_type) %>
+        <%= "These places are similar to #{resource.name} and are nearby." %>
       </p>
     </div>
 
@@ -17,6 +17,7 @@
     
     <div class="recommendation-module-cards">
     <% @cards.each do |venue| %>
+      <% unless venue == resource %>
         <div class='recommendation-card empty'>
           <div class="score-container">
             <%= render 'shared/pie_graph', type: "dashboard-score", score: venue.score, animate: true  %>
@@ -30,11 +31,12 @@
           <div class="info">
             <h4><%= link_to truncate(venue.name, length: 24, omission: '...'), venue %></h4>
             <p>
-              <span><%= "#{distance_from_user(venue)} miles" %></span>
+              <span><%= "#{distance_between(resource, venue)} miles" unless :module_type == "cuisine_recommendations" %></span>
               <span><%= venue.city %></span>
             </p>
           </div>
         </div>
+      <% end %>
     <% end %>
     
     <!-- END DYNAMIC RECOMMENDATION CARDS -->

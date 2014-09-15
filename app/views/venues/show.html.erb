@@ -44,7 +44,7 @@
 					<div class="value"><%= resource.phone.presence || "N/A"  %></div>
 				</div>
 
-				<div class="attribute hours <%= 'open' if true == true %>">
+				<div class="attribute hours <%= open_now? %>">
 					<div class="key">Hours of Operation</div>
 					<div class="value"><%= business_hours(resource) %></div>
 				</div>
@@ -155,7 +155,10 @@
 	  </div>
 	</div>
 	
-	<%= render 'user_dashboard/recommendation_module', custom_class: "venue_page_recommendations" %>
+	<% if resource.venue_subcategory %>
+	  <% get_similar_nearby_venues(resource) %>
+	  <%= render 'venues/recommendation_module', custom_class: "venue_page_recommendations" if @cards && @cards.size > 1 %>
+    <% end %>
 
 	<%= render "submit_score" %>
 	<% if user_signed_in? %>  
