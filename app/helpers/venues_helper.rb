@@ -32,7 +32,11 @@ module VenuesHelper
     return "Unavailable"
   else
     today = Date.today.strftime("%A").downcase
-    return "#{Time.parse(venue.hour_ranges[:"#{today}"][:open]).strftime("%l:%M%p")} - #{Time.parse(venue.hour_ranges[:"#{today}"][:close]).strftime("%l:%M%p")}"
+    if venue.hour_ranges[:"#{today}"]
+      return "#{Time.parse(venue.hour_ranges[:"#{today}"][:open]).strftime("%l:%M%p")} - #{Time.parse(venue.hour_ranges[:"#{today}"][:close]).strftime("%l:%M%p")}"
+    else
+      return "Unavailable"
+    end
     #sets = venue.hours["#{today}"].count
     #if sets == 1
     #  @open_time = venue.hours["#{today}"][0][0]
@@ -63,12 +67,17 @@ module VenuesHelper
   
   def open_now?
     unless resource.hour_ranges.empty?
-      time = Time.zone.now.in_time_zone(venue_time_zone).strftime("%H%M").to_i
-      range = (Time.parse(resource.hour_ranges[:sunday][:open]).strftime("%H%M").to_i..Time.parse(resource.hour_ranges[:sunday][:close]).strftime("%H%M").to_i)
-      if time.in?(range)
-        return "open"
+      today = Date.today.strftime("%A").downcase
+      if resource.hour_ranges[:"#{today}"]
+        time = Time.zone.now.in_time_zone(venue_time_zone).strftime("%H%M").to_i
+        range = (Time.parse(resource.hour_ranges[:sunday][:open]).strftime("%H%M").to_i..Time.parse(resource.hour_ranges[:sunday][:close]).strftime("%H%M").to_i)
+        if time.in?(range)
+          return "open"
+        else
+          return "closed"
+        end
       else
-        return "closed"
+        return
       end
     end
   end
