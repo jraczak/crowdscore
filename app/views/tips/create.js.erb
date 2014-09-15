@@ -1,3 +1,7 @@
+var tipCount = (parseInt($('.tips-section .tip-count-info .count').html()) + 1) + "";
+var c = tipCount.length >= 2 ? tipCount : new Array(2 - tipCount.length + 1).join("0") + tipCount;
+$('.tips-section .tip-count-info .count').html(c);
+
 if($('.tip').length == 0) {
 	$('.tips-section .column-right').html($('.tips-section .column-center').html());
 	$('.tips-section .column-center').html('<%= j render :partial => "venues/tip", :locals => { :t => tip } %>');	

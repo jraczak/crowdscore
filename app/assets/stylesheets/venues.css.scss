@@ -440,7 +440,7 @@
 			border: 1px solid #02b8ea;
 			outline: none;
 			width: 220px;
-			margin-top: 23px;
+			float: left;
 
 			&:focus, 
 			&:active 
@@ -490,6 +490,8 @@
 			margin-left: auto;
 			margin-right: auto;
 			display: block;
+			margin-top: 23px;
+			float: none;
 		}
 
 		.tip-input

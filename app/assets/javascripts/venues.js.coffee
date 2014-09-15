@@ -193,8 +193,10 @@ $(document).ready ->
 
   # $('.cs-obj-dropdown')
 
-  $('body').on "submit", '#new_tip', ->
-    $(this).find('textarea').val("");
+  $('body').on "click", '.btn-submit-tip', (e) ->
+    e.preventDefault()
+    $('#new_tip').submit()
+    $('#new_tip').find('textarea').val('')
   
   page_action = getParameterByName('page_action')
   if page_action
