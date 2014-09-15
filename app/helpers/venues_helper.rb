@@ -72,7 +72,7 @@ module VenuesHelper
       today = Date.today.strftime("%A").downcase
       if resource.hour_ranges[:"#{today}"]
         time = Time.zone.now.in_time_zone(venue_time_zone).strftime("%H%M").to_i
-        range = (Time.parse(resource.hour_ranges[:sunday][:open]).strftime("%H%M").to_i..Time.parse(resource.hour_ranges[:sunday][:close]).strftime("%H%M").to_i)
+        range = (Time.parse(resource.hour_ranges[:"#{today}"][:open]).strftime("%H%M").to_i..Time.parse(resource.hour_ranges[:"#{today}"][:close]).strftime("%H%M").to_i)
         if time.in?(range)
           return "open"
         else
