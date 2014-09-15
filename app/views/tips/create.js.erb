@@ -1,1 +1,6 @@
-$('.all-tips-container').prepend('<%= j render :partial => "venues/tip", :locals => { :t => tip } %>');
+if($('.tip').length == 0) {
+	$('.tips-section .column-right').html($('.tips-section .column-center').html());
+	$('.tips-section .column-center').html('<%= j render :partial => "venues/tip", :locals => { :t => tip } %>');	
+} else {
+	$('.tips-section .column-center').prepend('<%= j render :partial => "venues/tip", :locals => { :t => tip } %>');	
+}

@@ -25,9 +25,14 @@
 </div>
 <script type="text/javascript">
 	var map;
+	var zoom = 5;
+	var coordinate = new google.maps.LatLng(39.8282, -98.5795);
 
 	latlng = decodeURIComponent(getCookie("detected_user_location")).split(',');
-	var SF = new google.maps.LatLng(latlng[0], latlng[1]);
+
+	// if (latlng[0] && latlng[1]) {
+	// 	coordinate = new google.maps.LatLng(latlng[0], latlng[1]);
+	// }
 	
 	function getCookie(cname) {
     var name = cname + "=";
@@ -52,8 +57,8 @@
 	  ];
 
 	  var mapOptions = {
-	    zoom: 15,
-	    center: SF,
+	    zoom: zoom,
+	    center: coordinate,
 	    scrollwheel: false,
 	    disableDefaultUI: true,
 	    mapTypeControlOptions: {
