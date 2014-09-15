@@ -51,33 +51,16 @@
 			</div>
 
 			<div class="venue-scores <%= "empty" if resource.venue_images.length == 0 %>">
-				<div class="score" data-name="food" data-score="80">
-					Food
-					<div class="bar-graph">
-						<div class="bar-graph-percent" style="width: <%= 80 %>%"></div>
-					</div>
-				</div>
-
-				<div class="score" data-name="food" data-score="80">
-					service
-					<div class="bar-graph">
-						<div class="bar-graph-percent" style="width: <%= 80 %>%"></div>
-					</div>
-				</div>
-
-				<div class="score" data-name="food" data-score="80">
-					value
-					<div class="bar-graph">
-						<div class="bar-graph-percent" style="width: <%= 80 %>%"></div>
-					</div>
-				</div>
-
-				<div class="score" data-name="food" data-score="80">
-					atmosphere
-					<div class="bar-graph">
-						<div class="bar-graph-percent" style="width: <%= 80 %>%"></div>
-					</div>
-				</div>
+				<% resource.score_details.each do |score_id, details| %>
+				
+				 <div class="score" data-name="<%= details[:name] %>" data-score="<%= details[:value] %>">
+				 	<%= details[:name] %>
+				 	<div class="bar-graph">
+				 		<div class="bar-graph-percent" style="width: <%= details[:value] %>%"></div>
+				 	</div>
+				 </div>
+				<% end %>
+				 
 			</div>
 		</div>
 	</div>
