@@ -6,7 +6,6 @@
   <meta property="og:title" content="<%= resource.name %>" />
   <meta property="og:description" content="<%= "Have you been to #{resource.name} in #{resource.city}? Join Crowdscore to share your experience." %>" />
 <% end %>
-<% provide(:module_type, "nearby_venues") %>
 
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 
@@ -158,7 +157,7 @@
 	
 	<% if resource.venue_subcategory %>
 	  <% get_similar_nearby_venues(resource) %>
-	  <%= render 'user_dashboard/recommendation_module', custom_class: "venue_page_recommendations" if @cards && @cards.size > 1 %>
+	  <%= render 'venues/recommendation_module', custom_class: "venue_page_recommendations" if @cards && @cards.size > 1 %>
     <% end %>
 
 	<%= render "submit_score" %>

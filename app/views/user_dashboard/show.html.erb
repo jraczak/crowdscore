@@ -1,3 +1,4 @@
+<% provide(:module_type, "cuisine_recommendations") %>
 <div class='r_dashboard'>
   <h1><%= dashboard_salutation %></h1>
 
@@ -47,19 +48,14 @@
   <%= debug current_user.liked_venue_categories["restuarant"] %>
   <div id="dashboard-recommendations-container">
   <% if user_time_zone && user_location_data %>
-    <%= render "dashboard_recommendations" %>
   <% end %>
   </div>  
   <%= session[:geo_location] %>
   <%= cookies[:geo_session] %>
    -->
   
-  <!--<br><p><% where_am_i %><%= @location %></p>
-    <p><%= user_location_data %><% @user_lat_lng %></p>
-  <h3>Recommended restuarants for tonight</h3>
 
   </div>
-  -->
 
   
 

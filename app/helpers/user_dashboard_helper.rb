@@ -90,5 +90,14 @@ module UserDashboardHelper
         return "Here are some new places to try based on the cuisines you like."
     end
   end
+  
+  def distance_from_user(venue)
+    if user_location_data
+      #user_location = Geokit::LatLng.new(user_location_data[0], user_location_data[1])
+      return venue.distance_to([user_location_data["lat"], user_location_data["lng"]]).round(1)
+    else
+      return
+    end
+  end
 
 end
