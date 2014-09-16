@@ -62,7 +62,7 @@ mixpanel.init("<% if Rails.env.development? %>0049809657a93a75fea2bee579959d0f<%
 <!-- end Mixpanel -->
 
 <!-- start Intercom -->
-<% if current_user %>
+<% if Rails.env.production? && current_user %>
 <script>
   window.intercomSettings = {
     // TODO: The current logged in user's full name
