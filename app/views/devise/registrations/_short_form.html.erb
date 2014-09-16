@@ -1,11 +1,12 @@
+<h1>Sign up for Crowdscore</h1>
 <%= devise_error_messages! %>
 
-<%= simple_form_for resource do |f| %>
-  <%= f.input :email %>
-  <%= f.input :first_name %>
-  <%= f.input :username %>
-  <%= f.input :password, required: true %>
-  <%= f.input :password_confirmation, required: true %>
+<%= form_for resource do |f| %>
+  <%= f.text_field :email, placeholder: "email", class: "small-blue-text-field" %><br>
+  <%= f.text_field :first_name, placeholder: "first name", class: "small-blue-text-field" %><br>
+  <%= f.text_field :username, placeholder: "username", class: "small-blue-text-field" %><br>
+  <%= f.password_field :password, placeholder: "password", class: "small-blue-text-field" %><br>
+  <%= f.password_field :password_confirmation, placeholder: "confirm your password", class: "small-blue-text-field" %><br>
   
   <%= f.button :submit %>
 <% end %>
