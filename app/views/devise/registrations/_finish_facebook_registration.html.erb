@@ -1,0 +1,14 @@
+<h1>Welcome, <%= session["devise.facebook_data"]["info"]["first_name"] %>!</h1>
+
+
+<p>We got your name, email, and location from Facebook. Now just pick a username, password, and make sure this is the email you want to use.</p>
+<%= devise_error_messages! %>
+
+<%= simple_form_for resource do |f| %>
+  <%= f.input :username %>
+  <%= f.input :password, required: true %>
+  <%= f.input :password_confirmation, required: true %>
+  <%= f.input :email %>
+  
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= devise_error_messages! %>
+
+<%= simple_form_for resource do |f| %>
+  <%= f.input :email %>
+  <%= f.input :first_name %>
+  <%= f.input :username %>
+  <%= f.input :password, required: true %>
+  <%= f.input :password_confirmation, required: true %>
+  
+  <%= f.button :submit %>
+<% end %>

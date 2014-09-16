@@ -1,14 +1,5 @@
-<h1>Almost done!</h1>
-
-
-<p>We got some information from your Facebook profile. Now just pick a username and password and you're set.</p>
-<%= devise_error_messages! %>
-
-<%= simple_form_for resource do |f| %>
-  <%= f.input :username %>
-  <%= f.input :password, required: true %>
-  <%= f.input :password_confirmation, required: true %>
-  <%= f.input :email %>
-  
-  <%= f.button :submit %>
+<% if session["devise.facebook_data"] %>
+  <%= render :partial => 'finish_facebook_registration' %>
+<% else %>
+  <%= render :partial => 'short_form' %>
 <% end %>
