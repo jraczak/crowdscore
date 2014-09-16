@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
   
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
+  # Provide a format regex for validating email address values
+  EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
@@ -69,6 +71,7 @@ class User < ActiveRecord::Base
   # to sign up using an email "already taken", which occurs during the invitation process
   ###
   validates :email, uniqueness: true, unless: :was_invited?
+  validates :email, format: { with: EmailRegex, message: "is not a valid format" }
   validates :zip_code, numericality: true, length: { is: 5 } unless :has_zip_code?
   validates :birth_month, :birth_day, presence: { if: :birthday_provided? }
   validates :birth_month, inclusion: { in: ::Date::MONTHNAMES, allow_blank: true }
