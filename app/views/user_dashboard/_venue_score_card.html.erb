@@ -1,6 +1,6 @@
 <div class="activity-card venue-score">
 	<div class="score-container">
-    <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+    <%= render 'shared/pie_graph', type: "dashboard-score", score: story.computed_score, animate: true  %>
   </div>
 
   <p class="story"><%= link_to User.find(story.user_id).first_name, User.find(story.user_id) %> posted a score for <%= link_to Venue.find(story.venue_id).name, Venue.find(story.venue_id) %>.</p>
