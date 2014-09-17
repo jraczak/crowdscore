@@ -2,7 +2,7 @@ class VenueSearch < ActiveRecord::Base
    def self.search(params)
      if params[:zip].present?
        logger.info "The zip code is present"
-       logger.debug(Geocoder.coordinates(params[:zip]))
+       #logger.debug(Geocoder.coordinates(params[:zip]))
        #lat, long = Geocoder.coordinates(params[:zip])
        coords = Geokit::Geocoders::GoogleGeocoder.geocode(params[:zip])
        lat = coords.lat
