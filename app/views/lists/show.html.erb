@@ -64,7 +64,7 @@
             <p class="venue-categories"><%= venue.venue_category.name %><% if venue.venue_subcategory %>  &#903;  <%= venue.venue_subcategory.name %><% end %></p>
           </div>
 
-        <%= render 'shared/pie_graph', type: "map", score: venue.graph_score, animate: true  %>
+        <%= render 'shared/pie_graph', type: "map", score: venue.score, animate: true  %>
 
       </div>
     <% end %>
