@@ -5,6 +5,7 @@ def create
   venue = Venue.find(params[:featured_venue][:venue_id])
   @featured_venue.city = venue.city
   @featured_venue.state = venue.state
+  @featured_venue.name = venue.name
   @featured_venue.save!
   
 end
