@@ -1,0 +1,28 @@
+<%= render partial: 'admin/subnav' %>
+
+<h1>Featured Venues</h1>
+
+<h3>Showing <%= pluralize(FeaturedVenue.all.count, "featured venue") %></h3>
+
+<%= paginate collection if collection.any? %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <td>Venue Name</td>
+      <td>Location</td>
+      <td>Active</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <% collection.each do |venue| %>
+    <tr>
+      <td><%= link_to venue.name, admin_featured_venue_path(venue) %></td>
+      <td><%= "#{venue.city}, #{venue.state}" %></td>
+      <td><%= venue.active %></td>
+      <td><%= link_to "Edit featured venue", edit_admin_featured_venue_path(venue) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Create a new featured venue", new_admin_featured_venue_path %></p>

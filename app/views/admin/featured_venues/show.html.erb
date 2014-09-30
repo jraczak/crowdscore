@@ -1,0 +1,8 @@
+<%= render partial: 'admin/subnav' %>
+
+<h1><%= resource.name %></h1>
+
+<h3><%= resource.active %></h3>
+<h3><%= "#{resource.city}, #{resource.state}" %></h3>
+
+<%= link_to "Edit featured venue", edit_admin_featured_venue_path(resource) %>

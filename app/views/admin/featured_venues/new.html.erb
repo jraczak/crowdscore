@@ -1,6 +1,6 @@
 <%= render partial: 'admin/subnav' %>
 
-<%= form_for resource, :url => new_admin_featured_venue_path(resource) do |f| %>
+<%= form_for resource, :url => {:controller => "featured_venues", :action => "create"} do |f| %>
 
   <%= f.label "Crowdscore Venue ID" %><br>
   <%= f.text_field :venue_id %><br>
@@ -12,6 +12,8 @@
   <%= f.text_field :state %><br>
   <%= f.label :image_url %><br>
   <%= f.file_field :image_url %><br>
+  <%= f.label :active %><br>
+  <%= f.check_box :active %></br>
   
   <%= f.submit %>
 
