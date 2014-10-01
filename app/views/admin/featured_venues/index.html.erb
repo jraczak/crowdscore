@@ -4,13 +4,14 @@
 
 <h3>Showing <%= pluralize(FeaturedVenue.all.count, "featured venue") %></h3>
 
-<%= paginate collection if collection.any? %>
+<% # paginate collection if collection.any? %> 
 
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
       <td>Venue Name</td>
       <td>Location</td>
+      <td>Recommender</td>
       <td>Active</td>
       <td>Edit</td>
     </tr>
@@ -19,6 +20,7 @@
     <tr>
       <td><%= link_to venue.name, admin_featured_venue_path(venue) %></td>
       <td><%= "#{venue.city}, #{venue.state}" %></td>
+      <td><%= link_to User.find(venue.user_id), User.find(venue.user_id) %></td>
       <td><%= venue.active %></td>
       <td><%= link_to "Edit featured venue", edit_admin_featured_venue_path(venue) %></td>
     </tr>
