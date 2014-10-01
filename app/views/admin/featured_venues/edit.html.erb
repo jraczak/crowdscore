@@ -1,0 +1,22 @@
+<%= render partial: 'admin/subnav' %>
+
+<%= form_for resource, :url => admin_featured_venue_path(resource) do |f| %>
+
+  <%= f.label "Crowdscore Venue ID" %><br>
+  <%= f.text_field :venue_id %><br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br>
+  <%= f.label "Recommending user id" %></br>
+  <%= f.text_field :user_id %></br>
+  <%= f.label :city %><br>
+  <%= f.text_field :city %><br>
+  <%= f.label :state %><br>
+  <%= f.text_field :state %><br>
+  <%= f.label :image_url %><br>
+  <%= f.file_field :image_url %><br>
+  <%= f.label :active %><br>
+  <%= f.check_box :active %></br>
+  
+  <%= f.submit %>
+
+<% end %>
