@@ -6,7 +6,7 @@ module UserDashboardHelper
     @cards = []
       
       
-      unless user.liked_venue_categories.empty?
+      unless user.liked_venue_categories.empty? && location == false
         user.liked_venue_categories["restaurant"].each do |lvc|
           rec_search = Venue.search do
             with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
