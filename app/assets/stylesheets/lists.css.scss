@@ -110,6 +110,10 @@ $cs-c-ddgray: #6b6e70;
 				display: inline-block;
 				float: left;
 				text-decoration: none;
+
+		  	&:last-child {
+		  		border-right: 1px solid #e6e6e6;
+		  	}
 	  	}
 
 	  	.like-button {

@@ -203,7 +203,7 @@ class Venue < ActiveRecord::Base
   end
   
   def gmaps4rails_infowindow
-    percent = self.graph_score
+    percent = self.score
     str = ""
     str += "<div class='cs-iw'>"
     str += '<div class="cs-iw-p-m"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
