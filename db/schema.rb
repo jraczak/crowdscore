@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141001005835) do
+ActiveRecord::Schema.define(:version => 20141010022544) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -315,9 +315,10 @@ ActiveRecord::Schema.define(:version => 20141001005835) do
     t.string   "image_file"
     t.string   "caption"
     t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
+    t.boolean  "default",    :default => false
   end
 
   add_index "venue_images", ["venue_id"], :name => "index_venue_images_on_venue_id"
