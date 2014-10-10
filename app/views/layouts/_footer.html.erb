@@ -26,6 +26,10 @@
 			</a>
 		</div>
 	</div>
+	
+	<% if current_user %>
+		<div id="cu"></div>
+	<% end %>
 
 	<p class="footer-copyright">&copy; 2014 Crowdscore labs inC. - <%= link_to "see all our venues", venues_path %></p>
 </footer>

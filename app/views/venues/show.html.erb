@@ -30,7 +30,11 @@
 				<div class="header">Overall Score</div>
 				<%= render 'shared/pie_graph', type: "venue-score", score: resource.score, animate: true  %>
 				<p class="score-count"><%= pluralize(resource.venue_scores.count, "score") %> submitted </p>
-				<button class="submit-score submit-score-btn" id="submit-score-btn">Submit your score</button>
+				<% if current_user && current_user.can_submit_score?(resource) || current_user.nil? %>
+					<button class="submit-score submit-score-btn" id="submit-score-btn">Submit your score</button>
+				<% else %>
+					<button disabled class="submit-score submit-score-btn disabled" id="submit-score-btn">Already scored today</button>
+				<% end %>
 			</div>
 
 			<div class="venue-details">
