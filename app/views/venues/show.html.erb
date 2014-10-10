@@ -8,14 +8,19 @@
 <% end %>
 
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
+	<% if resource.venue_images.length == 0 %>
+	
 
+<% end %>
 <div class="r_venue">
 	<div class="venue-header <%= "empty" if resource.venue_images.length == 0 %>">
 		<div class="venue-header-body">
 			<h1><%= resource.name.titlecase %></h1>
 			<div class="action-bar">
 				<div class="actions">
+					<% if false %>
 					<button class="share">share</button>
+					<% end %>
 					<button class="add-to-list" data-open-modal="add_to_list">add to list</button>
 					<button class="add-photo" onclick="openImageUploader()">add a photo</button>
 				</div>
@@ -63,6 +68,11 @@
 				 
 			</div>
 		</div>
+
+		<% if resource.venue_images.length != 0 %>
+			<div class="venue-cover-image" style="background-image: url(<%= resource.venue_images.first.image_file %>)"></div>
+
+		<% end %>
 	</div>
 
 	<div class="full-width-section map-section" data-resize='((pw-940)/2)+940', data-attr="width">
@@ -105,7 +115,7 @@
 				</div>
 				<%= form_for Tip.create, url: venue_tips_path(resource), remote: true do |f| %>
 				<div class="tip-input">
-	  			<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
+	  			<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble" ,placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
 				</div>
 			  <%= f.submit "SUBMIT YOUR TIP", class: "btn-submit-tip" %>
 				<% end %> 
@@ -119,7 +129,7 @@
 
 					<%= form_for Tip.create, url: venue_tips_path(resource), remote: true do |f| %>
 					<div class="tip-input">
-		  			<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", rows: "2", max: "20",placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
+		  			<%= f.text_area :text, id: "tip-input", onkeyup: "charCounter(this)", class: "text-bubble", placeholder: "Add a tip. What's good to know about #{resource.name.titlecase}?" %>
 					</div>
 					<div class="user-image obj-rounded-image-wrapper">
 						<%= image_tag current_user.image_url if current_user.present? %>

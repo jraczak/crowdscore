@@ -193,7 +193,9 @@ class Venue < ActiveRecord::Base
   end
 
   def update_geocode
-    geocode && save!
+    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(self.full_address)
+    self.update_attributes(latitude: geocode_results.lat, longitude: geocode_results.lng) 
+    save!
   end
   
   def gmaps4rails_address

@@ -10,6 +10,7 @@
 		background-color: #f2f2f2;
 		text-align: left;
 		margin-bottom: 170px;
+		position: relative;
 
 		&.empty
 		{
@@ -31,6 +32,19 @@
 				line-height: 1em;
 			}	
 		}
+
+		.venue-cover-image
+		{
+			width: 640px;
+			height: 560px;
+			background-color: black;
+			position: absolute;
+			top: 230px;
+			right: 0;
+			background-position: center;
+			background-size: cover;
+		}
+
 
 		.action-bar 
 		{
@@ -413,6 +427,12 @@
 			@include transform(translateZ(0));
 			padding: 15px 20px;
 
+			.field_with_errors
+			{
+				display: block;
+				height: 100%;
+			}
+
 			textarea
 			{
 				resize: none;
@@ -424,7 +444,7 @@
 				font-size: 14px;
 				font-weight: 300;
 				color: #6b6e70;
-				height: calc(100% - 40px);
+				height: 100%;
 			}
 		}
 		input[type="submit"]
@@ -2378,7 +2398,6 @@
 	position: absolute;
 	top: 0px;
 	left: 0;
-	background-color: black;
 	display: block;
 	@include linear-gradient(rgba(255,255,255,0.1),rgba(0,0,0,0.1));
 }
