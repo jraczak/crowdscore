@@ -7,7 +7,7 @@
       <div class="score-container">
       <%= render 'shared/pie_graph', type: "dashboard-score", score: @featured_venue.venue.score, animate: true  %>
       </div>
-      <h4><%= @featured_venue.name %></h4>
+      <h4><%= link_to @featured_venue.name, @featured_venue.venue %></h4>
       <p class="geo">
         <span><%= distance_to_featured_venue %></span>
         <span><%= @featured_venue.city %></span>
