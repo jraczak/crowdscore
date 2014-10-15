@@ -5,19 +5,15 @@
   <div class="info">
     <div class="body">
       <div class="score-container">
-      <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+      <%= render 'shared/pie_graph', type: "dashboard-score", score: @featured_venue.venue.score, animate: true  %>
       </div>
-      <h4>Bubby's Awesome Southern Food</h4>
+      <h4><%= @featured_venue.name %></h4>
       <p class="geo">
         <span>0.2 miles</span>
-        <span>brooklyn</span>
+        <span><%= @featured_venue.city %></span>
       </p>
       <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu
+        <%= @featured_venue.description %>
       </p>
     </div>
     

@@ -25,7 +25,7 @@ module UserDashboardHelper
   def get_featured_venue
     fv = FeaturedVenue.arel_table
     location = user_location_data
-    @featured_venue = FeaturedVenue.where(fv[:city].matches("%#{location['city']}"), fv[:state].matches("%#{location['state']}"), active: true).first
+    @featured_venue = FeaturedVenue.where(fv[:city].matches("%#{location['city']}"), fv[:state].matches("%#{location['state']}"), active: true).first if location
     
     #@featured_venues = local_features.where(active: true)
   end

@@ -19,6 +19,7 @@ class Venue < ActiveRecord::Base
   has_many :venue_images
   has_many :venue_snapshots
   has_many :scores, dependent: :destroy
+  has_many :featured_venues, dependent: :destroy
 
   has_and_belongs_to_many :lists
   has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
