@@ -9,7 +9,7 @@
       </div>
       <h4><%= @featured_venue.name %></h4>
       <p class="geo">
-        <span>0.2 miles</span>
+        <span><%= distance_to_featured_venue %></span>
         <span><%= @featured_venue.city %></span>
       </p>
       <p class="description">

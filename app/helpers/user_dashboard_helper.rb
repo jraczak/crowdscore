@@ -30,6 +30,11 @@ module UserDashboardHelper
     #@featured_venues = local_features.where(active: true)
   end
   
+  def distance_to_featured_venue
+    location = Geokit::Geocoders::GoogleGeocoder.geocode(user_location_data["full_address"])
+    location.distance_to(@featured_venue.venue).round(1)
+  end
+  
   def where_am_i
     #ip = "162.222.72.33" #request.env['REMOTE_ADDR']
     @location = Geokit::Geocoders::IpGeocoder.geocode(request.env['REMOTE_ADDR'])

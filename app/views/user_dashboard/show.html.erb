@@ -1,8 +1,6 @@
 <% provide(:module_type, "cuisine_recommendations") %>
 <div class='r_dashboard'>
   <h1><%= dashboard_salutation %></h1>
-  <% get_featured_venue %>
-  <h3><%= @featured_venue.name if @featured_venue %></h3>
 
   <% get_restaurant_recommendations(current_user) %>
   <%= render 'recommendation_module' unless @cards.empty? %>
