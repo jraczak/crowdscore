@@ -244,9 +244,7 @@
 		margin-right: 10px
 
 	.cs-h-user-dropdown-wrapper
-		width: 130px
 		border-radius: 3px
-		box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2)
 		position: absolute
 		height: auto
 		max-height: 0px
@@ -254,7 +252,8 @@
 		opacity: 0
 		overflow: hidden
 		left: -75px
-		top: 60px
+		top: 45px
+		padding: 15px
 		+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s)
 		+transition-delay(0.2s, 0.2s, 0.4s, 0.4s)
 
@@ -262,8 +261,8 @@
 		width: 25px
 		height: 12px
 		position: absolute
-		top: -11px
-		left: 78px
+		top: 4px
+		left: 81px
 		z-index: 1
 		overflow: hidden
 
@@ -284,6 +283,8 @@
 		padding: 20px
 		text-align: left
 		width: 130px
+		border-radius: 3px
+		box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2)
 
 		li
 			padding: 7.5px 0px
@@ -303,12 +304,11 @@
 
 	&:hover
 		.cs-h-user-dropdown-wrapper
-			top: 70px
+			top: 55px
 			opacity: 1
-			// width: 130px
 			overflow: visible
-			max-width: 130px
-			max-height: 180px
+			max-width: 500px
+			max-height: 500px
 			+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s)
 			+transition-delay(0s, 0s, 0s, 0s)
 
