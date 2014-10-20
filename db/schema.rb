@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141010022544) do
+ActiveRecord::Schema.define(:version => 20141020052410) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20141010022544) do
     t.integer  "priority"
     t.string   "city"
     t.string   "state"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.boolean  "active"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "active",      :default => false
     t.string   "name"
     t.integer  "user_id"
   end
