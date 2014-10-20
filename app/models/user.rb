@@ -100,7 +100,11 @@ class User < ActiveRecord::Base
   end
   
   def just_invited?
-    self.invitation_sent_at.to_date == Date.today
+    if self.invitation_sent_at
+      self.invitation_sent_at.to_date == Date.today
+    else
+      return
+    end
   end
   
   def has_zip_code?
