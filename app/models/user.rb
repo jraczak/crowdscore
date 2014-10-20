@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   # Removing for now because of complications with the invitation process.
   # Downcasing of username has been moved to the controller.
-  #before_save :downcase_username, unless: :just_invited?
+  before_save :downcase_username, unless: :just_invited?
   
   # MOVING METHOD TO PRIVATE METHOD BELOW TO REMOVE BLOCK
   # before_save { |user| user.username = user.username.downcase }, unless: :just_invited?
@@ -63,8 +63,8 @@ class User < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :password, length: { in: 6..20 }, on: :create
-  validates :password, length: { in: 6..20 }, on: :update, allow_blank: true
+  validates :password, length: { in: 6..100 }, on: :create
+  validates :password, length: { in: 6..100 }, on: :update, allow_blank: true
   validates :email, presence: true #, uniqueness: true
   ###
   # Add a conditional validation on email that allows users who were invited
