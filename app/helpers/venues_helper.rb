@@ -84,5 +84,10 @@ module VenuesHelper
     end
   end
   
+  def distance_from_search_location(venue)
+    search_location = Geokit::Geocoders::GoogleGeocoder.geocode(params[:zip])
+    search_location.distance_to(venue).round(1)
+  end
+  
 
 end

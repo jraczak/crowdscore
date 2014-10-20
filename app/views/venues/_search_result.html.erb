@@ -5,7 +5,7 @@
 			
 			<%= link_to venue.name, venue, class: 'venue-name' %>
 			<p class="venue-category"><%= venue.full_category_name('<span></span>') %></p>
-			<p class="venue-distance">0.1 mi away</p>
+			<p class="venue-distance"><%= distance_from_search_location(venue) %> mi</p>
 		</span>
 	</div>
 	<span class="venue-score-graph">

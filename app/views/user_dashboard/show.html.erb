@@ -4,7 +4,8 @@
 
   <% get_restaurant_recommendations(current_user) %>
   <%= render 'recommendation_module' unless @cards.empty? %>
-  <%= render 'featured_venue' %>
+  <% get_featured_venue %>
+  <%= render 'featured_venue' if @featured_venue %>
 
 
 

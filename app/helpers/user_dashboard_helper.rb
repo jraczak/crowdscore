@@ -6,7 +6,7 @@ module UserDashboardHelper
     @cards = []
       
       
-      unless user.liked_venue_categories.empty? && location == false
+      unless user.liked_venue_categories.empty? || location == false
         user.liked_venue_categories["restaurant"].each do |lvc|
           rec_search = Venue.search do
             with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
@@ -19,6 +19,20 @@ module UserDashboardHelper
     all_results.each do |r|
       @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
     end
+    
+  end
+  
+  def get_featured_venue
+    fv = FeaturedVenue.arel_table
+    location = user_location_data
+    @featured_venue = FeaturedVenue.where(fv[:city].matches("%#{location['city']}"), fv[:state].matches("%#{location['state']}"), active: true).sample if location
+    
+    #@featured_venues = local_features.where(active: true)
+  end
+  
+  def distance_to_featured_venue
+    location = Geokit::Geocoders::GoogleGeocoder.geocode(user_location_data["full_address"])
+    location.distance_to(@featured_venue.venue).round(1)
   end
   
   def where_am_i
