@@ -1,3 +1,4 @@
+<% if resource.get_score_categories.any? %>
 <% categories = resource.get_score_categories %>
 <div id="submit-score-modal" class="modal">
   <div class="modal-mask">
@@ -174,3 +175,4 @@
     </div>
   </div>
 </div>
+<% end %>
