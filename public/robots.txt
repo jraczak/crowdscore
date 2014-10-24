@@ -4,5 +4,26 @@
 # User-Agent: *
 # Disallow: /
 
-user-agent: AhrefsBot
-disallow: /
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: 007ac9
+Disallow: /
+
+User-agent: SiteExplorer
+Disallow: /
+
+User-agent: sistrix
+Disallow: /
+
+User-agent: Mail.RU_Bot
+Disallow: /
