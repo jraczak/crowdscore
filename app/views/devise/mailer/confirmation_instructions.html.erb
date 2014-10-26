@@ -1,5 +1,7 @@
-<p>Welcome <%= @resource.unconfirmed_email? ? @resource.unconfirmed_email : @resource.email %>!</p>
+<h1>Welcome to Crowdscore, <%= @resource.username %>!</h1>
 
-<p>You can confirm your account through the link below:</p>
+<p>Please confirm the email address you provided (<%= @resource.unconfirmed_email? ? @resource.unconfirmed_email : @resource.email %>) using the link below.</p>
 
-<p><%= link_to 'Confirm your email address', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'This is the right email!', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>If you don't confirm your email address within 2 weeks, your account will be inaccessible until your email is confirmed. You can always drop us a note at <%= mail_to("support@crowdsco.re") %> with any questions.</p>
