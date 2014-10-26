@@ -1,17 +1,22 @@
-  <h2>
-	  It's <%= time_at_user %><% if user_location_data != false %> in <%= user_location_data["city"] %> <% end %>
-  </h2>
-    <% if current_meal == "dinner" %>
-      <% get_restaurant_recommendations(current_user) %>
-      <% unless current_meal == false || @recs.empty? %>
-        <p>Here are some suggestions for <%= current_meal %></p>
-          <% unless @recs.empty? %>
-            <% @recs.each do |v| %>
-              <h3 style="margin-bottom: 10px"><%= link_to v.name, v %> (<%= v.computed_score %>)</h3>
-              
-              <p style="margin-bottom: 50px"><small><%= "Based on your preference for #{v.venue_subcategory.name} #{v.venue_category.name.downcase}s" %></small></p>
-            
-            <% end %>
-          <% end %>
+<h2>
+  It's <%= time_at_user %><% if user_location_data != false %> in <%= user_location_data["city"] %> <% end %>
+</h2>
+<% if current_meal == "dinner" %>
+  <% get_restaurant_recommendations(current_user) %>
+  <% unless current_meal == false || @recs.empty? %>
+    <p>Here are some suggestions for <%= current_meal %></p>
+      <% unless @recs.empty? %>
+        <% @recs.each do |v| %>
+
+          <h3 style="margin-bottom: 10px"><%= link_to v.name, v %> (<%= v.computed_score %>)</h3>
+          
+          <p style="margin-bottom: 50px">
+            <small>
+              <%= "Based on your preference for #{v.venue_subcategory.name} #{v.venue_category.name.downcase}s" %>
+            </small>
+          </p>
+        
+        <% end %>
       <% end %>
-    <% end %>
+  <% end %>
+<% end %>
