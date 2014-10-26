@@ -45,11 +45,21 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 		position: position,
 		map: this.map
 	});
-
-	infoWindow = new google.maps.InfoWindow({
-		content: this.data[i].description,
-		pixelOffset: new google.maps.Size(-125, 180)
-	});
+	
+	if ($(this.data[i].description).data('is-list')){
+		var c = $(this.data[i].description)
+		c.find('.cs-iw-cid').remove()
+		
+		infoWindow = new google.maps.InfoWindow({
+			content: c.prop('outerHTML'),
+			pixelOffset: new google.maps.Size(-125, 125)
+		});
+	} else {
+		infoWindow = new google.maps.InfoWindow({
+			content: this.data[i].description,
+			pixelOffset: new google.maps.Size(-125, 180)
+		});
+	}
 
 	content = $(infoWindow.content).find('.pie-graph-loader');
 	percent = content.data('percent');
