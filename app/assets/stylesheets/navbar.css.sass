@@ -253,9 +253,9 @@
 		overflow: hidden
 		left: -75px
 		top: 45px
-		padding: 15px
-		+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s)
-		+transition-delay(0.2s, 0.2s, 0.4s, 0.4s)
+		padding: 0
+		+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s, padding 0s)
+		+transition-delay(0.2s, 0.2s, 0.4s, 0.4s, 0.4s)
 
 	.cs-h-user-dropdown-carot
 		width: 25px
@@ -309,8 +309,9 @@
 			overflow: visible
 			max-width: 500px
 			max-height: 500px
-			+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s)
-			+transition-delay(0s, 0s, 0s, 0s)
+			padding: 15px
+			+transition(opacity 0.2s, top 0.2s, max-height 0s, max-width 0s, padding 0s)
+			+transition-delay(0s, 0s, 0s, 0s, 0s)
 
 .cs-h-push
 
