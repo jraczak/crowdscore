@@ -46,7 +46,7 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 		map: this.map
 	});
 	
-	if ($(this.data[i].description).data('is-list')){
+	if (window.location.pathname.split('/')[1] == 'lists'){
 		var c = $(this.data[i].description)
 		c.find('.cs-iw-cid').remove()
 		
