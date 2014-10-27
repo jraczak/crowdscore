@@ -1,5 +1,6 @@
 class Venue < ActiveRecord::Base
   audited
+  include DistanceHelper
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
   acts_as_mappable :default_units => :miles,
@@ -219,7 +220,7 @@ class Venue < ActiveRecord::Base
     str +="<a class='venue-name' href='/venues/#{self.id}'>#{self.name}</a>"
     str += "<div class='cs-iw-cid'>"
     str += "<span class='category'>#{self.venue_subcategory}</span>"
-    str += "<span class='distance'>0.1 mi away</span>"
+    str += "<span class='distance'></span>"
     str += "</div>"
     str += "</div>"
     str.html_safe

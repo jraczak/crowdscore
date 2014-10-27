@@ -38,15 +38,15 @@
 			</div>
 
 			<div class="venue-details">
-				<div class="attribute">
-					<div class="key">Venue Type</div>
-					<div class="value"><%= resource.venue_category.name.presence || "N/A" %></div>
-				</div>
-				
 				<% if resource.venue_subcategory %>
 				  <div class="attribute">
 				  	  <div class="key">Cuisine</div>
 				  	  <div class="value"><%= resource.venue_subcategory.name.presence || "N/A" %></div>
+				  </div>
+				<% else %>
+				  <div class="attribute">
+				  	  <div class="key">Venue Type</div>
+				  	  <div class="value"><%= resource.venue_category.name.presence || "N/A" %></div>
 				  </div>
 				<% end %>
 
