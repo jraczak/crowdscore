@@ -204,10 +204,10 @@ class Venue < ActiveRecord::Base
     "#{self.address1}, #{self.city}, #{self.state}, #{self.zip}"
   end
   
-  def gmaps4rails_infowindow(is_list=false)
+  def gmaps4rails_infowindow
     percent = self.score
     str = ""
-    str += "<div class='cs-iw'>"
+    str += "<div class='cs-iw' data-venue-id='#{self.id}'>"
     str += '<div class="cs-iw-p-m"><div class="cs-iw-pt"><div></div></div><div class="cs-iw-pb"><div class=""></div></div></div>'
     str += "<div class='pie-container map'>"
     str +="<div class='pie-graph-loader' data-percent=#{percent} data-venue-id='#{self.id}'>"
