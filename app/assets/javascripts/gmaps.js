@@ -46,13 +46,20 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 		map: this.map
 	});
 	
+	var c = $(this.data[i].description)
+
 	if (window.location.pathname.split('/')[1] == 'lists'){
-		var c = $(this.data[i].description)
-		c.find('.cs-iw-cid').remove()
-		
+		c.find('.cs-iw-cid').remove()	
 		infoWindow = new google.maps.InfoWindow({
 			content: c.prop('outerHTML'),
 			pixelOffset: new google.maps.Size(-125, 125)
+		});
+	} else if (window.location.pathname.split('/')[2] == 'search'){
+		debugger
+		c.find('.distance').html( $('.search-result[data-venue-id="' + c.data('venue-id') + '"]').find('.venue-distance').text() )
+		infoWindow = new google.maps.InfoWindow({
+			content: c.prop('outerHTML'),
+			pixelOffset: new google.maps.Size(-125, 180)
 		});
 	} else {
 		infoWindow = new google.maps.InfoWindow({
