@@ -1,7 +1,10 @@
 <script src="http://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=true" type="text/javascript"></script>
 
 <!-- Search results google map, place google map within this -->
-<div id="search-results-map" class="search-results-map">
+
+
+<% location = get_coordinates(params[:zip]) %>
+<div id="search-results-map" class="search-results-map" data-lat='<%= location[:lat] %>' data-lng='<%= location[:long] %>'>
 </div>
 <div class="search-results-bank">
 	<div class="results-header">
