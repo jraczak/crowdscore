@@ -2,9 +2,8 @@
 
 <!-- Search results google map, place google map within this -->
 
-
 <% location = get_coordinates(params[:zip]) %>
-<div id="search-results-map" class="search-results-map" data-lat='<%= location[:lat] %>' data-lng='<%= location[:long] %>'>
+<div id="search-results-map" class="search-results-map<%= ' empty' if collection.results.length == 0 %>" data-lat='<%= location[:lat] %>' data-lng='<%= location[:long] %>'>
 </div>
 <div class="search-results-bank">
 	<div class="results-header">
@@ -14,6 +13,9 @@
 			<span class="filter-dropdown-arrow"><i class="fa fa-angle-down"></i></span>
 		</span>
 	</div>
+	<% if collection.results.length == 0 %>
+		<h4>So sorry. NO RESULTS HO :)</h4>
+	<% end %>
 	<% collection.results.each_with_index do |venue, index| %>
 		<%= render 'search_result', venue: venue, index: index %>
 	<% end %>

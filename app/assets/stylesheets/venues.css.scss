@@ -36,6 +36,9 @@
 		.venue-cover-image
 		{
 			width: 640px;
+			width: 48vw;
+			min-width: 460px;
+			max-width: 900px;
 			height: 560px;
 			background-color: black;
 			position: absolute;
