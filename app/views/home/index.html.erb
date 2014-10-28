@@ -5,13 +5,13 @@
 	</div>
 
 	<div id="hp-main-center">
-		<h2 id="hp-slogan">Find New Places to Love</h2>
+		<h2 id="hp-slogan">Find New Restaurants to Love</h2>
 	
 		<div class="hps-wrapper">
 			<%= form_tag search_venues_path, method: "get", class: "hps-inner" do |f| %>
 				<div class="hps-input-main">
 					<div class="hps-icon"></div>
-					<p class="hps-placeholder"><b>Search</b> restaurants, bars, salons, food...</p>
+					<p class="hps-placeholder"><b>Search</b> by cuisine or restaurant name</p>
 					<%= text_field_tag :q, "", class: "hps-input", placeholder: "What would you like?", tabindex: 5%>
 				</div>
 				<div class="hps-location-main">

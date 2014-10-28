@@ -219,7 +219,7 @@ class Venue < ActiveRecord::Base
     str +="</div>"
     str +="<a class='venue-name' href='/venues/#{self.id}'>#{self.name}</a>"
     str += "<div class='cs-iw-cid'>"
-    str += "<span class='category'>#{self.venue_subcategory}</span>"
+    str += "<span class='category'>#{self.venue_subcategory if self.venue_subcategory}</span>"
     str += "<span class='distance'></span>"
     str += "</div>"
     str += "</div>"
