@@ -120,7 +120,7 @@ class AddToListDropdownMenu extends document.CustomDropdownMenu
         .done (response) =>
           id = response.id
           name = response.name
-          $(@wrapper).find('select').prepend('<option value="' + id + '">' + name + '</option>')
+          $($(@wrapper).find('select option')[0]).after('<option value="' + id + '">' + name + '</option>')
           $(@wrapper + " #list-create").after([ "<li class='cs-obj-dd-opt' data-val='", id, "'>", name, "</li>"].join(''))
           @_revertCreateField()
           $('.cs-obj-dd-opt[data-val="' + id + '"').click()
@@ -173,7 +173,6 @@ class AddToListModal extends SimpleDomObject
     'addToList#click' : ' #cta-addtolist'
 
   addToList: =>
-    
     listId = $(@ddSelector).get(0).value
     venueId = $(@ddSelector).data('venue-id')
     
