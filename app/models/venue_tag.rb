@@ -1,7 +1,8 @@
-class Tag < ActiveRecord::Base
+class VenueTag < ActiveRecord::Base
   belongs_to :venue_category_tag_set
   belongs_to :venue_subcategory_tag_set
   has_and_belongs_to_many :venues, uniq: true
+  belongs_to :venue_tag_category
 
   validates :name, presence: true
   

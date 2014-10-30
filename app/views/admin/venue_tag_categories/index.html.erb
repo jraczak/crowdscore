@@ -1,0 +1,21 @@
+<%= render 'admin/subnav' %>
+
+<%= link_to "Create a new venue tag category", new_admin_venue_tag_category_path %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Venue Category Associations</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <% collection.each do |vtc| %>
+    <tr>
+      <td><%= link_to vtc.name, admin_venue_tag_category_path(vtc) %></td>
+      <td><%= vtc.venue_categories.count %></td>
+      <td><%= vtc.venue_tags.count %></td>
+    </tr
+  <% end %>
+</table>
+

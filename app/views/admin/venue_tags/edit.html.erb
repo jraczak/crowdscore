@@ -1,0 +1,12 @@
+<%= render 'admin/subnav' %>
+
+<h1>Update <%= resource.name %></h1>
+
+<%= simple_form_for resource, :url => {:controller => "venue_tags", :action => "update"} do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  
+  <%= f.association :venue_tag_category, as: :select, label_method: :name, value_method: :id %><br>
+  
+  <%= f.button :submit, "submit" %>
+<% end %>

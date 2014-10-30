@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141020052410) do
+ActiveRecord::Schema.define(:version => 20141029231951) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -192,18 +192,6 @@ ActiveRecord::Schema.define(:version => 20141020052410) do
     t.integer  "venue_id"
   end
 
-  create_table "tags", :force => true do |t|
-    t.integer  "tag_category_id"
-    t.string   "name"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "venue_category_tag_set_id"
-    t.integer  "venue_subcategory_tag_set_id"
-  end
-
-  add_index "tags", ["name"], :name => "index_tags_on_name"
-  add_index "tags", ["tag_category_id"], :name => "index_tags_on_tag_category_id"
-
   create_table "tags_venues", :id => false, :force => true do |t|
     t.integer "tag_id"
     t.integer "venue_id"
@@ -304,6 +292,11 @@ ActiveRecord::Schema.define(:version => 20141020052410) do
     t.integer  "factual_category_id"
   end
 
+  create_table "venue_categories_venue_tag_categories", :id => false, :force => true do |t|
+    t.integer "venue_category_id"
+    t.integer "venue_tag_category_id"
+  end
+
   create_table "venue_category_tag_sets", :force => true do |t|
     t.integer  "venue_category_id"
     t.string   "name"
@@ -372,6 +365,30 @@ ActiveRecord::Schema.define(:version => 20141020052410) do
     t.string   "name"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "venue_tag_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+  end
+
+  create_table "venue_tags", :force => true do |t|
+    t.integer  "venue_tag_category_id"
+    t.string   "name"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "venue_category_tag_set_id"
+    t.integer  "venue_subcategory_tag_set_id"
+  end
+
+  add_index "venue_tags", ["name"], :name => "index_tags_on_name"
+  add_index "venue_tags", ["venue_tag_category_id"], :name => "index_tags_on_tag_category_id"
+
+  create_table "venue_tags_venues", :id => false, :force => true do |t|
+    t.integer "venue_tag_id"
+    t.integer "venue_id"
   end
 
   create_table "venues", :force => true do |t|

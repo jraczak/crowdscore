@@ -1,0 +1,48 @@
+<%= render 'admin/subnav' %>
+
+<%= errors_for resource %>
+
+<h1>Update <%= resource.name %></h1>
+
+<%= simple_form_for resource, html: { class: "admin-edit-form" }, :url => {:controller => "venues", :action => "update"} do |f| %>
+  
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'half-width-form-field' %><br>
+  
+  <%= f.label :address1, "Address 1" %>
+  <%= f.text_field :address1, class: 'half-width-form-field' %><br>
+  
+  <%= f.label :address2, "Address 2" %>
+  <%= f.text_field :address2, class: 'half-width-form-field' %><br>
+  
+
+  <%= f.label :city %>
+  <%= f.text_field :city, class: 'half-width-form-field' %><br>
+
+  
+  <%= f.label :state %>
+  <%= f.state_select :state, 'US', include_blank: true %><br>
+  
+  <%= f.label :zip, "Zip code" %>
+  <%= f.text_field :zip, class: 'half-width-form-field' %><br>
+  
+  <%= f.label :phone, "Phone number" %>
+  <%= f.text_field :phone, class: 'half-width-form-field' %><br>
+  
+  <%= f.label :url, "Website" %>
+  <%= f.text_field :url, class: 'half-width-form-field' %><br>
+
+  <%= f.association :venue_category, as: :select, label_method: :name, value_method: :id %>
+  
+
+  <%= f.association :venue_subcategory, as: :select, label_method: :name, value_method: :id %>
+  
+  <h3>Tag this venue</h3><br>
+  <% resource.venue_category.venue_tag_categories.each do |vtc| %>
+  
+  <h4><%= vtc.name %></h4>
+  <%= f.association :venue_tags, as: :check_boxes, label_method: :name, value_method: :id, collection: vtc.venue_tags, label: false %>
+  <% end %>
+  
+  <%= f.button :submit, "submit" %>
+<% end %>
