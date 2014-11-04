@@ -164,6 +164,13 @@
   height: calc(100% - 60px);
   box-shadow: -0px 0 3px rgba(0,0,0,0.2);
 
+  .no-results {
+    padding: 20px;
+    line-height: 1.4em;
+    font-weight: 300;
+    position: relative;
+  }
+
   .results-header {
     height: 75px;
     width: 100%;
