@@ -30,6 +30,11 @@ class VenuesController < InheritedResources::Base
       })
   end
   
+  def edit
+    @uploader.update_attribute :key, params[:key]
+    super
+  end
+  
   def create_snapshot
     venue = Venue.find(params[:id])
     snapshot = VenueSnapshot.new(

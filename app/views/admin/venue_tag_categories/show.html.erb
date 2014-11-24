@@ -1,0 +1,7 @@
+<%= render 'admin/subnav' %>
+
+<h1><%= resource.name %></h1>
+<h4>How this tag category is used:</h4><p><%= resource.description %></p><br>
+<h4>Associated with these venue categories</h4><br>
+<p><% resource.venue_categories.each do |vc| %><%= vc.name %><% end %></p><br>
+<%= link_to "edit venue tag category", edit_admin_venue_tag_category_path(resource) %>

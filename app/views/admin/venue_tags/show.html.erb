@@ -1,0 +1,6 @@
+<%= render 'admin/subnav' %>
+
+<h1><%= resource.name %></h1>
+
+<p><%= pluralize(resource.venues.count, "venue")  %> tagged with this tag</p><br>
+<%= link_to "edit venue tag ", edit_admin_venue_tag_path(resource) %>

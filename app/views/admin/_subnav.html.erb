@@ -11,6 +11,8 @@
     <li class="admin_subnav_item"><%= link_to "Venue Categories", admin_venue_categories_path %></li>
     <li class="admin_subnav_item"><%= link_to "Venue Subcategories", admin_venue_subcategories_path %></li>
     <li class="admin_subnav_item"><%= link_to "Score Categories", admin_score_categories_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Venue Tags", admin_venue_tags_path %></li>
+    <li class="admin_subnav_item"><%= link_to "Venue Tag Categories", admin_venue_tag_categories_path %></li>
   </ul>
   
   <% if VenueCategory.where(factual_category_id: nil).any? %>

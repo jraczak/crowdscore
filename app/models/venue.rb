@@ -23,12 +23,12 @@ class Venue < ActiveRecord::Base
   has_many :featured_venues, dependent: :destroy
 
   has_and_belongs_to_many :lists
-  has_and_belongs_to_many :tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
+  has_and_belongs_to_many :venue_tags, uniq: true, after_add: :reindex_tags, after_remove: :reindex_tags
 
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
-                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names]
+                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names, :venue_tag_ids]
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]

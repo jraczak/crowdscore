@@ -26,6 +26,13 @@
 <%= pluralize(resource.venue_scores.count, "score") %><br>
 <%= pluralize(resource.tips.count, "tip") %><br>
 <br>
-<%= link_to "Edit venue", edit_admin_venue_path(resource) %>
+<%= link_to "Edit venue", edit_admin_venue_path(resource) %><br>
 
+<h2>Tags</h2>
+<% resource.venue_category.venue_tag_categories.each do |vtc| %>
+  <h3><%= vtc.name %></h3>
+  <% resource.venue_tags.where(venue_tag_category_id: vtc.id).each do |vt| %>
+    <%= vt.name %>
+  <% end %>
+<% end %>
 

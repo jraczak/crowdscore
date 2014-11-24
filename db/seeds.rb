@@ -128,7 +128,7 @@ puts "Skipping tag catgories for now..."
 #tag_categories.each do |cat, tags|
 #  category = TagCategory.find_or_create_by_name(cat)
 #  tags.each do |tag_name|
-#    Tag.find_or_create_by_name_and_tag_category_id(tag_name, category.id)
+#    VenueTag.find_or_create_by_name_and_tag_category_id(tag_name, category.id)
 #  end
 #end
 

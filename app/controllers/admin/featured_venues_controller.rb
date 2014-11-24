@@ -10,4 +10,22 @@ def create
   
 end
 
+  def edit
+    @uploader = FeaturedVenue.new.featured_venue_image
+    @uploader.success_action_redirect = edit_admin_featured_venue_url
+    resource.update_attribute :key, params[:key]
+    super
+  end
+  
+  def show
+    
+  end
+  
+  private
+  
+  def update_image_url
+    @uploader.update_attribute :key, params[:key]
+  end
+
 end
+ 
