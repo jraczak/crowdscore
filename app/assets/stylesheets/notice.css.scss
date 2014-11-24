@@ -1,0 +1,37 @@
+@import "bourbon";
+
+#flash-container 
+{
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+
+  .notice 
+  {
+    background-color: #72ca28;
+    @include animation(dismiss-notice 0.25s ease);
+    @include animation-delay(5s);
+    height: 75px;
+    overflow: hidden; 
+
+    .msg 
+    {
+      display: inline-block;
+      line-height: 75px;
+      padding-left: 45px;
+      background-image: url(image_path('flash_notice_check.png'));
+      background-size: 28px 28px;
+      background-repeat: no-repeat;
+      background-position: left center;
+      color: #fff;
+    }
+  }
+}
+
+@include keyframes(dismiss-notice) 
+{
+  to 
+  {
+  	height: 0px;
+  }
+}

@@ -66,26 +66,6 @@ table {
 	min-width: 980px;
 }
 
-#flash-container {
-
-  width: 100%;
-
-  .notice {
-    background-color: #72ca28;
-    
-    .msg {
-      display: inline-block;
-      line-height: 75px;
-      padding-left: 45px;
-      background-image: url(image_path('flash_notice_check.png'));
-      background-size: 28px 28px;
-      background-repeat: no-repeat;
-      background-position: left center;
-      color: #fff;
-    }
-  }
-}
-
 @import "navbar";
 @import "footer";
 @import "custom_dropdown";
@@ -104,4 +84,5 @@ table {
 @import "users";
 @import "score_graphs";
 @import "modals";
-@import "font-awesome"
+@import "font-awesome";
+@import "notice";
