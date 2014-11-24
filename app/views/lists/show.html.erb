@@ -28,11 +28,11 @@
     <div class="social-container">
 
       <% if current_user && current_user.liked_lists.include?(resource) %>
-        <%= link_to remove_vote_list_path, class: "action like-button green" do %>
+        <%= link_to remove_vote_list_path, class: "action like-button blue green", :remote => true do %>
           <span>liked</span>
         <% end %>
       <% else %>
-        <%= link_to upvote_list_path, class: "action like-button blue" do %>
+        <%= link_to upvote_list_path, class: "action like-button blue", :remote => true do %>
           <span>like this list</span>
         <% end %>
       <% end %>

@@ -192,6 +192,8 @@ $(document).ready ->
 
   $('body').on "click", '.btn-submit-tip', (e) ->
     e.preventDefault()
+    return if !$('#new_tip').find('textarea').val()
+    $(e.currentTarget).addClass('disabled').attr('disabled', true).val('submitting')
     $('#new_tip').submit()
     $('#new_tip').find('textarea').val('')
   

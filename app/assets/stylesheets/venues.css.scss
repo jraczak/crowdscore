@@ -476,6 +476,14 @@
 			{
 				border: 1px dotted #fff;
 			}
+
+			@include transition(background 0.1s);
+
+	  	&.disabled
+	  	{
+	  		background-color: #79e0ff;
+	  		border: 1px solid #79e0ff;
+	  	}
 		}
 	}
 }

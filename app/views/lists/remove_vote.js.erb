@@ -1,0 +1,8 @@
+$('.action.like-button').removeClass('green').find('span').text('like this list')
+var count = parseInt($('.like-count').html()) - 1;
+if (count == 1) {
+	$('.like-count').html(count + " like");
+} else {
+	$('.like-count').html(count + " likes");
+}
+$('.action.like-button').prop("href", "/lists/<%= list.id %>/upvote");

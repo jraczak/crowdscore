@@ -8,3 +8,5 @@ if($('.tip').length == 0) {
 } else {
 	$('.tips-section .column-center').prepend('<%= j render :partial => "venues/tip", :locals => { :t => tip } %>');	
 }
+
+$('.btn-submit-tip').removeClass('disabled').attr('disabled', false).val('submit your tip')

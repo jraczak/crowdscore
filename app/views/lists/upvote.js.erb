@@ -1,0 +1,10 @@
+$('.action.like-button').addClass('green').find('span').text('liked')
+var count = parseInt($('.like-count').html()) + 1;
+
+if (count == 1) {
+	$('.like-count').html(count + " like");
+} else {
+	$('.like-count').html(count + " likes");
+}
+
+$('.action.like-button').prop("href", "/lists/<%= list.id %>/remove_vote");
