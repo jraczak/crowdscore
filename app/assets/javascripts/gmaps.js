@@ -29,8 +29,9 @@ Gmap.prototype.addMapMarkers = function(){
 	});
 	
 	map.initialZoom = true;
-
-	map.fitBounds(this.bounds);
+	if ( this.markers > 0 ) {
+		map.fitBounds(this.bounds);
+	}
 };
 
 Gmap.prototype.createMarkerandInfoWindow = function(i){
@@ -55,7 +56,6 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 			pixelOffset: new google.maps.Size(-125, 125)
 		});
 	} else if (window.location.pathname.split('/')[2] == 'search'){
-		debugger
 		c.find('.distance').html( $('.search-result[data-venue-id="' + c.data('venue-id') + '"]').find('.venue-distance').text() )
 		infoWindow = new google.maps.InfoWindow({
 			content: c.prop('outerHTML'),
@@ -122,11 +122,13 @@ Gmap.prototype.setupSearchResultClickEvent = function() {
 
 Gmap.prototype.initialize = function(){
 	var map_canvas = document.getElementById('search-results-map');
+	var loc = $("#search-results-map")
 
 	var map_options = {
-		zoom: 8,
+		zoom: 13,
 		scrollwheel: false,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		center: { lat: loc.data('lat'), lng: loc.data('lng') }
 	}
 
 	this.map = new google.maps.Map(map_canvas, map_options);
@@ -137,7 +139,6 @@ Gmap.prototype.initialize = function(){
 function VenueMap(data) {
 	this.data = data[0];
 	this.bounds = new google.maps.LatLngBounds();
-	// debugger
 	this.initialize();
 }
 

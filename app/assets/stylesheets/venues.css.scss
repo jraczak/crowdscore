@@ -36,6 +36,9 @@
 		.venue-cover-image
 		{
 			width: 640px;
+			width: 48vw;
+			min-width: 460px;
+			max-width: 900px;
 			height: 560px;
 			background-color: black;
 			position: absolute;
@@ -2790,4 +2793,96 @@ ul#submit-score-flow {
 			}
 		}
 	}
+}
+
+#image-upload-modal {
+	h1 {
+		font-size: 58px;
+		font-weight: 100;
+		color: #2d3132;
+		margin: 0;
+		padding: 0
+	}
+
+	p {
+
+		margin: 0;
+		margin: 10px 0px;
+		padding: 0 20px;
+		font-weight: 300;
+		width: 415px;
+		line-height: 1.4;
+		font-size: 14px;
+		display: inline-block;
+		color: #6b6e70;
+  }
+
+  .new_venue_image {
+  	position: relative;
+  	height: 44px;
+  	width: 600px;
+  	margin: 0 auto;
+  }
+
+  #venue_image_image_file {
+  	position: relative;
+  	display: hidden;
+  	width: 600px; 
+  	height: 44px;
+  	top: 0;
+  	left: 0;
+  	outline: none;
+  	cursor: pointer;
+
+  	&:before, 
+  	&:after {
+  		content: "";
+  		height: 100%;
+  		position: absolute;
+  		@include box-sizing(border-box);
+  	}
+
+  	&:before {
+  		width: 100%;
+  		background-color: #E5F8FE;
+  		border-radius: 4px;
+  		content: attr(data-value);
+  		text-overflow: hidden;
+  		overflow: hidden;
+  		padding-right: 100px;
+  		padding-left: 20px;
+  		line-height: 44px;
+  	}
+
+  	&:after {
+  		width: auto;
+  		content: "Choose File";
+  		text-transform: uppercase;
+  		color: #fff;
+  		background-color: #02B8EA;
+  		position: absolute;
+  		right: 0;
+  		top: 0;
+  		line-height: 44px;
+  		padding: 0 20px;
+  		font-weight: 500;
+  		font-size: 12px;
+  		letter-spacing: 0.75px;
+  		border-radius: 0 4px 4px 0;
+  	}
+  }
+
+  input[type="submit"] {
+  	line-height: 44px; 
+  	color: #fff;
+  	border: 0;
+  	border-radius: 22px; 
+  	padding: 0 30px;
+  	background-color: #02B8EA;
+  	font-weight: 500;
+  	font-size: 12px;
+  	margin-top: 20px;
+  	letter-spacing: 0.75px;
+  	text-transform: uppercase;
+  }
 }

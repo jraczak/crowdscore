@@ -170,15 +170,20 @@
 	<% end %>
 
 
-	<div id="image-upload-modal" class='full-screen-modal'>
+	<div id="image-upload-modal" class='modal'>
     <div class='modal-mask'>
       <div class='modal-content'>
         <div class='close-modal' onclick="closeModal()">+</div>
-        <%= form_for VenueImage.create, url: venue_images_path(resource) do |f| %>
-          <%= f.file_field :image_file %>
-          <%= f.text_field :caption %>
-          <%= f.submit "Upload" %>
-        <% end %>
+	      <div class="modal-vertical-center">
+	        <div class="modal-centered-body">
+	          <h1>Upload a photo</h1>
+	          <p>Choose a file from your computer and we'll get it uploaded for ya!</p>
+         	  <%= form_for VenueImage.create, url: venue_images_path(resource) do |f| %>
+		          <%= f.file_field :image_file, :"data-value" => "" %>
+		          <%= f.submit "Upload Photo" %>
+		        <% end %>
+	        </div>
+	      </div>
       </div>
     </div>
   </div>
@@ -211,6 +216,11 @@
 		function openImageUploader(){
 			$( '#image-upload-modal' ).addClass("visible");
 		}
+
+		$( '#venue_image_image_file' ).change(function() {
+			crumbs = this.value.split('\\');
+      document.getElementById('venue_image_image_file').setAttribute("data-value", crumbs[crumbs.length - 1]);
+    });
 
 		function closeModal(){
 			$('#image-upload-modal').removeClass('visible');

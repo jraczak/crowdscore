@@ -89,5 +89,10 @@ module ApplicationHelper
   #def resource
   #  @resource ||= User.new
   #end
+
+  def get_coordinates(location)
+    geoloc = Geokit::Geocoders::GoogleGeocoder.geocode(location)
+    { :lat => geoloc.lat, :long => geoloc.lng }
+  end
   
 end
