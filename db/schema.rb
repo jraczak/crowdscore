@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141029231951) do
+ActiveRecord::Schema.define(:version => 20141123214227) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -75,13 +75,13 @@ ActiveRecord::Schema.define(:version => 20141029231951) do
   create_table "featured_venues", :force => true do |t|
     t.integer  "venue_id"
     t.text     "description"
-    t.string   "image_url"
+    t.string   "featured_venue_image"
     t.integer  "priority"
     t.string   "city"
     t.string   "state"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "active",      :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "active",               :default => false
     t.string   "name"
     t.integer  "user_id"
   end

@@ -6,3 +6,4 @@ tmp/
 .DS_Store
 solr/
 spec/fixtures/
+/config/local_env.yml
