@@ -25,4 +25,5 @@ handleNoticeDismissal = (e) ->
 
 # Necessary functions to have on every page
 $(document).ready ->
+  handleNoticeDismissal()
   $('#flash-container').on "DOMSubtreeModified", handleNoticeDismissal
