@@ -1,0 +1,1 @@
+(function(){this.JST||(this.JST={}),this.JST["templates/list_picker"]=function(obj){var __p=[];with(obj||{})__p.push('<p class="picker" data-id="',id,'">\n  <label><input type="checkbox"',checked,"/> ",name,"</label>\n</p>\n");return __p.join("")}}).call(this);
