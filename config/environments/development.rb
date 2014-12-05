@@ -26,6 +26,10 @@
 
   # Do not compress assets
   config.assets.compress = false
+  
+  # Try to fix issue with JavaScripts not being served properly in production.
+  # Compile the assets locally and then commit the assets with deployment.
+  config.assets.prefix = "/dev-assets"
 
   # Expands the lines which load the assets
   config.assets.debug = true
