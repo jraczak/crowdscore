@@ -16,14 +16,16 @@ prefixedEventListener = (element, type, callback) ->
   return
 
 handleNoticeDismissal = (e) ->
-  # Dismisses flash messages
-  notices = $(e.currentTarget).children()
+  container = $(e.currentTarget)
+  dismissNoticesAfterAnimation(container)
+
+dismissNoticesAfterAnimation = (container) ->
+  notices = container.children()
   for notice in notices
     prefixedEventListener notice, "AnimationEnd", (e) ->
       notice.remove()
-  return
 
 # Necessary functions to have on every page
-$(document).ready ->
-  handleNoticeDismissal()
+$(document).ready =>
+  dismissNoticesAfterAnimation $("#flash-container")
   $('#flash-container').on "DOMSubtreeModified", handleNoticeDismissal
