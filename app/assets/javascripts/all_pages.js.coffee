@@ -22,7 +22,7 @@ handleNoticeDismissal = (e) ->
 dismissNoticesAfterAnimation = (container) ->
   notices = container.children()
   for notice in notices
-    prefixedEventListener notice, "AnimationEnd", (e) ->
+    prefixedEventListener notice, "AnimationEnd", ->
       notice.remove()
 
 # Necessary functions to have on every page

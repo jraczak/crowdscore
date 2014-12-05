@@ -15,6 +15,8 @@
 //= require backbone_rails_sync
 //= require backbone_datalink
 
+//= require geolocation
+//= require all_pages
 //= require utils
 //= require_tree ./templates
 //= require crowdscore
