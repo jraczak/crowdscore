@@ -13,7 +13,7 @@
   <% collection.each do |vt| %>
     <tr>
       <td><%= link_to vt.name, admin_venue_tag_path(vt) %></td>
-      <td><%= link_to vt.venue_tag_category.name, admin_venue_tag_category_path(vt.venue_tag_category) %></td>
+      <td><%= link_to vt.venue_tag_category.name, admin_venue_tag_category_path(vt.venue_tag_category) if vt.venue_tag_category %></td>
       <td><%= vt.venues.count %></td>
     </tr
   <% end %>
