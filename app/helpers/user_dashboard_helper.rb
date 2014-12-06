@@ -113,12 +113,5 @@ module UserDashboardHelper
       return
     end
   end
-  
-  def add_liked_venue_categories(user, venue_category_name, venue_subcategories)
-    venue_subcategories.each do |vsc|
-      user.liked_venue_categories[venue_category_name] << vsc
-    end
-    user.save!
-  end
 
 end

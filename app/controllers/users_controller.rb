@@ -46,6 +46,26 @@ class UsersController < InheritedResources::Base
     redirect_to "/users/#{resource.username.downcase}"
   end
   
+  def add_liked_venue_categories
+    params[:venue_subcategories].each do |vsc|
+      current_user.liked_venue_categories[params[:venue_category_name]] << vsc
+    end
+    user.save!
+  end
+  
+  def set_user_locale
+    
+  end
+  
+  def onboard_user
+    params[:venue_subcategories].each do |vsc|
+      current_user.liked_venue_categories[params[:venue_category_name]] << vsc
+    end
+    current_user.home_city = params[:city]
+    current_user.home_state = params[:state]
+    current_user.save!
+  end
+  
   def batch_invite
     #Validate the user_emails field isn't blank and emails are valid
     emails = [params[:invitation_email1], params[:invitation_email2], params[:invitation_email3], params[:invitation_email4],params[:invitation_email5]]

@@ -30,6 +30,8 @@ Crowdscore::Application.routes.draw do
     collection do
       post 'batch_invite'
     end
+    post "/add_liked_cuisines" => "users#add_liked_venue_categories"
+    post "/onboard_user" => "users#onboard_user"
   end
 
   resources :venues do
