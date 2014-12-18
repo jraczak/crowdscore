@@ -1,0 +1,338 @@
+.r_onboard
+{ 
+  min-height: calc(100vh - #{$cs-header-height});
+  background: $background-gray;
+  padding: 115px 0;
+  @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+
+  * 
+  {
+    opacity: 1;
+    @include transform(translateY(0px));
+  }
+
+  &.onboard-finished 
+  {
+    background: #fff;
+    *
+    {
+      pointer-events: none;
+      opacity: 0;
+      @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+      @include transform(translateY(-30px));
+    }
+  }
+
+  .info-text 
+  {
+    margin-top: 20px;
+    width: 500px;
+  }
+
+  .invite-emails
+  {
+    width: 500px;
+    margin: 40px;
+    text-align: left;
+
+    label
+    {
+      font-weight: 300;
+      color: #2d3132;
+      font-size: 11px;
+      line-height: 28px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    input
+    {
+      background-color: #e5f8fd;
+      color: #2d3132;
+      border-radius: 4px;
+      height: 45px;
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      border: 0;
+      padding: 0 20px;
+      outline: none;
+    }
+  }
+
+  .onboard-cards
+  {
+    height: 618px;
+    margin: 70px auto;
+    white-space: nowrap;
+    width: 940px;
+    @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+
+    .card {
+      background-color: #fff;
+      box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+      display: inline-block;
+      height: 100%;
+      margin-right: 20px;
+      padding-top: 75px;
+      padding-bottom: 60px;
+      position: relative;
+      text-align: center;
+      vertical-align: top;
+      white-space: normal;
+      width: 100%;
+      // @include transition(margin-left 1s $ease-in-out-circ)
+    }
+
+    p.cs
+    {
+      padding: 0 220px;
+    }
+
+    h3.cs
+    {
+      padding-bottom: 10px;
+    }
+
+    .card:nth-child(2),
+    .card:nth-child(3)
+    {
+      p.cs
+      {
+        padding: 0 110px;
+      }
+    }
+
+    .tag-group
+    {
+      padding: 10px 50px;
+      list-style: none;
+
+      li.tag
+      {
+        color: #2d3132;
+        font-weight: 700;
+        width: 190px;
+        line-height: 45px;
+        background-color: #f2f2f2;
+        float: left;
+        margin: 10px;
+        cursor: pointer;
+        @include user-select(none);
+
+        &:hover
+        {
+          background-color: #e4f6d5;
+        }
+
+        &.selected
+        {
+          background-color: #72ca28;
+          color: #fff;
+        }
+      }
+    }
+
+    .card-location
+    {
+      display: inline-block;
+      cursor: pointer;
+      width: 280px;
+      height: 300px;
+      overflow: hidden;
+      margin-top: 20px;
+      @include transition(border-color 0.25s);
+      margin-right: -4px;
+      margin-left: 20px;
+      position: relative;
+
+      .name
+      {
+        color: #2d3132;
+        font-size: 35px;
+        font-weight: 300;
+        line-height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        @include box-sizing(border-box);
+      }
+
+      img
+      {
+        width: 100%;
+        height: 100%;
+        @include transition(all 0.25s);
+      }
+
+      &.selected
+      {
+        .name
+        {
+          box-shadow: inset 0 0 0 6px #72ca28;
+        }
+
+        img
+        {
+          @include transform(scale(1.2));
+        }
+      }
+
+      &:hover 
+      {
+        img
+        {
+          @include transform(scale(1.2));
+        }
+      }
+    }
+
+    .card-nav
+    {
+      background-color: #02b8ea;
+      bottom: 0;
+      left: 0;
+      height: 60px;
+      position: absolute;
+      width: 100%;
+      overflow: hidden;
+
+      .next,
+      .back
+      {
+        width: 40px;
+        height: 25px; 
+        padding-top: 12px;
+        margin-top: 17px;
+        cursor: pointer;
+        position: absolute;
+
+        .arrow
+        {
+          width: 40px;
+          height: 2px; 
+          background-color: white;
+          position: relative;
+
+          &:before, 
+          &:after
+          {
+            content: "";
+            background-color: #fff;
+            width: 17px;
+            height: 2px;
+            position: absolute;
+            right: 0px;
+            top: 0;
+          }
+        }
+      }
+
+      .back
+      {
+        left: 30px;
+        @include transform(rotate(180deg));
+
+        .arrow
+        {
+          &:before
+          {
+            @include transform(rotate(45deg));
+            @include transform-origin(bottom right);
+          }
+
+          &:after 
+          {
+            @include transform(rotate(-45deg));
+            @include transform-origin(top right);
+          }
+        }
+      }
+
+      .next
+      {
+        right: 30px;
+        @include transform(translateX(70px));
+        @include transition(all 0.45s ease-out);
+        @include transition-delay(0.45s);
+
+        .arrow 
+        {
+          &:before, 
+          &:after
+          {
+            @include transition-property(transform);
+            @include transition-duration(0.5s);
+          }
+
+          &:before
+          {
+            @include transform(rotate(0deg));
+            @include transform-origin(bottom right);
+            @include transition-delay(0s);
+          }
+
+          &:after 
+          {
+            @include transform(rotate(0deg));
+            @include transform-origin(top right);
+            @include transition-delay(0s);
+          }
+        }
+
+        &.enabled
+        {
+          @include transform(translateX(0px));
+          @include transition-delay(0s);
+          .arrow
+          {
+            &:before
+            {
+              @include transform(rotate(45deg));
+              @include transform-origin(bottom right);
+              @include transition-delay(0.45s);
+            }
+
+            &:after 
+            {
+              @include transform(rotate(-45deg));
+              @include transform-origin(top right);
+              @include transition-delay(0.45s);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.hidden-dashboard
+{
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+
+  div * 
+  {
+    @include transform(translateY(30px));
+    @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+  }
+
+  &.visible-dashboard 
+  {
+    height: auto;
+    pointer-events: auto;
+    overflow: visible;
+    opacity: 1;
+
+    div *
+    {
+      @include transform(translateY(0px)); 
+      @include transition(all 1s cubic-bezier(0.755, 0.005, 0.400, 1.000));
+    }
+  }
+}

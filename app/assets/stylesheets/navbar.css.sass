@@ -1,7 +1,7 @@
 @import "bourbon"
 
 // Crowdscore Header
-
+$cs-header-height: 60px
 .home
 	.cs-h
 		background-color: transparent
@@ -15,7 +15,7 @@
 .cs-h 
 	background-color: #fff
 	box-shadow: 0px 0px 4px #e0e0e0
-	height: 60px
+	height: $cs-header-height
 	margin: 0 auto
 	max-width: 1920px
 	min-width: 960px
@@ -34,7 +34,7 @@
 	margin-top: 5px
 
 .cs-h-main
-	height: 60px
+	height: $cs-header-height
 	padding: 12px 20px
 	position: relative
 	opacity: 1
@@ -109,7 +109,7 @@
 
 .cs-h-search-trigger
 	cursor: pointer
-	height: 60px
+	height: $cs-header-height
 	left: 50%
 	margin-left: -50px
 	position: absolute
@@ -167,7 +167,7 @@
 	position: absolute
 	top: 0
 	left: 0
-	height: 60px
+	height: $cs-header-height
 	text-align: left
 	width: 100%
 	+transition(all 0.2s)
@@ -177,7 +177,7 @@
 	border: 0
 	cursor: pointer
 	float: right
-	height: 60px
+	height: $cs-header-height
 	outline: none
 	white-space: nowrap
 	width: 60px
@@ -199,12 +199,12 @@
 	background-repeat: no-repeat
 	display: inline-block
 	vertical-align: top
-	height: 60px
+	height: $cs-header-height
 	width: 30px
 	+transition(all 0.2s)
 
 .cs-h-search-input-wrapper
-	height: 60px
+	height: $cs-header-height
 	display: inline-block
 	vertical-align: top
 	position: relative
@@ -219,7 +219,7 @@
 	font-weight: 100
 	left: 0
 	top: 0
-	height: 60px
+	height: $cs-header-height
 	outline: none
 	position: absolute
 	background-color: #fff
@@ -316,7 +316,7 @@
 .cs-h-push
 
 	.cs-h-search-wrapper
-		height: 60px
+		height: $cs-header-height
 
 .image-wrapper-location
 	opacity: 1

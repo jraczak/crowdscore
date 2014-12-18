@@ -89,7 +89,7 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
     <% end %>
     
     <div class="page-wrapper">
-      <div class="container<%= ' map' if params[:action] == 'search' %><%= ' dark' if params[:action] == 'index' && params[:controller] == 'lists' %><%= ' home' if params[:controller] == 'home' %>">
+      <div class="container<%= ' map' if params[:action] == 'search' %><%= ' dark' if params[:action] == 'index' && params[:controller] == 'lists' %><%= ' home' if params[:controller] == 'home' && params[:action] == 'index' %>">
         <%= render 'layouts/navbar' %>
 
         <div id="flash-container">  
@@ -102,7 +102,7 @@ mixpanel.track_links("#register", "click-register", { "page": "<%= request.path 
 
         <%= yield %>
 
-        <% unless params[:action] == 'search' %>
+        <% unless ['search', 'onboard'].include? params[:action] %>
           <%= render "layouts/footer" %>
         <% end %>  
 

@@ -1,3 +1,5 @@
+@import "bourbon";
+
 @font-face {  
   font-family: Museo; 
   src: url('MuseoSansRounded-100.otf');
@@ -65,7 +67,7 @@ table {
 	height: 100%;
 	min-width: 980px;
 }
-
+@import "variables";
 @import "navbar";
 @import "footer";
 @import "custom_dropdown";
@@ -86,3 +88,4 @@ table {
 @import "modals";
 @import "font-awesome";
 @import "notice";
+@import "onboard";

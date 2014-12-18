@@ -179,7 +179,6 @@
 		{
 			display: inline-block;
 			vertical-align: top;
-			text-transform: uppercase;
 			margin-left: 35px;
 			width: 165px;
 
@@ -216,6 +215,7 @@
 				line-height: 12px;
 				text-overflow: ellipsis;
 				overflow: hidden;
+				text-transform: uppercase;
 				width: 100%;
 				white-space: nowrap;
 			}

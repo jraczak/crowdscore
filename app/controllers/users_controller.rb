@@ -58,6 +58,7 @@ class UsersController < InheritedResources::Base
   end
   
   def onboard_user
+    p params[:venue_subcategories]
     params[:venue_subcategories].each do |vsc|
       current_user.liked_venue_categories[params[:venue_category_name]] << vsc
     end

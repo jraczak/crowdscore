@@ -1,0 +1,72 @@
+<div class="r_onboard">
+	<h1 class="cs">Welcome to Crowdscore, <%= current_user.first_name.capitalize %>!</h1>
+	<p class="cs info-text">Here we will try and surface interesting places for your to try and keep you updated on what your crowd has been up to. The more we know about you the better matches we can find.</p>
+
+	<div class="onboard-cards">
+		<div class="card">
+			<h3 class="cs">Where are you?</h3>
+			<p class="cs">First things first. We’re starting off in San Francisco and New York. If you don’t live in these locations, you can request your city.</p>
+
+			<div class="card-location sf" data-val="san francisco" data-state="california">
+				<%= image_tag "sf.png" %>
+				<div class="name">San Francisco</div>
+			</div>
+
+			<div class="card-location ny" data-val="new york" data-state="new york">
+				<%= image_tag "ny.png" %>
+				<div class="name">New York</div>
+			</div>
+
+			<div class="card-nav">
+				<div class="next" data-slide="1">
+					<div class="arrow"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<h3 class="cs">Where are you?</h3>
+			<p class="cs">We’ll learn about your tastes the more you use Crowdscore, but we need a little something to get started. Right now we’re only showing restaurants, so let’s start with what you like to eat.</p>
+
+			<ul class="tag-group">
+				<% VenueCategory.find(1).venue_subcategories.all.each do |vsc| %>
+				<li class="tag" data-cat="<%= vsc.name %>"><%= vsc.name.capitalize %></li>
+				<% end %>
+			</ul>
+
+			<div class="card-nav">
+				<div class="back" data-slide="0">
+					<div class="arrow"></div>
+				</div>
+				<div class="next" data-slide="999">
+					<div class="arrow"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="card">
+			<h3 class="cs">Where are you?</h3>
+			<p class="cs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco </p>
+
+			<fieldset class="invite-emails">
+				<label for="email01">email 01</label>
+				<input id="email01"></input>
+				<label for="email02">email 02</label>
+				<input id="email02"></input>
+				<label for="email03">email 03</label>
+				<input id="email03"></input>
+			</fieldset>
+
+			<div class="card-nav">
+				<div class="back" data-slide="1">
+					<div class="arrow"></div>
+				</div>
+				<div class="next enabled" data-slide="999">
+					<div class="arrow"></div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</div>
