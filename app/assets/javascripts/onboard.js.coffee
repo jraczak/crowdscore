@@ -18,7 +18,7 @@ class Onboard
     $('.card-nav .back').click (e) =>
       @clickNavButton(e)
 
-    $('.card .tag-group .tag').click (e) =>
+    $('body').on 'click', '.card .tag-group .tag', (e) =>
       @selectTag(e)
 
   clickLocationCard: (e) ->
@@ -70,14 +70,14 @@ class Onboard
   selectTag: (e) ->
     elem = $(e.currentTarget)
     cat = $(e.currentTarget).data('cat')
-    if elem.hasClass('selected')
+    if elem.hasClass('green')
       index = @subcategories.indexOf(cat)
       if index > -1
         @subcategories.splice(index, 1)
     else
       @subcategories.push(cat)
     
-    elem.toggleClass('selected')
+    elem.toggleClass('green')
 
     if @subcategories.length >= 3
       elem.parent().parent().find('.next').addClass('enabled')

@@ -58,12 +58,18 @@ class UsersController < InheritedResources::Base
   end
   
   def onboard_user
-    p params[:venue_subcategories]
+    p params
+    venue_subcategory_integers = []
     params[:venue_subcategories].each do |vsc|
-      current_user.liked_venue_categories[params[:venue_category_name]] << vsc
+      vsc = vsc.to_i
+      venue_subcategory_integers << vsc
     end
+    current_user.liked_venue_categories[params[:venue_category_name]] = venue_subcategory_integers
+    #end
     current_user.home_city = params[:city]
     current_user.home_state = params[:state]
+    # This needs to be refactored to properly update onboarding only if user is saved.
+    current_user.onboarded = true
     current_user.save!
   end
   

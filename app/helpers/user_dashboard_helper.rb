@@ -9,7 +9,8 @@ module UserDashboardHelper
       unless user.liked_venue_categories.empty? || location == false
         user.liked_venue_categories["restaurant"].each do |lvc|
           rec_search = Venue.search do
-            with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
+            #with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
+            with :venue_subcategory_id, VenueSubcategory.find(lvc).id
             with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
           end
           all_results << rec_search.results unless rec_search.results.empty?

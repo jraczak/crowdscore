@@ -1,3 +1,7 @@
+@import 'variables';
+@import 'master';
+@import 'bourbon';
+
 .r_onboard
 { 
   min-height: calc(100vh - #{$cs-header-height});
@@ -125,7 +129,7 @@
           background-color: #e4f6d5;
         }
 
-        &.selected
+        &.green
         {
           background-color: #72ca28;
           color: #fff;

@@ -1,11 +1,11 @@
 <div class="r_onboard">
 	<h1 class="cs">Welcome to Crowdscore, <%= current_user.first_name.capitalize %>!</h1>
-	<p class="cs info-text">Here we will try and surface interesting places for your to try and keep you updated on what your crowd has been up to. The more we know about you the better matches we can find.</p>
+	<p class="cs info-text">This is your dashboard. Here we will suggest places for your to try and keep you updated on what your crowd has been up to. To get started, tell us a little bit about you.</p>
 
 	<div class="onboard-cards">
 		<div class="card">
 			<h3 class="cs">Where are you?</h3>
-			<p class="cs">First things first. We’re starting off in San Francisco and New York. If you don’t live in these locations, you can request your city.</p>
+			<p class="cs">Crowdscore is only available in San Francisco and New York right now. If you don’t live in these locations, you can request your city.</p>
 
 			<div class="card-location sf" data-val="san francisco" data-state="california">
 				<%= image_tag "sf.png" %>
@@ -25,12 +25,12 @@
 		</div>
 
 		<div class="card">
-			<h3 class="cs">Where are you?</h3>
-			<p class="cs">We’ll learn about your tastes the more you use Crowdscore, but we need a little something to get started. Right now we’re only showing restaurants, so let’s start with what you like to eat.</p>
+			<h3 class="cs">What do you like to eat?</h3>
+			<p class="cs">We’ll learn about your tastes the more you use Crowdscore, but we need a little something to get started. Tell us at least 3 kinds of food you like to eat.</p>
 
 			<ul class="tag-group">
-				<% VenueCategory.find(1).venue_subcategories.all.each do |vsc| %>
-				<li class="tag" data-cat="<%= vsc.name %>"><%= vsc.name.capitalize %></li>
+				<% VenueCategory.where(name: "Restaurant").first.venue_subcategories.all.each do |vsc| %>
+				<li class="tag" data-cat="<%= vsc.id %>"><%= vsc.name.capitalize %></li>
 				<% end %>
 			</ul>
 

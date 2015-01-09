@@ -1,4 +1,4 @@
-<% if @onboard %>
+<% unless current_user.onboarded? %>
   <%= render "onboard" %>
   <div class="hidden-dashboard">
 <% end %>
