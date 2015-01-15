@@ -85,7 +85,42 @@
       vertical-align: top;
       white-space: normal;
       width: 100%;
+      pointer-events: none;
       // @include transition(margin-left 1s $ease-in-out-circ)
+      opacity: .40;
+
+      @include transition(opacity 0.5s);
+      @include transition-delay(.5s);
+
+      &.active {
+        pointer-events: auto;
+        opacity: 1;
+        @include transition(opacity 0.7s);
+
+        .back.back.back {
+          opacity: 1;
+          @include transform(translateX(0px) rotate(180deg));
+          @include transition(opacity 0.75s ease-out, transform 0.5s $ease-out-circ);
+          @include transition-delay(0.3s, 0.5s);
+          
+          .arrow
+          {
+            &:before
+            {
+              @include transform(rotate(45deg));
+              @include transform-origin(bottom right);
+              @include transition-delay(1s);
+            }
+
+            &:after 
+            {
+              @include transform(rotate(-45deg));
+              @include transform-origin(top right);
+              @include transition-delay(1s);
+            }
+          }
+        }
+      }
     }
 
     p.cs
@@ -121,6 +156,7 @@
         background-color: #f2f2f2;
         float: left;
         margin: 10px;
+        font-size: 16px;
         cursor: pointer;
         @include user-select(none);
 
@@ -203,6 +239,39 @@
       width: 100%;
       overflow: hidden;
 
+      .step-status {
+        color: #fff;
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 11px;
+        position: absolute;
+        right: 30px;
+        line-height: 60px;
+        opacity: 1;
+        font-weight: 500;
+        padding-right: 28px;
+        @include transform(translateX(0px));
+        @include transition(opacity 0.5s ease-out, transform 0.5s $ease-out-circ);
+        @include transition-delay(0.5s, 0.5s);
+
+        &.completed {
+          opacity: 0;
+          @include transform(translateX(-70px));
+          @include transition(opacity 0.3s ease-out, transform 0.5s $ease-out-circ);
+          @include transition-delay(0s, 0s);
+        }
+
+        .tag-counter {
+          font-weight: 700;
+          position: absolute;
+          right: 0;
+          line-height: 60px;
+          display: block;
+          font-size: 14px;
+          top: 0;
+        }
+      }
+
       .next,
       .back
       {
@@ -234,33 +303,14 @@
         }
       }
 
-      .back
-      {
-        left: 30px;
-        @include transform(rotate(180deg));
-
-        .arrow
-        {
-          &:before
-          {
-            @include transform(rotate(45deg));
-            @include transform-origin(bottom right);
-          }
-
-          &:after 
-          {
-            @include transform(rotate(-45deg));
-            @include transform-origin(top right);
-          }
-        }
-      }
-
+      .back,
       .next
       {
         right: 30px;
+        opacity: 0;
         @include transform(translateX(70px));
-        @include transition(all 0.45s ease-out);
-        @include transition-delay(0.45s);
+        @include transition(opacity 0.75s ease-out, transform 0.5s $ease-out-circ);
+        @include transition-delay(0.3s, 0.5s);
 
         .arrow 
         {
@@ -288,25 +338,33 @@
 
         &.enabled
         {
+          opacity: 1;
           @include transform(translateX(0px));
           @include transition-delay(0s);
+          @include transition(opacity 0.75s ease-out, transform 0.5s $ease-out-circ);
           .arrow
           {
             &:before
             {
               @include transform(rotate(45deg));
               @include transform-origin(bottom right);
-              @include transition-delay(0.45s);
+              @include transition-delay(0.5s);
             }
 
             &:after 
             {
               @include transform(rotate(-45deg));
               @include transform-origin(top right);
-              @include transition-delay(0.45s);
+              @include transition-delay(0.5s);
             }
           }
         }
+      }
+
+      .back
+      {
+        left: 30px;
+        @include transform(translateX(-70px) rotate(180deg));
       }
     }
   }

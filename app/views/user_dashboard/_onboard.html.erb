@@ -26,7 +26,7 @@
 
 		<div class="card">
 			<h3 class="cs">What do you like to eat?</h3>
-			<p class="cs">We’ll learn about your tastes the more you use Crowdscore, but we need a little something to get started. Tell us at least 3 kinds of food you like to eat.</p>
+			<p class="cs">We’ll learn about your tastes the more you use Crowdscore, but we need a little something to get started. Tell us at least 3 cuisines you like to eat.</p>
 
 			<ul class="tag-group">
 				<% VenueCategory.where(name: "Restaurant").first.venue_subcategories.all.each do |vsc| %>
@@ -38,6 +38,7 @@
 				<div class="back" data-slide="0">
 					<div class="arrow"></div>
 				</div>
+				<div class="step-status">choose at least <span class="tag-counter">03</span></div>
 				<div class="next" data-slide="999">
 					<div class="arrow"></div>
 				</div>
