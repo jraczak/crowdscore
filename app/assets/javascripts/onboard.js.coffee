@@ -9,6 +9,7 @@ class Onboard
     @slides = $('.onboard-cards .card')
     @moveCard = @slides.parent().get(0)
 
+    $(@slides.get(@slide)).addClass('active')
     $('.card-location').click (e) =>
       @clickLocationCard(e)
 
@@ -36,7 +37,7 @@ class Onboard
     if @slide == 999
       @completeOnboard()
     else
-      @goToSlide()
+      @goToSlide(e)
 
   completeOnboard: ->
     
@@ -70,6 +71,8 @@ class Onboard
   selectTag: (e) ->
     elem = $(e.currentTarget)
     cat = $(e.currentTarget).data('cat')
+    tagCounter = $('.step-status .tag-counter')
+
     if elem.hasClass('green')
       index = @subcategories.indexOf(cat)
       if index > -1
@@ -81,10 +84,27 @@ class Onboard
 
     if @subcategories.length >= 3
       elem.parent().parent().find('.next').addClass('enabled')
+      tagCounter.parent().addClass('completed')
     else 
+      tagCounter.parent().removeClass('completed')
+      tagCounter.html("0" + (3 - @subcategories.length))
       elem.parent().parent().find('.next').removeClass('enabled')
 
-  goToSlide: ->
+  goToSlide: (e) ->
+    finalSlide = $(@slides.get(@slide))
+    next = $(e.currentTarget)
+    next.removeClass('enabled')
+    
+    # Toggle Opacity
+    @slides.removeClass('active')
+    finalSlide.addClass('active')
+
+    # Returning to original slide
+    if @slide is 0 and @state != null
+      setTimeout ->
+        finalSlide.find('.next').addClass('enabled')
+      , 500 
+
     containerLeft = $(@slides).parent().offset().left
     cardLeft = $(@slides.get(@slide)).offset().left
     offset = cardLeft - containerLeft
