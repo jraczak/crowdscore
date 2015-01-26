@@ -190,15 +190,17 @@ $animation-time: 1;
 
   .animate-to-#{$i} {
     .pie-graph-left-block {
-      @include transform(rotate(#{$fa}deg));
-      @include animation(animate-to-#{$i}-left #{$animation-time}s linear);
-      @if $hs { z-index: 400; }
+      @include transform(rotate(0deg)); z-index: 250;
+      // @include transform(rotate(#{$fa}deg));
+      @include animation(animate-to-#{$i}-left #{$animation-time}s linear forwards);
+      @include animation-delay(1s);
     } 
 
     @if $hs {
       .pie-graph-right-block {
-        @include animation(animate-to-#{$i}-right #{$animation-time}s linear);
-        z-index: 350; 
+        @include animation(animate-to-#{$i}-right #{$animation-time}s linear forwards);
+        z-index: 100; 
+        @include animation-delay(1s);
       }
     }
   } 
@@ -208,7 +210,10 @@ $animation-time: 1;
     49% { z-index: 250; }
     @if $hs { 50% { z-index: 400; } }
     #{$i * 1%} { @include transform(rotate(#{$fa}deg)); } 
-    100% { @include transform(rotate(#{$fa}deg)); }
+    100% { 
+      @include transform(rotate(#{$fa}deg)); 
+      @if $hs { z-index: 400; }
+    }
   }
 
   @include keyframes(animate-to-#{$i}-right) {

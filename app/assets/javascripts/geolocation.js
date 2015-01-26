@@ -1,6 +1,5 @@
 function getUserLocation() {
 	navigator.geolocation.getCurrentPosition(setUserLocationCookie, alertNoGeolocation, {maximumAge: (900 * 1000)});
-
 }
 
 function setUserLocationCookie(position) {
@@ -11,7 +10,6 @@ function setUserLocationCookie(position) {
 	document.cookie = "detected_user_location=" + escape(cookie_value) + "; " + expires;
 	
 	console.log(cookie_value);
-	
 	$.ajax({
 	  type: "GET",
 	  url: "/dashboard",
@@ -22,3 +20,7 @@ function setUserLocationCookie(position) {
 function alertNoGeolocation () {
 	// alert("Uh oh, we couldn't locate you!");
 }
+
+$(document).ready(function(){
+	getUserLocation();
+});
