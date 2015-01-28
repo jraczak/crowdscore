@@ -1,0 +1,10 @@
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: crowdscore
+      
+  staging:
+    branch: staging
+    heroku:
+      appname: crowdscore-staging
