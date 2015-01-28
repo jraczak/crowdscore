@@ -9,11 +9,11 @@ deployment:
     commands:
       - git push git@heroku.com:crowdscore.git
       - heroku pgbackups:capture --app crowdscore
-      - heroku run rake:db:migrate
+      - heroku run rake:db:migrate --app crowdscore
       
   staging:
     branch: staging
     commands:
       - git push git@heroku.com:crowdscore-staging.git
       - heroku pgbackups:capture --app crowdscore-staging
-      - heroku run rake:db:migrate
+      - heroku run rake:db:migrate --app crowdscore-staging
