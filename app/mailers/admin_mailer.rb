@@ -1,4 +1,4 @@
-class FollowsMailer < ActionMailer::Base
+class AdminMailer < ActionMailer::Base
   default from: "\"Crowdscore Admins\" <justin@crowdsco.re>"
   
   def new_user_email(user)
