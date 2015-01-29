@@ -1,7 +1,7 @@
 module JobScheduler
 include VenueImportsHelper
   
-  class FacebookListCreation < Struct.new(:list_url, :facebook_access_token)
+  FacebookListCreation = Struct.new(:list_url, :facebook_access_token) do
     def perform
       @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
       @fb_user = FbGraph::User.me(facebook_access_token)
@@ -11,7 +11,7 @@ include VenueImportsHelper
     end
   end
   
-  class PublishFBListCreation < Struct.new(:full_list_url, :facebook_access_token)
+  PublishFBListCreation = Struct.new(:full_list_url, :facebook_access_token) do
     def perform
       @app = FbGraph::Application.new(ENV['FACEBOOK_APP_ID'], :secret => ENV['FACEBOOK_APP_SECRET'])
       @fb_user = FbGraph::User.me(facebook_access_token)
@@ -27,7 +27,7 @@ include VenueImportsHelper
     end
   end
   
-  class ProcessVenueImportData < Struct.new(:venue_import_id)
+  ProcessVenueImportData = Struct.new(:venue_import_id) do
     def perform
       Delayed::Worker.logger.debug "--> Looking up venue import object..."
       @import_target = VenueImport.find(venue_import_id)

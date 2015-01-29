@@ -1,16 +1,19 @@
-<!-- USER DASHBOARD PAGE RECOMMENDATION PARTIAL -->
+<% provide(:module_type, "cuisine_recommendations") %>
 
+<% get_restaurant_recommendations(current_user) unless @cards %>
+<% unless @cards.empty? %>
+
+<!-- USER DASHBOARD PAGE RECOMMENDATION PARTIAL -->
 <% custom_class = custom_class || "" %>
 <div class='recommendation-module<%= " #{custom_class}" %>'>
   <div class='recommendation-module-body'>
+    
     <div class="module-left"></div>
     <div class="module-right"></div>
 
     <div class='recommendation-header'>
       <h2><%= module_header( yield :module_type) %></h2>
-      <p class="description">
-        <%= module_copy( yield :module_type) %>
-      </p>
+      <p class="description"><%= module_copy( yield :module_type) %></p>
     </div>
 
     <!-- START DYNAMIC RECOMMENDATION CARDS -->
@@ -36,103 +39,8 @@
           </div>
         </div>
     <% end %>
-    
-    <!-- END DYNAMIC RECOMMENDATION CARDS -->
-    
-    
-    
-      <!-- 
-      <div class='recommendation-card populated'>
-        <div class="image">
-          <img src="http://discovermilton.com/wp-content/uploads/2013/03/Pasta_mabo06_morguefile.jpg">
-        </div>
-        
-        <div class="score-container">
-          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-        </div>
-
-        <div class="stats">
-          <span>30 scores</span>
-          <span>55 tips</span>
-        </div>
-
-        <div class="info">
-          <h4>Bubby's Awesome Southern Food</h4>
-          <p>
-            <span>0.2 miles</span>
-            <span>brooklyn</span>
-          </p>
-        </div>
-      </div>
-
-      <div class='recommendation-card empty'>
-        <div class="score-container">
-          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-        </div>
-
-        <div class="stats">
-          <span>30 scores</span>
-          <span>55 tips</span>
-        </div>
-
-        <div class="info">
-          <h4>Bubby's Awesome Southern Food</h4>
-          <p>
-            <span>0.2 miles</span>
-            <span>brooklyn</span>
-          </p>
-        </div>
-      </div>
-
-      <div class='recommendation-card populated'>
-        <div class="image">
-          <img src="http://media.tumblr.com/ff8c5067ad9eae074a45ab22ef6924a4/tumblr_inline_mfg6unsLPg1qhyx80.jpg">
-        </div>
-        <div class="score-container">
-          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-        </div>
-
-        <div class="stats">
-          <span>30 scores</span>
-          <span>55 tips</span>
-        </div>
-
-        <div class="info">
-          <h4>Bubby's Awesome Southern Food</h4>
-          <p>
-            <span>0.2 miles</span>
-            <span>brooklyn</span>
-          </p>
-        </div>
-      </div>
-
-      <div class='recommendation-card empty'>
-        <div class="score-container">
-          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-        </div>
-
-        <div class="stats">
-          <span>30 scores</span>
-          <span>55 tips</span>
-        </div>
-
-        <div class="info">
-          <h4>Bubby's Awesome Southern Food</h4>
-          <p>
-            <span>0.2 miles</span>
-            <span>brooklyn</span>
-          </p>
-        </div>
-      </div>
-
-      <div class='recommendation-card'></div>
-      <div class='recommendation-card'></div>
-      <div class='recommendation-card'></div>
-      <div class='recommendation-card'></div>
-      <div class='recommendation-card'></div>
-      <div class='recommendation-card'></div>
-      <div style='width: 100px; height: 299px; visibility: hidden'>s</div>
-    -->
     </div>
   </div>
 </div>
+
+<% end %>

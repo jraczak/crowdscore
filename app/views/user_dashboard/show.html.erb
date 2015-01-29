@@ -1,18 +1,16 @@
 <% unless current_user.onboarded? %>
-  <%= render "onboard" %>
-  <div class="hidden-dashboard">
+<%= render "onboard" %>
+<div class="hidden-dashboard">
 <% end %>
 
-<% provide(:module_type, "cuisine_recommendations") %>
 <div class='r_dashboard'>
   <h1><%= dashboard_salutation %></h1>
 
-  <% get_restaurant_recommendations(current_user) %>
-  <%= render 'recommendation_module' unless @cards.empty? %>
+  <div id="dashboard-recommendations-container">
+  </div>
+
   <% get_featured_venue %>
   <%= render 'featured_venue' if @featured_venue %>
-
-
 
   <!-- Start User Module -->
   <section id="user">
@@ -30,35 +28,18 @@
       <p>FOLLOWING</p>
     </div>
 
-    <!-- <div class="invitations-container">
-      <p>Invite your friends to Crowdscore
-      </p>
-      <span class="angle-right"><i class="icon-angle-right"></i></span>
-      <%= link_to "", new_user_invitation_path %>
-    </div> -->
   </section>
   <!-- End User Module -->
 
-
+  <% if not current_user.network_activity.empty? %>
   <section id="crowdfeed">
     <h2>Your Crowdfeed</h2>
     <%= render 'crowdfeed_cards' %>
   </section>
-
-</div>
-
-  <%# debug current_meal %>
-  <%# debug time_at_user %>
-  <%# debug current_user.liked_venue_categories["restuarant"] %>
-  <div id="dashboard-recommendations-container">
-  <% if user_time_zone && user_location_data %>
-  <% end %>
-  </div>  
-  <%# session[:geo_location] %>
-  <%# cookies[:geo_session] %>
+  <% end %>  
 
 </div>
 
 <% if @onboard %>
-  </div>
+</div>
 <% end %>

@@ -4,8 +4,7 @@ module UserDashboardHelper
     location = user_location_data
     all_results = []
     @cards = []
-      
-      
+
       unless user.liked_venue_categories.empty? || location == false
         user.liked_venue_categories["restaurant"].each do |lvc|
           rec_search = Venue.search do
@@ -18,7 +17,7 @@ module UserDashboardHelper
       end
 
     all_results.each do |r|
-      @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
+      @cards << Venue.find(r["id"]) unless current_user.venue_scores.where(venue_id: r["id"]).any?
     end
     
   end
