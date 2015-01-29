@@ -71,6 +71,8 @@ class UsersController < InheritedResources::Base
     # This needs to be refactored to properly update onboarding only if user is saved.
     current_user.onboarded = true
     current_user.save!
+    # Send a notification email to admins
+    AdminMailer.onboarding_completed_email(resource).deliver
   end
   
   def batch_invite
