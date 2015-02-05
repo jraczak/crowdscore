@@ -8,6 +8,7 @@ gem "slim-rails"
 #gem "devise", "~> 2.1.0"
 gem "devise" #, "~> 3.0.0"
 gem "cancan"
+gem 'unicorn'
 gem "thin"
 gem "carrierwave"
 gem "rmagick", "~> 2.13.2"
