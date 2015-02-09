@@ -45,6 +45,8 @@ gem 'mixpanel-ruby'
 
 gem 'carrierwave_direct'
 
+gem 'hirefire-resource'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

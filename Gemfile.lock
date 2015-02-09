@@ -195,6 +195,7 @@ GEM
       excon (~> 0.13.3)
     highline (1.6.21)
     hike (1.2.3)
+    hirefire-resource (0.3.4)
     httpauth (0.2.0)
     httpclient (2.4.0)
     i18n (0.6.9)
@@ -473,6 +474,7 @@ DEPENDENCIES
   gmaps4rails (~> 1.5.6)
   guard-spin
   heroku
+  hirefire-resource
   inherited_resources
   jquery-rails
   jquery-ui-rails
