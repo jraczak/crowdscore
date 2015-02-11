@@ -44,5 +44,8 @@
   <%= f.association :venue_tags, as: :check_boxes, label_method: :name, value_method: :id, collection: vtc.venue_tags, label: false %>
   <% end %>
   
+  <%= f.label :active %>
+  <%= f.check_box :active %>
+  <br>
   <%= f.button :submit, "submit" %>
 <% end %>
