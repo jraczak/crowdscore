@@ -57,7 +57,7 @@
 
 				<div class="attribute">
 					<div class="key">Phone Number</div>
-					<div class="value"><%= number_to_phone(resource.phone.presence) || "N/A"  %></div>
+					<div class="value"><%= number_to_phone(resource.phone.presence, area_code: true) || "N/A"  %></div>
 				</div>
 
 				<div class="attribute hours <%= open_now? %>">
