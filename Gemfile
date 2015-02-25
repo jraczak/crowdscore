@@ -48,6 +48,9 @@ gem 'carrierwave_direct'
 
 gem 'hirefire-resource'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
