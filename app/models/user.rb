@@ -4,6 +4,17 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable#, :validatable
+         
+  # Elasticsearch configuration
+  include ElasticsearchUser
+  # index_name "users" <-- This value is inferred automatically by the model name
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :username
+      indexes :email
+      indexes :full_name
+    end
+  end
 
   # Setup accessible (or protected) attributes for your model
 
@@ -83,6 +94,12 @@ class User < ActiveRecord::Base
   # add image uploader to model
   mount_uploader :image_url, ImageUrlUploader
 
+  def as_indexed_json(options={})
+    self.as_json(only: [:username, :email, :full_name],
+                 methods: [:full_name]
+    )
+  end
+  
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     email = conditions.delete(:email)
@@ -414,6 +431,7 @@ class User < ActiveRecord::Base
       end
     end
   end
+
 
 
 end

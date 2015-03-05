@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require "devise"
 require 'csv'
+require 'active_support/concern'
 
 if defined?(Bundler)
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -15,7 +16,10 @@ module Crowdscore
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(
+      #{config.root}/lib 
+      #{config.root}/app/models/concerns
+      )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

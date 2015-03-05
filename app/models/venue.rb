@@ -1,7 +1,9 @@
 class Venue < ActiveRecord::Base
   audited
   include DistanceHelper
-  include Searchable
+  
+  include ElasticsearchVenue
+  settings index: { number_of_shards: 1 }
   
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
