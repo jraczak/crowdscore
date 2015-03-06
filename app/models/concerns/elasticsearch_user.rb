@@ -1,4 +1,5 @@
 require 'active_support/concern'
+require 'elasticsearch/model'
 
 module ElasticsearchUser
 
@@ -13,8 +14,7 @@ module ElasticsearchUser
     #end
     
     def self.search(query)
-      puts 'we made it to search'
-      _elasticsearch_.search(
+      __elasticsearch__.search(
         {
 	        query: {
 		        multi_match: {

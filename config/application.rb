@@ -4,6 +4,7 @@ require 'rails/all'
 require "devise"
 require 'csv'
 require 'active_support/concern'
+require 'elasticsearch/model'
 
 if defined?(Bundler)
   Bundler.require(*Rails.groups(:assets => %w(development test)))
