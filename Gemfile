@@ -8,6 +8,7 @@ gem "slim-rails"
 #gem "devise", "~> 2.1.0"
 gem "devise" #, "~> 3.0.0"
 gem "cancan"
+gem 'unicorn'
 gem "thin"
 gem "carrierwave"
 gem "rmagick", "~> 2.13.2"
@@ -43,6 +44,8 @@ gem 'rails_12factor'
 gem 'mixpanel-ruby'
 
 gem 'carrierwave_direct'
+
+gem 'hirefire-resource'
 
 
 # Gems used only for assets and not required

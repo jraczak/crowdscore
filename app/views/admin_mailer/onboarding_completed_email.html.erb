@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<body>
+			<h2>A user has completed the onboarding experience.</h2>
+		<p>
+			Howdy Crowdscore team. <%= link_to "#{@user.username}", user_url(@user) %> has
+			completed the onboarding experience.
+	    </p>
+		
+        <ul>
+          <li>
+            <h4>Liked Cuisines</h4>
+          </li>
+          <% @user.liked_venue_categories["restaurant"].each do |lvc| %>
+            <li>
+              <%= lvc.name %>
+            </li>
+          <% end %>
+          <li>
+            <h4>Location</h4>
+          </li>
+          <li>
+            <%= user_full_location(@user) %>
+          </li>
+        </ul>
+		</body>
+	</head>
+</html>

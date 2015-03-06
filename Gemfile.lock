@@ -195,6 +195,7 @@ GEM
       excon (~> 0.13.3)
     highline (1.6.21)
     hike (1.2.3)
+    hirefire-resource (0.3.4)
     httpauth (0.2.0)
     httpclient (2.4.0)
     i18n (0.6.9)
@@ -211,6 +212,7 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     kdtree (0.3)
+    kgio (2.9.3)
     kumade (0.8.2)
       cocaine (>= 0.2.0)
       heroku (~> 2.0)
@@ -321,6 +323,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
+    raindrops (0.13.0)
     rake (10.1.1)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
@@ -425,6 +428,10 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.8.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
@@ -467,6 +474,7 @@ DEPENDENCIES
   gmaps4rails (~> 1.5.6)
   guard-spin
   heroku
+  hirefire-resource
   inherited_resources
   jquery-rails
   jquery-ui-rails
@@ -504,4 +512,5 @@ DEPENDENCIES
   timecop
   timezone
   uglifier (>= 1.0.3)
+  unicorn
   will_paginate (~> 3.0.0)

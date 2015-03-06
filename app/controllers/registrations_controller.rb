@@ -37,6 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
     else
       super
+      # create the user in Mixpanel
       if resource.save
         tracker.people.set("#{resource.id}", {
 	        '$first_name' => resource.first_name,
@@ -44,6 +45,10 @@ class RegistrationsController < Devise::RegistrationsController
 	        '$username' => resource.username
         })
         tracker.track(resource.id, 'Signed Up')
+        
+      # send a notification email to admins
+        AdminMailer.new_user_email(resource).deliver
+        redirect_to after_signup_path_for(resource)
       end
     end
   end

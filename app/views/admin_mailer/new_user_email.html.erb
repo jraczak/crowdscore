@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<body>
+			<h2>A new user has signed up for Crowdscore!</h2>
+		<p>
+			Howdy Crowdscore team. A new user has signed up for the Crowdscore web app.
+	    </p>
+		
+		<p>
+			You can check out their profile <%= link_to "here", user_url(@user) %>. If you want to 
+			reach out to them, their email address is <%= mail_to @user.email %>. 
+		</p>
+		
+		<h3>
+		  Raw stats
+		</h3>
+		<ul>
+		  <li>
+		    First name: <%= @user.first_name %>
+		  </li>
+		  <li>
+		    Email: <%= @user.email %>
+		  </li>
+		  <li>
+		    Profile link: <%= link_to "#{@user.username}", user_url(@user) %>
+		  </li>
+		</ul>
+		</body>
+	</head>
+</html>

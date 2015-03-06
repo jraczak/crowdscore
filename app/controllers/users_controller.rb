@@ -58,6 +58,7 @@ class UsersController < InheritedResources::Base
   end
   
   def onboard_user
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_PROJECT_TOKEN'])
     p params
     venue_subcategory_integers = []
     params[:venue_subcategories].each do |vsc|
@@ -71,6 +72,10 @@ class UsersController < InheritedResources::Base
     # This needs to be refactored to properly update onboarding only if user is saved.
     current_user.onboarded = true
     current_user.save!
+    # Send a notification email to admins
+    AdminMailer.onboarding_completed_email(resource).deliver
+    # Send event to Mixpanel
+    tracker.track(current_user.id, 'Completed Onboarding')
   end
   
   def batch_invite

@@ -17,7 +17,7 @@ module UserDashboardHelper
       end
 
     all_results.each do |r|
-      @cards << Venue.find(r["id"]) unless current_user.venue_scores.where(venue_id: r["id"]).any?
+      @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
     end
     
   end
