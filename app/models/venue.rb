@@ -233,7 +233,6 @@ class Venue < ActiveRecord::Base
   def recent_tip
     self.tips.first
   end
-  
 
   private
 
