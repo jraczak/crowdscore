@@ -1,0 +1,12 @@
+<%= render 'admin/subnav' %>
+
+<h1>Create Venue Category</h1>
+
+<%= form_for resource, :url => new_admin_venue_category_path do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  <p>USE CAUTION UPDATING THE BELOW INFORMATION!</p><br>
+  <%= f.label :factual_category_id, "Factual category ID" %><br>
+  <%= f.text_field :factual_category_id %><br>
+  <%= f.submit("create venue category") %>
+<% end %>
