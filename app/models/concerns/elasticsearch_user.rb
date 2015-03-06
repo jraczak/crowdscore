@@ -12,18 +12,19 @@ module ElasticsearchUser
     #  #to-do
     #end
     
-    #def self.search(query)
-    #  _elasticsearch_.search(
-    #    {
-	#        query: {
-	#	        multi_match: {
-	#		        query: query,
-	#		        fields: ['username^2', 'email', 'full_name']
-	#	        }
-	#        }
-    #    }
-    #  )
-    #end
+    def self.search(query)
+      puts 'we made it to search'
+      _elasticsearch_.search(
+        {
+	        query: {
+		        multi_match: {
+			        query: query,
+			        fields: ['username^2', 'email', 'full_name']
+		        }
+	        }
+        }
+      )
+    end
   
   end
 end
