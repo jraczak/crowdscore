@@ -2,7 +2,7 @@
 
 <h1>Create Venue Category</h1>
 
-<%= form_for resource, :url => new_admin_venue_category_path do |f| %>
+<%= form_for resource, :url => {:controller => "venue_categories", :action => "create"} do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
   <p>USE CAUTION UPDATING THE BELOW INFORMATION!</p><br>
