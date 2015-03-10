@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 ruby '1.9.3'
 
 gem 'rails', '3.2.2'
+gem 'rake', '~> 10.4.2'
 
 gem "pg"
 gem "inherited_resources"
