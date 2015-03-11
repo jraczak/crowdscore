@@ -16,4 +16,4 @@ deployment:
     commands:
       - git push git@heroku.com:crowdscore-staging.git -f
       - heroku pgbackups:capture --expire --app crowdscore-staging
-      - heroku run rake db:migrate --app crowdscore-staging
+      - heroku run bundle exec rake db:migrate --app crowdscore-staging
