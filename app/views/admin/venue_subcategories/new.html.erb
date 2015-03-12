@@ -5,8 +5,13 @@
 <%= form_for resource, :url => {:controller => "venue_subcategories", :action => "create"} do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
+  <%= f.label :venue_category%><br>
+  <%= f.collection_select :venue_category_id, VenueCategory.all, :id, :name %><br>
   <p>USE CAUTION UPDATING THE BELOW INFORMATION!</p><br>
   <%= f.label :factual_category_id, "Factual category ID" %><br>
   <%= f.text_field :factual_category_id %><br>
   <%= f.submit("create venue subcategory") %>
 <% end %>
+
+
+
