@@ -22,6 +22,14 @@
   <p><b><%= day %>: </b>Open <%= Time.parse(hours[:open]).strftime("%l:%M%p") %>, Close <%= Time.parse(hours[:close]).strftime("%l:%M%p") %></p><br>
 <% end %>
 
+<h2>Properties</h2>
+<% resource.properties.each do |property, values| %>
+  <h3><%= property.titleize %></h3>
+  <% values.each do |value| %>
+    <%= value %><br>
+  <% end %>
+<% end %>
+
 <h2>Activity</h2>
 <%= pluralize(resource.venue_scores.count, "score") %><br>
 <%= pluralize(resource.tips.count, "tip") %><br>
