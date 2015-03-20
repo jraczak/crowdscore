@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.2.2'
 
@@ -46,6 +47,9 @@ gem 'mixpanel-ruby'
 gem 'carrierwave_direct'
 
 gem 'hirefire-resource'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 
 # Gems used only for assets and not required
