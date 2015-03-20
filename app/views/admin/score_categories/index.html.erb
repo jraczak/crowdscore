@@ -6,15 +6,29 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Venue Category Assignments</th>
       <th>Venue Categories</th>
+      <th>Venue Subcategory Assignments</th>
       <th>Venue Subcategories</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <% collection.each do |sc| %>
     <tr>
       <td><%= link_to sc.name, admin_score_category_path(sc) %></td>
       <td><%= sc.venue_categories.count %></td>
+      <td>
+        <% sc.venue_categories.each do |vc| %>
+          <%= vc.name %><%= ", " unless sc.venue_categories.last == vc %>
+        <% end %>
+      </td>
       <td><%= sc.venue_subcategories.count %></td>
+      <td>
+        <% sc.venue_subcategories.each do |vsc| %>
+          <%= vsc.name %><%= ", " unless sc.venue_subcategories.last == vsc %>
+        <% end %>
+      </td>
+      <td><%= link_to "Edit Score Category", edit_admin_score_category_path(sc) %></td>
     </tr
   <% end %>
 </table>

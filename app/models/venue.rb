@@ -33,6 +33,7 @@ class Venue < ActiveRecord::Base
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
                                :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names, :venue_tag_ids]
+                               
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
   admin_only_fields = [:active]
@@ -44,6 +45,7 @@ class Venue < ActiveRecord::Base
   store :hours
   store :hour_ranges
   store :hours_with_names
+  store :properties, accessors: [ :cuisines ]
 
   validates :name, :address1, :city, :state, :zip, :venue_category, presence: true
   validates :url, format: { with: /^https?:\/\//, allow_blank: true, message: "URL must contain 'http://'" }
@@ -234,24 +236,6 @@ class Venue < ActiveRecord::Base
   ## Gets the most recent tip to be used in tooltips and summaries around the application.
   def recent_tip
     self.tips.first
-  end
-  
-  ## A helper that returns relevant hash tags based on the venue category to be used in Twitter shares
-  def hash_tags(venue_category)
-    hashtags = []
-    hash_tag_string = ""
-    if venue_category.name == "Restaurant"
-      hashtags << "#restaurants"
-    elsif venue_category.name == "Salons & Spas"
-      hashtags << ["#salons", "#spas"]
-    elsif venue_category.name == "Hotels & Resorts"
-      hashtags << ["#hotels", "#resorts"]
-    elsif venue_category.name == "Bars & Nightlife"
-      hashtags << ["#bars", "#nightlife"]
-    end
-    hashtags.each do |h|
-      hash_tag_string << "#{h} "
-    end
   end
 
   private
