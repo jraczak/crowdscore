@@ -5,6 +5,9 @@ class Venue < ActiveRecord::Base
   include ElasticsearchVenue
   settings index: { number_of_shards: 1 }
   
+  after_create :create_elasticsearch_index
+  after_update :update_elasticsearch_index
+  
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
   acts_as_mappable :default_units => :miles,
@@ -65,6 +68,35 @@ class Venue < ActiveRecord::Base
     integer :venue_subcategory_id, :multiple => true
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+  end
+  
+  #def as_indexed_json(options={})
+  #  self.as_json({ 
+  #    only: [:name, :properties],
+  #    include: {
+  #	      venue_subcategory: { only: :name },
+  #	      tips: { only: :text }
+  #    }
+  #  })
+  #end
+  
+  def as_indexed_json(options={})
+    _include = {"venue_subcategory" => {:only => "name"}, 
+                "tips" => {:only => "text"}
+    }
+    
+    self.as_json(
+      only: [:name, :properties],
+      include: _include
+    )
+  end
+  
+  def update_elasticsearch_index
+    self.__elasticsearch__.update_document
+  end
+  
+  def create_elasticsearch_index
+    self.__elasticsearch__.index_document
   end
   
   def self.higher_scored_than(venue, _limit = 4)
