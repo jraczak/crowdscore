@@ -13,6 +13,7 @@
       <td>Location</td>
       <td>Venue Category</td>
       <td>Venue Subcategory</td>
+      <td>Properties</td>
       <td>Edit</td>
     </tr>
   </thead>
@@ -22,6 +23,13 @@
       <td><%= "#{venue.city}, #{venue.state}" %></td>
       <td><%= venue.venue_category.name %></td>
       <td><%= venue.venue_subcategory.name if venue.venue_subcategory %></td>
+      <td>
+        <% unless venue.properties == {} %>
+          <% venue.properties.each do |property, values| %>
+            <%= property %><%= ", " unless venue.properties.keys.last == property %>
+          <% end %>
+        <% end %>
+      </td>
       <td><%= link_to "Edit venue", edit_admin_venue_path(venue) %></td>
     </tr>
   <% end %>

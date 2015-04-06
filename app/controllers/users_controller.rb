@@ -1,5 +1,6 @@
 class UsersController < InheritedResources::Base
   include ActionView::Helpers::TextHelper
+  include UserControllerAdditions
   actions :show
   custom_actions member: [:follow]
 

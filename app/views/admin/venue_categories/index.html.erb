@@ -4,6 +4,8 @@
 
 <h2>Category Management</h2>
 
+<%= link_to "Create new venue category", new_admin_venue_category_path %>
+
 <% VenueCategory.all.each do |vc| %>
   <h3><%= link_to vc.name, admin_venue_category_path(vc) %> (<%= link_to "edit", edit_admin_venue_category_path(vc) %>)</h3>
   <ul>
