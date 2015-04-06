@@ -5,6 +5,7 @@ function Gmap(data){
 	this.bounds = new google.maps.LatLngBounds();
 	this.initialize();
 	this.currentInfoWindow = null;
+	this.infoWindowHoverTimeout = null;
 	this.setupSearchResultClickEvent();
 };
 
@@ -79,7 +80,7 @@ Gmap.prototype.createMarkerandInfoWindow = function(i){
 		percent: percent
 	});
 
-	google.maps.event.addListener(marker, 'click', function(){
+	google.maps.event.addListener(marker, 'mouseover', function(){
 		self.openMapMarker(venueId)
 	});
 }
@@ -99,6 +100,7 @@ Gmap.prototype.openMapMarker = function(venueId){
 }
 Gmap.prototype.clearGoogleMarkup = function() {
 	var all = $('.gm-style .gm-style-iw');
+	all.parent().css({'height': 'inherit !important', 'width': 'inherit !important'})
 	all.prev().remove();
 	all.next().remove();
 }
@@ -114,7 +116,13 @@ Gmap.prototype.updateSearchResultsBank = function(venueId) {
 
 Gmap.prototype.setupSearchResultClickEvent = function() {
 	var self = this;
-	$('body').on('click', '.search-result', function(){
+	
+	$('body').on('mouseout', '.search-result', function(){
+		if (self.currentInfoWindow)
+		self.currentInfoWindow.close();
+	});
+
+	$('body').on('mouseover', '.search-result', function(){
 		var venueId = $(this).data('venue-id');
 		self.openMapMarker(venueId)
 	});
@@ -133,6 +141,12 @@ Gmap.prototype.initialize = function(){
 
 	this.map = new google.maps.Map(map_canvas, map_options);
 	this.addMapMarkers();
+
+	var _this = this;
+	google.maps.event.addListener(this.map, 'mousemove', function() {
+		if (_this.currentInfoWindow)
+			_this.currentInfoWindow.close();
+  });
 };
 
 

@@ -18,9 +18,8 @@
 					<%= text_field_tag :zip, "", placeholder: "in San Francisco, CA", tabindex: 6, class: "hps-location-input" %>
 				</div>
 				<input type="submit" class="hps-submit" value="" tabindex=7>
-
-			</div>
-		<% end %>
+			<% end %>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -124,6 +123,7 @@
 			'setLocation#focus' : '.hps-location-input',
 			'setLocation#click' : '.hps-location-main',
 			'reset#click' : document,
+			'handleEnterKeypress#keydown' : '.hps-input-main'
 		}
 	};
 
@@ -144,10 +144,22 @@
 		this.$locationInput.removeClass('location')
 	};
 
+	HomepageSearch.prototype.handleEnterKeypress = function (e) {
+		var _this = this;
+		if (e.which == 13){
+			e.stopPropagation();
+	    e.preventDefault();
+			_this.setLocation(e);
+			return false;
+		}
+
+	};
+
 	HomepageSearch.prototype.setLocation = function (e) {
 		e.stopPropagation();
-		this.$inputMain.addClass('location')
-		this.$locationInput.addClass('location')
+		this.$inputMain.addClass('location');
+		this.$locationInput.addClass('location');
+		this.$locationInput.focus();
 	};
 
 	$(document).ready( function () {
