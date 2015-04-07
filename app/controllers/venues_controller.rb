@@ -49,6 +49,7 @@ class VenuesController < InheritedResources::Base
     							)
     snapshot.save!
   end
+  
 
   private
 
