@@ -63,17 +63,17 @@ class Venue < ActiveRecord::Base
   ##and these calls to the API are unnecessary
   #after_validation :geocode, if: :address_parts_changed?
 
-  searchable(include: [:tips, :venue_category, :venue_subcategory]) do
-    text :name
-    text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
-    text(:category) { |venue| venue.full_category_name }
-    text(:tips) { |venue| venue.tips.map(&:text) }
-    #text(:tags) { |venue| venue.tags.map(&:full_name) }
-    integer :venue_category_id, :multiple => true
-    integer :venue_subcategory_id, :multiple => true
-
-    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
-  end
+  #searchable(include: [:tips, :venue_category, :venue_subcategory]) do
+  #  text :name
+  #  text(:name_without_punc) { |venue| venue.name.gsub(/[^\s\w]/, '') }
+  #  text(:category) { |venue| venue.full_category_name }
+  #  text(:tips) { |venue| venue.tips.map(&:text) }
+  #  #text(:tags) { |venue| venue.tags.map(&:full_name) }
+  #  integer :venue_category_id, :multiple => true
+  #  integer :venue_subcategory_id, :multiple => true
+  #
+  #  latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+  #end
   
   #def as_indexed_json(options={})
   #  self.as_json({ 
