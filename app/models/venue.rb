@@ -6,8 +6,16 @@ class Venue < ActiveRecord::Base
   include ElasticsearchVenue
   # Include a faster import method than the stock ES import
   include ElasticsearchVenueImport
-  settings index: { number_of_shards: 1 }
-  
+  settings index: { number_of_shards: 1 } do
+    mapping do
+      indexes :name, type: 'string'
+      indexes :tips, type: 'string'
+      indexes :venue_subcategory, type: 'string'
+      indexes :location, type: 'geo_point'
+      indexes :properties, type: 'string'
+    end
+  end
+      
   after_create :create_elasticsearch_index
   after_update :update_elasticsearch_index
   
@@ -86,14 +94,16 @@ class Venue < ActiveRecord::Base
   #end
   
   def as_indexed_json(options={})
-    _include = {"venue_subcategory" => {:only => "name"}, 
-                "tips" => {:only => "text"}
+    _include = { 
+                "tips" => {:only => "text",
+	            "venue_subcategory" => {:only => "name"},
+                }
     }
     
     self.as_json(
       only: [:name, :properties, :latitude, :longitude],
       include: _include
-    )
+    ).merge location: { lat: self.latitude, lon: self.longitude }
   end
   
   def update_elasticsearch_index
