@@ -91,7 +91,7 @@ class Venue < ActiveRecord::Base
     }
     
     self.as_json(
-      only: [:name, :properties],
+      only: [:name, :properties, :latitude, :longitude],
       include: _include
     )
   end
