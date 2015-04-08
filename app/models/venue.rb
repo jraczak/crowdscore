@@ -2,7 +2,10 @@ class Venue < ActiveRecord::Base
   audited
   include DistanceHelper
   
+  # Include the overridden search method
   include ElasticsearchVenue
+  # Include a faster import method than the stock ES import
+  include ElasticsearchVenueImport
   settings index: { number_of_shards: 1 }
   
   after_create :create_elasticsearch_index
