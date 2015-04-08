@@ -23,7 +23,7 @@ gem "state_select", git: "git://github.com/jraczak/state_select.git"
 gem 'audited-activerecord'
 
 gem "airbrake"
-gem "sunspot_rails"
+#gem "sunspot_rails"
 gem "geocoder"
 gem "rails-backbone", "~> 0.7.0"
 gem "ejs"
