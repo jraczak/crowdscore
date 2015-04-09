@@ -28,7 +28,7 @@ module ElasticsearchVenue
 	        },
             filter: {
 	            geo_distance: {
-		            distance: "2mi",
+		            distance: "5mi",
 		            location: {
 			            lon: search_location.lng,
 			            lat: search_location.lat
