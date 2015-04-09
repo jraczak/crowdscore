@@ -12,7 +12,9 @@ class Venue < ActiveRecord::Base
       indexes :tips, type: 'string'
       indexes :venue_subcategory, type: 'string'
       indexes :location, type: 'geo_point'
-      indexes :properties, type: 'string'
+      indexes :properties, type: 'nested' do
+        indexes :cuisines, type: 'string'
+      end
     end
   end
       
@@ -104,6 +106,10 @@ class Venue < ActiveRecord::Base
       only: [:name, :properties, :latitude, :longitude],
       include: _include
     ).merge location: { lat: self.latitude, lon: self.longitude }
+  end
+  
+  def cuisines
+    self.properties["cuisines"]
   end
   
   def update_elasticsearch_index
