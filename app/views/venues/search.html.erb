@@ -3,20 +3,20 @@
 <!-- Search results google map, place google map within this -->
 
 <% location = get_coordinates(params[:zip]) %>
-<div id="search-results-map" class="search-results-map<%= ' empty' if collection.results.length == 0 %>" data-lat='<%= location[:lat] %>' data-lng='<%= location[:long] %>'>
+<div id="search-results-map" class="search-results-map<%= ' empty' if collection.length == 0 %>" data-lat='<%= location[:lat] %>' data-lng='<%= location[:long] %>'>
 </div>
 <div class="search-results-bank">
 	<div class="results-header">
-		<p class="result-count"><%= pluralize(collection.results.count, "Result") %></p>
+		<p class="result-count"><%= pluralize(collection.count, "Result") %></p>
 		<span class="results-filter-dropdown">
 			<span class="filter-dropdown-value">Sort By</span>
 			<span class="filter-dropdown-arrow"><i class="fa fa-angle-down"></i></span>
 		</span>
 	</div>
-	<% if collection.results.length == 0 %>
+	<% if collection.length == 0 %>
 		<h4 class="no-results">We couldn't find anything that matched your search =[</h4>
 	<% end %>
-	<% collection.results.each_with_index do |venue, index| %>
+	<% collection.each_with_index do |venue, index| %>
 		<%= render 'search_result', venue: venue, index: index %>
 	<% end %>
 </div>

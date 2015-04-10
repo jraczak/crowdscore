@@ -9,7 +9,7 @@ class Venue < ActiveRecord::Base
   settings index: { number_of_shards: 1 } do
     mapping do
       indexes :name, type: 'string'
-      indexes :tips, type: 'string'
+      indexes :tips, type: 'object', dynamic: true
       indexes :venue_subcategory, type: 'string'
       indexes :location, type: 'geo_point'
       indexes :properties, type: 'nested' do
@@ -19,7 +19,7 @@ class Venue < ActiveRecord::Base
   end
       
   after_create :create_elasticsearch_index
-  after_update :update_elasticsearch_index
+  #after_update :update_elasticsearch_index
   
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
@@ -245,6 +245,8 @@ class Venue < ActiveRecord::Base
     [address1, address2, city, state, zip].compact.join(", ")
   end
 
+  
+  
   def self.update_missing_geocodes
     where('longitude IS NULL OR latitude IS NULL').each do |venue|
       venue.update_geocode

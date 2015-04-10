@@ -9,8 +9,9 @@ class VenuesController < InheritedResources::Base
       return redirect_to(root_path)
     end
 
-    @venues = VenueSearch.search(params)
-    @json = @venues.results.to_gmaps4rails
+    #@venues = VenueSearch.search(params)
+    @venues = Venue.search(params[:q], params[:zip]).records.to_a
+    #@json = @venues.results.to_gmaps4rails
   end
   
   def create
