@@ -10,7 +10,7 @@ module UserControllerAdditions
         user.liked_venue_categories["restaurant"].each do |id|
           ids << VenueSubcategory.find(id).name
         end
-        user.liked_venue_categories["restaurant"] = id
+        user.liked_venue_categories["restaurant"] = ids
         user.save!
       end
     end
