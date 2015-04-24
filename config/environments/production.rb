@@ -63,7 +63,7 @@ Crowdscore::Application.configure do
 
   #Set up SendGrid as mailer service
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'crowdsco.re' }
+  config.action_mailer.default_url_options = { :host => 'www.crowdsco.re' }
   config.action_mailer.smtp_settings = {
     :address        => "smtp.sendgrid.net",
     :port           => "25",
