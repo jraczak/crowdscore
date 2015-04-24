@@ -38,6 +38,6 @@ class Tip < ActiveRecord::Base
   private
 
   def reindex_venue
-    venue.index!
+    venue.update_elasticsearch_index
   end
 end
