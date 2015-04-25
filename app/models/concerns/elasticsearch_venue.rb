@@ -23,7 +23,7 @@ module ElasticsearchVenue
 			        query: query,
 			        type: 'most_fields',
 			        fields: ['name^2', 'properties.cuisines^1', 'tips.text^2', 'venue_subcategory.name'],
-			        minimum_should_match: '70%'
+			        minimum_should_match: '50%'
 			        
 		        }
 	        },
