@@ -1,7 +1,9 @@
 class AddLockableToUsers < ActiveRecord::Migration
   def up
     change_table :users do |t|
-      t.lockable
+      t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
       t.string :lock_reason
     end
   end
