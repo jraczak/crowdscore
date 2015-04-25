@@ -30,7 +30,7 @@ Gmap.prototype.addMapMarkers = function(){
 	});
 	
 	map.initialZoom = true;
-	if ( this.markers > 0 ) {
+	if ( this.markers.length > 0 ) {
 		map.fitBounds(this.bounds);
 	}
 };
@@ -98,6 +98,7 @@ Gmap.prototype.openMapMarker = function(venueId){
 	this.clearGoogleMarkup();
 	this.updateSearchResultsBank(elem.venueId);
 }
+
 Gmap.prototype.clearGoogleMarkup = function() {
 	var all = $('.gm-style .gm-style-iw');
 	all.parent().css({'height': 'inherit !important', 'width': 'inherit !important'})
@@ -136,7 +137,7 @@ Gmap.prototype.initialize = function(){
 		zoom: 13,
 		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		center: { lat: loc.data('lat'), lng: loc.data('lng') }
+		center: (loc.data('lat')) ? { lat: loc.data('lat'), lng: loc.data('lng') } : { lat: 0, lng: 0 }
 	}
 
 	this.map = new google.maps.Map(map_canvas, map_options);
