@@ -1,5 +1,27 @@
 module UserDashboardHelper
 
+  #def get_restaurant_recommendations(user)
+  #  location = user_location_data
+  #  all_results = []
+  #  @cards = []
+  #
+  #    unless user.liked_venue_categories["restaurant"].empty? || location == false
+  #      user.liked_venue_categories["restaurant"].each do |lvc|
+  #        rec_search = Venue.search do
+  #          #with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
+  #          with :venue_subcategory_id, VenueSubcategory.find(lvc).id
+  #          with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
+  #        end
+  #        all_results << rec_search.results unless rec_search.results.empty?
+  #      end
+  #    end
+  #
+  #  all_results.each do |r|
+  #    @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
+  #  end
+  #  
+  #end
+  
   def get_restaurant_recommendations(user)
     location = user_location_data
     all_results = []
@@ -7,20 +29,18 @@ module UserDashboardHelper
 
       unless user.liked_venue_categories["restaurant"].empty? || location == false
         user.liked_venue_categories["restaurant"].each do |lvc|
-          rec_search = Venue.search do
-            #with :venue_subcategory_id, VenueSubcategory.find_by_factual_category_id(lvc).id
-            with :venue_subcategory_id, VenueSubcategory.find(lvc).id
-            with(:location).in_radius(location["lat"], location["lng"], 5) unless location == false
-          end
-          all_results << rec_search.results unless rec_search.results.empty?
+          rec_search = Venue.dashboard_cuisine_search(lvc, location)
+
+          all_results << rec_search.records.each unless rec_search.records.empty?
         end
       end
 
     all_results.each do |r|
-      @cards << Venue.find(r[0]["id"]) unless current_user.venue_scores.where(venue_id: r[0]["id"]).any?
+      @cards << r unless current_user.venue_scores.where(venue_id: r.id).any?
     end
     
   end
+  
   
   def get_featured_venue
     fv = FeaturedVenue.arel_table

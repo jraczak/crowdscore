@@ -14,32 +14,63 @@ module ElasticsearchVenue
     #  #write some code
     #end
     
-    def self.search(query, location)
-      search_location = Geokit::Geocoders::GoogleGeocoder.geocode(location)
+    
+    module ClassMethods
+      
+      def self.search(query, location)
+        search_location = Geokit::Geocoders::GoogleGeocoder.geocode(location)
+        __elasticsearch__.search(
+          {
+    	        query: {
+    		        multi_match: {
+    			        query: query,
+    			        type: 'most_fields',
+    			        fields: ['name^2', 'properties.cuisines^1', 'tips.text^2', 'venue_subcategory.name'],
+    			        minimum_should_match: '50%'
+    			        
+    		        }
+    	        },
+              filter: {
+    	            geo_distance: {
+    		            distance: "5mi",
+    		            location: {
+    			            lon: search_location.lng,
+    			            lat: search_location.lat
+    		            }
+    		            
+    	            }
+              }
+          }
+        )
+      end
+    end
+    
+    def self.dashboard_cuisine_search(cuisine, location)
+      search_location = location
       __elasticsearch__.search(
         {
-	        query: {
-		        multi_match: {
-			        query: query,
-			        type: 'most_fields',
-			        fields: ['name^2', 'properties.cuisines^1', 'tips.text^2', 'venue_subcategory.name'],
-			        minimum_should_match: '50%'
-			        
-		        }
-	        },
-            filter: {
-	            geo_distance: {
-		            distance: "5mi",
-		            location: {
-			            lon: search_location.lng,
-			            lat: search_location.lat
-		            }
-		            
-	            }
-            }
-        }
+    	        query: {
+    		        multi_match: {
+    			        query: cuisine,
+    			        type: 'most_fields',
+    			        fields: ['properties.cuisines'],
+    			        
+    		        }
+    	        },
+              filter: {
+    	            geo_distance: {
+    		            distance: "5mi",
+    		            location: {
+    			            lon: search_location["lng"],
+    			            lat: search_location["lat"]
+    		            }
+    		            
+    	            }
+              }
+          }
       )
     end
   end
+  
 
 end
