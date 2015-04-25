@@ -15,7 +15,7 @@ module ElasticsearchVenue
     #end
     
     
-    module ClassMethods
+    #module ClassMethods
       
       def self.search(query, location)
         search_location = Geokit::Geocoders::GoogleGeocoder.geocode(location)
@@ -70,7 +70,7 @@ module ElasticsearchVenue
           }
       )
     end
-  end
+  #end
   
 
 end
