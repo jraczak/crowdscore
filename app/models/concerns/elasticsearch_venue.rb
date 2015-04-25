@@ -43,7 +43,7 @@ module ElasticsearchVenue
           }
         )
       end
-    end
+    
     
     def self.dashboard_cuisine_search(cuisine, location)
       search_location = location
@@ -53,7 +53,7 @@ module ElasticsearchVenue
     		        multi_match: {
     			        query: cuisine,
     			        type: 'most_fields',
-    			        fields: ['properties.cuisines'],
+    			        fields: ['properties.cuisines']
     			        
     		        }
     	        },
@@ -70,7 +70,7 @@ module ElasticsearchVenue
           }
       )
     end
-  #end
+  end
   
 
 end
