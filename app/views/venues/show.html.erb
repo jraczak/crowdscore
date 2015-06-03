@@ -38,10 +38,10 @@
 			</div>
 
 			<div class="venue-details">
-				<% if resource.venue_subcategory %>
+				<% if resource.properties["cuisines"] %>
 				  <div class="attribute">
 				  	  <div class="key">Cuisine</div>
-				  	  <div class="value"><%= resource.venue_subcategory.name.presence || "N/A" %></div>
+				  	  <div class="value"><%= resource.properties["cuisines"].first || "N/A" %></div>
 				  </div>
 				<% else %>
 				  <div class="attribute">
