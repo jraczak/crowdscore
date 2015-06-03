@@ -17,7 +17,7 @@ module ElasticsearchVenue
     
     #module ClassMethods
       
-      def self.search(query, location)
+      def self.search(query, location, search_radius="5mi")
         search_location = Geokit::Geocoders::GoogleGeocoder.geocode(location)
         __elasticsearch__.search(
           {
@@ -25,14 +25,14 @@ module ElasticsearchVenue
     		        multi_match: {
     			        query: query,
     			        type: 'most_fields',
-    			        fields: ['name^2', 'properties.cuisines^1', 'tips.text^2', 'venue_subcategory.name'],
+    			        fields: ['name^3', 'properties.cuisines^2', 'tips.text^1', 'venue_subcategory.name'],
     			        minimum_should_match: '50%'
     			        
     		        }
     	        },
               filter: {
     	            geo_distance: {
-    		            distance: "5mi",
+    		            distance: search_radius,
     		            location: {
     			            lon: search_location.lng,
     			            lat: search_location.lat
