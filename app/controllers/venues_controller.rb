@@ -10,7 +10,7 @@ class VenuesController < InheritedResources::Base
     end
 
     #@venues = VenueSearch.search(params)
-    @venues = Venue.search(params[:q], params[:zip]).records.to_a
+    @venues = Venue.search(params[:q], params[:zip], "standard search").records.to_a
     @json = @venues.to_gmaps4rails
   end
   

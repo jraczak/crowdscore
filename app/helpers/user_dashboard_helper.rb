@@ -22,23 +22,41 @@ module UserDashboardHelper
   #  
   #end
   
+  #def get_restaurant_recommendations(user)
+  #  location = user_location_data
+  #  all_results = []
+  #  @cards = []
+  #
+  #    unless user.liked_venue_categories["restaurant"].empty? || location == false
+  #      user.liked_venue_categories["restaurant"].each do |lvc|
+  #        rec_search = Venue.dashboard_cuisine_search(lvc, location)
+  #
+  #        all_results << rec_search.records.each unless rec_search.records.empty?
+  #      end
+  #    end
+  #
+  #  all_results.each do |r|
+  #    @cards << r unless current_user.venue_scores.where(venue_id: r.id).any?
+  #  end
+  #  
+  #end
+  
   def get_restaurant_recommendations(user)
     location = user_location_data
     all_results = []
     @cards = []
-
-      unless user.liked_venue_categories["restaurant"].empty? || location == false
-        user.liked_venue_categories["restaurant"].each do |lvc|
-          rec_search = Venue.dashboard_cuisine_search(lvc, location)
-
-          all_results << rec_search.records.each unless rec_search.records.empty?
-        end
+    
+    unless user.liked_venue_categories["restaurant"].empty? || location == false
+      user.liked_venue_categories["restaurant"].each do |c|
+        recommendation_search = Venue.search(c, location, "cuisine search", "5mi")
+        all_results << recommendation_search.records.each unless recommendation_search.records.empty?
       end
-
-    all_results.each do |r|
-      @cards << r unless current_user.venue_scores.where(venue_id: r.id).any?
     end
     
+    all_results.each do |r|
+      @cards << r unless current_user.venue_scores.where(venue_id: r.id).eny?
+    end
+    @search_test = all_results
   end
   
   
