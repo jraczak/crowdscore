@@ -8,12 +8,12 @@ deployment:
     branch: master
     commands:
       - git push git@heroku.com:crowdscore.git
-      - heroku pg:backups capture --expire --app crowdscore
+      - heroku pg:backups capture --app crowdscore
       - heroku run rake db:migrate --app crowdscore
       
   staging:
     branch: staging
     commands:
       - git push git@heroku.com:crowdscore-staging.git -f
-      - heroku pg:backups capture --expire --app crowdscore-staging
+      - heroku pg:backups capture --app crowdscore-staging
       - heroku run bundle exec rake db:migrate --app crowdscore-staging
