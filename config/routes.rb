@@ -88,11 +88,9 @@ Crowdscore::Application.routes.draw do
   
   #API Routes
   
-  constraints subdomain: 'api' do
-    namespace :api do
-      namespace :v1 do
-        resources :venues, only: [:index, :show]
-      end
+  namespace :api, path: '/', constraints: { subdomain: 'api' } do
+    namespace :v1 do
+      resources :venues, only: [ :index, :show ]
     end
   end
   
