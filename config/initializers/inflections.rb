@@ -10,6 +10,6 @@
 # end
 
 
-ActiveSupport::Inflector.inflections(:en) do |inflect|
+ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'API'
 end
