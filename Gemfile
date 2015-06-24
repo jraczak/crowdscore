@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.22'
 gem 'rake', '~> 10.4.2'
 
 gem "pg"
-gem "inherited_resources"
+gem "inherited_resources", "~> 1.6.0"
 gem "slim-rails"
 #gem "devise", "~> 2.1.0"
 gem "devise" #, "~> 3.0.0"
@@ -15,6 +15,8 @@ gem "thin"
 gem "carrierwave"
 gem "rmagick", "~> 2.13.2"
 gem "fog", "~> 1.3.1"
+gem 'responders', "~> 1.1.2"
+gem "cmdparse", "~> 2.0.6"
 
 gem "will_paginate", "~> 3.0.0"
 gem "state_select", git: "git://github.com/jraczak/state_select.git"
@@ -43,7 +45,7 @@ gem 'fb_graph'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'rails_12factor'
-gem 'mixpanel-ruby'
+gem 'mixpanel-ruby', '~> 1.7.0'
 
 gem 'carrierwave_direct'
 
@@ -73,7 +75,7 @@ group :development do
   gem "ruby-graphviz"
   
   # Better errors gem set
-  gem "better_errors"
+  gem "better_errors", "~> 1.1.0"
   gem "binding_of_caller"
 end
 
