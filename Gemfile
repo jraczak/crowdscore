@@ -52,6 +52,9 @@ gem 'hirefire-resource'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+# Gems & utilities for monitoring
+gem 'skylight'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
