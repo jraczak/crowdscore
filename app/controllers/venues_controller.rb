@@ -1,6 +1,6 @@
 class VenuesController < InheritedResources::Base
   include VenueControllerAdditions
-  actions :index, :show, :new, :create, :edit, :update
+  actions :index, :show, :new, :edit, :update #create
   before_filter :authenticate_user!, except: [:index, :show, :search]
   
   def search
@@ -16,12 +16,23 @@ class VenuesController < InheritedResources::Base
   
   def create
     # Geocode the venue first
-    @venue = Venue.new(params[:venue])
-    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(self.full_address)
+    logger.debug "Attempting to geocode venue based on params..."
+    full_address = "#{params[:venue][:address1]},
+                    #{params[:venue][:address2]}, 
+                    #{params[:venue][:city]}, 
+                    #{params[:venue][:state]}, 
+                    #{params[:venue][:zip]}"
+    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_address)
+    logger.debug "Instantiating a blank venue..."
+    @venue = Venue.new
+    logger.debug "Assigning coordinates to blank venue..."
     @venue.latitude = geocode_results.lat
     @venue.longitude = geocode_results.lng
-    raise
+    logger.debug "Attempting to assign attributes to venue without save..."
+    @venue.assign_attributes(params[:venue])
+    logger.debug "Attempting to save venue..."
     @venue.save!
+    redirect_to @venue
   end
   
   def show

@@ -52,7 +52,7 @@ class Venue < ActiveRecord::Base
   default_accessible_fields = [:name, :address1, :address2, :city, :state, :zip, :phone,
                                :url, :venue_category_id, :venue_subcategory_id,
                                :venue_category, :venue_subcategory, :latitude,
-                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names, :venue_tag_ids]
+                               :longitude, :factual_id, :country, :factual_category_id, :neighborhoods, :hours, :hour_ranges, :hours_with_names, :venue_tag_ids, :active]
                                
   noneditable_fields = [:name, :venue_category_id, :venue_category]
 
