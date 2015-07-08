@@ -18,9 +18,12 @@ class Venue < ActiveRecord::Base
     end
   end
       
-  before_save :update_geocode
+  # Moving geocoding to create action
+  #before_save :update_geocode
+  
   after_create :create_elasticsearch_index
   after_update :update_elasticsearch_index
+  after_validation :update_geocode, if: :address_parts_changed?
   
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false

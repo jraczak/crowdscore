@@ -15,8 +15,13 @@ class VenuesController < InheritedResources::Base
   end
   
   def create
-    create!
-    flash[:notice] = "You've earned 1 Karma point for creating a new venue!"
+    # Geocode the venue first
+    @venue = Venue.new(params[:venue])
+    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(self.full_address)
+    @venue.latitude = geocode_results.lat
+    @venue.longitude = geocode_results.lng
+    # Then move on with the rest of the create
+    create! 
   end
   
   def show
