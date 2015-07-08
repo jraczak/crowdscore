@@ -20,8 +20,8 @@ class VenuesController < InheritedResources::Base
     geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(self.full_address)
     @venue.latitude = geocode_results.lat
     @venue.longitude = geocode_results.lng
-    # Then move on with the rest of the create
-    create! 
+    raise
+    @venue.save!
   end
   
   def show
