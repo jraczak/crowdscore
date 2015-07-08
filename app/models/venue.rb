@@ -23,7 +23,7 @@ class Venue < ActiveRecord::Base
   
   after_create :create_elasticsearch_index
   after_update :update_elasticsearch_index
-  after_validation :update_geocode, if: :address_parts_changed?
+  after_update :update_geocode, if: :address_parts_changed?
   
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
