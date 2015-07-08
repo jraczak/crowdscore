@@ -18,7 +18,7 @@ class Venue < ActiveRecord::Base
     end
   end
       
-  before_create :update_geocode
+  before_save :update_geocode
   after_create :create_elasticsearch_index
   after_update :update_elasticsearch_index
   
