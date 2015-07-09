@@ -393,3 +393,7 @@ label.user-form-label {
       line-height: 24px;
       text-transform: uppercase;
     }
+    
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #e5f8fd inset;
+}
