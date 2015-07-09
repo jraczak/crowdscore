@@ -236,8 +236,21 @@ label.standard-form-field-label {
 
 /* END FORGOT PASSWORD PAGE */
 
+.gangster-daddy {
+	width: 960px;
+	display: inline-block;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#change-me {
+	width: 100%;
+	padding: 100px 0;
+}
+
 #register-modal, 
-#login-modal {
+#login-modal, 
+#change-me {
   & > .modal-mask {
     text-align: left;
     min-width: 1050px;
@@ -385,7 +398,8 @@ label.standard-form-field-label {
 
 }
 
-#login-modal {
+#login-modal, 
+#change-me {
   & > .modal-mask {
     min-width: 960px;
   }

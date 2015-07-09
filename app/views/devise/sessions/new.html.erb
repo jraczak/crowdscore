@@ -1,0 +1,22 @@
+<div id="change-me">
+	<div class="gangster-daddy">
+	  <h1>Sign in</h1>
+	  <%= link_to(user_omniauth_authorize_path(:facebook), class: "modal-facebook-signin-button") do %>
+	    <i class="fa fa-facebook"></i><div>SIGN IN WITH FACEBOOK</div>
+	  <% end %><br>
+	  <%= form_for devise_resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-modal-form' } do |f| %>
+	    <div class="registration-modal-form-field">
+	      <%= f.label :email, "email or username", class: "" %>
+	      <%= f.text_field :email, class: "", tabindex: 1 %>
+	      <p id="join-crowdscore-link"> Not a member yet? <%= link_to "Join Crowdscore", "#", class: "button-show-register-modal" %></p>
+	    </div>
+	    <div class="registration-modal-form-field password">
+	      <%= f.label :password, class: "" %>
+	      <%= f.password_field :password, tabindex: 2 %>
+	      <%= f.hidden_field :page_action, value: "" %>
+	      <p id="forgot-password-link"> Forgot your password? <%= link_to "Request a reset", new_user_password_path %></p>
+	    </div>
+	    <%= f.submit "Sign in", class: "registration-modal-submit-button", tabindex: 3 %>
+	  <% end %>
+	  </div>
+</div>

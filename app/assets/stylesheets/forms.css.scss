@@ -13,6 +13,16 @@
     position: relative;
 }
 
+.centered-form-container {
+	width: 960px;
+    height: 100%;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: block;
+    position: relative;
+}
+
 form#edit_user {
     text-align: left;
 }
@@ -276,6 +286,18 @@ label.user-form-label {
 	}
 }
 
+.standard-submit-button {
+	background-color: #02b8ea;
+    border-radius: 30px;
+	border: none;
+	padding: 20px 44px;
+	color: #fff;
+	font-weight: 700;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
 /*************************/
 /* EDIT VENUE ADMIN PAGE */
 /*************************/
@@ -290,3 +312,84 @@ label.user-form-label {
 	-webkit-box-shadow: 0 0 0px 1000px #e5f8fd inset;
 }
 }
+
+/*************************/
+/* SIGN IN PAGE STYLES   */
+/*************************/
+
+#sign-in-form {
+	h1 {
+		font-size: 50px;
+		font-weight: 100;
+		line-height: 1em;
+		margin-bottom: 30px;
+	}
+}
+
+.facebook-signup-button,
+.facebook-signin-button {
+  color: #ffffff;
+  display: inline-block;
+  margin: 25px 0;
+  line-height: 44px;
+  background-color: #3b5998;
+  text-align: left;
+  border-radius: 24px;
+  text-decoration: none;
+
+  i, & > div {
+    display: inline-block;
+  }
+
+  i {
+    width: 53px;
+    font-size: 26px;
+    line-height: 44px;
+    vertical-align: top;
+    border-right: 1px solid #536da5;
+    text-align: center;
+    padding-left: 5px;
+  }
+  & > div {
+    border-left: 1px solid #344e86;
+    font-size: 12px;
+    vertical-align: top; 
+    text-align: center;
+    width: 230px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+}
+
+.sign-in-submit-button {
+    height: 44px;
+    border-radius: 23px;
+    border: 0px;
+    padding: 0;
+    background-color: #02b8ea;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+
+    &:active,
+    &:focus
+    { 
+      outline: none;
+      position: relative;
+      border: 2px dotted #fff;
+    }
+  }
+  
+.sign-in-form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 300;
+      color: #2d3132;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
