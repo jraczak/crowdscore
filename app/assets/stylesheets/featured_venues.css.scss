@@ -1,3 +1,236 @@
+@import "bourbon";
 // Place all the styles related to the FeaturedVenues controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.featured-venue-info,
+.list-container {
+	text-align: left;
+	width: 248px;
+	padding: 30px 0 0; 
+
+	hr {
+		background-color: rgba(0,0,0,0.1);
+		border: 0;
+		height: 1px;
+		margin: 20px 0;
+		width: 100%;
+	}	
+
+	h5 {
+		color: #2d3132;
+		text-transform: uppercase;
+		font-size: 11px;
+		font-weight: 900;
+	}
+
+	h3 {
+		color: #303746;
+		font-size: 25px;
+		font-weight: 30px;
+		margin-bottom: 20px;
+	}
+
+	p, a {
+		color: #808587;
+		font-size: 14px;
+		font-weight: 300;
+		line-height: 18px;
+		display: block;
+	}
+
+	a {
+		color: #02b8ea;
+	}
+
+	.score-container 
+	{
+		width: 59px;
+		height: 59px;
+		text-align: center;
+		margin: 50px 0 30px;
+
+		.pie-container 
+		{
+			width: 59px;
+			height: 59px;							
+
+			.pie-graph-mask-color-white 
+			{ 
+        height: 51px;
+        width: 51px;
+        top: 4px;
+        left: 4px;
+
+        line-height: 51px;
+        font-weight: 900;
+        font-size: 20px;
+      }
+		}
+	}
+}
+
+.venue-and-list-container {
+	height: 530px;
+	margin-top: 50px;
+	@include display(flex);
+	@include justify-content(flex-end);
+
+	.featured-venue-info {
+		width: 348px;
+		padding-left: 40px;
+		padding-right: 60px;
+	}
+
+	.new-venue-container {
+		height: 100%;
+		width: 66%;
+		position: relative;
+
+		@include display(flex);
+		@include justify-content(flex-end);
+	}
+
+	.list-container {
+		height: 100%;
+		width: calc(34% - 20px);
+		margin-left: 20px;
+		background-color: #f2f2f2;
+		overflow: hidden;
+		padding: 30px 0 30px 30px;
+		max-width: 575px;
+
+		.list-images {
+			white-space: nowrap;
+			font-size: 0;
+		}
+
+		.list-image {
+			background: url(image_path('new-venue-default.jpg')) no-repeat center;
+			background-size: cover;
+			width: 258px;
+			height: 250px;
+			margin-bottom: 40px;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.list-venue-count {
+			height: 250px;
+			width: 4px;
+			display: inline-block;
+			vertical-align: top;
+			position: relative;
+			
+			& > div {
+				width: 61px;
+				height: 61px;
+				border-radius: 50%;
+				font-size: 20px;
+				line-height: 61px;
+				text-align: center;
+				font-weight: 900;
+				color: #303748;
+				background-color: #f2f2f2;
+				position: absolute;
+				top: calc(50% - 30px);
+				left: -28px;
+			}
+
+		}
+	}
+
+	.venue-bg {
+		background: url(image_path('new-venue-default.jpg')) no-repeat center;
+		background-size: cover;
+		width: 62.37%;
+		height: 100%;
+	}
+}
+
+.featured-venue-container {
+	height: 530px;
+	margin-top: 20px;
+	@include display(flex);
+	@include justify-content(flex-start);
+
+	.venue-image {
+		width: 74%;
+		height: 100%;
+		background: url(image_path('scallops.jpg')) no-repeat center;
+		background-size: cover;
+	}
+
+	.featured-venue-info {
+		padding-left: 30px;
+		height: 100%;
+
+		width: 300px;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+
+.info-spread {
+  position: relative;
+  width: 100%; }
+  .info-spread.one {
+    height: 430px; }
+  .info-spread.two {
+    height: 493px; }
+  .info-spread.register {
+    height: 380px; }
+
+.section-one {
+  display: inline-block;
+  width: 700px; }
+  .section-one img {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 100px; }
+
+.section-two {
+  display: inline-block;
+  height: 343px;
+  margin-top: 82px;
+  position: relative; }
+  .section-two .column {
+    display: table;
+    float: left;
+    height: 100%;
+    padding: 0 15px;
+    vertical-align: top;
+    width: 313px; }
+    .section-two .column.middle {
+      margin: 0 20px;
+      border-left: 1px solid gainsboro;
+      border-right: 1px solid gainsboro;
+      padding: 0 25px; }
+  .section-two p.main-spread-font {
+    display: table-cell;
+    vertical-align: middle; }
+  .section-two p.description {
+    color: #6b6e70;
+    font-family: MuseoSansRounded;
+    font-weight: 300;
+    line-height: 1.6em; }
+  .section-two h3 {
+    color: #2d3132;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0;
+    text-transform: uppercase; }
+  .section-two hr {
+    border: 2px solid #2d3132;
+    margin: 20px auto;
+    width: 80px; }
+  .section-two .centered {
+    display: table-cell;
+    vertical-align: middle; }
+
+p.main-spread-font {
+  color: #2d3132;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 1.6em; }
