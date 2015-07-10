@@ -22,8 +22,9 @@ class Venue < ActiveRecord::Base
   #before_save :update_geocode
   
   after_create :create_elasticsearch_index
-  after_update :update_elasticsearch_index
+  after_update :update_elasticsearch_index, unless: :made_inactive?
   after_update :update_geocode, if: :address_parts_changed?
+  #after_update :delete_elasticsearch_index, if: :made_inactive?
   
   #acts_as_audited protected: false
   acts_as_gmappable :process_geocoding => false
@@ -122,6 +123,15 @@ class Venue < ActiveRecord::Base
   
   def create_elasticsearch_index
     self.__elasticsearch__.index_document
+  end
+  
+  def delete_elasticsearch_index
+    self.__elasticsearch__.delete_document
+  end
+  
+  def make_inactive
+    self.active = false
+    self.__elasticsearch__.delete_document
   end
   
   def self.higher_scored_than(venue, _limit = 4)
@@ -250,7 +260,6 @@ class Venue < ActiveRecord::Base
   end
 
   
-  
   def self.update_missing_geocodes
     where('longitude IS NULL OR latitude IS NULL').each do |venue|
       venue.update_geocode
@@ -299,6 +308,10 @@ class Venue < ActiveRecord::Base
 
   def address_parts_changed?
     address1_changed? || address2_changed? || city_changed? || state_changed? || zip_changed?
+  end
+  
+  def made_inactive?
+    self.active == false
   end
 
   def reindex_tags(tag)

@@ -8,7 +8,7 @@ class Admin::VenuesController < InheritedResources::Base
     # Geocode the venue first
     #@venue = Venue.new(params[:venue])
     logger.debug "Attempting to geocode venue based on params..."
-    full_address = "#{params[:venue][:address1]},
+    full_address = "#{params[:venue][:address1]}, 
                     #{params[:venue][:address2]}, 
                     #{params[:venue][:city]}, 
                     #{params[:venue][:state]}, 
