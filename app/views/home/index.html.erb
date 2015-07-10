@@ -1,168 +1,185 @@
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<div class="homepage-map">
+<div id="homepage">
+	<div class="search-hero">
+		<div class="search-container">
+			<h1>What are you in the mood for?</h1>
 
-	<div id="homepage-map">
+			<%= form_tag search_venues_path, method: "get", class: "search-form" do |f| %>
+				<%= text_field_tag :q, "", class: "search-query", placeholder: "Search restaurants, bars, salons, food...", tabindex: 5 %>
+				<%= text_field_tag :zip, "", class: "search-location", placeholder: "City or Zip Code", tabindex: 6 %>
+				<input type="submit" value="Search">
+			<% end %>
+
+			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore laudantium, totam rem. Sed ut perspiciatis.</p>
+
+			<a href="#">Learn More</a>
+		</div>
 	</div>
 
-	<div id="hp-main-center">
-		<h2 id="hp-slogan">Find New Restaurants to Love</h2>
-	
-		<div class="hps-wrapper">
-			<%= form_tag search_venues_path, method: "get", class: "hps-inner" do |f| %>
-				<div class="hps-input-main">
-					<div class="hps-icon"></div>
-					<p class="hps-placeholder"><b>Search</b> by cuisine or restaurant name</p>
-					<%= text_field_tag :q, "", class: "hps-input", placeholder: "What would you like?", tabindex: 5%>
+	<section class="info-spread two f-center">
+		<div class="section-two">
+			<div class="column">
+				<div class="centered">
+					<h3>Tips You Want</h3>
+					<hr>
+					<p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to.</p>
 				</div>
-				<div class="hps-location-main">
-					<%= text_field_tag :zip, "", placeholder: "in San Francisco, CA", tabindex: 6, class: "hps-location-input" %>
+			</div>
+			<div class="column middle"><p class="main-spread-font">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorem qulaudantium, totam rem aperiam, eaque.</p></div>
+			<div class="column">
+				<div class="centered">
+					<h3>Better Ratings</h3>
+					<hr>
+					<p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to.</p>
 				</div>
-				<input type="submit" class="hps-submit" value="" tabindex=7>
-			<% end %>
+			</div>
+		</div>
+	</section>
+
+	<div class='recommendation-module venue_page_recommendations'>
+	  <div class='recommendation-module-body'>
+	    <div class="module-left"></div>
+	    <div class="module-right"></div>
+
+	    <div class='recommendation-header'>
+	      <h2>Similar places nearby</h2>
+	      <p class="description">"These places are similar to Gangster and are nearby."</p>
+	    </div>
+
+	    <!-- START DYNAMIC RECOMMENDATION CARDS -->
+	    
+	    <div class="recommendation-module-cards">
+	      <div class='recommendation-card populated'>
+	        <div class="image">
+	          <img src="http://discovermilton.com/wp-content/uploads/2013/03/Pasta_mabo06_morguefile.jpg">
+	        </div>
+	        
+	        <div class="score-container">
+	          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+	        </div>
+
+	        <div class="stats">
+	          <span>30 scores</span>
+	          <span>55 tips</span>
+	        </div>
+
+	        <div class="info">
+	          <h4>Bubby's Awesome Southern Food</h4>
+	          <p>
+	            <span>0.2 miles</span>
+	            <span>brooklyn</span>
+	          </p>
+	        </div>
+	      </div>
+
+	      <div class='recommendation-card empty'>
+	        <div class="score-container">
+	          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+	        </div>
+
+	        <div class="stats">
+	          <span>30 scores</span>
+	          <span>55 tips</span>
+	        </div>
+
+	        <div class="info">
+	          <h4>Bubby's Awesome Southern Food</h4>
+	          <p>
+	            <span>0.2 miles</span>
+	            <span>brooklyn</span>
+	          </p>
+	        </div>
+	      </div>
+
+	      <div class='recommendation-card populated'>
+	        <div class="image">
+	          <img src="http://media.tumblr.com/ff8c5067ad9eae074a45ab22ef6924a4/tumblr_inline_mfg6unsLPg1qhyx80.jpg">
+	        </div>
+	        <div class="score-container">
+	          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+	        </div>
+
+	        <div class="stats">
+	          <span>30 scores</span>
+	          <span>55 tips</span>
+	        </div>
+
+	        <div class="info">
+	          <h4>Bubby's Awesome Southern Food</h4>
+	          <p>
+	            <span>0.2 miles</span>
+	            <span>brooklyn</span>
+	          </p>
+	        </div>
+	      </div>
+
+	      <div class='recommendation-card empty'>
+	        <div class="score-container">
+	          <%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+	        </div>
+
+	        <div class="stats">
+	          <span>30 scores</span>
+	          <span>55 tips</span>
+	        </div>
+
+	        <div class="info"> 
+	          <h4>Bubby's Awesome Southern Food</h4>
+	          <p>
+	            <span>0.2 miles</span>
+	            <span>brooklyn</span>
+	          </p>
+	        </div>
+	      </div>
+	      <div style='width: 100px; height: 299px; visibility: hidden'>s</div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="venue-and-list-container">
+		<div class="new-venue-container">
+			<div class="featured-venue-info">
+				<h5>New Restaurant</h5>
+				<hr/>
+				<div class="score-container">
+					<%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+				</div>
+				<h3>The Progress</h3>
+				<p>45 Washington Street</p>
+				<p>Manhattan, NY 11201</p>
+				<a href="#map">get directions</a>
+				<hr />
+				<p>Every night we offer a family-style menu that’s ordered as a choose your own adventure 6-dish dinner, for $65/person. We accept reservations online for groups of up to 6 people.</p>
+			</div> 
+			<div class="venue-bg"></div>
+		</div>
+		<div class="list-container">
+			<div class="list-images">
+				<div class="list-image"></div>
+				<div class="list-venue-count"><div>54</div></div>
+				<div class="list-image"></div>
+			</div>
+			<h5>Jason's List</h5>
+			<hr />
+			<h3>The Progress</h3>
+			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum</p>
+			<a href="#list">See all 54 Restaurants</a>
+		</div>
+	</div>
+
+	<div class="featured-venue-container">
+		<div class="venue-image"></div>
+		<div class="featured-venue-info">
+			<h5>Featured Venue</h5>
+			<hr/>
+			<div class="score-container">
+				<%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
+			</div>
+			<h3>Foreign Cinema</h3>
+			<p>45 Washington Street</p>
+			<p>Manhattan, NY 11201</p>
+			<a href="#map">get directions</a>
+			<hr />
+			<p>Every night we offer a family-style menu that’s ordered as a choose your own adventure 6-dish dinner, for $65/person. We accept reservations online for groups of up to 6 people.</p>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	var map;
-	var zoom = 5;
-	var coordinate = new google.maps.LatLng(39.8282, -98.5795);
-
-	latlng = decodeURIComponent(getCookie("detected_user_location")).split(',');
-
-	// if (latlng[0] && latlng[1]) {
-	// 	coordinate = new google.maps.LatLng(latlng[0], latlng[1]);
-	// }
-	
-	function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-    }
-    return "";
-	}
-
-	function initialize() {
-
-	  var featureOpts = [
-	    {
-	      elementType: 'labels',
-	      stylers: [
-	        { visibility: 'off' }
-	      ]
-	    },
-	  ];
-
-	  var mapOptions = {
-	    zoom: zoom,
-	    center: coordinate,
-	    scrollwheel: false,
-	    disableDefaultUI: true,
-	    mapTypeControlOptions: {
-	      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
-	    },
-	    mapTypeId: 'custom_style'
-	  };
-
-	  map = new google.maps.Map(document.getElementById('homepage-map'), mapOptions);
-
-	  var styledMapOptions = {
-	    name: 'Custom Style'
-	  };
-
-	  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
-
-	  map.mapTypes.set('custom_style', customMapType);
-	}
-
-	google.maps.event.addDomListener(window, 'load', initialize);
-
-	function HomepageSearch () {
-		this.initialize();
-	};
-
-	HomepageSearch.prototype.initialize = function () {
-		this.setElements();
-		this.setupEvents();
-	};
-
-	HomepageSearch.prototype.setElements = function () {
-		this.$icon = $('.hps-icon');
-		this.$placeholder = $('.hps-placeholder');
-		this.$inputMain = $('.hps-input-main');
-		this.$locationMain = $('.hps-location-main');
-		this.$inner = $('.hps-inner');
-		this.$input = $('.hps-input');
-		this.$locationInput = $('.hps-location-input');
-	};
-
-	// Function I wrote to allow all event handling declarations to be defined in one place
-	// Check them out in HomepageSearch.prototype.events
-	HomepageSearch.prototype.setupEvents = function () {
-		var e, events, f, key, t;
-
-		events = this.events();
-
-		for (key in events) {
-		  try {
-		    f = this[key.split(/#(.+)?/)[0]].bind(this);
-		    e = key.split(/#(.+)?/)[1];
-		    t = events[key];
-		    $('body').on(e, t, f);
-		    
-		  } catch (e) {}
-		}
-	};
-
-	HomepageSearch.prototype.events = function () {
-		return {
-			'setSearch#click' : '.hps-input-main',
-			'setSearch#focus' : '.hps-input',
-			'setLocation#focus' : '.hps-location-input',
-			'setLocation#click' : '.hps-location-main',
-			'reset#click' : document,
-			'handleEnterKeypress#keydown' : '.hps-input-main'
-		}
-	};
-
-	HomepageSearch.prototype.reset = function (e) {
-		this.$icon.removeClass('search')
-		this.$placeholder.removeClass('search')
-		this.$inputMain.removeClass('search').removeClass('location')
-		this.$input.removeClass('search')
-		this.$locationInput.removeClass('location')
-	};
-
-	HomepageSearch.prototype.setSearch = function (e) {
-		e.stopPropagation();
-		this.$icon.addClass('search')
-		this.$placeholder.addClass('search')
-		this.$inputMain.addClass('search').removeClass('location')
-		this.$input.addClass('search')
-		this.$locationInput.removeClass('location')
-	};
-
-	HomepageSearch.prototype.handleEnterKeypress = function (e) {
-		var _this = this;
-		if (e.which == 13){
-			e.stopPropagation();
-	    e.preventDefault();
-			_this.setLocation(e);
-			return false;
-		}
-
-	};
-
-	HomepageSearch.prototype.setLocation = function (e) {
-		e.stopPropagation();
-		this.$inputMain.addClass('location');
-		this.$locationInput.addClass('location');
-		this.$locationInput.focus();
-	};
-
-	$(document).ready( function () {
-		var map = new HomepageSearch();
-	});
-</script>

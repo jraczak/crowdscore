@@ -2356,7 +2356,7 @@
 	background-color: #ffffff;
 	border-bottom: 1px solid #F0F0F0;
 	background-color: #ffffff;
-	@include box-shadow(0 0 10px 0px rgba(0,0,0,0.3));
+	box-shadow: 0 0 10px 0px rgba(0,0,0,0.3);
 	@include linear-gradient(#ffffff, #e6e6e6);
 	@include transition(all 0.2s);
 	position: absolute;
@@ -2431,7 +2431,7 @@
 	color: #02b8ea;
 	line-height: 40px;
 	font-family: Museo !important;
-	@include box-shadow(0 0 10px 0px rgba(0,0,0,0.3));
+	box-shadow: 0 0 10px 0px rgba(0,0,0,0.3);
 
 	&:after {
 		position: absolute;
@@ -2439,7 +2439,7 @@
 		height: 12px;
 		z-index: -1;
 		background-color: #e5f8fd;
-		@include box-shadow(0 0 10px 0px rgba(0,0,0,0.3));
+		box-shadow: 0 0 10px 0px rgba(0,0,0,0.3);
 		top: -6px;
 		left: 24px;
 		content: "";
