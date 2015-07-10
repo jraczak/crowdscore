@@ -49,10 +49,12 @@ gem 'carrierwave_direct'
 
 gem 'hirefire-resource'
 
+gem 'simple_enum', '~>1.6'
+
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-# Gems & utilities for monitoring
+# Gems for monitoring
 gem 'skylight'
 
 
