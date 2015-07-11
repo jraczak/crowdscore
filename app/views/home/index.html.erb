@@ -4,7 +4,7 @@
 			<h1>What are you in the mood for?</h1>
 
 			<%= form_tag search_venues_path, method: "get", class: "search-form" do |f| %>
-				<%= text_field_tag :q, "", class: "search-query", placeholder: "Search restaurants, bars, salons, food...", tabindex: 5 %>
+				<%= text_field_tag :q, "", class: "search-query", placeholder: "Search by restaurant name or cuisine", tabindex: 5 %>
 				<%= text_field_tag :zip, "", class: "search-location", placeholder: "City or Zip Code", tabindex: 6 %>
 				<input type="submit" value="Search">
 			<% end %>
@@ -41,8 +41,8 @@
 	    <div class="module-right"></div>
 
 	    <div class='recommendation-header'>
-	      <h2>Similar places nearby</h2>
-	      <p class="description">"These places are similar to Gangster and are nearby."</p>
+	      <h2>Late night eats</h2>
+	      <p class="description">It's Friday  night. Time for an evening snack.</p>
 	    </div>
 
 	    <!-- START DYNAMIC RECOMMENDATION CARDS -->
@@ -160,8 +160,8 @@
 			</div>
 			<h5>Jason's List</h5>
 			<hr />
-			<h3>The Progress</h3>
-			<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum</p>
+			<h3>Creme de la SF</h3>
+			<p>The hottest spots on the San Francisco foodie scene.</p>
 			<a href="#list">See all 54 Restaurants</a>
 		</div>
 	</div>
