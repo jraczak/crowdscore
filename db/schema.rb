@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150714022700) do
+ActiveRecord::Schema.define(:version => 20150714034414) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -71,6 +71,19 @@ ActiveRecord::Schema.define(:version => 20150714022700) do
   end
 
   add_index "factual_crowdscore_maps", ["factual_category_id", "venue_subcategory_id"], :name => "index_factual_crowdscore_maps_on_ids", :unique => true
+
+  create_table "featured_lists", :force => true do |t|
+    t.integer  "list_id"
+    t.text     "description"
+    t.integer  "priority"
+    t.string   "city"
+    t.string   "state"
+    t.boolean  "active"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "featured_venues", :force => true do |t|
     t.integer  "venue_id"

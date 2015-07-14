@@ -78,6 +78,7 @@ Crowdscore::Application.routes.draw do
     resources :venue_subcategories
     resources :score_categories
     resources :featured_venues
+    resources :featured_lists
     resources :venue_tags
     resources :venue_tag_categories
     resources :factual_crowdscore_maps#, :controller => :factual_crowdscore_maps, :as => :factual_crowdscore_maps
