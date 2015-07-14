@@ -396,8 +396,6 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.2)
     shoulda-matchers (1.0.0)
-    simple_enum (1.6.9)
-      activesupport (>= 3.0.0)
     simple_form (2.1.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -510,7 +508,6 @@ DEPENDENCIES
   sauce (~> 3.1.1)
   sauce-connect
   shoulda (~> 3.0.0.beta2)
-  simple_enum (~> 1.6)
   simple_form
   skylight
   slim-rails

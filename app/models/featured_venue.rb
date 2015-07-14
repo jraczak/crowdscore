@@ -6,7 +6,6 @@ class FeaturedVenue < ActiveRecord::Base
 
   belongs_to :venue
   
-  attr_accessible :venue_id, :description, :user_id, :city, :state, :active, :featured_venue_image, :type_cd
+  attr_accessible :venue_id, :description, :user_id, :city, :state, :active, :featured_venue_image, :image_url, :feature_type
   
-  as_enum :type, { standard: 1, new_venue: 2 }
 end

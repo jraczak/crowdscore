@@ -134,23 +134,14 @@
 	  </div>
 	</div>
 
-	<div class="venue-and-list-container">
-		<div class="new-venue-container">
-			<div class="featured-venue-info">
-				<h5>New Restaurant</h5>
-				<hr/>
-				<div class="score-container">
-					<%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-				</div>
-				<h3>The Progress</h3>
-				<p>45 Washington Street</p>
-				<p>Manhattan, NY 11201</p>
-				<a href="#map">get directions</a>
-				<hr />
-				<p>Every night we offer a family-style menu that’s ordered as a choose your own adventure 6-dish dinner, for $65/person. We accept reservations online for groups of up to 6 people.</p>
-			</div> 
-			<div class="venue-bg"></div>
-		</div>
+	<% get_new_restaurant_features %>
+	<%= render 'new_restaurant' if @new_restaurant %>
+	
+	
+	<!-- THIS IS WHERE I TOOK THE NEW RESTAURANT VIEW CODE FROM -->
+	
+	
+
 		<div class="list-container">
 			<div class="list-images">
 				<div class="list-image"></div>
@@ -165,20 +156,7 @@
 		</div>
 	</div>
 
-	<div class="featured-venue-container">
-		<div class="venue-image"></div>
-		<div class="featured-venue-info">
-			<h5>Featured Venue</h5>
-			<hr/>
-			<div class="score-container">
-				<%= render 'shared/pie_graph', type: "dashboard-score", score: 80, animate: true  %>
-			</div>
-			<h3>Foreign Cinema</h3>
-			<p>45 Washington Street</p>
-			<p>Manhattan, NY 11201</p>
-			<a href="#map">get directions</a>
-			<hr />
-			<p>Every night we offer a family-style menu that’s ordered as a choose your own adventure 6-dish dinner, for $65/person. We accept reservations online for groups of up to 6 people.</p>
-		</div>
-	</div>
+	<% get_featured_restaurant %>
+	<%= render 'featured_restaurant' if @featured_restaurant %>
+	<!-- THIS IS WHERE I TOOK THE FEATURED RESTAURANT CODE FROM
 </div>

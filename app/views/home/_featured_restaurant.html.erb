@@ -1,0 +1,19 @@
+<div class="featured-venue-container">
+		<div class="venue-image"></div>
+		<div class="featured-venue-info">
+			<h5>Featured Venue</h5>
+			<hr/>
+			<div class="score-container">
+				<%= render 'shared/pie_graph', type: "dashboard-score", score: @featured_restaurant.venue.score, animate: true  %>
+			</div>
+			<h3><%= link_to @featured_restaurant.venue.name, @featured_restaurant.venue %></h3>
+			<p><%= @featured_restaurant.venue.address1 %></p>
+			<p><%= "#{@featured_restaurant.city}, #{@featured_restaurant.state} #{@featured_restaurant.venue.zip}" %></p>
+			<%= link_to "get directions", "http://maps.google.com/maps?saddr=&daddr=#{@featured_restaurant.venue.full_address}", target: "_new" %>
+			<hr />
+			<p><%= @featured_restaurant.description %></p>
+		</div>
+	</div>
+		
+		
+		
