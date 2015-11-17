@@ -6,6 +6,7 @@
 
 development:
   adapter: postgresql
+  host: localhost
   encoding: unicode
   database: crowdscore_dev
   pool: 5
@@ -15,6 +16,7 @@ development:
 # Do not set this db to the same as development or production.
 test: &test
   adapter: postgresql
+  host: localhost
   encoding: unicode
   database: crowdscore_test
   pool: 5

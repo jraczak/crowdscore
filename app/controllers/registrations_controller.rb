@@ -53,7 +53,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   
-  def after_sign_up_path_for(devise_resource)
+  def after_signup_path_for(devise_resource)
     #edit_user_registration_path
     dashboard_path
   end
