@@ -48,7 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
         
       # send a notification email to admins
         AdminMailer.new_user_email(resource).deliver
-        redirect_to after_signup_path_for(resource)
+        after_signup_path_for(resource)
       end
     end
   end
