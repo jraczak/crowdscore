@@ -6,6 +6,7 @@
 
 development:
   adapter: postgresql
+  host: localhost
   encoding: unicode
   database: crowdscore_dev
   pool: 5
