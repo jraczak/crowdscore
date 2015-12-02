@@ -1,0 +1,50 @@
+<div class='recommendation-module venue_page_recommendations'>
+	  <div class='recommendation-module-body'>
+	    <div class="module-left"></div>
+	    <div class="module-right"></div>
+
+	    <div class='recommendation-header'>
+	      <h2>Our favorites</h2>
+	      <p class="description">Top picks from the Crowdscore team and community</p>
+	    </div>
+
+	    <!-- START DYNAMIC RECOMMENDATION CARDS -->
+	    
+	    <div class="recommendation-module-cards">
+	    
+	    <!-- BEGINNING OF CARD -->
+	    
+	    <% @favorite_restaurants.each do |favorite| %>
+	      <a href="<%= venue_path(favorite.venue) %>">
+	      <div class='recommendation-card populated'>
+	        <div class="image">
+	          <img src="http://discovermilton.com/wp-content/uploads/2013/03/Pasta_mabo06_morguefile.jpg">
+	        </div>
+	        
+	        <div class="score-container">
+	          <%= render 'shared/pie_graph', type: "dashboard-score", score: favorite.venue.score, animate: true  %>
+	        </div>
+
+	        <div class="stats">
+	          <span><%= favorite.venue.venue_scores.count %> scores</span>
+	          <span><%= favorite.venue.tips.count %> tips</span>
+	        </div>
+
+	        <div class="info">
+	          <h4><%= favorite.venue.name %></h4>
+	          <p>
+	            <span>0.2 miles</span>
+	            <span><%= favorite.venue.city %></span>
+	          </p>
+	        </div>
+	      </div>
+	      </a>
+	    <% end %>
+	      
+	      <!-- END OF CARD -->
+
+	      
+	      <div style='width: 100px; height: 299px; visibility: hidden'>s</div>
+	    </div>
+	  </div>
+	</div>

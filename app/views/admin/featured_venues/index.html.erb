@@ -11,6 +11,7 @@
     <tr>
       <td>Venue Name</td>
       <td>Location</td>
+      <td>Type</td>
       <td>Recommender</td>
       <td>Active</td>
       <td>Edit</td>
@@ -20,6 +21,7 @@
     <tr>
       <td><%= link_to venue.name, admin_featured_venue_path(venue) %></td>
       <td><%= "#{venue.city}, #{venue.state}" %></td>
+      <td><%= venue.feature_type %></td>
       <td><%= link_to User.find(venue.user_id).username, User.find(venue.user_id) if venue.user_id %></td>
       <td><%= venue.active %></td>
       <td><%= link_to "Edit featured venue", edit_admin_featured_venue_path(venue) %></td>
