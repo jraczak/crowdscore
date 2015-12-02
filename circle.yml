@@ -7,6 +7,7 @@ deployment:
   production:
     branch: master
     commands:
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow" 
       - git push git@heroku.com:crowdscore.git
       - heroku pg:backups capture --app crowdscore
       - heroku run rake db:migrate --app crowdscore
@@ -14,6 +15,7 @@ deployment:
   staging:
     branch: staging
     commands:
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
       - git push git@heroku.com:crowdscore-staging.git -f
       - heroku pg:backups capture --app crowdscore-staging
       - heroku run bundle exec rake db:migrate --app crowdscore-staging
