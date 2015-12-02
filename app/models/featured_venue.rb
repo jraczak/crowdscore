@@ -6,5 +6,6 @@ class FeaturedVenue < ActiveRecord::Base
 
   belongs_to :venue
   
-  attr_accessible :venue_id, :description, :user_id, :city, :state, :active, :featured_venue_image
+  attr_accessible :venue_id, :description, :user_id, :city, :state, :active, :featured_venue_image, :image_url, :feature_type
+  
 end

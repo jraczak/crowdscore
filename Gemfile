@@ -52,7 +52,7 @@ gem 'hirefire-resource'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-# Gems & utilities for monitoring
+# Gems for monitoring
 gem 'skylight'
 
 

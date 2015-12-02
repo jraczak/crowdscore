@@ -7,6 +7,7 @@ class List < ActiveRecord::Base
   
   has_many :list_likes, dependent: :destroy
   has_many :liked_by, through: :list_likes, source: :user
+  has_many :featured_lists
   
   validates :name, :user, presence: true
   validates :name, length: { maximum: 40 }

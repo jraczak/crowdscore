@@ -7,7 +7,6 @@ def create
   @featured_venue.state = venue.state
   @featured_venue.name = venue.name
   @featured_venue.save!
-  
 end
 
   def edit
