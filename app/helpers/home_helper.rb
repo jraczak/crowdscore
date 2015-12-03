@@ -3,7 +3,7 @@ module HomeHelper
   def user_location
     #@user_search_location = "#{user_location_data['city']} #{user_location_data['state']}"
     #return "#{user_location_data['city']} #{user_location_data['state']}"
-    "#{user_location_data['city']} #{user_location_data['state']}"
+    "#{user_location_data['city']} #{user_location_data['state']}" if user_location_data
   end
   
   def get_new_restaurant_features
