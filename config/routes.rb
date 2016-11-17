@@ -86,4 +86,12 @@ Crowdscore::Application.routes.draw do
   end
 
   root to: 'home#index'
+  
+  #API Routes
+  
+  namespace :api, defaults: {format: 'json'} do
+   	resources :venues, only: [ :index, :show ]
+  end
+  
+  
 end
